@@ -1,12 +1,13 @@
 import Position from './position';
 import ObjectOnField from './objectOnField';
 import Page from './page';
+// import Logger from './logger';
 
 class Field {
   constructor({bg, objects, methods, grade, size}) {
     this.objects = {};
     for (let obj of objects) {
-      objects[obj.id] = new ObjectOnField(obj, this);
+      this.objects[obj.id] = new ObjectOnField(obj, this);
     }
     this.methods = methods;
     this.bg = bg;
@@ -43,7 +44,7 @@ class Field {
   }
 
   checkPosById(id, pos) {
-    return JSON.stringify(this.findById(id)) === JSON.stringify(pos);
+    return JSON.stringify(this.findById(id).pos) === JSON.stringify(pos);
   }
 
 }

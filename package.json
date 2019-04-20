@@ -4,22 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --mode development --watch && webpack-dev-server",
-    "dev": "webpack --mode development --watch"
+    "dev": "webpack --mode development --watch",
+    "lint": "eslint ./src"
   },
   "keywords": [],
-  "author": "Alice <alice@alice.si> (alice.si)",
+  "author": "Suvorovalex1997@gmail.com",
   "license": "MIT",
-  "devDependencies": {
-    "antlr4": "^4.7.2",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
-  },
   "dependencies": {
+    "antlr4": "^4.7.2",
+    "monaco-editor-webpack-plugin": "^1.7.0",
     "jquery": "^3.4.0",
     "monaco-editor": "^0.16.2"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "style-loader": "^0.23.1",
+    "css-loader": "^2.1.1",
+    "webpack-dev-server": "^3.3.1",
+    "eslint": "^5.16.0"
   }
 }

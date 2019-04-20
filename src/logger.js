@@ -1,8 +1,10 @@
 // TODO in future we could implement
 // - logging levels
 // - custom logging mechanisms (e.g. sending web requests for error level)
+
 import Page from './page';
 
+/*eslint-disable */
 export default {
   error: console.error,
   info: function(...args) {
@@ -11,3 +13,4 @@ export default {
   },
   warn: console.warn
 };
+/*eslint-enable */

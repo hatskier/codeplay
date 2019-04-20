@@ -2,17 +2,17 @@ let conf = {
   bg: 'https://s3.amazonaws.com/alcourses.codeplay/example1/city-miami.jpg',
 
   size: {
-    width: '400px',
-    height: '400px'
+    width: 400,
+    height: 400
   },
 
   objects: [
     {
       id: 'Car',
-      img: 'http://url.img',
+      img: 'https://s3.amazonaws.com/alcourses.codeplay/example1/car-black.png',
       size: {
-        width: '50px',
-        height: '50px'
+        width: 50,
+        height: 50
       },
       startPos: {
         x: 10,
@@ -22,7 +22,7 @@ let conf = {
   ],
 
   methods: {
-    "car.go": {
+    "car.go()": {
       doc: 'Car goes forward',
       async run (context, params) {
         if (params) {
