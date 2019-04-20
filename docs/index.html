@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Codeplay</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <style>
+
+      #run-button {
+        color: white;
+        background: yellowgreen;
+      }
+
+      .mdl-cell {
+        border: 1px solid lightblue;
+        height: 500px;
+      }
+      
+      textarea {
+        margin: 5px;
+      }
+
+      #screen-view {
+        margin: auto;
+        position: relative;
+        margin-top: 20px;
+      }
+
+      #code-editor {
+        margin: auto;
+        margin-top: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- <script src="./src/index.js"></script> -->
+    <div class="mdl-grid">
+      <div id="screen-view-container" class="mdl-cell mdl-cell--6-col">
+        <div id="screen-view">
+        </div>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col">
+      <div class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <button id="run-button" onclick="run()"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+              <i class="material-icons">play_arrow</i>
+            </button>
+            <a class="mdl-navigation__link" href="">
+                <i class="material-icons">bug_report</i>
+              </a>
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+              <!-- <a class="mdl-navigation__link" href="">
+                  <i class="material-icons">code</i>
+              </a> -->
+              <a class="mdl-navigation__link" href="">
+                  <i class="material-icons">info_outline</i>
+              </a>
+              <a class="mdl-navigation__link" href="">
+                <i class="material-icons">help_outline</i>
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div id="code-editor" style="width:600px;height:400px;border:1px solid #ccc"></div>
+        <!-- <textarea id="code-editor" cols=81 rows=30></textarea> -->
+      </div>
+      <div class="mdl-cell mdl-cell--12-col">
+        <h4>Logs</h4>
+        <div id="logs">
+          
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.bundle.js"></script>
+  </body>
+</html>
