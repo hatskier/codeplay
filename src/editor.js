@@ -10,6 +10,7 @@ export default {
         '}'
       ].join('\n'),
       language: 'javascript',
+      theme: 'vs', // vs, vs-dark, hc-black
       scrollBeyondLastLine: false,
       scrollbar: {
         verticalScrollbarSize: 7,
