@@ -4,13 +4,14 @@
 
 import Page from './page';
 
-/*eslint-disable */
+
 export default {
+  /*eslint-disable */
   error: console.error,
   info: function(...args) {
     console.log(...args);
     Page.addLog(...args);
   },
   warn: console.warn
+  /*eslint-enable */
 };
-/*eslint-enable */

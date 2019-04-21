@@ -2,6 +2,7 @@ import conf from './examples/car';
 import Field from './field';
 import $ from 'jquery';
 import editor from './editor';
+import Parser from './lang/parser';
 
 
 let field = new Field(conf);
@@ -17,3 +18,5 @@ window.run = function () {
 
 // Setting up the editor
 editor.setUp();
+
+Parser.test();
