@@ -5,6 +5,7 @@ class ObjectOnField {
     this.img = img;
     this.size = size;
     this.field = field;
+    this.rotation = 0;
 
     /* TODO this class is created with thoughts about the future
       when (probably) we will want to take some separate logic for objects */

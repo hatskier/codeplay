@@ -1,13 +1,5 @@
 // import * as monaco from 'monaco-editor';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
-
-// TODO example should be defined in task configuration
-const exampleValue = [
-  'if (true) {',
-  '\tcar.go();',
-  '}',
-  'car.go();'
-].join('\n');
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 
 export default {
   setUp: function(conf) { 
@@ -27,7 +19,7 @@ export default {
     });
 
     return monaco.editor.create(document.getElementById('code-editor'), {
-      value: exampleValue,
+      value: conf.startCodeVal,
       language: 'javascript',
       theme: 'vs', // vs, vs-dark, hc-black
       scrollBeyondLastLine: false,

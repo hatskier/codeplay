@@ -50,8 +50,20 @@ Page.changeObjectPos = function(id, pos, size) {
     $('#' + id).animate({
       'left': `${pxCoord.x}px`,
       'top': `${pxCoord.y}px`
-    }, 1000, function () {
-      resolve();
+    }, 1000, resolve);
+  });
+};
+
+Page.changeObjectRotation = function(id, degrees) {
+  return new Promise(function(resolve) {
+    $({deg: degrees.old}).animate({deg: degrees.new}, {
+      duration: 1000,
+      step: function(now) {
+        $('#' + id).css({
+          transform: 'rotate(' + now + 'deg)'
+        });
+      },
+      complete: resolve
     });
   });
 };

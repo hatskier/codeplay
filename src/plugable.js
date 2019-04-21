@@ -1,4 +1,5 @@
-import conf from './examples/car';
+// import conf from './examples/car';
+import conf from './examples/rocket';
 import Field from './field';
 import Editor from './editor';
 import Parser from './lang/parser';

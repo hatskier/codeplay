@@ -76,6 +76,17 @@ class Field {
     obj.pos = newPos;
   }
 
+  async rotate(id, degrees) {
+    const fullCircle = 360;
+    let obj = this.findById(id);
+    let newRotation = (obj.rotation + degrees) % (fullCircle + 1);
+    await Page.changeObjectRotation(id, {
+      old: obj.rotation,
+      new: newRotation
+    });
+    obj.rotation = newRotation;
+  }
+
   checkPosById(id, pos) {
     return JSON.stringify(this.findById(id).pos) === JSON.stringify(pos);
   }
