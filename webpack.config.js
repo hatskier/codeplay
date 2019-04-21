@@ -4,7 +4,8 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   entry: {
-    "app": './src/index.js',
+		"app": './src/index.js',
+		"app.plugable": './src/plugable.js',
     "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
 		"json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
 		"css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
@@ -28,7 +29,8 @@ module.exports = {
 	},
 	plugins: [
 		new CopyPlugin([
-      { from: 'index.html', to: 'index.html' },
+			{ from: 'index.html', to: 'index.html' },
+			{ from: 'plugged.html', to: 'plugged.html' }
 		]),
 		new MonacoWebpackPlugin({
 			languages: ['javascript']
