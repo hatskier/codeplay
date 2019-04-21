@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode production ; cp -r dist docs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --mode development --watch && webpack-dev-server",
     "dev": "webpack --mode development --watch",
