@@ -7,6 +7,6 @@ export default {
   parse(code) {
     const parser = new Nearley.Parser(Nearley.Grammar.fromCompiled(Grammar));
     parser.feed(code);
-    return parser.results;
+    return parser.results[0];
   }
 };

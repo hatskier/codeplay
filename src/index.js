@@ -1,22 +1,20 @@
 import conf from './examples/car';
 import Field from './field';
-import $ from 'jquery';
-import editor from './editor';
+import Editor from './editor';
 import Parser from './lang/parser';
+// import Logger from './logger';
 
 
-let field = new Field(conf);
+const field = new Field(conf);
 field.init();
 
+// Setting up the editor
+const editor = Editor.setUp();
+
 window.run = function () {
-	const code = $('#code-editor').val();
+  const code = editor.getValue();
   if (code) {
-    const codeTree = code.split('\n');
+    const codeTree = Parser.parse(code);
     field.run(codeTree);
   }
 };
-
-// Setting up the editor
-editor.setUp();
-
-Parser.test();

@@ -52,12 +52,14 @@ funArgs ->
 ifElseStm -> "if" _ "(" _ expr _ ")" _ stmBlock (_ "else" _ "{" stmts "}"):? {%
   function(data) {
     let res = {
-      type: 'ifStm',
+      type: 'ifElseStm',
       expr: data[4],
       ifStmts: data[8]
     };
     if (data[9]) {
       res.elseStmts = data[9][4];
+    } else {
+      res.elseStmts = [];
     }
     return res;
   }

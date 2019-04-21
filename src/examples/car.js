@@ -22,10 +22,10 @@ let conf = {
   ],
 
   methods: {
-    "car.go()": {
+    "car.go": {
       doc: 'Car goes forward',
       async run (context, params) {
-        if (params) {
+        if (params && params[0]) {
           await context.field.safeMove('Car', {
             x: params[0],
             y: 0

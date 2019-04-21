@@ -1,7 +1,7 @@
 import Position from './position';
 import ObjectOnField from './objectOnField';
 import Page from './page';
-// import Logger from './logger';
+import Logger from './logger';
 
 class Field {
   constructor({bg, objects, methods, grade, size}) {
@@ -24,10 +24,43 @@ class Field {
   }
 
   // TODO in future we can add speed and other motion params
-  // TODO in future we should handle real tree
   async run(codeTree) {
-    for (let codeLine of codeTree) {
-      await this.methods[codeLine].run({field: this});
+    // TODO handle while stmt
+    for (let node of codeTree) {
+      switch (node.type) {
+        case 'funCall': {
+          const method = this.methods[node.name];
+          if (method) {
+            Logger.info(`Running method ${node.name} with ${node.args}`);
+            await method.run({field: this}, node.args);
+          } else {
+            const errMsg = `Method ${node.name} was not found`;
+            Logger.error(errMsg);
+            throw new Error(errMsg);
+          }
+          break;
+        }
+        case 'ifElseStm': {
+          if (node.expr) {
+            Logger.info('Running if statements');
+            await this.run(node.ifStmts);
+          } else {
+            Logger.info('Running else statements');
+            await this.run(node.elseStmts);
+          }
+          break;
+        }
+        case 'whileStm': {
+          const errMsg = 'While stm not implemented';
+          Logger.error(errMsg);
+          throw new Error(errMsg);
+        }
+        default: {
+          const errMsg = 'Other statements not allowed';
+          Logger.error(errMsg);
+          throw new Error(errMsg);
+        }
+      }
     }
     return this.grade({field: this});
   }

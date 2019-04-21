@@ -58,12 +58,14 @@ var grammar = {
     {"name": "ifElseStm", "symbols": [{"literal":"if"}, "_", {"literal":"("}, "_", "expr", "_", {"literal":")"}, "_", "stmBlock", "ifElseStm$ebnf$1"], "postprocess": 
         function(data) {
           let res = {
-            type: 'ifStm',
+            type: 'ifElseStm',
             expr: data[4],
             ifStmts: data[8]
           };
           if (data[9]) {
             res.elseStmts = data[9][4];
+          } else {
+            res.elseStmts = [];
           }
           return res;
         }
