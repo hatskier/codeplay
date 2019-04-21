@@ -31,7 +31,7 @@ class Field {
         case 'funCall': {
           const method = this.methods[node.name];
           if (method) {
-            Logger.info(`Running method ${node.name} with ${node.args}`);
+            Logger.info(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
             await method.run({field: this}, node.args);
           } else {
             const errMsg = `Method ${node.name} was not found`;
@@ -72,7 +72,7 @@ class Field {
   async safeMove(id, offset) {
     let obj = this.findById(id);
     let newPos = Position.safeAdd(obj.pos, offset);
-    await Page.changeObjectPos(id, newPos);
+    await Page.changeObjectPos(id, newPos, obj.size);
     obj.pos = newPos;
   }
 

@@ -32,11 +32,11 @@ Page.addObject = function(object) {
 
   Logger.info(`Adding object to field: ${object.id}`);
   $(elemSelector).append(buildImageHtml(object));
-  const pxCoord = getPxCoords(object.pos);
+  const pxCoord = getPxCoords(object.pos, object.size);
   $('#' + object.id).css({
     'position': 'absolute',
-    'top': `${pxCoord.x}px`,
-    'left': `${pxCoord.y}px`
+    'left': `${pxCoord.x}px`,
+    'top': `${pxCoord.y}px`
   });
 };
 
@@ -44,24 +44,26 @@ Page.addLog = function(msg) {
   $('#logs').html(msg + '<br /><hr>' + $('#logs').html());
 }
 
-Page.changeObjectPos = function(id, pos) {
+Page.changeObjectPos = function(id, pos, size) {
   return new Promise(function (resolve) {
-    const pxCoord = getPxCoords(pos);
+    const pxCoord = getPxCoords(pos, size);
     $('#' + id).animate({
-      'top': `${pxCoord.x}px`,
-      'left': `${pxCoord.y}px`
+      'left': `${pxCoord.x}px`,
+      'top': `${pxCoord.y}px`
     }, 1000, function () {
       resolve();
     });
   });
 };
 
-// TODO make this function smarter
-function getPxCoords(pos) {
-  return {
-    x: fieldSize.width * pos.x / 100,
-    y: fieldSize.height * pos.y / 100
+function getPxCoords(pos, size) {
+  let coords = {
+    x: Math.round((fieldSize.width - size.width) * pos.x / 100),
+    y: Math.round((fieldSize.height - size.height) * pos.y / 100)
   };
+  // Logger.info(JSON.stringify(coords));
+  // Logger.info(JSON.stringify(size));
+  return coords;
 }
 
 export default Page;
