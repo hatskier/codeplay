@@ -27,16 +27,24 @@ class Field {
   }
 
   // TODO in future we can add speed and other motion params
-  async run(codeTree) {
+  async run(codeTree, lineHighlighter) {
     // TODO handle while stmt
     for (let node of codeTree) {
       switch (node.type) {
         case 'funCall': {
           const method = this.methods[node.name];
           if (method) {
+            // TODO make it better
+            if (lineHighlighter) {
+              lineHighlighter.start(node.line);
+            }
             Logger.info(`Running ${node.line} line of code`);
             Logger.info(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
             await method.run({field: this, state: this.state}, node.args);
+            // TODO make it better
+            if (lineHighlighter) {
+              lineHighlighter.stop(node.line);
+            }
           } else {
             const errMsg = `Method ${node.name} was not found`;
             Logger.error(errMsg);

@@ -47,7 +47,15 @@ $( document ).ready(async function() {
       try {
         for (let test of conf.tests) {
           await test.pre({field, state: field.state});
-          await field.run(codeTree);
+          // TODO thinks how to make it better
+          await field.run(codeTree, {
+            start(nr) {
+              Editor.highlightLine(nr, 'lightblue');
+            },
+            stop(nr) {
+              Editor.highlightLine(nr, 'white');
+            }
+          });
           await test.post({field, state: field.state});
         }
         // TODO

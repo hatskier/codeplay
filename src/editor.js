@@ -2,7 +2,7 @@
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 
 export default {
-  setUp: function(conf) { 
+  setUp(conf) { 
     monaco.languages.registerCompletionItemProvider('javascript', {
       provideCompletionItems() {
         let suggestions = [];
@@ -29,5 +29,9 @@ export default {
       fontSize: 18,
       contextmenu: false
     });
+  },
+
+  highlightLine(nr, color) {
+    document.getElementsByClassName('view-lines')[0].children[nr - 1].style.background = color;
   }
 };
