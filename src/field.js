@@ -4,22 +4,25 @@ import Page from './page';
 import Logger from './logger';
 
 class Field {
-  constructor({bg, objects, methods, grade, size}) {
+  constructor({bg, objects, methods, size}) {
     this.objects = {};
     for (let obj of objects) {
-      this.objects[obj.id] = new ObjectOnField(obj, this);
+      let objOnField = new ObjectOnField(obj, this);
+      this.objects[objOnField.id] = objOnField;
     }
     this.methods = methods;
     this.bg = bg;
-    this.grade = grade;
     this.size = size;
+
+    // TODO maybe it's better to store state outside
+    this.state = {};
   }
 
   init() {
     Page.initEmptyScreen(this.bg, this.size);
     for (let id in this.objects) {
       let curObj = this.objects[id];
-      Page.addObject(curObj);
+      Page.safeAddObject(curObj);
     }
   }
 
@@ -32,7 +35,7 @@ class Field {
           const method = this.methods[node.name];
           if (method) {
             Logger.info(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
-            await method.run({field: this}, node.args);
+            await method.run({field: this, state: this.state}, node.args);
           } else {
             const errMsg = `Method ${node.name} was not found`;
             Logger.error(errMsg);
@@ -62,7 +65,6 @@ class Field {
         }
       }
     }
-    return this.grade({field: this});
   }
 
   findById(id) {
@@ -72,8 +74,8 @@ class Field {
   async safeMove(id, offset) {
     let obj = this.findById(id);
     let newPos = Position.safeAdd(obj.pos, offset);
-    await Page.changeObjectPos(id, newPos, obj.size);
     obj.pos = newPos;
+    await Page.changeObjectPos(obj);
   }
 
   async rotate(id, degrees) {
@@ -85,6 +87,18 @@ class Field {
       new: newRotation
     });
     obj.rotation = newRotation;
+  }
+
+  async changeImage(id, url) {
+    let obj = this.findById(id);
+    await Page.changeObjectImg(id, url);
+    obj.img = url;
+  }
+
+  sleep(ms) {
+    return new Promise(function(resolve) {
+      setTimeout(resolve, ms);
+    });
   }
 
   checkPosById(id, pos) {

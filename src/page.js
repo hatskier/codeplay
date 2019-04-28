@@ -1,6 +1,9 @@
 import $ from 'jquery';
 import Logger from './logger';
 
+// TODO make configurable on UI
+const defaultAnimationTime = 700;
+
 let Page = {};
 
 let elemSelector = '#screen-view';
@@ -20,44 +23,59 @@ Page.initEmptyScreen = function(bg, size) {
   fieldSize = size;
 };
 
-Page.addObject = function(object) {
+// TODO check if this function works correctly
+Page.containsObject = function(object) {
+  return $('#' + object.id).length > 0;
+}
+
+Page.safeAddObject = function(object) {
   function buildImageHtml(obj) {
     let html = `<img
       id='${obj.id}'
-      src='${obj.img}'
-      height='${obj.size.height}px'
-      width='${obj.size.width}px'>`;
+      src='${obj.img}'>`;
     return html;
   }
 
-  Logger.info(`Adding object to field: ${object.id}`);
-  $(elemSelector).append(buildImageHtml(object));
-  const pxCoord = getPxCoords(object.pos, object.size);
-  $('#' + object.id).css({
-    'position': 'absolute',
-    'left': `${pxCoord.x}px`,
-    'top': `${pxCoord.y}px`
-  });
+  if (!Page.containsObject(object)) {
+    Logger.info(`Adding object to field: ${object.id}`);
+    let html = object.html;
+    if (object.kind == 'img') {
+      html = buildImageHtml(object);
+    }
+    $(elemSelector).append(html);
+    const pxCoord = getPxCoords(object);
+    $('#' + object.id).css({
+      'position': 'absolute',
+      'left': `${pxCoord.x}px`,
+      'top': `${pxCoord.y}px`,
+      'height': `${object.size.height}px`,
+      'width': `${object.size.width}px`
+    });
+  }
 };
 
 Page.addLog = function(msg) {
   $('#logs').html(msg + '<br /><hr>' + $('#logs').html());
-}
+};
 
-Page.changeObjectPos = function(id, pos, size) {
+Page.changeObjectImg = function(id, url) {
+  return $('#' + id).attr('src', url);
+};
+
+Page.changeObjectPos = function(object) {
   return new Promise(function (resolve) {
-    const pxCoord = getPxCoords(pos, size);
-    $('#' + id).animate({
+    const pxCoord = getPxCoords(object);
+    $('#' + object.id).animate({
       'left': `${pxCoord.x}px`,
       'top': `${pxCoord.y}px`
-    }, 1000, resolve);
+    }, defaultAnimationTime, resolve);
   });
 };
 
 Page.changeObjectRotation = function(id, degrees) {
   return new Promise(function(resolve) {
     $({deg: degrees.old}).animate({deg: degrees.new}, {
-      duration: 1000,
+      duration: defaultAnimationTime,
       step: function(now) {
         $('#' + id).css({
           transform: 'rotate(' + now + 'deg)'
@@ -68,14 +86,20 @@ Page.changeObjectRotation = function(id, degrees) {
   });
 };
 
-function getPxCoords(pos, size) {
-  let coords = {
-    x: Math.round((fieldSize.width - size.width) * pos.x / 100),
-    y: Math.round((fieldSize.height - size.height) * pos.y / 100)
-  };
-  // Logger.info(JSON.stringify(coords));
-  // Logger.info(JSON.stringify(size));
-  return coords;
+function getPxCoords(object) {
+  // if (object.kind == 'html') {
+    return {
+      x: Math.round(fieldSize.width * object.pos.x / 100),
+      y: Math.round(fieldSize.height * object.pos.y / 100)
+    };
+  // }
+  // let coords = {
+  //   x: Math.round((fieldSize.width - object.size.width) * object.pos.x / 100),
+  //   y: Math.round((fieldSize.height - object.size.height) * object.pos.y / 100)
+  // };
+  // // Logger.info(JSON.stringify(coords));
+  // // Logger.info(JSON.stringify(size));
+  // return coords;
 }
 
 export default Page;

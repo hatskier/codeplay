@@ -6,6 +6,7 @@ module.exports = {
   entry: {
 		"app": './src/index.js',
 		"app.plugable": './src/plugable.js',
+		"lesson": './src/lesson.js',
     "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
 		"json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
 		"css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
@@ -29,8 +30,7 @@ module.exports = {
 	},
 	plugins: [
 		new CopyPlugin([
-			{ from: 'index.html', to: 'index.html' },
-			{ from: 'plugged.html', to: 'plugged.html' }
+			{ from: 'static' }
 		]),
 		new MonacoWebpackPlugin({
 			languages: ['javascript']

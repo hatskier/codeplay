@@ -1,9 +1,12 @@
-// import conf from './examples/car';
-import conf from './examples/rocket';
 import Field from './field';
 import Editor from './editor';
 import Parser from './lang/parser';
 import HtmlComponents from './html-components';
+
+// import conf from './examples/labyrinth';
+// import conf from './examples/man';
+// import conf from './examples/rocket';
+import conf from './examples/car';
 // import Logger from './logger';
 
 import $ from 'jquery';
