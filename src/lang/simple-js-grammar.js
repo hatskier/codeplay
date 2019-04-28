@@ -39,7 +39,8 @@ var grammar = {
           return {
             type: 'funCall',
             name: data[0],
-            args: data[2]
+            args: data[2],
+            line: data[1].line
           };
         }
         },

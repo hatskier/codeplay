@@ -34,6 +34,7 @@ class Field {
         case 'funCall': {
           const method = this.methods[node.name];
           if (method) {
+            Logger.info(`Running ${node.line} line of code`);
             Logger.info(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
             await method.run({field: this, state: this.state}, node.args);
           } else {

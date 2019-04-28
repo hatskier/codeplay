@@ -50,11 +50,13 @@ $( document ).ready(async function() {
           await field.run(codeTree);
           await test.post({field, state: field.state});
         }
-        success();
+        // TODO
+        // success();
       } catch (err) {
         Logger.error(err);
         fail(err);
-        location.reload();
+        // TODO
+        // location.reload();
         // Back to start state
         // TODO make it better
       }

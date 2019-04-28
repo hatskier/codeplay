@@ -31,12 +31,14 @@ stm ->
 
 expr -> value {% id %}
 
+# TODO in future not only funCall will have location linked
 funCall -> identifier "(" funArgs ")" _ ";" {%
   function(data) {
     return {
       type: 'funCall',
       name: data[0],
-      args: data[2]
+      args: data[2],
+      line: data[1].line
     };
   }
 %}
