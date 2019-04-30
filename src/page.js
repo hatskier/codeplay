@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Logger from './logger';
 
 // TODO make configurable on UI
-const defaultAnimationTime = 700;
+const defaultAnimationTime = 300;
 
 let Page = {};
 

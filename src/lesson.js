@@ -45,8 +45,8 @@ $( document ).ready(async function() {
     if (code) {
       const codeTree = Parser.parse(code);
       try {
-        for (let test of conf.tests) {
-          await test.pre({field, state: field.state});
+        for (let iteration of conf.iterations) {
+          await iteration.pre({field, state: field.state});
           // TODO thinks how to make it better
           await field.run(codeTree, {
             start(nr) {
@@ -56,9 +56,8 @@ $( document ).ready(async function() {
               Editor.highlightLine(nr, 'white');
             }
           });
-          await test.post({field, state: field.state});
+          await iteration.post({field, state: field.state});
         }
-        // TODO
         // success();
       } catch (err) {
         Logger.error(err);

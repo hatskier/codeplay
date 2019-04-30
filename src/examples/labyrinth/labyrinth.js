@@ -52,6 +52,9 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
         if (step.direction == 'left') {
           newHtmlObject.startPos.x -= (stepWidth - ((defaultSize / size.width) * 100));
         }
+
+        // Hack to shift labyrinth to one block right
+        // newHtmlObject.startPos.x += stepWidth;
   
         htmlObjects.push(newHtmlObject);
   
@@ -132,8 +135,6 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
               throw new Error('Bad move');
             }
           }
-  
-          await context.field.changeImage('Man', 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png');
         }
 
         validateParams(params);
@@ -161,16 +162,26 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
     "man.moveDown": movingMethod('Man goes down', 0, stepWidth, 'down')
   };
 
-  Conf.tests = [
+  Conf.iterations = [
     {
-      pre: function() {},
-      post: function(context) {
+      pre: async function(context) {
+        await context.field.changeImage('Man', 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif');
+      },
+      post: async function(context) {
+        await context.field.changeImage('Man', 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png');
         if (JSON.stringify(path) !== JSON.stringify(context.state.path)) {
           throw new Error('You have not reached the target');
         }
       }
     }
   ];
+
+  Conf.tickHooks = {
+    pre: async function() {
+    },
+    post: async function() {
+    }
+  }
 
   Conf.startCodeVal = startCodeVal;
 
