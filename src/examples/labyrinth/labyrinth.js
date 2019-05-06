@@ -10,8 +10,15 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
     y: 5
   };
   
-  let Conf = {
-    bg: 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/skale.jpg',
+  let conf = {
+    images: {
+      'skale': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/skale.jpg',
+      'man-static': 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png',
+      'man-going-left': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif',
+      'man-going-right': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif'  
+    },
+
+    bg: 'skale',
   
     objects: [
       {
@@ -82,7 +89,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
         }
       }
     }
-    Conf.objects = htmlObjects.concat(Conf.objects);
+    conf.objects = htmlObjects.concat(conf.objects);
   }
   
   function movingMethod(doc, dx, dy, direction) {
@@ -97,9 +104,9 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
 
         async function runStep() {
           if (direction == 'left') {
-            await context.field.changeImage('Man', 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif');
+            await context.field.changeImage('Man', 'man-going-left');
           } else {
-            await context.field.changeImage('Man', 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif');
+            await context.field.changeImage('Man', 'man-going-right');
           }
           
           
@@ -152,23 +159,22 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
 
   drawLabyrinth();
 
-  Conf.size = size;
+  conf.size = size;
 
-  // Conf.objects = Conf.objects.concat(pathObjects);
-  Conf.methods = {
-    "man.moveRight": movingMethod('Man goes right', stepWidth, 0, 'right'),
-    "man.moveLeft": movingMethod('Man goes left', -stepWidth, 0, 'left'),
-    "man.moveUp": movingMethod('Man goes up', 0, -stepWidth, 'up'),
-    "man.moveDown": movingMethod('Man goes down', 0, stepWidth, 'down')
+  conf.methods = {
+    'man.moveRight': movingMethod('Man goes right', stepWidth, 0, 'right'),
+    'man.moveLeft': movingMethod('Man goes left', -stepWidth, 0, 'left'),
+    'man.moveUp': movingMethod('Man goes up', 0, -stepWidth, 'up'),
+    'man.moveDown': movingMethod('Man goes down', 0, stepWidth, 'down')
   };
 
-  Conf.iterations = [
+  conf.iterations = [
     {
       pre: async function(context) {
-        await context.field.changeImage('Man', 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif');
+        await context.field.changeImage('Man', 'man-going-left');
       },
       post: async function(context) {
-        await context.field.changeImage('Man', 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png');
+        await context.field.changeImage('Man', 'man-static');
         if (JSON.stringify(path) !== JSON.stringify(context.state.path)) {
           throw new Error('You have not reached the target');
         }
@@ -176,16 +182,16 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
     }
   ];
 
-  Conf.tickHooks = {
+  conf.tickHooks = {
     pre: async function() {
     },
     post: async function() {
     }
   }
 
-  Conf.startCodeVal = startCodeVal;
+  conf.startCodeVal = startCodeVal;
 
-  return Conf;
+  return conf;
 }
 
 export default prepareLabyrinth;

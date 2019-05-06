@@ -6,10 +6,11 @@ import Logger from './logger';
 import $ from 'jquery';
 
 import car from './examples/car';
-import simpleLabyrinth from './examples/labyrinth/simple-labyrinth';
+import easyLabyrinth from './examples/labyrinth/easy-labyrinth';
 import mediumLabyrinth from './examples/labyrinth/medium-labyrinth';
 import hardLabyrinth from './examples/labyrinth/hard-labyrinth';
-const configs = { car, simpleLabyrinth, mediumLabyrinth, hardLabyrinth };
+import easyBattle from './examples/battle/easy-battle';
+const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, easyBattle };
 
 $( document ).ready(async function() {
   Logger.info('Page is loaded');
@@ -17,22 +18,20 @@ $( document ).ready(async function() {
   let configName = params.get('config');
   let nextPage = params.get('nextPage');
 
-  function fail(err) {
-    alert('Unfortunately not all tests passed yet :( Please try again. '
-          + err.toString());
-  }
-  
-  function success() {
-    alert('Lesson completed! Well done!');
-    window.location.replace(nextPage);
-  }
-
   if (!configName) {
     alert('Bad config param!');
     throw 'Bad config';
   }
 
   let conf = configs[configName];
+
+  // TODO add loader
+  await preLoadImage('img/spinner2.svg');
+  showOverlaySpinner();
+  Logger.info('Image preloading started');
+  await preLoadImages(conf.images);
+  Logger.info('Image preloading finished');
+  hideOverlaySpinner();
 
   const field = new Field(conf);
   field.init();
@@ -69,6 +68,17 @@ $( document ).ready(async function() {
       }
     }
   };
+
+
+  function fail(err) {
+    alert('Unfortunately not all tests passed yet :( Please try again. '
+          + err.toString());
+  }
+  
+  function success() {
+    alert('Lesson completed! Well done!');
+    window.location.replace(nextPage);
+  }
   
   function buildDocumentationView(conf) {
     let html = `
@@ -86,5 +96,37 @@ $( document ).ready(async function() {
       </table>
     `;
     $('#doc-view').html(html);
+  }
+
+  async function preLoadImages(images) {
+    for (const imageKey in images) {
+      const url = images[imageKey];
+      await preLoadImage(url);
+    }
+  }
+
+  function preLoadImage(url) {
+    return new Promise(function(resolve) {
+      const img = new Image();
+      img.src = url;
+      img.onload = resolve;
+    });
+  }
+
+  function showOverlaySpinner() {
+    toggleOverlaySpinner(true);
+  }
+
+  function hideOverlaySpinner() {
+    toggleOverlaySpinner(false);
+  }
+
+  function toggleOverlaySpinner(show) {
+    const el = document.getElementById('overlay');
+    if (show) {
+      el.style.display = 'block';
+    } else {
+      el.style.display = 'none';
+    }
   }
 });

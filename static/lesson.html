@@ -3,132 +3,129 @@
   <head>
     <meta charset="utf-8">
     <title>Codeplay</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-light_green.min.css" /> 
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
-    <style>
-
-      #run-button {
-        color: white;
-        background: yellowgreen;
-      }
-
-      .mdl-cell {
-        /* border: 1px solid lightblue; */
-        height: 500px;
-        border:1px solid #ccc;
-      }
-      
-      textarea {
-        margin: 5px;
-      }
-
-      #screen-view {
-        margin: auto;
-        position: relative;
-        margin-top: 10px;
-      }
-
-      #code-editor {
-        margin: auto;
-        margin-top: 10px;
-        border:1px solid #ccc;
-        width: 45vw;
-        height: 400px;
-      }
-
-      .custom-header {
-        background: #4ab0fe;
-      }
-
-      #doc-view {
-        margin: auto;
-        width: 40vw;
-        height: 400px;
-        /* text-align: center; */
-      }
-
-      #doc-table {
-        margin:auto;
-        text-align: left;
-      }
-
-      #doc-table td {
-        padding: 10px;
-      }
-
-      #screen-view-container {
-        display: inline;
-      }
-
-      .centered-header {
-        text-align: center;
-      }
-
-      .doc-method-name {
-        font-weight: bold;
-      }
-
-      #logs {
-        text-align: center;
-      }
-
-      .white-text {
-        color: white;
-      }
-
-    </style>
   </head>
   <body>
-    <!-- <script src="./src/index.js"></script> -->
-    <div class="custom-header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title white-text">codeplay.dev</span>
-        <div class="mdl-layout-spacer"></div>
-        <button id="run-button" onclick="run()"
-          class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          <i class="material-icons">play_arrow</i>
-        </button>
-        <a class="mdl-navigation__link" href="#" onclick="alert('Sorry, it is not implemented yet')">
-            <i class="material-icons">bug_report</i>
-          </a>
-        <!-- Navigation -->
-        <nav class="mdl-navigation">
-          <!-- <a class="mdl-navigation__link" href="">
-              <i class="material-icons">code</i>
-          </a> -->
-          <!-- <a class="mdl-navigation__link" href="#">
-              <i class="material-icons">info_outline</i>
-          </a> -->
-          <a class="mdl-navigation__link" href="#" onclick="alert('Sorry, it is not implemented yet')">
-            <i class="material-icons">help_outline</i>
-          </a>
-        </nav>
-      </div>
-    </div>
-    <div class="mdl-grid">
-      <div id="screen-view-container" class="mdl-cell mdl-cell--6-col">
-        <div id="screen-view">
+
+    <div id="main-container">
+
+      <style>
+        #top-container {
+          height: 500px;
+        }
+
+        #top-container,#screen-view-container,#control-container {
+          /* Uncomment for CSS debugging */
+          /* border: 1px solid lightblue; */
+        }
+
+        #screen-view-container,#control-container {
+          float: left;
+        }
+
+        #control-bar {
+          margin: auto;
+          margin-top: 5px;
+          text-align: center;
+          border: 1px solid lightblue;
+          width: 200px;
+          padding: 5px;
+          border-radius: 5px;
+        }
+
+        #bottom-container {
+          clear: both;
+        }
+
+        #control-container {
+          width: 49%;
+        }
+
+        #code-editor {
+          margin: auto;
+          margin-top: 10px;
+          /* border:1px solid #ccc; */
+          width: 100%;
+          height: 400px;
+          box-shadow: 0 0 2px;
+        }
+
+        #screen-view-container {
+          width: 50%;
+        }
+
+        #screen-view {
+          margin: auto;
+          /* Position relative is important for dynamic objects in codeplay */
+          position: relative;
+          box-shadow: 0 0 3px;
+        }
+
+        #run-button {
+          background: greenyellow;
+          width: 70px;
+          border-radius: 5px;
+        }
+
+        .md-icon {
+          /* filter:  */
+          width: 35px;
+          margin: 5px;
+        }
+
+        .clickable:hover {
+          cursor: pointer;
+          opacity: 0.7;
+        }
+
+        .clickable:active {
+          /* box-shadow: 0 0 3px; */
+          opacity: 1;
+        }
+
+        #overlay {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          background: black url(img/spinner2.svg) center center no-repeat;
+          opacity: .7;
+        }
+
+      </style>
+
+      <div id="overlay"></div>
+    
+      <div id="top-container">
+        <div id="screen-view-container">
+          <div id="screen-view"></div>
+        </div>
+        <div id="control-container" >
+          <div id="code-editor"></div>
+          <div id="control-bar">
+            <button id="run-button" class="clickable" onclick="run()">
+              <img class="md-icon" src="./img/white-play-icon.png">
+            </button>
+            <img class="md-icon clickable" src="./img/blue-help.png">
+            <img class="md-icon clickable" src="./img/blue-settings.png">
+          </div>
         </div>
       </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <div id="code-editor"></div>
-        <!-- <textarea id="code-editor" cols=81 rows=30></textarea> -->
-      </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <h4 class="centered-header">Documentation</h4>
-        <div id="doc-view">      
+  
+      <div id="bottom-container">
+        <div id="documentation-container">
+          <h4 class="centered-header">Documentation</h4>
+          <div id="doc-view"></div>
+        </div>
+  
+        <div id="logs-container">
+          <h4 class="centered-header">Logs</h4>
+          <div id="logs"></div>
         </div>
       </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <h4 class="centered-header">Logs</h4>
-        <div id="logs">
-        </div>
-      </div>
-      
+
     </div>
 
     <script src="./lesson.bundle.js"></script>
+
+
   </body>
 </html>

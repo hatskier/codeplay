@@ -1,10 +1,10 @@
 import Position from './position';
-import ObjectOnField from './objectOnField';
+import ObjectOnField from './object-on-field';
 import Page from './page';
 import Logger from './logger';
 
 class Field {
-  constructor({bg, objects, methods, size, tickHooks}) {
+  constructor({bg, objects, methods, size, tickHooks, images}) {
     this.objects = {};
     for (let obj of objects) {
       let objOnField = new ObjectOnField(obj, this);
@@ -12,7 +12,8 @@ class Field {
     }
     this.tickHooks = tickHooks;
     this.methods = methods;
-    this.bg = bg;
+    this.images = images;
+    this.bg = images[bg];
     this.size = size;
 
     // TODO maybe it's better to store state outside
@@ -110,8 +111,9 @@ class Field {
     obj.rotation = newRotation;
   }
 
-  async changeImage(id, url) {
-    let obj = this.findById(id);
+  async changeImage(id, imgKey) {
+    const obj = this.findById(id);
+    const url = this.images[imgKey];
     await Page.changeObjectImg(id, url);
     obj.img = url;
   }
