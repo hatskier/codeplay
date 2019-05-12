@@ -1,9 +1,6 @@
 import $ from 'jquery';
 import Logger from './logger';
 
-// TODO make configurable on UI
-const defaultAnimationTime = 300;
-
 let Page = {};
 
 let elemSelector = '#screen-view';
@@ -23,16 +20,20 @@ Page.initEmptyScreen = function(bg, size) {
   fieldSize = size;
 };
 
+Page.clearAll = function() {
+  $(elemSelector).empty();
+};
+
 // TODO check if this function works correctly
 Page.containsObject = function(object) {
   return $('#' + object.id).length > 0;
 }
 
-Page.safeAddObject = function(object) {
+Page.addObject = function(object) {
   function buildImageHtml(obj) {
     let html = `<img
       id='${obj.id}'
-      src='${obj.img}'>`;
+      src='${obj.img.src}'>`;
     return html;
   }
 
@@ -62,20 +63,20 @@ Page.changeObjectImg = function(id, url) {
   return $('#' + id).attr('src', url);
 };
 
-Page.changeObjectPos = function(object) {
+Page.changeObjectPos = function(object, duration) {
   return new Promise(function (resolve) {
     const pxCoord = getPxCoords(object);
     $('#' + object.id).animate({
       'left': `${pxCoord.x}px`,
       'top': `${pxCoord.y}px`
-    }, defaultAnimationTime, resolve);
+    }, duration, resolve);
   });
 };
 
-Page.changeObjectRotation = function(id, degrees) {
+Page.changeObjectRotation = function(id, degrees, duration) {
   return new Promise(function(resolve) {
     $({deg: degrees.old}).animate({deg: degrees.new}, {
-      duration: defaultAnimationTime,
+      duration,
       step: function(now) {
         $('#' + id).css({
           transform: 'rotate(' + now + 'deg)'

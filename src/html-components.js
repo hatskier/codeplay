@@ -1,3 +1,5 @@
+// DEPRECATED
+
 let Components = {};
 
 Components.style = `

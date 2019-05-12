@@ -4,9 +4,17 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   entry: {
+		// Custom scripts
 		"app": './src/index.js',
 		"app.plugable": './src/plugable.js',
 		"lesson": './src/lesson.js',
+
+		// Bootstrap tour
+		"jquery": "jquery/dist/jquery.min.js",
+		"bootstrap-tour": "bootstrap-tour/build/css/bootstrap-tour-standalone.min.css",
+		"bootstrap-tour-css": "bootstrap-tour/build/js/bootstrap-tour-standalone.min.js",
+
+		// Monaco editor
     "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
 		"json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
 		"css.worker": 'monaco-editor/esm/vs/language/css/css.worker',

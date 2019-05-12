@@ -1,4 +1,4 @@
-let Position = {
+const Position = {
 
   add(pos, offset) {
     return {

@@ -25,7 +25,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
         kind: 'img',
         id: 'Man',
         // img: 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif',
-        img: 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png',
+        imgKey: 'man-static',
         size: {
           width: defaultSize,
           height: defaultSize

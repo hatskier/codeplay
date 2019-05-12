@@ -1,5 +1,5 @@
 class ObjectOnField {
-  constructor({id, img, startPos, size, kind, html}, field) {
+  constructor({id, startPos, size, kind, html, imgKey}, field) {
     if (id) {
       this.id = id;
     } else {
@@ -8,7 +8,10 @@ class ObjectOnField {
     this.pos = startPos;
     this.kind = kind;
     this.startPos = startPos;
-    this.img = img;
+    this.img = {
+      key: imgKey,
+      src: field.images[imgKey]
+    };
     if (html) {
       this.html = html.replace('___ID___', this.id);
     }
@@ -18,6 +21,13 @@ class ObjectOnField {
 
     /* TODO this class is created with thoughts about the future
        when (probably) we will want to take some separate logic for objects */
+  }
+
+  changeImage(imgKey) {
+    this.img = {
+      key: imgKey,
+      src: this.field.images[imgKey]
+    };
   }
 }
 

@@ -1,3 +1,5 @@
+// TODO remove this file
+
 import conf from './examples/car';
 import Field from './field';
 import Editor from './editor';

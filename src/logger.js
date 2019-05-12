@@ -12,6 +12,7 @@ export default {
     console.log(...args);
     Page.addLog(...args);
   },
-  warn: console.warn
+  warn: console.warn,
+  debug: console.log
   /*eslint-enable */
 };

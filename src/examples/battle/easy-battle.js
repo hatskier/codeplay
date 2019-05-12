@@ -2,12 +2,12 @@ import prepareBattle from './battle';
 
 export default prepareBattle({
   enemies: {
-    'warrior': {
+    'Warrior': {
       action(tickNr) {
         if (tickNr % 2 === 1) {
           return 'attack';
         } else {
-          return 'defend';
+          return 'skip';
         }
       },
 
@@ -15,26 +15,26 @@ export default prepareBattle({
       location: 80
     },
 
-    'dragon': {
+    'Dragon': {
       action(tickNr) {
-        if (tickNr === 2) {
+        if (tickNr === 2 || tickNr == 4) {
           return 'attack';
         } else {
-          return 'defend';
+          return 'skip';
         }
         
       },
 
       kind: 'dragon',
-      location: 80
+      location: 70
     },
 
-    'archer': {
+    'Archer': {
       action(tickNr) {
-        if (tickNr === 1) {
+        if (tickNr === 1 || tickNr === 3) {
           return 'attack';
         } else {
-          return 'defend';
+          return 'skip';
         }
       },
 
@@ -43,6 +43,19 @@ export default prepareBattle({
     }
   },
 
-  startPosX: 10,
-  maxTicksToWin: 5,
+  startCodeVal:
+`hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+`,
+
+  startPosX: 45,
+  maxTicksToWin: 50,
 });

@@ -10,13 +10,18 @@ import easyLabyrinth from './examples/labyrinth/easy-labyrinth';
 import mediumLabyrinth from './examples/labyrinth/medium-labyrinth';
 import hardLabyrinth from './examples/labyrinth/hard-labyrinth';
 import easyBattle from './examples/battle/easy-battle';
-const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, easyBattle };
+import onlyWarriorBattle from './examples/battle/battle-only-warrior';
+
+const MINIMAL_LOADING_TIME = 500; // ms
+
+const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, easyBattle, onlyWarriorBattle };
+
 
 $( document ).ready(async function() {
   Logger.info('Page is loaded');
   let params = new URL(location.href).searchParams;
   let configName = params.get('config');
-  let nextPage = params.get('nextPage');
+  // let nextPage = params.get('nextPage');
 
   if (!configName) {
     alert('Bad config param!');
@@ -25,16 +30,11 @@ $( document ).ready(async function() {
 
   let conf = configs[configName];
 
-  // TODO add loader
-  await preLoadImage('img/spinner2.svg');
-  showOverlaySpinner();
-  Logger.info('Image preloading started');
-  await preLoadImages(conf.images);
-  Logger.info('Image preloading finished');
-  hideOverlaySpinner();
+  await assetsLoading();
 
-  const field = new Field(conf);
+  let field = new Field(conf);
   field.init();
+  field.setSpeed('fast');
 
   const editor = Editor.setUp(conf);
   buildDocumentationView(conf);
@@ -46,38 +46,42 @@ $( document ).ready(async function() {
       try {
         for (let iteration of conf.iterations) {
           await iteration.pre({field, state: field.state});
-          // TODO thinks how to make it better
+          // TODO think how to make it better
+          let oldLineBg;
           await field.run(codeTree, {
             start(nr) {
-              Editor.highlightLine(nr, 'lightblue');
+              oldLineBg = Editor.highlightLine(nr, 'lightblue');
             },
             stop(nr) {
-              Editor.highlightLine(nr, 'white');
+              Editor.highlightLine(nr, oldLineBg);
             }
           });
           await iteration.post({field, state: field.state});
         }
-        // success();
+        success();
       } catch (err) {
         Logger.error(err);
         fail(err);
-        // TODO
-        // location.reload();
-        // Back to start state
-        // TODO make it better
+
+        // Resetting field
+        field.clear();
+        field = new Field(conf);
+        field.init();
       }
     }
   };
 
 
   function fail(err) {
-    alert('Unfortunately not all tests passed yet :( Please try again. '
-          + err.toString());
+    // TODO uncomment later
+    // alert('Unfortunately not all tests passed yet :( Please try again. '
+    //       + err.toString());
   }
   
   function success() {
     alert('Lesson completed! Well done!');
-    window.location.replace(nextPage);
+    // TODO uncomment
+    // window.location.replace(nextPage);
   }
   
   function buildDocumentationView(conf) {
@@ -96,6 +100,20 @@ $( document ).ready(async function() {
       </table>
     `;
     $('#doc-view').html(html);
+  }
+
+  async function assetsLoading() {
+    const loadingStartedTime = Date.now();
+    await preLoadImage('img/spinner2.svg');
+    showOverlaySpinner();
+    Logger.info('Image preloading started');
+    await preLoadImages(conf.images);
+    Logger.info('Image preloading finished');
+    const loadingTime = Date.now() - loadingStartedTime;
+    if (loadingTime < MINIMAL_LOADING_TIME) {
+      await sleep(MINIMAL_LOADING_TIME - loadingTime);
+    }
+    hideOverlaySpinner();
   }
 
   async function preLoadImages(images) {
@@ -128,5 +146,11 @@ $( document ).ready(async function() {
     } else {
       el.style.display = 'none';
     }
+  }
+
+  function sleep(ms) {
+    return new Promise(function(resolve) {
+      setTimeout(resolve, ms);
+    });
   }
 });
