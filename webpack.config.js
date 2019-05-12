@@ -9,10 +9,8 @@ module.exports = {
 		"app.plugable": './src/plugable.js',
 		"lesson": './src/lesson.js',
 
-		// Bootstrap tour
-		"jquery": "jquery/dist/jquery.min.js",
-		"bootstrap-tour": "bootstrap-tour/build/css/bootstrap-tour-standalone.min.css",
-		"bootstrap-tour-css": "bootstrap-tour/build/js/bootstrap-tour-standalone.min.js",
+		// Tour styles
+		"tour.css": "tour/dist/tour.css",
 
 		// Monaco editor
     "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',

@@ -12,6 +12,8 @@ import hardLabyrinth from './examples/labyrinth/hard-labyrinth';
 import easyBattle from './examples/battle/easy-battle';
 import onlyWarriorBattle from './examples/battle/battle-only-warrior';
 
+import Tour from './codeplay-tour';
+
 const MINIMAL_LOADING_TIME = 500; // ms
 
 const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, easyBattle, onlyWarriorBattle };
@@ -39,7 +41,7 @@ $( document ).ready(async function() {
   const editor = Editor.setUp(conf);
   buildDocumentationView(conf);
 
-  window.run = async function () {
+  window.run = async function() {
     const code = editor.getValue();
     if (code) {
       const codeTree = Parser.parse(code);
@@ -70,6 +72,21 @@ $( document ).ready(async function() {
         field.init();
       }
     }
+  };
+
+  // TODO beautify it
+  window.openSettings = function() {
+    let speed = prompt('Please select speed (slow, normal or fast)');
+    if (['slow', 'normal', 'fast'].includes(speed)) {
+      field.setSpeed(speed);
+      alert(`Speed is set to: ${speed}`);
+    } else {
+      alert(`Sorry, ${speed} is not a valid option for speed`);
+    }
+  };
+
+  window.help = function() {
+    Tour.start();
   };
 
 

@@ -8,6 +8,8 @@
 
     <div id="main-container">
 
+      <script src="./tour.css.bundle.js"></script>
+
       <style>
         #top-container {
           height: 500px;
@@ -87,8 +89,8 @@
           position: fixed;
           width: 100%;
           height: 100%;
-          background: black url(img/spinner2.svg) center center no-repeat;
-          opacity: .7;
+          background: white url(img/spinner2.svg) center center no-repeat;
+          opacity: 1;
         }
 
       </style>
@@ -105,8 +107,8 @@
             <div id="run-button" class="clickable" onclick="run()">
               <img class="md-icon" src="./img/white-play-icon.png">
             </div>
-            <img class="md-icon clickable" src="./img/blue-help.png">
-            <img class="md-icon clickable" src="./img/blue-settings.png">
+            <img class="md-icon clickable" onclick="help()" src="./img/blue-help.png">
+            <img class="md-icon clickable" onclick="openSettings()" src="./img/blue-settings.png">
           </div>
         </div>
       </div>
@@ -126,7 +128,6 @@
     </div>
 
     <script src="./lesson.bundle.js"></script>
-
 
   </body>
 </html>

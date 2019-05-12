@@ -57,6 +57,7 @@ hero.defend();
 hero.defend();
 `,
 
+  stepWidth: 20,
   startPosX: 45,
   maxTicksToWin: 50,
 });
