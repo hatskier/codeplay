@@ -65,6 +65,7 @@ $( document ).ready(async function() {
 
         // Resetting field
         field.clear();
+        // TODO fix speed bug (spped is not set for a new field)
         field = new Field(conf);
         field.init();
       }

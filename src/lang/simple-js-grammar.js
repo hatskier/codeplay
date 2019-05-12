@@ -7,23 +7,33 @@ function id(x) { return x[0]; }
 const moo = require('moo')
 
 let lexer = moo.compile({
+    comment: /\/\/.*?$/,
     space: {match: /\s+/, lineBreaks: true},
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
     string: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
     keywords: ["(", ")", ";", "{", "}", ","]
-})
+});
 
 var grammar = {
     Lexer: lexer,
     ParserRules: [
-    {"name": "stmts$ebnf$1$subexpression$1", "symbols": ["stm", "_"]},
-    {"name": "stmts$ebnf$1", "symbols": ["stmts$ebnf$1$subexpression$1"]},
-    {"name": "stmts$ebnf$1$subexpression$2", "symbols": ["stm", "_"]},
-    {"name": "stmts$ebnf$1", "symbols": ["stmts$ebnf$1", "stmts$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "stmts", "symbols": ["_", "stmts$ebnf$1"], "postprocess":  
+    {"name": "stmts$ebnf$1", "symbols": []},
+    {"name": "stmts$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
+    {"name": "stmts$ebnf$1", "symbols": ["stmts$ebnf$1", "stmts$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "stmts$ebnf$2$subexpression$1$ebnf$1", "symbols": []},
+    {"name": "stmts$ebnf$2$subexpression$1$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
+    {"name": "stmts$ebnf$2$subexpression$1$ebnf$1", "symbols": ["stmts$ebnf$2$subexpression$1$ebnf$1", "stmts$ebnf$2$subexpression$1$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "stmts$ebnf$2$subexpression$1", "symbols": ["stm", "_", "stmts$ebnf$2$subexpression$1$ebnf$1", "_"]},
+    {"name": "stmts$ebnf$2", "symbols": ["stmts$ebnf$2$subexpression$1"]},
+    {"name": "stmts$ebnf$2$subexpression$2$ebnf$1", "symbols": []},
+    {"name": "stmts$ebnf$2$subexpression$2$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
+    {"name": "stmts$ebnf$2$subexpression$2$ebnf$1", "symbols": ["stmts$ebnf$2$subexpression$2$ebnf$1", "stmts$ebnf$2$subexpression$2$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "stmts$ebnf$2$subexpression$2", "symbols": ["stm", "_", "stmts$ebnf$2$subexpression$2$ebnf$1", "_"]},
+    {"name": "stmts$ebnf$2", "symbols": ["stmts$ebnf$2", "stmts$ebnf$2$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "stmts", "symbols": ["_", "stmts$ebnf$1", "stmts$ebnf$2"], "postprocess":  
         function(data) {
-          let res = data[1].map(function(el) {
+          let res = data[2].map(function(el) {
             return el[0];
           });
         
@@ -93,6 +103,7 @@ var grammar = {
     {"name": "value", "symbols": [{"literal":"null"}], "postprocess": function(d) { return null; }},
     {"name": "number", "symbols": [(lexer.has("number") ? {type: "number"} : number)], "postprocess": function(d) { return parseFloat(d[0].value) }},
     {"name": "identifier", "symbols": [(lexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": function(d) { return d[0].value }},
+    {"name": "comment", "symbols": [(lexer.has("comment") ? {type: "comment"} : comment)], "postprocess": function(d) { return null; }},
     {"name": "string", "symbols": [(lexer.has("string") ? {type: "string"} : string)], "postprocess": function(d) { return JSON.parse(d[0].value) }},
     {"name": "_", "symbols": []},
     {"name": "_", "symbols": [(lexer.has("space") ? {type: "space"} : space)], "postprocess": function(d) { return null; }}

@@ -17,7 +17,8 @@ function parse(code) {
 }
 
 
-let code = `
+let code =
+`
   if (true) {
     foo();
     bar(1,2,3,4);
@@ -26,11 +27,19 @@ let code = `
 
   }
 
+  // TODO comment
+
   while(true) {
     doSmthInWhile(4,5,6);
   }
 
+  //First comment
+  // Second comment
+  // Thrird one
+
   car.go();
+
+  // Last comment
 `;
 
 let codeTree = parse(code)[0];

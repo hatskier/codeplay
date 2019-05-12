@@ -44,7 +44,8 @@ export default prepareBattle({
   },
 
   startCodeVal:
-`hero.defend();
+`// You need to attack
+hero.defend();
 hero.defend();
 hero.defend();
 hero.defend();
