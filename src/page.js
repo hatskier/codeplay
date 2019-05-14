@@ -55,6 +55,10 @@ Page.addObject = function(object) {
   }
 };
 
+Page.removeObject = function(id) {
+  $('#' + id).remove();
+}
+
 Page.addLog = function(msg) {
   $('#logs').html(msg + '<br /><hr>' + $('#logs').html());
 };

@@ -31,6 +31,18 @@ class Field {
     }
   }
 
+  addObject(obj) {
+    const objOnField = new ObjectOnField(obj, this);
+    this.objects[objOnField.id] = objOnField;
+    Page.addObject(objOnField);
+    return objOnField;
+  }
+
+  removeObject(id) {
+    delete this.objects[id];
+    Page.removeObject(id);
+  }
+
   clear() {
     Page.clearAll();
   }
@@ -118,10 +130,17 @@ class Field {
     return this.objects[id];
   }
 
+  // TODO refactor - this function could use moveToPos
   async safeMove(id, offset) {
     let obj = this.findById(id);
     let newPos = Position.safeAdd(obj.pos, offset);
     obj.pos = newPos;
+    await Page.changeObjectPos(obj, this.tickTime);
+  }
+
+  async moveToPos(id, pos) {
+    let obj = this.findById(id);
+    obj.pos = pos;
     await Page.changeObjectPos(obj, this.tickTime);
   }
 

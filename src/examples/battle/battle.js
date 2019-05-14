@@ -67,14 +67,75 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     await sleep(field.tickTime);
   }
 
+  // Refactor this function - group similar parts
   async function animateAttack(id, field) {
     // TODO add animation for archer - later
     // TODO add fire animation for dragon - later
+    // TODO add animation for spear hero attack
     const obj = field.findById(id);
     const oldImgKey = obj.img.key;
     const attackingImageKey = oldImgKey + '-attacking';
     await field.changeImage(id, attackingImageKey);
-    await sleep(field.tickTime);
+
+    const size = {
+      width: defaultSize / 2,
+      height: defaultSize / 2
+    };
+
+    if (id == 'Hero') {
+      const newObj = field.addObject({
+        kind: 'img',
+        imgKey: 'spear',
+        startPos: {
+          x: obj.pos.x,
+          y: obj.pos.y
+        },
+        size
+      });
+      await field.safeMove(newObj.id, {x: 0, y: -30});
+      field.removeObject(newObj.id);
+    }
+
+    const hero = field.findById('Hero');
+
+    if (enemies[id]) {
+      switch (enemies[id].kind) {
+        case 'dragon': {
+          const newObj = field.addObject({
+            kind: 'img',
+            imgKey: 'fire',
+            startPos: {
+              x: obj.pos.x,
+              y: obj.pos.y
+            },
+            size
+          });
+          await field.moveToPos(newObj.id, hero.pos);
+          field.removeObject(newObj.id);
+          break;
+        }
+        case 'archer': {
+          const newObj = field.addObject({
+            kind: 'img',
+            imgKey: 'arrow',
+            startPos: {
+              x: obj.pos.x,
+              y: obj.pos.y
+            },
+            size
+          });
+          await field.moveToPos(newObj.id, hero.pos);
+          field.removeObject(newObj.id);
+          break;
+        }
+        default: {
+          await sleep(field.tickTime);
+          break;
+        }
+      }
+    }
+
+
     await field.changeImage(id, oldImgKey);
   }
 
@@ -101,9 +162,9 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       'archer-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
 
       // Weapon
-      'spear': 'TODO.png',
-      'arrow': 'TODO.png',
-      'fire': 'TODO.png',
+      'spear': 'https://s3.amazonaws.com/alcourses.codeplay/battle/spear.png',
+      'arrow': 'https://s3.amazonaws.com/alcourses.codeplay/battle/arrow.png',
+      'fire': 'https://s3.amazonaws.com/alcourses.codeplay/battle/fire.jpeg',
 
       // Other images
       'landscape': 'https://s3.amazonaws.com/alcourses.codeplay/battle/landscape.jpg'
@@ -164,11 +225,12 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       'hero.spearAttack': {
         doc: 'Hero attacks using spear',
         async run({field, state}) {
-          // TODO animate spear throwing
           await field.changeImage('Hero', 'hero-spear-attack');
           state.heroAction = 'spear_attacking';
           const heroPos = field.findById('Hero').pos;
           const closestDragonId = getClosestDragonId(heroPos, field, state);
+
+          await animateAttack('Hero', field);
 
           if (closestDragonId) {
             // Removing enemy (dragon)
