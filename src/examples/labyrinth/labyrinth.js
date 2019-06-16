@@ -4,6 +4,11 @@ function copyObject(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+function executingError(context, msg) {
+  context.field.log(`Error: ${msg}. Please fix your code and try again ;)`);
+  throw new Error(msg);
+}
+
 function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
   const startPos = {
     x: 0,
@@ -102,6 +107,12 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
           }
         }
 
+        let stepsAmount = 1;
+        if (params.length > 0) {
+          stepsAmount = params[0];
+        }
+        context.field.log(`Man is going ${stepsAmount} steps ${direction}...`);
+
         async function runStep() {
           if (direction == 'left') {
             await context.field.changeImage('Man', 'man-going-left');
@@ -134,12 +145,12 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
           let len = context.state.path.length;
           let lastStep = context.state.path[len - 1];
           if (lastStep.direction !== path[len - 1].direction || lastStep.length > path[len - 1].length) {
-            throw new Error('Bad move');
+            executingError(context, 'Bad move - man can\'t go there');
           }
           if (len > 1) {
             let preLastStep = context.state.path[len - 2];
             if (preLastStep.length !== path[len - 2].length) {
-              throw new Error('Bad move');
+              executingError(context, 'Bad move - man can\'t go there');
             }
           }
         }
@@ -176,7 +187,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
       post: async function(context) {
         await context.field.changeImage('Man', 'man-static');
         if (JSON.stringify(path) !== JSON.stringify(context.state.path)) {
-          throw new Error('You have not reached the target');
+          executingError(context, 'You have not reached the target');
         }
       }
     }

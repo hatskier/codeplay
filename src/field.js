@@ -19,6 +19,8 @@ class Field {
     this.size = size;
     this.tickTime = DEFAULT_TICK_TIME;
 
+    this.log = Page.addLog;
+
     // TODO maybe it's better to store state outside
     this.state = {};
   }
@@ -83,8 +85,9 @@ class Field {
             if (lineHighlighter) {
               lineHighlighter.start(node.line);
             }
-            Logger.debug(`Running ${node.line} line of code`);
-            Logger.debug(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
+            // Logger.debug(`Running ${node.line} line of code`);
+            // Logger.debug(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
+            // Page.addLog(`Running method ${node.name}, arg list: ${JSON.stringify(node)}`);
             await method.run(context, node.args);
             // TODO make running line highlighting better
             if (lineHighlighter) {

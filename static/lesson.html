@@ -10,7 +10,14 @@
 
       <script src="./tour.css.bundle.js"></script>
 
+      <!-- TODO in future it should be loaded from node_modules -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
       <style>
+        /* CUSTOM MANUAL STYLES */
+
         #top-container {
           height: 500px;
         }
@@ -25,11 +32,14 @@
         }
 
         #control-bar {
+          position: fixed;
           margin: auto;
-          margin-top: 5px;
+          /* margin-top: 5px; */
           text-align: center;
-          border: 1px solid lightblue;
-          width: 200px;
+          /* border: 1px solid lightblue; */
+          right: 10px;
+          bottom: 10px;
+          /* width: 70px; */
           padding: 5px;
           border-radius: 5px;
         }
@@ -47,7 +57,7 @@
           margin-top: 10px;
           /* border:1px solid #ccc; */
           width: 100%;
-          height: 400px;
+          height: 440px;
           box-shadow: 0 0 2px;
         }
 
@@ -93,6 +103,53 @@
           opacity: 1;
         }
 
+
+
+        /* TERMINAL STYLES (copied from https://codepen.io/alidavut/pen/OXzxOO) */
+
+
+        /* TODO refactor - remove commented parts */
+        .window {
+          border-radius: 5px;
+          background: #222;
+          color: #fff;
+          overflow: scroll;
+          position: relative;
+          margin: 0 auto;
+          width: 70%;
+          height: 500px;
+        }
+        .window:before {
+          content: ' ';
+          display: block;
+          height: 30px;
+          background: #C6C6C6;
+        }
+        .window:after {
+          content: '. . .';
+          position: absolute;
+          left: 12px;
+          right: 0;
+          top: -12px;
+          font-family: "Times New Roman", Times, serif;
+          font-size: 96px;
+          color: #fff;
+          line-height: 0;
+          letter-spacing: -12px;
+        }
+
+        .terminal {
+          margin: 20px;
+          font-family: monospace;
+          font-size: 16px;
+          color: #22da26;
+        }
+
+        .terminal .command:before {
+          content: '$ ';
+          color: #22da26;
+        }
+
       </style>
 
       <div id="overlay"></div>
@@ -103,25 +160,38 @@
         </div>
         <div id="control-container" >
           <div id="code-editor"></div>
-          <div id="control-bar">
-            <div id="run-button" class="clickable" onclick="run()">
-              <img class="md-icon" src="./img/white-play-icon.png">
-            </div>
-            <img class="md-icon clickable" onclick="help()" src="./img/blue-help.png">
-            <img class="md-icon clickable" onclick="openSettings()" src="./img/blue-settings.png">
-          </div>
         </div>
       </div>
   
       <div id="bottom-container">
-        <div id="documentation-container">
-          <h4 class="centered-header">Documentation</h4>
-          <div id="doc-view"></div>
+
+        <div class="window">
+
+          <div class="terminal">
+            <p class="log" id="logs">
+              
+            </p>
+
+            <div id="documentation-container">
+              <h4 class="centered-header">Documentation</h4>
+              <div id="doc-view"></div>
+            </div>
+          </div>
         </div>
-  
-        <div id="logs-container">
-          <h4 class="centered-header">Logs</h4>
-          <div id="logs"></div>
+      </div>
+
+      <div id="control-bar">
+        <div>
+          <img id="toggle-terminal-mode-button" class="md-icon clickable" onclick="toggleTerminalMode()" src="./img/code-icon-blue.svg">
+        </div>
+        <div>
+          <img id="help-button" class="md-icon clickable" onclick="help()" src="./img/blue-help.png">
+        </div>
+        <div>
+          <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/blue-settings.png">
+        </div>
+        <div id="run-button" class="clickable" onclick="run()">
+          <img class="md-icon" src="./img/white-play-icon.png">
         </div>
       </div>
 

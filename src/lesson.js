@@ -36,7 +36,7 @@ $( document ).ready(async function() {
 
   let field = new Field(conf);
   field.init();
-  field.setSpeed('fast');
+  field.setSpeed('normal');
 
   const editor = Editor.setUp(conf);
   buildDocumentationView(conf);
@@ -70,25 +70,49 @@ $( document ).ready(async function() {
         // TODO fix speed bug (spped is not set for a new field)
         field = new Field(conf);
         field.init();
+        if (localStorage.programSpeed) {
+          field.setSpeed(localStorage.programSpeed);
+        }
       }
     }
   };
 
-  // TODO beautify it
-  window.openSettings = function() {
-    let speed = prompt('Please select speed (slow, normal or fast)');
-    if (['slow', 'normal', 'fast'].includes(speed)) {
-      field.setSpeed(speed);
-      alert(`Speed is set to: ${speed}`);
+  window.toggleSpeed = function() {
+    if (!localStorage.curSpeed || localStorage.curSpeed == 'slow') {
+      localStorage.curSpeed = 'normal';
+    } else if (localStorage.curSpeed == 'normal') {
+      localStorage.curSpeed = 'fast';
     } else {
-      alert(`Sorry, ${speed} is not a valid option for speed`);
+      localStorage.curSpeed = 'slow';
     }
+
+    field.setSpeed(localStorage.curSpeed);
+    toastr.success('Speed set to: ' + localStorage.curSpeed);
   };
+
+  // TODO mwybe remove it
+  // TODO beautify it
+  // window.openSettings = function() {
+  //   let speed = prompt('Please select speed (slow, normal or fast)');
+  //   if (['slow', 'normal', 'fast'].includes(speed)) {
+  //     field.setSpeed(speed);
+  //     alert(`Speed is set to: ${speed}`);
+  //   } else {
+  //     alert(`Sorry, ${speed} is not a valid option for speed`);
+  //   }
+  // };
 
   window.help = function() {
     Tour.start();
   };
+  if (!localStorage.tourStarted) {
+    localStorage.tourStarted = true;
+    Tour.start();
+  } 
 
+  window.toggleTerminalMode = function () {
+    $('#logs').toggle(1000);
+  };
 
   function fail(err) {
     // TODO uncomment later
@@ -97,7 +121,7 @@ $( document ).ready(async function() {
   }
   
   function success() {
-    alert('Lesson completed! Well done!');
+    toastr.success('Lesson completed! Well done!');
     // TODO uncomment
     // window.location.replace(nextPage);
   }

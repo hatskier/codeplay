@@ -59,8 +59,19 @@ Page.removeObject = function(id) {
   $('#' + id).remove();
 }
 
+// TODO could be refactored
+// TODO think when command and when line should be printed
+// TODO implement different logging types
 Page.addLog = function(msg) {
-  $('#logs').html(msg + '<br /><hr>' + $('#logs').html());
+  // if (opts && opts.command) {
+  // if (true) {
+  //   // $('.log').html(msg + '<br />' + $('#logs').html());
+  //   $('#logs').html('<p class="command">' + msg + '</p>' + $('#logs').html());
+  // } else {
+  //   $('#logs').html(msg + '<br />' + $('#logs').html());
+  // }
+  // $('#logs').html('<p class="command">' + msg + '</p>' + $('#logs').html());
+  $('#logs').prepend('<p class="command">' + msg + '</p>');
 };
 
 Page.changeObjectImg = function(id, url) {
