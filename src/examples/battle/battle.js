@@ -1,10 +1,13 @@
-const defaultSize = 50;
-const landYPos = 60;
+const defaultSize = 100;
+const landYPos = 50;
 const attackDistance = 7;
 
-// TODO implement fire
-// TODO implement arrow
-// TODO implement spear
+// TODO maybe remove
+function changeField(key, val, obj) {
+  let newObj = JSON.parse(JSON.stringify(obj));
+  newObj[key] = val;
+  return newObj;
+}
 
 function sleep(ms) {
   return new Promise(function(resolve) {
@@ -34,8 +37,11 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       const enemy = state.enemies[enemyId];
       const enemyOnField = field.findById(enemyId);
       if (enemy.kind == 'dragon') {
-        // TODO change it (hero could throw spear only exactly up)
-        if (Math.abs(enemyOnField.pos.x - pos.x) <= attackDistance) {
+        // hero could throw spear only exactly up
+        // TODO remove
+        console.log(`En: ${enemyOnField.pos.x}, War: ${pos.x}`);
+        const diff = pos.x - enemyOnField.pos.x;
+        if (enemyOnField.pos.x < pos.x && diff > 10 && diff < 20) {
           return enemyId;
         }
       }
@@ -90,7 +96,10 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
           x: obj.pos.x,
           y: obj.pos.y
         },
-        size
+        size: {
+          width: size.width * 1.5,
+          height: size.height * 2.5
+        }
       });
       await field.safeMove(newObj.id, {x: 0, y: -30});
       field.removeObject(newObj.id);
@@ -105,8 +114,8 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
             kind: 'img',
             imgKey: 'fire',
             startPos: {
-              x: obj.pos.x,
-              y: obj.pos.y
+              x: obj.pos.x + 8,
+              y: obj.pos.y + 27
             },
             size
           });
@@ -115,16 +124,24 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
           break;
         }
         case 'archer': {
+          let arrowYPos = obj.pos.y + 8;
           const newObj = field.addObject({
             kind: 'img',
             imgKey: 'arrow',
             startPos: {
               x: obj.pos.x,
-              y: obj.pos.y
+              y: arrowYPos
             },
-            size
+            size: {
+              width: size.width,
+              height: size.height / 3
+            }
           });
-          await field.moveToPos(newObj.id, hero.pos);
+          const newPos = {
+            y: arrowYPos,
+            x: hero.pos.x + 7
+          };
+          await field.moveToPos(newObj.id, newPos);
           field.removeObject(newObj.id);
           break;
         }
@@ -143,28 +160,28 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     // This field is used for caching
     images: {
       // Hero
-      'hero': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero.png',
-      'hero-sword-attack': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-sword-attack.png',
-      'hero-spear-attack': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-spear-attack.png',
-      'hero-going': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero.png',
+      'hero': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-waiting.gif',
+      'hero-sword-attack': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-attacking.gif',
+      'hero-spear-attack': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-waiting.gif',
+      'hero-going': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-running.gif',
       'hero-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
-      'hero-defending': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-defending.png',
+      'hero-defending': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-defending.gif',
 
       // Enemies
-      'dragon': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon.png',
-      'dragon-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon-attacking.png',
-      'dragon-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
-      'warrior': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior.png',
-      'warrior-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-attacking.png',
+      'dragon': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon-flying.gif',
+      'dragon-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon-flying.gif',
+      'dragon-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave-with-wings.gif',
+      'warrior': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-waiting.png',
+      'warrior-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-attacking.gif',
       'warrior-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
-      'archer': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer.png',
-      'archer-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer-attacking.png',
+      'archer': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer_new.png',
+      'archer-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer_new.png',
       'archer-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
 
       // Weapon
       'spear': 'https://s3.amazonaws.com/alcourses.codeplay/battle/spear.png',
-      'arrow': 'https://s3.amazonaws.com/alcourses.codeplay/battle/arrow.png',
-      'fire': 'https://s3.amazonaws.com/alcourses.codeplay/battle/fire.jpeg',
+      'arrow': 'https://s3.amazonaws.com/alcourses.codeplay/battle/arrow-transparent.png',
+      'fire': 'https://s3.amazonaws.com/alcourses.codeplay/battle/fireball.png',
 
       // Other images
       'landscape': 'https://s3.amazonaws.com/alcourses.codeplay/battle/landscape.jpg'
@@ -180,15 +197,15 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
           y: landYPos
         },
         size: {
-          width: defaultSize,
+          width: defaultSize / 1.4,
           height: defaultSize * 1.2
         }
       }
     ],
-    taskDescription: 'You need to survive and defeat all the enemies',
+    taskDescription: 'You are a hero and you must solve your princess. But you may have some troubles on your way. Warriors, archers and even dragons will try to kill you. Create an algorithm that helps to defeat all your enemies and stay alive.',
     size: {
-      width: 500,
-      height: 400
+      width: 550,
+      height: 450
     },
     methods: {
       'hero.go': {
@@ -202,7 +219,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       },
 
       'hero.swordAttack': {
-        doc: 'Hero attacks using sword',
+        doc: 'Hero attacks using sword. Note that dragons can not be killed with sword',
         async run({field, state}) {
           await field.changeImage('Hero', 'hero-sword-attack');
           state.heroAction = 'sword_attacking';
@@ -223,7 +240,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       },
 
       'hero.spearAttack': {
-        doc: 'Hero attacks using spear',
+        doc: 'Use this command to attack with spear. Note that spear can kill only dragons use this command to attack with spear. Note that spear can kill only dragons',
         async run({field, state}) {
           await field.changeImage('Hero', 'hero-spear-attack');
           state.heroAction = 'spear_attacking';
@@ -243,7 +260,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       },
 
       'hero.defend': {
-        doc: 'Hero stays at the place and defends. Noone can kill him.',
+        doc: 'Hero stays at the place and defends. Noone can kill him. You also could use this command to skip your step.',
         async run({field, state}) {
           await field.changeImage('Hero', 'hero-defending');
           state.heroAction = 'defending'
@@ -317,9 +334,14 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     };
 
     if (enemy.kind == 'dragon') {
-      yPos /= 3;
-      size.width *= 2;
+      yPos = 0;
+      size.width *= 3;
       size.height *= 2;
+    }
+
+    if (enemy.kind == 'warrior') {
+      size.width *= 1.5;
+      yPos -= 1;
     }
 
     conf.objects.push({

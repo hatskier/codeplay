@@ -5,18 +5,25 @@ import Logger from './logger';
 
 import $ from 'jquery';
 
+// Car
 import car from './examples/car';
+
+// Labyrinth
 import easyLabyrinth from './examples/labyrinth/easy-labyrinth';
 import mediumLabyrinth from './examples/labyrinth/medium-labyrinth';
 import hardLabyrinth from './examples/labyrinth/hard-labyrinth';
-import easyBattle from './examples/battle/easy-battle';
-import onlyWarriorBattle from './examples/battle/battle-only-warrior';
+
+// Battle
+import oneArcher from './examples/battle/one-archer';
+import oneWarrior from './examples/battle/one-warrior';
+import oneDragon from './examples/battle/one-dragon';
+import allTogether from './examples/battle/all-together';
 
 import Tour from './codeplay-tour';
 
 const MINIMAL_LOADING_TIME = 500; // ms
 
-const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, easyBattle, onlyWarriorBattle };
+const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, oneArcher, oneWarrior, oneDragon, allTogether };
 
 
 $( document ).ready(async function() {
@@ -36,7 +43,7 @@ $( document ).ready(async function() {
 
   let field = new Field(conf);
   field.init();
-  field.setSpeed('normal');
+  field.setSpeed('slow');
 
   const editor = Editor.setUp(conf);
   buildDocumentationView(conf);
