@@ -19,11 +19,14 @@ import oneWarrior from './examples/battle/one-warrior';
 import oneDragon from './examples/battle/one-dragon';
 import allTogether from './examples/battle/all-together';
 
+// Avengers
+import ironMan from './examples/avengers/iron-man';
+
 import Tour from './codeplay-tour';
 
 const MINIMAL_LOADING_TIME = 500; // ms
 
-const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, oneArcher, oneWarrior, oneDragon, allTogether };
+const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, oneArcher, oneWarrior, oneDragon, allTogether, ironMan };
 
 
 $( document ).ready(async function() {
@@ -49,6 +52,7 @@ $( document ).ready(async function() {
   buildDocumentationView(conf);
 
   window.run = async function() {
+    showTerminalManagerLink();
     const code = editor.getValue();
     if (code) {
       const codeTree = Parser.parse(code);
@@ -117,11 +121,24 @@ $( document ).ready(async function() {
     Tour.start();
   } 
 
+  function showTerminalManagerLink() {
+    const link = document.getElementById('terminal-manager-link');
+    link.style.display = 'block';
+  }
+
   window.toggleTerminalMode = function () {
-    $('#logs').toggle(1000);
+    $('#logs').toggle(300);
+    showTerminalManagerLink();
+    const link = document.getElementById('terminal-manager-link');
+    if (link.innerHTML == 'hide logs') {
+      link.innerHTML = 'show logs';
+    } else {
+      link.innerHTML = 'hide logs';
+    }
   };
 
   function fail(err) {
+    toastr.error(`${err}. Please fix your code and try again`);
     // TODO uncomment later
     // alert('Unfortunately not all tests passed yet :( Please try again. '
     //       + err.toString());
@@ -135,13 +152,13 @@ $( document ).ready(async function() {
   
   function buildDocumentationView(conf) {
     let html = `
-      <h6>${conf.taskDescription}</h6>
+      <p class="doc doc-task-description">${conf.taskDescription}</p>
       <table id="doc-table">
         ${
           Object.keys(conf.methods).map(method =>
-                                        '<tr><td class="doc-method-name">'
+                                        '<tr><td class="doc doc-method-name">'
                                         + method
-                                        + '</td><td>'
+                                        + '</td><td class="doc doc-method-description">'
                                         + conf.methods[method].doc
                                         + '</td></tr>')
           .join('')
@@ -169,6 +186,7 @@ $( document ).ready(async function() {
     for (const imageKey in images) {
       const url = images[imageKey];
       await preLoadImage(url);
+      Logger.info(`Image loaded: ${url}`);
     }
   }
 

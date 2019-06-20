@@ -1,18 +1,20 @@
 const defaultSize = 100;
 const landYPos = 50;
 const attackDistance = 7;
-
-// TODO maybe remove
-function changeField(key, val, obj) {
-  let newObj = JSON.parse(JSON.stringify(obj));
-  newObj[key] = val;
-  return newObj;
+const defaultGraveSize = {
+  width: defaultSize,
+  height: defaultSize * 1.2
 }
 
 function sleep(ms) {
   return new Promise(function(resolve) {
     setTimeout(resolve, ms);
   });
+}
+
+function runtimeError(msg, field) {
+  field.log(`Error: ${msg}`, {error: true});
+  throw new Error(msg);
 }
 
 function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWidth}) {
@@ -39,7 +41,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       if (enemy.kind == 'dragon') {
         // hero could throw spear only exactly up
         // TODO remove
-        console.log(`En: ${enemyOnField.pos.x}, War: ${pos.x}`);
+        // console.log(`En: ${enemyOnField.pos.x}, War: ${pos.x}`);
         const diff = pos.x - enemyOnField.pos.x;
         if (enemyOnField.pos.x < pos.x && diff > 10 && diff < 20) {
           return enemyId;
@@ -49,13 +51,31 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     return null;
   }
 
-  // Implement different cases for different enemies
   function canHeroBeKilledByEnemy(enemyId, field, state) {
     const enemy = field.findById(enemyId);
     const hero = field.findById('Hero');
     // Enemy could kill hero if he is at their left side and closer than 3% of width
-    return (hero.pos.x < enemy.pos.x && hero.pos.x + attackDistance >= enemy.pos.x)
-      && !(state.heroAction == 'defending');
+    const enemyKind = state.enemies[enemyId].kind;
+    let attackDistanceIsOk = false;
+    switch (enemyKind) {
+      case 'archer': {
+        attackDistanceIsOk = hero.pos.x < enemy.pos.x;
+        break;
+      }
+      case 'warrior': {
+        field.log(`Hpos: ${hero.pos.x} EPos: ${enemy.pos.x}`);
+        attackDistanceIsOk = (
+          hero.pos.x < enemy.pos.x + attackDistance
+          && hero.pos.x + attackDistance >= enemy.pos.x);
+        break;
+      }
+      default: {
+        // Dragon always can kill a hero (if he is not defending)
+        attackDistanceIsOk = true;
+        break
+      }
+    }
+    return attackDistanceIsOk && !(state.heroAction == 'defending');
   }
 
   function allEnemiesKilled(state) {
@@ -68,8 +88,20 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     if (id == 'Hero') {
       // We can't assume that hero's key always is the same (example: defending)
       newImgKey = 'hero-dying';
+      field.log(`Unfortunatelly hero was killed. Please try again!`);
+    } else {
+      field.log(`${id} was killed!`);
+    }
+    if (id !== 'Dragon' && id !== 'Hero') {
+      field.changeImageSize(id, defaultGraveSize);
     }
     await field.changeImage(id, newImgKey);
+    if (id.includes('Warrior')) {
+      await field.safeMove(id, {x: 8, y: 2}, {fast: true});
+    }
+    if (id.includes('Archer')) {
+      await field.safeMove(id, {x: 2, y: 1}, {fast: true});
+    }
     await sleep(field.tickTime);
   }
 
@@ -146,7 +178,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
           break;
         }
         default: {
-          await sleep(field.tickTime);
+          await animateWaiting(id, field);
           break;
         }
       }
@@ -154,6 +186,10 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
 
 
     await field.changeImage(id, oldImgKey);
+  }
+
+  async function animateWaiting(_id, field) {
+    await sleep(field.tickTime);
   }
 
   let conf = {
@@ -211,6 +247,8 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       'hero.go': {
         doc: 'Hero goes right',
         async run({field, state}) {
+          field.log('Hero is going...');
+
           state.heroAction = 'going';
           await field.changeImage('Hero', 'hero-going');
           await field.safeMove('Hero', {x: stepWidth, y: 0});
@@ -221,6 +259,8 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       'hero.swordAttack': {
         doc: 'Hero attacks using sword. Note that dragons can not be killed with sword',
         async run({field, state}) {
+          field.log('Hero is attacking with sword...');
+
           await field.changeImage('Hero', 'hero-sword-attack');
           state.heroAction = 'sword_attacking';
           const heroPos = field.findById('Hero').pos;
@@ -242,6 +282,8 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       'hero.spearAttack': {
         doc: 'Use this command to attack with spear. Note that spear can kill only dragons use this command to attack with spear. Note that spear can kill only dragons',
         async run({field, state}) {
+          field.log('Hero is attacking with spear...');
+
           await field.changeImage('Hero', 'hero-spear-attack');
           state.heroAction = 'spear_attacking';
           const heroPos = field.findById('Hero').pos;
@@ -262,6 +304,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       'hero.defend': {
         doc: 'Hero stays at the place and defends. Noone can kill him. You also could use this command to skip your step.',
         async run({field, state}) {
+          field.log('Hero is defending...');
           await field.changeImage('Hero', 'hero-defending');
           state.heroAction = 'defending'
           await sleep(field.tickTime);
@@ -282,22 +325,23 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
         async pre({state}) {
           state.enemies = enemies;
         },
-        async post({state}) {
+        async post({state, field}) {
           if (!allEnemiesKilled(state)) {
-            throw 'Not all enemies were killed!';
+            runtimeError('Not all enemies were killed!', field);
           }
         }
       }
     ],
 
     tickHooks: {
-      async pre() {
-        // Pre hook is empty - enemies make their moves after a hero (in post tick hook)
+      async pre(tickNr, {field}) {
+        field.log(`----- Round nr ${tickNr + 1} started -----`);
+        await sleep(field.tickTime);
       },
 
       async post(tickNr, {state, field}) {
         if (tickNr >= maxTicksToWin) {
-          throw `You can not use more than ${maxTicksToWin} instructions to win`;
+          runtimeError(`You can not use more than ${maxTicksToWin} instructions to win`, field);
         }
 
         let heroKilled = false;
@@ -305,10 +349,14 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
         for (const enemyId in state.enemies) {
           const enemy = enemies[enemyId];
           if (enemy.action(tickNr) == 'attack') {
+            field.log(`${enemyId} is attacking...`);
             promises.push(animateAttack(enemyId, field));
             if (!heroKilled && canHeroBeKilledByEnemy(enemyId, field, state)) {
               heroKilled = true;
             }
+          } else {
+            field.log(`${enemyId} is just waiting...`);
+            promises.push(animateWaiting(enemyId, field));
           }
         }
 
@@ -316,7 +364,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
 
         if (heroKilled) {
           await animateDeath('Hero', field);
-          throw new Error('Hero was killed :(');
+          runtimeError('Hero was killed :(', field);
         }
       }
     },

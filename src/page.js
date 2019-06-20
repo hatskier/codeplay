@@ -20,6 +20,10 @@ Page.initEmptyScreen = function(bg, size) {
   fieldSize = size;
 };
 
+Page.setBg = function(bg) {
+  $(elemSelector).css('background-image', `url('${bg}')`);
+};
+
 Page.clearAll = function() {
   $(elemSelector).empty();
 };
@@ -55,6 +59,13 @@ Page.addObject = function(object) {
   }
 };
 
+Page.updateObjectSize = function(object) {
+  $('#' + object.id).css({
+    'height': `${object.size.height}px`,
+    'width': `${object.size.width}px`
+  })
+}
+
 Page.removeObject = function(id) {
   $('#' + id).remove();
 }
@@ -62,7 +73,7 @@ Page.removeObject = function(id) {
 // TODO could be refactored
 // TODO think when command and when line should be printed
 // TODO implement different logging types
-Page.addLog = function(msg) {
+Page.addLog = function(msg, opts) {
   // if (opts && opts.command) {
   // if (true) {
   //   // $('.log').html(msg + '<br />' + $('#logs').html());
@@ -71,7 +82,12 @@ Page.addLog = function(msg) {
   //   $('#logs').html(msg + '<br />' + $('#logs').html());
   // }
   // $('#logs').html('<p class="command">' + msg + '</p>' + $('#logs').html());
-  $('#logs').prepend('<p class="command">' + msg + '</p>');
+  if (opts && opts.error) {
+    $('#logs').prepend('<p class="command command-error">' + msg + '</p>');  
+  } else {
+    $('#logs').prepend('<p class="command">' + msg + '</p>');
+  }
+
 };
 
 Page.changeObjectImg = function(id, url) {

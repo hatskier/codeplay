@@ -33,6 +33,11 @@ class Field {
     }
   }
 
+  changeBg(newBgKey) {
+    this.bg = this.images[newBgKey];
+    Page.setBg(this.bg);
+  }
+
   addObject(obj) {
     const objOnField = new ObjectOnField(obj, this);
     this.objects[objOnField.id] = objOnField;
@@ -68,6 +73,10 @@ class Field {
   // TODO in future we can add speed and other motion params
   async run(codeTree, lineHighlighter) {
     // TODO handle while stmt
+    this.log("==========================================================");
+    this.log("======================= GAME STARTED =====================");
+    this.log("==========================================================");
+
     let tickNr = 0;
 
     for (let node of codeTree) {
@@ -134,11 +143,16 @@ class Field {
   }
 
   // TODO refactor - this function could use moveToPos
-  async safeMove(id, offset) {
+  async safeMove(id, offset, opts) {
     let obj = this.findById(id);
     let newPos = Position.safeAdd(obj.pos, offset);
     obj.pos = newPos;
-    await Page.changeObjectPos(obj, this.tickTime);
+    if (opts && opts.fast) {
+      await Page.changeObjectPos(obj, 0);
+    } else {
+      await Page.changeObjectPos(obj, this.tickTime);
+    }
+    
   }
 
   async moveToPos(id, pos) {
@@ -162,6 +176,12 @@ class Field {
     const obj = this.findById(id);
     obj.changeImage(imgKey);
     await Page.changeObjectImg(id, obj.img.src);
+  }
+
+  changeImageSize(id, newSize) {
+    const obj = this.findById(id);
+    obj.size = Object.assign(obj.size, newSize);
+    Page.updateObjectSize(obj);
   }
 
   sleep(ms) {

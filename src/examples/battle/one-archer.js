@@ -17,8 +17,8 @@ let conf = prepareBattle({
   },
 
   stepWidth: 10,
-  startPosX: 33,
-  maxTicksToWin: 3,
+  startPosX: 34,
+  maxTicksToWin: 4,
 
   startCodeVal:
 `hero.defend();
