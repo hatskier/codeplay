@@ -20,12 +20,16 @@ let conf = prepareBattle({
   startPosX: 40,
   maxTicksToWin: 5,
 
-  startCodeVal:
+  solutionCode:
 `hero.defend();
 hero.defend();
 hero.go();
 hero.attack();
 
+`,
+
+startCodeVal:
+`// Defeat the warrior
 `
 });
 

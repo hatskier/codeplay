@@ -16,17 +16,24 @@ import hardLabyrinth from './examples/labyrinth/hard-labyrinth';
 // Battle
 import oneArcher from './examples/battle/one-archer';
 import oneWarrior from './examples/battle/one-warrior';
+import warriorsAndArcher from './examples/battle/warriors-and-archer';
 import oneDragon from './examples/battle/one-dragon';
 import allTogether from './examples/battle/all-together';
 
 // Avengers
 import ironMan from './examples/avengers/iron-man';
 
+// Question
+import callGranny from './examples/question/call-granny';
+import readMore from './examples/question/read-more';
+import workHard from './examples/question/work-hard';
+
+
 import Tour from './codeplay-tour';
 
 const MINIMAL_LOADING_TIME = 500; // ms
 
-const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, oneArcher, oneWarrior, oneDragon, allTogether, ironMan };
+const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, oneArcher, oneWarrior, oneDragon, allTogether, ironMan, callGranny, readMore, workHard, warriorsAndArcher };
 
 
 $( document ).ready(async function() {

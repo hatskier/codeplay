@@ -20,12 +20,17 @@ let conf = prepareBattle({
   startPosX: 34,
   maxTicksToWin: 4,
 
-  startCodeVal:
+  solutionCode:
 `hero.defend();
 hero.go();
 hero.go();
 hero.attack();
 
+`,
+  startCodeVal:
+`// Defeat the archer and don't let him kill you
+// Archer could attack you from any distance
+// Use your shield to defend
 `
 });
 

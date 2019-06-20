@@ -1,25 +1,10 @@
 import prepareBattle from './battle';
 
-export default prepareBattle({
+let conf = prepareBattle({
   enemies: {
-    'Dragon': {
-      action(tickNr) {
-        if (tickNr === 2 || tickNr == 4) {
-          return 'attack';
-        } else {
-          // return 'attack';
-          return 'skip';
-        }
-        
-      },
-
-      kind: 'dragon',
-      location: 50
-    },
-
     'Warrior': {
       action(tickNr) {
-        if (tickNr % 2 === 1) {
+        if (tickNr % 2 == 1) {
           return 'attack';
         } else {
           return 'skip';
@@ -27,46 +12,63 @@ export default prepareBattle({
       },
 
       kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-      location: 75
+      location: 50
     },
-
-    'Archer': {
+    'Warrior2': {
       action(tickNr) {
-        if (tickNr === 1 || tickNr === 3) {
+        if (tickNr % 2 == 0) {
           return 'attack';
         } else {
           return 'skip';
         }
       },
 
-      kind: 'archer',
+      kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
       location: 60
+    },
+    'Archer': {
+      action(tickNr) {
+        if (tickNr % 3 == 0) {
+          return 'attack';
+        } else {
+          return 'skip';
+        }
+      },
+
+      kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+      location: 80
     }
   },
 
+  stepWidth: 10,
+  startPosX: 40,
+  maxTicksToWin: 14,
+
   solutionCode:
-`// You need to attack
-hero.go();
-hero.defend();
-hero.defend();
-hero.defend();
+`hero.defend();
 hero.defend();
 hero.go();
 hero.defend();
-hero.swordAttack();
+hero.attack();
+hero.defend();
+hero.defend();
 hero.go();
-hero.spearAttack();
+hero.attack();
+hero.defend();
+hero.go();
 hero.go();
 hero.defend();
-hero.swordAttack();
+hero.attack();
 
 `,
 
 startCodeVal:
 `// Defeat your enemies
-`,
-
-  stepWidth: 10,
-  startPosX: 34,
-  maxTicksToWin: 50,
+`
 });
+
+conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
+delete conf.methods["hero.swordAttack"];
+delete conf.methods['hero.spearAttack'];
+
+export default conf;

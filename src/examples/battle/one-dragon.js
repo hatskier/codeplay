@@ -21,7 +21,7 @@ let conf = prepareBattle({
   // TODO minimize maxTicksToWin
   maxTicksToWin: 12,
 
-  startCodeVal:
+  solutionCode:
 `// Defeat the dragon
 hero.defend();
 hero.go();
@@ -36,7 +36,12 @@ hero.go();
 hero.defend();
 hero.spearAttack();
 
+`,
+
+startCodeVal:
+`// Defeat the dragon
 `
+
 });
 
 conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
