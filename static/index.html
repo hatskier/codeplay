@@ -5,71 +5,21 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <style>
-
-      #run-button {
-        color: white;
-        background: yellowgreen;
-      }
 
       .mdl-cell {
         /* border: 1px solid lightblue; */
         height: 500px;
         border:1px solid #ccc;
       }
-      
-      textarea {
-        margin: 5px;
-      }
-
-      #screen-view {
-        margin: auto;
-        position: relative;
-        margin-top: 10px;
-      }
-
-      #code-editor {
-        margin: auto;
-        margin-top: 10px;
-        border:1px solid #ccc;
-        width: 45vw;
-        height: 400px;
-      }
 
       .custom-header {
-        background: lightskyblue;
+        background: #eaeaea;
       }
 
-      #doc-view {
-        margin: auto;
-        width: 40vw;
-        height: 400px;
-        /* text-align: center; */
-      }
-
-      #doc-table {
-        margin:auto;
-        text-align: left;
-      }
-
-      #doc-table td {
-        padding: 10px;
-      }
-
-      #screen-view-container {
-        display: inline;
-      }
-
-      .centered-header {
-        text-align: center;
-      }
-
-      .doc-method-name {
-        font-weight: bold;
-      }
-
-      #logs {
+      #app {
         text-align: center;
       }
 
@@ -79,50 +29,69 @@
     <!-- <script src="./src/index.js"></script> -->
     <div class="custom-header">
       <div class="mdl-layout__header-row">
+        <img id="logo" src="https://s3.amazonaws.com/alcourses.codeplay/logo.png">
         <div class="mdl-layout-spacer"></div>
-        <button id="run-button" onclick="run()"
-          class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-          <i class="material-icons">play_arrow</i>
-        </button>
-        <a class="mdl-navigation__link" href="#" onclick="alert('Sorry, it is not implemented yet')">
-            <i class="material-icons">bug_report</i>
-          </a>
-        <!-- Navigation -->
-        <nav class="mdl-navigation">
-          <!-- <a class="mdl-navigation__link" href="">
-              <i class="material-icons">code</i>
-          </a> -->
-          <!-- <a class="mdl-navigation__link" href="#">
-              <i class="material-icons">info_outline</i>
-          </a> -->
-          <a class="mdl-navigation__link" href="#" onclick="alert('Sorry, it is not implemented yet')">
-            <i class="material-icons">help_outline</i>
-          </a>
         </nav>
       </div>
     </div>
-    <div class="mdl-grid">
-      <div id="screen-view-container" class="mdl-cell mdl-cell--6-col">
-        <div id="screen-view">
-        </div>
-      </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <div id="code-editor"></div>
-        <!-- <textarea id="code-editor" cols=81 rows=30></textarea> -->
-      </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <h4 class="centered-header">Documentation</h4>
-        <div id="doc-view">      
-        </div>
-      </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <h4 class="centered-header">Logs</h4>
-        <div id="logs">
-        </div>
-      </div>
-      
+    
+    <div id="app">
+        <h2>Labyrinths</h2>
+        <h4 v-for="labyrinthName in labyrinths">
+          <a v-bind:href=`lesson.html?config=${labyrinthName}&nextPage=index.html?solvedTask=${labyrinthName}`>
+            {{labyrinthName}}
+          </a>
+        </h4>
+    
+        <h2>Battles</h2>
+        <h4 v-for="battleName in battles">
+          <a v-bind:href=`lesson.html?config=${battleName}&nextPage=index.html?solvedTask=${battleName}`>
+            {{battleName}}
+          </a>
+        </h4>
+    
+        <h2>Avengers</h2>
+        <h4 v-for="avengersName in avengers">
+          <a v-bind:href=`lesson.html?config=${avengersName}&nextPage=index.html?solvedTask=${avengersName}`>
+            {{avengersName}}
+          </a>
+        </h4>
+    
+        <h2>Questions</h2>
+        <h4 v-for="questionName in questions">
+          <a v-bind:href=`lesson.html?config=${questionName}&nextPage=index.html?solvedTask=${questionName}`>
+            {{questionName}}
+          </a>
+        </h4>
     </div>
 
-    <script src="./app.bundle.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          labyrinths: [
+            'easyLabyrinth',
+            'mediumLabyrinth',
+            'hardLabyrinth'
+          ],
+          battles: [
+            'oneWarrior',
+            'oneArcher',
+            'warriorsAndArcher',
+            'oneDragon',
+            'allTogether'
+          ],
+          avengers: [
+            'ironMan'
+          ],
+          questions: [
+            'callGranny',
+            'readMore',
+            'workHard'
+          ]
+        }
+      });
+    </script>
+
   </body>
 </html>

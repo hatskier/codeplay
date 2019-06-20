@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Codeplay</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <style>
+
+      #run-button {
+        color: white;
+        background: yellowgreen;
+      }
+
+      .mdl-cell {
+        /* border: 1px solid lightblue; */
+        height: 500px;
+        border:1px solid #ccc;
+      }
+      
+      textarea {
+        margin: 5px;
+      }
+
+      #screen-view {
+        margin: auto;
+        position: relative;
+        margin-top: 10px;
+      }
+
+      #code-editor {
+        margin: auto;
+        margin-top: 10px;
+        border:1px solid #ccc;
+        width: 45vw;
+        height: 400px;
+      }
+
+      .custom-header {
+        background: lightskyblue;
+      }
+
+      #doc-view {
+        margin: auto;
+        width: 40vw;
+        height: 400px;
+        /* text-align: center; */
+      }
+
+      #doc-table {
+        margin:auto;
+        text-align: left;
+      }
+
+      #doc-table td {
+        padding: 10px;
+      }
+
+      #screen-view-container {
+        display: inline;
+      }
+
+      .centered-header {
+        text-align: center;
+      }
+
+      .doc-method-name {
+        font-weight: bold;
+      }
+
+      #logs {
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- <script src="./src/index.js"></script> -->
+    <div class="custom-header">
+      <div class="mdl-layout__header-row">
+        <div class="mdl-layout-spacer"></div>
+        <button id="run-button" onclick="run()"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          <i class="material-icons">play_arrow</i>
+        </button>
+        <a class="mdl-navigation__link" href="#" onclick="alert('Sorry, it is not implemented yet')">
+            <i class="material-icons">bug_report</i>
+          </a>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <!-- <a class="mdl-navigation__link" href="">
+              <i class="material-icons">code</i>
+          </a> -->
+          <!-- <a class="mdl-navigation__link" href="#">
+              <i class="material-icons">info_outline</i>
+          </a> -->
+          <a class="mdl-navigation__link" href="#" onclick="alert('Sorry, it is not implemented yet')">
+            <i class="material-icons">help_outline</i>
+          </a>
+        </nav>
+      </div>
+    </div>
+    <div class="mdl-grid">
+      <div id="screen-view-container" class="mdl-cell mdl-cell--6-col">
+        <div id="screen-view">
+        </div>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col">
+        <div id="code-editor"></div>
+        <!-- <textarea id="code-editor" cols=81 rows=30></textarea> -->
+      </div>
+      <div class="mdl-cell mdl-cell--6-col">
+        <h4 class="centered-header">Documentation</h4>
+        <div id="doc-view">      
+        </div>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col">
+        <h4 class="centered-header">Logs</h4>
+        <div id="logs">
+        </div>
+      </div>
+      
+    </div>
+
+    <script src="./app.bundle.js"></script>
+  </body>
+</html>

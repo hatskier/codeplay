@@ -60,7 +60,7 @@ $( document ).ready(async function() {
   Logger.info('Page is loaded');
   let params = new URL(location.href).searchParams;
   let configName = params.get('config');
-  // let nextPage = params.get('nextPage');
+  let nextPage = params.get('nextPage');
 
   if (!configName) {
     alert('Bad config param!');
@@ -109,7 +109,7 @@ $( document ).ready(async function() {
 
           await iteration.post({field, state: field.state});
         }
-        success();
+        await success();
       } catch (err) {
         Logger.error(err);
         fail(err);
@@ -191,10 +191,11 @@ $( document ).ready(async function() {
     //       + err.toString());
   }
   
-  function success() {
-    toastr.success('Lesson completed! Well done!');
+  async function success() {
+    toastr.success('Lesson completed! Well done! Redirecting to the next page...');
     // TODO uncomment
-    // window.location.replace(nextPage);
+    await sleep(3000);
+    window.location.replace(nextPage);
   }
   
   function buildDocumentationView(conf) {
