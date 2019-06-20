@@ -13,7 +13,7 @@ export default function (conf) {
   let methods = {};
   for (let methodName in conf.methods) {
     methods[methodName] = {
-      doc: conf.methods.doc,
+      doc: conf.methods[methodName].doc,
       async run({field, state}, params) {
         if (!state.executedMethods) {
           state.executedMethods = [];
@@ -46,8 +46,10 @@ export default function (conf) {
       pre: async function() {
         // 
       },
-      post: async function() {
-        // 
+      post: async function({state}) {
+        if (!state.executedMethods || state.executedMethods.length !== conf.order.length) {
+          runtimeError('Task is not finished');
+        }
       }
     }
   ];
