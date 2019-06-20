@@ -22,6 +22,11 @@
           height: 500px;
         }
 
+        .toast {
+          font-family: "Verdana", monospace;
+          font-size: small;
+        }
+
         #top-container,#screen-view-container,#control-container {
           /* Uncomment for CSS debugging */
           /* border: 1px solid lightblue; */
@@ -37,8 +42,8 @@
           /* margin-top: 5px; */
           text-align: center;
           /* border: 1px solid lightblue; */
-          right: 10px;
-          bottom: 10px;
+          right: 20px;
+          bottom: 20px;
           /* width: 70px; */
           padding: 5px;
           border-radius: 5px;
@@ -74,6 +79,14 @@
 
         #run-button {
           background: greenyellow;
+          width: 70px;
+          border-radius: 5px;
+          float: left;
+        }
+
+        #stop-button {
+          display: none;
+          background: #ffae42;
           width: 70px;
           border-radius: 5px;
           float: left;
@@ -183,6 +196,9 @@
 
       </style>
 
+      <!-- This div could be used for toastr message customization -->
+      <!-- <div id="toast-container"></div> -->
+
       <div id="overlay"></div>
     
       <div id="top-container">
@@ -225,6 +241,11 @@
         <div>
           <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/blue-settings.png">
         </div>
+
+        <div id="stop-button" class="clickable" onclick="reset()">
+          <img class="md-icon" src="./img/white-stop-icon.png">
+        </div>
+
         <div id="run-button" class="clickable" onclick="run()">
           <img class="md-icon" src="./img/white-play-icon.png">
         </div>

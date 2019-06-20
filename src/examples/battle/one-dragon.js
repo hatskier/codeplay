@@ -18,7 +18,6 @@ let conf = prepareBattle({
 
   stepWidth: 10,
   startPosX: 14,
-  // TODO minimize maxTicksToWin
   maxTicksToWin: 12,
 
   solutionCode:

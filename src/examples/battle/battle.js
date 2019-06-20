@@ -63,7 +63,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
         break;
       }
       case 'warrior': {
-        field.log(`Hpos: ${hero.pos.x} EPos: ${enemy.pos.x}`);
+        // field.log(`Hpos: ${hero.pos.x} EPos: ${enemy.pos.x}`);
         attackDistanceIsOk = (
           hero.pos.x < enemy.pos.x + attackDistance
           && hero.pos.x + attackDistance >= enemy.pos.x);
@@ -90,7 +90,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       newImgKey = 'hero-dying';
       field.log(`Unfortunatelly hero was killed. Please try again!`);
     } else {
-      field.log(`${id} was killed!`);
+      field.log(`${id} is dying...`);
     }
     if (id !== 'Dragon' && id !== 'Hero') {
       field.changeImageSize(id, defaultGraveSize);
@@ -107,9 +107,6 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
 
   // Refactor this function - group similar parts
   async function animateAttack(id, field) {
-    // TODO add animation for archer - later
-    // TODO add fire animation for dragon - later
-    // TODO add animation for spear hero attack
     const obj = field.findById(id);
     const oldImgKey = obj.img.key;
     const attackingImageKey = oldImgKey + '-attacking';
@@ -226,6 +223,9 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     objects: [
       {
         kind: 'img',
+        style: {
+          'z-index': 4 // hero should be on top layer
+        },
         id: 'Hero',
         imgKey: 'hero',
         startPos: {
@@ -310,20 +310,12 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
           await sleep(field.tickTime);
         }
       }
-
-      // The next version may have simplier version with attack function
-      // 'hero.attack': {
-      //   doc: 'Hero attacks. The first and only arg is string \'sword\' or \'bow\'',
-      //   async run() {
-      //     // TODO implement
-      //   } 
-      // }
     },
 
     iterations: [
       {
         async pre({state}) {
-          state.enemies = enemies;
+          state.enemies = Object.assign({}, enemies);
         },
         async post({state, field}) {
           if (!allEnemiesKilled(state)) {

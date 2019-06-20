@@ -56,6 +56,10 @@ Page.addObject = function(object) {
       'height': `${object.size.height}px`,
       'width': `${object.size.width}px`
     });
+
+    if (object.style) {
+      $('#' + object.id).css(object.style);
+    }
   }
 };
 

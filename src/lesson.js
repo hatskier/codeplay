@@ -33,8 +33,28 @@ import Tour from './codeplay-tour';
 
 const MINIMAL_LOADING_TIME = 500; // ms
 
-const configs = { car, easyLabyrinth, mediumLabyrinth, hardLabyrinth, oneArcher, oneWarrior, oneDragon, allTogether, ironMan, callGranny, readMore, workHard, warriorsAndArcher };
+const configs = {
+  car,
+  easyLabyrinth,
+  mediumLabyrinth,
+  hardLabyrinth,
+  oneArcher,
+  oneWarrior,
+  oneDragon,
+  allTogether,
+  ironMan,
+  callGranny,
+  readMore,
+  workHard,
+  warriorsAndArcher
+};
 
+// Global field variable
+let field;
+
+// TODO think how to make it better
+let oldLineBg;
+let prevNr;
 
 $( document ).ready(async function() {
   Logger.info('Page is loaded');
@@ -51,74 +71,69 @@ $( document ).ready(async function() {
 
   await assetsLoading();
 
-  let field = new Field(conf);
-  field.init();
-  field.setSpeed('slow');
+  initField();
 
   const editor = Editor.setUp(conf);
   buildDocumentationView(conf);
 
+  window.reset = function() {
+    changeManageButtons({showStop: false, showRun: false});
+    field.stopExecution(function () {
+      initField();
+      changeManageButtons({showStop: false, showRun: true});
+    });
+  };
+
   window.run = async function() {
+    changeManageButtons({showStop: true, showRun: false});
     showTerminalManagerLink();
     const code = editor.getValue();
     if (code) {
-      const codeTree = Parser.parse(code);
       try {
+        const codeTree = Parser.parse(code);
         for (let iteration of conf.iterations) {
           await iteration.pre({field, state: field.state});
-          // TODO think how to make it better
-          let oldLineBg;
+
           await field.run(codeTree, {
             start(nr) {
+              if (prevNr !== undefined) {
+                Editor.highlightLine(prevNr, oldLineBg);
+              }
+              prevNr = nr;
               oldLineBg = Editor.highlightLine(nr, 'lightblue');
             },
-            stop(nr) {
-              Editor.highlightLine(nr, oldLineBg);
+            stop() {
+              // Editor.highlightLine(nr, oldLineBg);
             }
           });
+
           await iteration.post({field, state: field.state});
         }
         success();
       } catch (err) {
         Logger.error(err);
         fail(err);
-
-        // Resetting field
-        field.clear();
-        // TODO fix speed bug (spped is not set for a new field)
-        field = new Field(conf);
-        field.init();
-        if (localStorage.programSpeed) {
-          field.setSpeed(localStorage.programSpeed);
-        }
+        initField();
+      } finally {
+        changeManageButtons({showStop: false, showRun: true});
+        // To revert normal color fot the last code line
+        Editor.highlightLine(prevNr, oldLineBg);
       }
     }
   };
 
   window.toggleSpeed = function() {
-    if (!localStorage.curSpeed || localStorage.curSpeed == 'slow') {
-      localStorage.curSpeed = 'normal';
-    } else if (localStorage.curSpeed == 'normal') {
-      localStorage.curSpeed = 'fast';
+    if (!localStorage.programSpeed || localStorage.programSpeed == 'slow') {
+      localStorage.programSpeed = 'normal';
+    } else if (localStorage.programSpeed == 'normal') {
+      localStorage.programSpeed = 'fast';
     } else {
-      localStorage.curSpeed = 'slow';
+      localStorage.programSpeed = 'slow';
     }
 
-    field.setSpeed(localStorage.curSpeed);
-    toastr.success('Speed set to: ' + localStorage.curSpeed);
+    field.setSpeed(localStorage.programSpeed);
+    toastr.success('Speed set to: ' + localStorage.programSpeed);
   };
-
-  // TODO mwybe remove it
-  // TODO beautify it
-  // window.openSettings = function() {
-  //   let speed = prompt('Please select speed (slow, normal or fast)');
-  //   if (['slow', 'normal', 'fast'].includes(speed)) {
-  //     field.setSpeed(speed);
-  //     alert(`Speed is set to: ${speed}`);
-  //   } else {
-  //     alert(`Sorry, ${speed} is not a valid option for speed`);
-  //   }
-  // };
 
   window.help = function() {
     Tour.start();
@@ -126,11 +141,6 @@ $( document ).ready(async function() {
   if (!localStorage.tourStarted) {
     localStorage.tourStarted = true;
     Tour.start();
-  } 
-
-  function showTerminalManagerLink() {
-    const link = document.getElementById('terminal-manager-link');
-    link.style.display = 'block';
   }
 
   window.toggleTerminalMode = function () {
@@ -144,8 +154,38 @@ $( document ).ready(async function() {
     }
   };
 
+  // TODO implement
+  function changeManageButtons(opts) {
+    if (opts && opts.showStop) {
+      $('#stop-button').show();
+    } else {
+      $('#stop-button').hide();
+    }
+
+    if (opts && opts.showRun) {
+      $('#run-button').show();
+    } else {
+      $('#run-button').hide();
+    }
+  }
+
+  function initField() {
+    field = new Field(conf);
+    Logger.info(field); // TODO alex
+    field.clear();
+    field.init();
+    if (localStorage.programSpeed) {
+      field.setSpeed(localStorage.programSpeed);
+    }
+  }
+
+  function showTerminalManagerLink() {
+    const link = document.getElementById('terminal-manager-link');
+    link.style.display = 'block';
+  }
+
   function fail(err) {
-    toastr.error(`${err}. Please fix your code and try again`);
+    toastr.error(`${err}`);
     // TODO uncomment later
     // alert('Unfortunately not all tests passed yet :( Please try again. '
     //       + err.toString());
@@ -176,17 +216,24 @@ $( document ).ready(async function() {
   }
 
   async function assetsLoading() {
-    const loadingStartedTime = Date.now();
-    await preLoadImage('img/spinner2.svg');
-    showOverlaySpinner();
-    Logger.info('Image preloading started');
-    await preLoadImages(conf.images);
-    Logger.info('Image preloading finished');
-    const loadingTime = Date.now() - loadingStartedTime;
-    if (loadingTime < MINIMAL_LOADING_TIME) {
-      await sleep(MINIMAL_LOADING_TIME - loadingTime);
+    try {
+      const loadingStartedTime = Date.now();
+      await preLoadImage('img/spinner2.svg');
+      showOverlaySpinner();
+      Logger.info('Image preloading started');
+      await preLoadImages(conf.images);
+      Logger.info('Image preloading finished');
+      const loadingTime = Date.now() - loadingStartedTime;
+      if (loadingTime < MINIMAL_LOADING_TIME) {
+        await sleep(MINIMAL_LOADING_TIME - loadingTime);
+      }
+      hideOverlaySpinner();
+    } catch (e) {
+      toastr.error(e.toString());
+      toastr.warning('Please check your internet connection.');
+      throw e;
     }
-    hideOverlaySpinner();
+
   }
 
   async function preLoadImages(images) {
@@ -198,10 +245,13 @@ $( document ).ready(async function() {
   }
 
   function preLoadImage(url) {
-    return new Promise(function(resolve) {
+    return new Promise(function(resolve, reject) {
       const img = new Image();
       img.src = url;
       img.onload = resolve;
+      img.onerror = function () {
+        reject(`Failed to load image: ${url}`);
+      };
     });
   }
 

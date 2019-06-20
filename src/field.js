@@ -19,6 +19,9 @@ class Field {
     this.size = size;
     this.tickTime = DEFAULT_TICK_TIME;
 
+    this.executionStopped = false;
+    this.cbAfterExecutionStopped = null;
+
     this.log = Page.addLog;
 
     // TODO maybe it's better to store state outside
@@ -70,9 +73,25 @@ class Field {
     }
   }
 
+  stopExecution(cb) {
+    this.executionStopped = true;
+    this.cbAfterExecutionStopped = cb;
+  }
+
+  checkIfExecutionStopped() {
+    // I know that it's not the best way but it kind of works :)
+    // In future it should be done nicer
+    if (this.executionStopped) {
+      if (this.cbAfterExecutionStopped !== null) {
+        this.cbAfterExecutionStopped();
+      }
+      throw new Error('Execution stopped');
+    }
+  }
+
   // TODO in future we can add speed and other motion params
   async run(codeTree, lineHighlighter) {
-    // TODO handle while stmt
+    // TODO handle other types of statement
     this.log("==========================================================");
     this.log("======================= GAME STARTED =====================");
     this.log("==========================================================");
@@ -80,9 +99,15 @@ class Field {
     let tickNr = 0;
 
     for (let node of codeTree) {
+
+      this.checkIfExecutionStopped();
+
       switch (node.type) {
         case 'funCall': {
           const context = {field: this, state: this.state};
+
+          Logger.debug('--------------------------------------------------------');
+          Logger.debug(context);
 
           const method = this.methods[node.name];
           if (method) {

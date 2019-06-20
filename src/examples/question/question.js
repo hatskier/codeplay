@@ -25,7 +25,7 @@ export default function (conf) {
         await sleep(conf.tickTime);
 
         if (methodName !== conf.rightChoice) {
-          runtimeError('That\'s not the right choice :( ', field);
+          runtimeError('That\'s not the right choice', field);
         } else {
           field.log('Well done!');
         }

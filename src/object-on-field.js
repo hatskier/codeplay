@@ -1,5 +1,5 @@
 class ObjectOnField {
-  constructor({id, startPos, size, kind, html, imgKey}, field) {
+  constructor({id, startPos, size, kind, html, imgKey, style}, field) {
     if (id) {
       this.id = id;
     } else {
@@ -12,6 +12,7 @@ class ObjectOnField {
       key: imgKey,
       src: field.images[imgKey]
     };
+    this.style = style;
     if (html) {
       this.html = html.replace('___ID___', this.id);
     }
