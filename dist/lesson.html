@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Codeplay</title>
+  </head>
+  <body>
+
+    <div id="main-container">
+
+      <script src="./tour.css.bundle.js"></script>
+
+      <!-- TODO in future it should be loaded from node_modules -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+      <style>
+        /* CUSTOM MANUAL STYLES */
+
+        #top-container {
+          height: 500px;
+        }
+
+        .toast {
+          font-family: "Verdana", monospace;
+          font-size: small;
+        }
+
+        #top-container,#screen-view-container,#control-container {
+          /* Uncomment for CSS debugging */
+          /* border: 1px solid lightblue; */
+        }
+
+        #screen-view-container,#control-container {
+          float: left;
+        }
+
+        #control-bar {
+          position: fixed;
+          margin: auto;
+          /* margin-top: 5px; */
+          text-align: center;
+          /* border: 1px solid lightblue; */
+          right: 20px;
+          bottom: 20px;
+          /* width: 70px; */
+          padding: 5px;
+          border-radius: 5px;
+        }
+
+        #bottom-container {
+          clear: both;
+        }
+
+        #control-container {
+          width: 49%;
+        }
+
+        #code-editor {
+          margin: auto;
+          margin-top: 10px;
+          /* border:1px solid #ccc; */
+          width: 100%;
+          height: 440px;
+          box-shadow: 0 0 2px;
+        }
+
+        #screen-view-container {
+          width: 50%;
+        }
+
+        #screen-view {
+          margin: auto;
+          /* Position relative is important for dynamic objects in codeplay */
+          position: relative;
+          box-shadow: 0 0 3px;
+        }
+
+        #run-button {
+          background: greenyellow;
+          width: 70px;
+          border-radius: 5px;
+          float: left;
+        }
+
+        #stop-button {
+          display: none;
+          background: #ffae42;
+          width: 70px;
+          border-radius: 5px;
+          float: left;
+        }
+
+        .md-icon {
+          /* filter:  */
+          width: 35px;
+          margin: 5px;
+        }
+
+        .clickable:hover {
+          cursor: pointer;
+          opacity: 0.7;
+        }
+
+        .clickable:active {
+          /* box-shadow: 0 0 3px; */
+          opacity: 1;
+        }
+
+        #overlay {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          background: white url(img/spinner2.svg) center center no-repeat;
+          opacity: 1;
+        }
+
+        .doc-method-name {
+          font-weight: bolder;
+        }
+
+        .doc-method-description {
+          padding-left: 20px;
+          font-size: small;
+        }
+
+        #terminal-manager-link {
+          font-family: "Courier New", monospace;
+          cursor: pointer;
+          text-decoration: underline;
+          position: relative;
+          z-index: 1;
+          font-size: 12px;
+          display: none; /* link is hidden at the beginning */
+        }
+
+        #terminal-manager-links {
+          text-align: center;
+          margin-bottom: -23px;
+          z-index: 1;
+        }
+
+
+        /* TERMINAL STYLES (copied from https://codepen.io/alidavut/pen/OXzxOO) */
+
+
+        /* TODO refactor - remove commented parts */
+        .window {
+          border-radius: 5px;
+          background: #222;
+          color: #fff;
+          overflow: scroll;
+          position: relative;
+          margin: 0 auto;
+          width: 70%;
+          height: 500px;
+        }
+        .window:before {
+          content: ' ';
+          display: block;
+          height: 30px;
+          background: #C6C6C6;
+        }
+        .window:after {
+          content: '. . .';
+          position: absolute;
+          left: 12px;
+          right: 0;
+          top: -12px;
+          font-size: 96px;
+          color: #fff;
+          line-height: 0;
+          letter-spacing: -12px;
+        }
+
+        .terminal {
+          margin: 20px;
+          font-family: monospace;
+          font-size: 16px;
+          color: #22da26;
+        }
+
+        .terminal .command:before {
+          content: '$ ';
+          color: #22da26;
+        }
+
+        .command-error {
+          color: #ff3c2c;
+        }
+
+        .terminal .command-error:before {
+          color: #ff3c2c;
+        }
+
+      </style>
+
+      <!-- This div could be used for toastr message customization -->
+      <!-- <div id="toast-container"></div> -->
+
+      <div id="overlay"></div>
+    
+      <div id="top-container">
+        <div id="screen-view-container">
+          <div id="screen-view"></div>
+        </div>
+        <div id="control-container" >
+          <div id="code-editor"></div>
+        </div>
+      </div>
+  
+      <div id="bottom-container">
+
+        <div id="terminal-manager-links">
+          <span onclick="toggleTerminalMode()" id="terminal-manager-link">hide logs</span>
+        </div>
+
+        <div class="window">
+
+          <div class="terminal">
+            <p class="log" id="logs">
+              
+            </p>
+
+            <div id="documentation-container">
+              <h4 class="doc centered-header">Docs</h4>
+              <div id="doc-view"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="control-bar">
+        <div>
+          <img id="toggle-terminal-mode-button" class="md-icon clickable" onclick="toggleTerminalMode()" src="./img/code-icon-blue.svg">
+        </div>
+        <div>
+          <img id="help-button" class="md-icon clickable" onclick="help()" src="./img/blue-help.png">
+        </div>
+        <div>
+          <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/blue-settings.png">
+        </div>
+
+        <div id="stop-button" class="clickable" onclick="reset()">
+          <img class="md-icon" src="./img/white-stop-icon.png">
+        </div>
+
+        <div id="run-button" class="clickable" onclick="run()">
+          <img class="md-icon" src="./img/white-play-icon.png">
+        </div>
+      </div>
+
+    </div>
+
+    <script src="./lesson.bundle.js"></script>
+
+  </body>
+</html>
