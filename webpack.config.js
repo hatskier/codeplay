@@ -6,19 +6,19 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
 		// Custom scripts
-		"app": './src/index.js',
-		"app.plugable": './src/plugable.js',
+		// "app": './src/index.js',
+		// "app.plugable": './src/plugable.js',
 		"lesson": './src/lesson.js',
 
 		// Tour styles
 		"tour.css": "tour/dist/tour.css",
 
 		// Monaco editor
-    "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
-		"json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
-		"css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
-		"html.worker": 'monaco-editor/esm/vs/language/html/html.worker',
-		"ts.worker": 'monaco-editor/esm/vs/language/typescript/ts.worker',
+    // "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
+		// "json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
+		// "css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
+		// "html.worker": 'monaco-editor/esm/vs/language/html/html.worker',
+		// "ts.worker": 'monaco-editor/esm/vs/language/typescript/ts.worker',
   },
   output: {
 		globalObject: 'self',
@@ -52,16 +52,16 @@ module.exports = {
     //   minChunks: Infinity,
     // })
 	],
-	optimization: {
-    runtimeChunk: "single", // enable "runtime" chunk
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "all"
-        }
-      }
-    }
-  }
+	// optimization: {
+  //   runtimeChunk: "single", // enable "runtime" chunk
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         // test: /[\\/]node_modules[\\/]/,
+  //         name: "vendor",
+  //         chunks: "all"
+  //       }
+  //     }
+  //   }
+  // }
 };

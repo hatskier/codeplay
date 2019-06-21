@@ -32,6 +32,7 @@ import workHard from './examples/question/work-hard';
 import Tour from './codeplay-tour';
 
 const MINIMAL_LOADING_TIME = 500; // ms
+const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
 
 const configs = {
   car,
@@ -194,8 +195,8 @@ $( document ).ready(async function() {
   async function success() {
     toastr.success('Lesson completed! Well done! Redirecting to the next page...');
     // TODO uncomment
-    await sleep(3000);
-    window.location.replace(nextPage);
+    // await sleep(3000);
+    // window.location.replace(nextPage);
   }
   
   function buildDocumentationView(conf) {
@@ -219,7 +220,7 @@ $( document ).ready(async function() {
   async function assetsLoading() {
     try {
       const loadingStartedTime = Date.now();
-      await preLoadImage('img/spinner2.svg');
+      await preLoadImage(spinnerUrl);
       showOverlaySpinner();
       Logger.info('Image preloading started');
       await preLoadImages(conf.images);
@@ -240,6 +241,7 @@ $( document ).ready(async function() {
   async function preLoadImages(images) {
     for (const imageKey in images) {
       const url = images[imageKey];
+      Logger.info(`Loading image: ${url}`);
       await preLoadImage(url);
       Logger.info(`Image loaded: ${url}`);
     }
