@@ -1,6 +1,7 @@
 const Path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -40,6 +41,27 @@ module.exports = {
 		]),
 		new MonacoWebpackPlugin({
 			languages: ['javascript']
-		})
-	]
+		}),
+		// new webpack.optimize.CommonsChunkPlugin({
+    //   names: ["vendor"],
+
+    //   // use this to overwrite output config
+    //   // filename: "vendor.bundle.js"
+
+    //   // with more entries, this ensures that no other module goes into the vendor chunk
+    //   minChunks: Infinity,
+    // })
+	],
+	optimization: {
+    runtimeChunk: "single", // enable "runtime" chunk
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all"
+        }
+      }
+    }
+  }
 };
