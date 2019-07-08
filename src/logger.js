@@ -2,7 +2,7 @@
 // - logging levels
 // - custom logging mechanisms (e.g. sending web requests for error level)
 
-import Page from './page';
+// import Page from './page';
 
 
 export default {

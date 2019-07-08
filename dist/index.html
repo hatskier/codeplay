@@ -38,28 +38,28 @@
     <div id="app">
         <h2>Labyrinths</h2>
         <h4 v-for="labyrinthName in labyrinths">
-          <a v-bind:href=`lesson.html?config=${labyrinthName}&nextPage=index.html?solvedTask=${labyrinthName}`>
+          <a v-bind:href=`lesson.html?config=${labyrinthName}&nextPage=index.html`>
             {{labyrinthName}}
           </a>
         </h4>
     
         <h2>Battles</h2>
         <h4 v-for="battleName in battles">
-          <a v-bind:href=`lesson.html?config=${battleName}&nextPage=index.html?solvedTask=${battleName}`>
+          <a v-bind:href=`lesson.html?config=${battleName}&nextPage=index.html`>
             {{battleName}}
           </a>
         </h4>
     
         <h2>Avengers</h2>
         <h4 v-for="avengersName in avengers">
-          <a v-bind:href=`lesson.html?config=${avengersName}&nextPage=index.html?solvedTask=${avengersName}`>
+          <a v-bind:href=`lesson.html?config=${avengersName}&nextPage=index.html`>
             {{avengersName}}
           </a>
         </h4>
     
         <h2>Questions</h2>
         <h4 v-for="questionName in questions">
-          <a v-bind:href=`lesson.html?config=${questionName}&nextPage=index.html?solvedTask=${questionName}`>
+          <a v-bind:href=`lesson.html?config=${questionName}&nextPage=index.html`>
             {{questionName}}
           </a>
         </h4>

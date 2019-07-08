@@ -57,11 +57,47 @@ let field;
 let oldLineBg;
 let prevNr;
 
+function getParamStr(url) {
+  console.log(`Getting paramStr from ${url}`);
+  let paramsStr = "";
+  let questionMarkReached = false;
+  for (let c of url) {
+    if (questionMarkReached) {
+      paramsStr += c;
+    }
+    if (c == '?') {
+      questionMarkReached = true;
+    }
+  }
+  console.log(`Params str: ${paramsStr}`);
+  return paramsStr;
+}
+
+function getParam(paramStr, param) {
+  let jsonStr = 
+    '{"'
+    + decodeURI(paramStr)
+          .replace(/"/g, '\\"')
+          .replace(/&/g, '","')
+          .replace(/=/g,'":"')
+    + '"}';
+  console.log(jsonStr);
+  let obj = JSON.parse(jsonStr);
+  return obj[param];
+}
+
+
 $( document ).ready(async function() {
   Logger.info('Page is loaded');
-  let params = new URL(location.href).searchParams;
-  let configName = params.get('config');
-  let nextPage = params.get('nextPage');
+
+  // let params = new URL(location.href).searchParams;
+  // let configName = params.get('config');
+  // let nextPage = params.get('nextPage');
+
+  // Temporary version for blockstack
+  let paramsStr = getParamStr(location.href);
+  let configName = getParam(paramsStr, 'config');
+  let nextPage = getParam(paramsStr, 'nextPage');
 
   if (!configName) {
     alert('Bad config param!');
@@ -76,6 +112,16 @@ $( document ).ready(async function() {
 
   const editor = Editor.setUp(conf);
   buildDocumentationView(conf);
+
+  function preventSaving() {
+    $(document).bind('keydown', 'ctrl+s', function(e) {
+      e.preventDefault();
+      alert('Ctrl+S');
+      return false;
+    });
+  }
+
+  preventSaving();
 
   window.reset = function() {
     changeManageButtons({showStop: false, showRun: false});
@@ -193,10 +239,11 @@ $( document ).ready(async function() {
   }
   
   async function success() {
-    toastr.success('Lesson completed! Well done! Redirecting to the next page...');
+    toastr.success('Lesson completed! Well done! Saving your result... Please don\'t close the window');
     // TODO uncomment
-    // await sleep(3000);
-    // window.location.replace(nextPage);
+    // await sleep(1000);
+    // alert(nextPage);
+    window.location.href = nextPage;
   }
   
   function buildDocumentationView(conf) {
