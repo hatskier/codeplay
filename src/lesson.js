@@ -54,11 +54,14 @@ const configs = {
 let field;
 
 // TODO think how to make it better
+// and without global variables
 let oldLineBg;
 let prevNr;
+let keysPressed = {};
+
 
 function getParamStr(url) {
-  console.log(`Getting paramStr from ${url}`);
+  Logger.info(`Getting paramStr from ${url}`);
   let paramsStr = "";
   let questionMarkReached = false;
   for (let c of url) {
@@ -69,7 +72,7 @@ function getParamStr(url) {
       questionMarkReached = true;
     }
   }
-  console.log(`Params str: ${paramsStr}`);
+  Logger.info(`Params str: ${paramsStr}`);
   return paramsStr;
 }
 
@@ -81,7 +84,7 @@ function getParam(paramStr, param) {
           .replace(/&/g, '","')
           .replace(/=/g,'":"')
     + '"}';
-  console.log(jsonStr);
+  // Logger.info(jsonStr);
   let obj = JSON.parse(jsonStr);
   return obj[param];
 }
@@ -113,15 +116,28 @@ $( document ).ready(async function() {
   const editor = Editor.setUp(conf);
   buildDocumentationView(conf);
 
-  function preventSaving() {
-    $(document).bind('keydown', 'ctrl+s', function(e) {
-      e.preventDefault();
-      alert('Ctrl+S');
-      return false;
+  function preventHotKeys() {
+    $(document).bind('keydown', function(e) {
+      keysPressed[e.key] = true;
+      Logger.debug(keysPressed);
+      const macHotKeySaving = keysPressed['Meta'] && keysPressed['s'];
+      const windowsHotKeySaving = keysPressed['Control'] && keysPressed['s'];
+      if (macHotKeySaving || windowsHotKeySaving) {
+        Logger.info('Preventing default behaviour for the pressed keys');
+        Logger.info(keysPressed);
+        e.preventDefault();
+        return false;
+      }
+      return true;
+    });
+
+    $(document).bind('keyup', function(e) {
+      // This hack was created because after releasing 2 keys only one event is raised
+      keysPressed = {};
     });
   }
 
-  preventSaving();
+  preventHotKeys();
 
   window.reset = function() {
     changeManageButtons({showStop: false, showRun: false});
