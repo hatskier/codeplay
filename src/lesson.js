@@ -4,6 +4,7 @@ import Parser from './lang/parser';
 import Logger from './logger';
 
 import $ from 'jquery';
+import Typed from 'typed.js';
 
 // Car
 import car from './examples/car';
@@ -58,7 +59,6 @@ let field;
 let oldLineBg;
 let prevNr;
 let keysPressed = {};
-
 
 function getParamStr(url) {
   Logger.info(`Getting paramStr from ${url}`);
@@ -301,12 +301,23 @@ $( document ).ready(async function() {
 
   }
 
+  // TODO
+  function updateLoadingProgress(loaded, total) {
+    document.getElementById('percentage-loaded').innerHTML = Math.round(loaded / total * 100);
+  }
+
+  // TODO show progress
+  // TODO hide everything except spinner
   async function preLoadImages(images) {
+    let imagesLoadedCounter = 0;
     for (const imageKey in images) {
       const url = images[imageKey];
-      Logger.info(`Loading image: ${url}`);
+      Logger.info();
+      Logger.info(`Image loading: ${imageKey}`);
       await preLoadImage(url);
-      Logger.info(`Image loaded: ${url}`);
+      imagesLoadedCounter++;
+      updateLoadingProgress(imagesLoadedCounter, Object.keys(images).length);
+      Logger.info(`Image loaded: ${imageKey}`);
     }
   }
 
@@ -315,26 +326,34 @@ $( document ).ready(async function() {
       const img = new Image();
       img.src = url;
       img.onload = resolve;
+      resolve();
       img.onerror = function () {
         reject(`Failed to load image: ${url}`);
       };
     });
   }
 
+  // TODO - make it better
   function showOverlaySpinner() {
-    toggleOverlaySpinner(true);
+    changeVisibility('top-container', false);
+    changeVisibility('bottom-container', false);
+    changeVisibility('control-bar', false);
+    changeVisibility('overlay', true);
   }
 
   function hideOverlaySpinner() {
-    toggleOverlaySpinner(false);
+    changeVisibility('top-container', true);
+    changeVisibility('bottom-container', true);
+    changeVisibility('control-bar', true);
+    changeVisibility('overlay', false);
   }
 
-  function toggleOverlaySpinner(show) {
-    const el = document.getElementById('overlay');
-    if (show) {
-      el.style.display = 'block';
+  function changeVisibility(elemId, visible) {
+    let elem = document.getElementById(elemId);
+    if (visible) {
+      elem.style.display = 'block';
     } else {
-      el.style.display = 'none';
+      elem.style.display = 'none';
     }
   }
 

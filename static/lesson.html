@@ -18,6 +18,10 @@
       <style>
         /* CUSTOM MANUAL STYLES */
 
+        #top-container,#bottom-container,#control-bar {
+          display: none; /* for image preloading spinner */
+        }
+
         #top-container {
           height: 500px;
         }
@@ -110,10 +114,32 @@
 
         #overlay {
           position: fixed;
-          width: 100%;
-          height: 100%;
-          background: white url(img/spinner2.svg) center center no-repeat;
+          width: 100vw;
+          height: 100vh;
+          /* background: white url(img/spinner2.svg) center center no-repeat; */
           opacity: 1;
+          text-align: center;
+        }
+
+        img#spinner {
+          margin-top: 45vh;
+          height: 10vh;
+        }
+
+        #loading-progress {
+          font-family: "Courier New", monospace;
+          color: #00A5FB;
+          margin-top: 2vh;
+          font-size: 3vh;
+        }
+
+        /* TODO - maybe remove animated styles - if it is not used */
+        .animate {
+          transition: all .5s ease-in-out;
+          transition-property: all;
+          transition-duration: 0.5s;
+          transition-timing-function: ease-in-out;
+          transition-delay: 0s;
         }
 
         .doc-method-name {
@@ -199,7 +225,10 @@
       <!-- This div could be used for toastr message customization -->
       <!-- <div id="toast-container"></div> -->
 
-      <div id="overlay"></div>
+      <div id="overlay">
+        <img id="spinner" src="img/spinner2.svg">
+        <div id="loading-progress"><span id="percentage-loaded">0</span>%</div>
+      </div>
     
       <div id="top-container">
         <div id="screen-view-container">
