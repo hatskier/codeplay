@@ -31,10 +31,12 @@ export default {
     });
   },
 
-  // Returns old color
   highlightLine(nr, color) {
-    const oldBg = document.getElementsByClassName('view-lines')[0].children[nr - 1].style.background;
-    document.getElementsByClassName('view-lines')[0].children[nr - 1].style.background = color;
-    return oldBg;
+    // const oldBg = document.getElementsByClassName('view-lines')[0].children[nr - 1].style.background;
+    let lines = document.getElementsByClassName('view-lines')[0].children;
+    if (lines.length >= nr) {
+      lines[nr - 1].style.background = color;
+    }
+    // return oldBg;
   }
 };

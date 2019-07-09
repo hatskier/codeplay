@@ -56,7 +56,6 @@ let field;
 
 // TODO think how to make it better
 // and without global variables
-let oldLineBg;
 let prevNr;
 let keysPressed = {};
 
@@ -160,10 +159,10 @@ $( document ).ready(async function() {
           await field.run(codeTree, {
             start(nr) {
               if (prevNr !== undefined) {
-                Editor.highlightLine(prevNr, oldLineBg);
+                Editor.highlightLine(prevNr, '');
               }
               prevNr = nr;
-              oldLineBg = Editor.highlightLine(nr, 'lightblue');
+              Editor.highlightLine(nr, 'lightblue');
             },
             stop() {
               // Editor.highlightLine(nr, oldLineBg);
@@ -180,7 +179,7 @@ $( document ).ready(async function() {
       } finally {
         changeManageButtons({showStop: false, showRun: true});
         // To revert normal color fot the last code line
-        Editor.highlightLine(prevNr, oldLineBg);
+        Editor.highlightLine(prevNr, '');
       }
     }
   };
@@ -326,7 +325,7 @@ $( document ).ready(async function() {
       const img = new Image();
       img.src = url;
       img.onload = resolve;
-      resolve();
+      // resolve();
       img.onerror = function () {
         reject(`Failed to load image: ${url}`);
       };
