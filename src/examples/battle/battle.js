@@ -1,6 +1,6 @@
 const defaultSize = 100;
 const landYPos = 50;
-const attackDistance = 7;
+const attackDistance = 9;
 const defaultGraveSize = {
   width: defaultSize,
   height: defaultSize * 1.2
@@ -92,12 +92,12 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     } else {
       field.log(`${id} is dying...`);
     }
-    if (id !== 'Dragon' && id !== 'Hero') {
+    if (id !== 'Dragon' && id !== 'Hero' && !id.includes('Warrior')) {
       field.changeImageSize(id, defaultGraveSize);
     }
     await field.changeImage(id, newImgKey);
     if (id.includes('Warrior')) {
-      await field.safeMove(id, {x: 8, y: 2}, {fast: true});
+      // await field.safeMove(id, {x: 8, y: 2}, {fast: true});
     }
     if (id.includes('Archer')) {
       await field.safeMove(id, {x: 2, y: 1}, {fast: true});
@@ -204,8 +204,8 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
       'dragon': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon-flying.gif',
       'dragon-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon-flying.gif',
       'dragon-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave-with-wings.gif',
-      'warrior': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-waiting.png',
-      'warrior-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-attacking.gif',
+      'warrior': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-new-waiting.gif',
+      'warrior-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-new-attacking.gif',
       'warrior-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
       'archer': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer_new.png',
       'archer-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer_new.png',
@@ -380,8 +380,11 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
     }
 
     if (enemy.kind == 'warrior') {
-      size.width *= 1.5;
-      yPos -= 1;
+      // TODO check warrior offsets and scaling
+      // size.width *= 1.5;
+      // yPos -= 1;
+      size.width /= 1.4;
+      // size.height
     }
 
     conf.objects.push({

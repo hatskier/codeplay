@@ -12,7 +12,7 @@ let conf = prepareBattle({
       },
 
       kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-      location: 50
+      location: 59
     },
     'Warrior2': {
       action(tickNr) {
@@ -24,7 +24,7 @@ let conf = prepareBattle({
       },
 
       kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-      location: 60
+      location: 69
     },
     'Archer': {
       action(tickNr) {
@@ -36,7 +36,7 @@ let conf = prepareBattle({
       },
 
       kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
-      location: 83
+      location: 85
     }
   },
 

@@ -267,7 +267,7 @@ $( document ).ready(async function() {
       <table id="doc-table">
         ${
           Object.keys(conf.methods).map(method =>
-                                        '<tr><td class="doc doc-method-name">'
+                                        '<tr><td class="doc doc-method-name notranslate">'
                                         + method
                                         + '</td><td class="doc doc-method-description">'
                                         + conf.methods[method].doc

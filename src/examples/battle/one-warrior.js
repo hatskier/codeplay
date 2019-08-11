@@ -12,7 +12,7 @@ let conf = prepareBattle({
       },
 
       kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-      location: 50
+      location: 58
     }
   },
 

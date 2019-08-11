@@ -23,11 +23,6 @@ export default function (conf) {
           runtimeError(`Method ${methodName} has no arguments`, field);
         }
 
-        field.log(conf.methods[methodName].log);
-
-        field.changeBg(conf.methods[methodName].bg);
-        await sleep(conf.tickTime);
-
         state.executedMethods.push(methodName);
 
         let counter = 0;
@@ -37,6 +32,11 @@ export default function (conf) {
           }
           counter++;
         }
+
+        field.log(conf.methods[methodName].log);
+
+        field.changeBg(conf.methods[methodName].bg);
+        await sleep(conf.tickTime);
       }
     }
   }
