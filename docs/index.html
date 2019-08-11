@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <style>
@@ -42,12 +43,18 @@
         text-decoration: none;
       }
 
-      h2, * {
+      h2,h3,h4,h5,h6 {
         font-family: Product Sans;
       }
 
       .task-card-image {
+        /* width: 100%; */
         width: 100%;
+        min-height: 15vw;
+      }
+
+      .done-gif {
+        width: 23px;
       }
 
       /* .mdl-cell {
@@ -58,6 +65,18 @@
 
       #app {
         text-align: center;
+      }
+
+      @media only screen and (max-width: 839px) {
+        .mdl-cell--3-col {
+          width: 45vw;
+          /* height: 23vw; */
+        }
+
+        .task-card-image {
+           /* width: 100%; */
+          min-height: 27vw;
+        }
       }
 
     </style>
@@ -133,8 +152,16 @@
         <!-- <h4 v-bind:class="`${task.color}-text`"> -->
         <a v-bind:href="`lesson.html?config=${task.id}&nextPage=index.html`">
           <h5 class="clickable">
-            {{ task.title }}
+            <!-- <img style="width: 30px;" src="file:///Users/alex/Downloads/done.png"> -->
+            <div v-bind:id="`done-gif-container-${task.id}`">
+              {{ task.title }}
+              <img v-if="solvedTasks[task.id]" class="done-gif" src="file:///Users/alex/Downloads/done.gif" >
+            </div>
+            <div v-if="solvedTasks[task.id]" class="mdl-tooltip" v-bind:data-mdl-for="`done-gif-container-${task.id}`">
+              This task is solved. Great job!
+            </div>
           </h5>
+          
         </a>
 
       </div>
@@ -142,6 +169,21 @@
     </div>
 
     <script>
+      function getSolvedTasks() {
+        const solvedTasksKey = 'codeplaySolvedTasks';
+        let solvedTasksFromLocalStorage = localStorage.getItem(solvedTasksKey);
+        if (solvedTasksFromLocalStorage) {
+          try {
+            return JSON.parse(solvedTasksFromLocalStorage);
+          } catch (e) {
+            console.error(e);
+            return {};
+          }
+        } else {
+          return {};
+        }
+      }
+
       const app = new Vue({
         el: '#app',
         methods: {
@@ -183,6 +225,7 @@
           //   'workHard'
           // ],
 
+          solvedTasks: getSolvedTasks(),
 
           tasks: [
             {
@@ -193,21 +236,21 @@
               color: 'green',
             },
             {
-              title: 'Easy labyrinth',
+              title: 'Labyrinth 1',
               id: 'easyLabyrinth',
               img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/caveman.jpg',
               unit: 'Instructions',
               color: 'green',
             },
             {
-              title: 'Labyrinth',
+              title: 'Labyrinth 2',
               id: 'mediumLabyrinth',
               img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/labyrinth-2.png',
               unit: 'Instructions',
               color: 'yellow',
             },
             {
-              title: 'Labyrinth - find a bug',
+              title: 'Labyrinth 3',
               id: 'hardLabyrinth',
               // img: 'https://s3.amazonaws.com/alcourses.codeplay/common/hardLabyrinth.png',
               img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/labyrinth.png',
