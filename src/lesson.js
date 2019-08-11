@@ -252,11 +252,28 @@ $( document ).ready(async function() {
     // alert('Unfortunately not all tests passed yet :( Please try again. '
     //       + err.toString());
   }
+
+  function addLessonToLocalStorage(lessonName) {
+    const solvedTasksKey = 'codeplaySolvedTasks';
+    let solvedLessonsFromLocalStorage = localStorage.getItem(solvedTasksKey);
+    let solvedLessons = {};
+    try {
+      solvedLessons = JSON.parse(solvedLessonsFromLocalStorage);
+    } catch (e) {
+      Logger.error(e);
+    }
+    if (!solvedLessons) {
+      solvedLessons = {};
+    }
+    solvedLessons[lessonName] = true;
+    localStorage.setItem(solvedTasksKey, JSON.stringify(solvedLessons));
+  }
   
   async function success() {
     toastr.success('Lesson completed! Well done! Saving your result... Please don\'t close the window');
     // TODO uncomment
-    // await sleep(1000);
+    addLessonToLocalStorage(configName);
+    await sleep(1000);
     // alert(nextPage);
     window.location.href = nextPage;
   }

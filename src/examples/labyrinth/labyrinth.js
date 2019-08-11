@@ -18,9 +18,12 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
   let conf = {
     images: {
       'skale': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/skale.jpg',
-      'man-static': 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png',
-      'man-going-left': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif',
-      'man-going-right': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif'  
+      // 'man-static': 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png',
+      // 'man-going-left': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif',
+      // 'man-going-right': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif'
+      'man-static': 'file:///Users/alex/Downloads/caveman-waiting.png',
+      'man-going-left': 'file:///Users/alex/Downloads/caveman-going-left.gif',
+      'man-going-right': 'file:///Users/alex/Downloads/caveman-going-right.gif',
     },
 
     bg: 'skale',
