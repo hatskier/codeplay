@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Codeplay</title>
+    <title>Codenplay</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -9,15 +9,52 @@
 
     <style>
 
-      .mdl-cell {
-        /* border: 1px solid lightblue; */
-        height: 500px;
-        border:1px solid #ccc;
+      @font-face {
+        font-family: 'Product Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
       }
 
-      .custom-header {
-        background: #eaeaea;
+      /* $blue : #4285F4;
+      $red : #EA4335;
+      $yellow : #FBBC05;
+      $green : #34A853; */
+
+      .blue-text {
+        color: #4285F4;
       }
+      .red-text {
+        color: #EA4335;
+      }
+      .yellow-text {
+        color: #FBBC05;
+      }
+      .green-text {
+        color: #34A853
+      }
+
+      .clickable {
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      h2, * {
+        font-family: Product Sans;
+      }
+
+      .task-card-image {
+        width: 100%;
+      }
+
+      /* .mdl-cell {
+        height: 500px;
+        border:1px solid #ccc;
+      } */
+
 
       #app {
         text-align: center;
@@ -28,14 +65,27 @@
   <body>
     <!-- <script src="./src/index.js"></script> -->
     <div class="custom-header">
-      <div class="mdl-layout__header-row">
-        <img id="logo" src="https://s3.amazonaws.com/alcourses.codeplay/logo.png">
-        <div class="mdl-layout-spacer"></div>
-        </nav>
-      </div>
+        <h2 style="text-align: center;">
+          <span class="blue-text">C</span>
+          <span class="red-text">o</span>
+          <span class="yellow-text">d</span>
+          <span class="blue-text">e</span>
+          <span class="green-text">n</span>
+          <span class="red-text">p</span>
+          <span class="red-text">l</span>
+          <span class="blue-text">a</span>
+          <span class="red-text">y</span>
+        </h2>
+      <!-- <div class="mdl-layout__header-row"> -->
+        <!-- <img id="logo" src="https://s3.amazonaws.com/alcourses.codeplay/logo.png"> -->
+        
+        <!-- <div class="mdl-layout-spacer"></div> -->
+        <!-- </nav> -->
+      <!-- </div> -->
     </div>
-    
-    <div id="app">
+
+    <!-- Old version -->
+    <!-- <div id="app">
         <h2>Labyrinths</h2>
         <h4 v-for="labyrinthName in labyrinths">
           <a v-bind:href=`lesson.html?config=${labyrinthName}&nextPage=index.html`>
@@ -63,31 +113,153 @@
             {{questionName}}
           </a>
         </h4>
+    </div> -->
+
+    <div id="app" class="mdl-grid">
+      <div v-for="task in tasks" class="mdl-cell mdl-cell--3-col">
+        <!-- <img v-bind:src="task.img"> -->
+        <a v-bind:href="`lesson.html?config=${task.id}&nextPage=index.html`">
+          <div
+            class="task-card-image mdl-card mdl-shadow--2dp"
+            v-bind:style="`background: url('${task.img}') center top / cover`"
+            >
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+              <span class="task-card-image__filename">
+              </span>
+            </div>
+          </div>
+        </a>
+        <!-- <h4 v-bind:class="`${task.color}-text`"> -->
+        <a v-bind:href="`lesson.html?config=${task.id}&nextPage=index.html`">
+          <h5 class="clickable">
+            {{ task.title }}
+          </h5>
+        </a>
+
+      </div>
+
     </div>
 
     <script>
       const app = new Vue({
         el: '#app',
+        methods: {
+          getRandomColorClass() {
+            let randVal = Math.random();
+            if (randVal < 0.25) {
+              return 'green-text';
+            }
+            if (randVal < 0.5) {
+              return 'red-text';
+            }
+            if (randVal < 0.75) {
+              return 'blue-text';
+            }
+            if (randVal < 1) {
+              return 'yellow-text';
+            }
+          }
+        },
         data: {
-          labyrinths: [
-            'easyLabyrinth',
-            'mediumLabyrinth',
-            'hardLabyrinth'
-          ],
-          battles: [
-            'oneWarrior',
-            'oneArcher',
-            'warriorsAndArcher',
-            'oneDragon',
-            'allTogether'
-          ],
-          avengers: [
-            'ironMan'
-          ],
-          questions: [
-            'callGranny',
-            'readMore',
-            'workHard'
+          // labyrinths: [
+          //   'easyLabyrinth',
+          //   'mediumLabyrinth',
+          //   'hardLabyrinth'
+          // ],
+          // battles: [
+          //   'oneWarrior',
+          //   'oneArcher',
+          //   'warriorsAndArcher',
+          //   'oneDragon',
+          //   'allTogether'
+          // ],
+          // avengers: [
+          //   'ironMan'
+          // ],
+          // questions: [
+          //   'callGranny',
+          //   'readMore',
+          //   'workHard'
+          // ],
+
+
+          tasks: [
+            {
+              title: 'Iron man',
+              id: 'ironMan',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/iron-man.png',
+              unit: 'Instructions',
+              color: 'green',
+            },
+            {
+              title: 'Easy labyrinth',
+              id: 'easyLabyrinth',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/caveman.jpg',
+              unit: 'Instructions',
+              color: 'green',
+            },
+            {
+              title: 'Labyrinth',
+              id: 'mediumLabyrinth',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/labyrinth-2.png',
+              unit: 'Instructions',
+              color: 'yellow',
+            },
+            {
+              title: 'Labyrinth - find a bug',
+              id: 'hardLabyrinth',
+              // img: 'https://s3.amazonaws.com/alcourses.codeplay/common/hardLabyrinth.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/labyrinth.png',
+              unit: 'Instructions',
+              color: 'yellow',
+            },
+            {
+              title: 'Achieve your goals',
+              id: 'workHard',
+              // img: 'https://s3.amazonaws.com/alcourses.codeplay/common/workHard.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/achieve-goal.png',
+              unit: 'Instructions',
+              color: 'green',
+            },
+            {
+              title: 'Battle 1',
+              id: 'oneWarrior',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/battle.png',
+              unit: 'Instructions',
+              color: 'yellow',
+            },
+            {
+              title: 'Battle 2',
+              id: 'oneArcher',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior.png',
+              unit: 'Instructions',
+              color: 'yellow',
+            },
+            {
+              title: 'Battle 3',
+              id: 'warriorsAndArcher',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              unit: 'Instructions',
+              color: 'red',
+            },
+            {
+              title: 'Battle with dragon',
+              id: 'oneDragon',
+              // img: 'https://s3.amazonaws.com/alcourses.codeplay/common/dragon.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/dragon.png',
+              unit: 'Instructions',
+              color: 'red',
+            },
+            {
+              title: 'Speak better',
+              id: 'readMore',
+              // TODO update image
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/speak.png',
+              // img: 'https://s3.amazonaws.com/alcourses.codeplay/common/workHard.png',
+              unit: 'Instructions',
+              color: 'green',
+            }
           ]
         }
       });
