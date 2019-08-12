@@ -4,11 +4,12 @@ let conf = prepareBattle({
   enemies: {
     'Warrior': {
       action(tickNr) {
-        if (tickNr == 0 || tickNr == 1) {
-          return 'attack';
-        } else {
-          return 'skip';
-        }
+        // if (tickNr == 0 || tickNr == 1) {
+        //   return 'attack';
+        // } else {
+        //   return 'skip';
+        // }
+        return 'skip';
       },
 
       kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
@@ -18,7 +19,7 @@ let conf = prepareBattle({
 
   stepWidth: 10,
   startPosX: 40,
-  maxTicksToWin: 4,
+  maxTicksToWin: 12,
 
   solutionCode:
 `hero.defend();
@@ -30,6 +31,7 @@ hero.attack();
 
 startCodeVal:
 `// Defeat the warrior
+// Come closer and attack using your sword
 `
 });
 

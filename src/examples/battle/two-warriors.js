@@ -26,44 +26,34 @@ let conf = prepareBattle({
       kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
       location: 69
     },
-    'Archer': {
-      action(tickNr) {
-        if (tickNr % 3 == 0) {
-          return 'attack';
-        } else {
-          return 'skip';
-        }
-      },
+    // 'Archer': {
+    //   action(tickNr) {
+    //     if (tickNr % 3 == 0) {
+    //       return 'attack';
+    //     } else {
+    //       return 'skip';
+    //     }
+    //   },
 
-      kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
-      location: 85
-    }
+    //   kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+    //   location: 85
+    // }
   },
 
   stepWidth: 10,
   startPosX: 40,
-  maxTicksToWin: 14,
+  maxTicksToWin: 30,
 
   solutionCode:
-`hero.defend();
-hero.defend();
-hero.go();
-hero.defend();
-hero.attack();
-hero.defend();
-hero.defend();
-hero.go();
-hero.attack();
-hero.defend();
-hero.go();
-hero.go();
-hero.defend();
-hero.attack();
+`
+// TODO
 
 `,
 
 startCodeVal:
-`// Defeat your enemies
+`// Defeat all the enemies and don't let them
+// kill you
+
 `
 });
 

@@ -46,9 +46,9 @@ export default function (conf) {
       pre: async function() {
         // 
       },
-      post: async function({state}) {
+      post: async function({state, field}) {
         if (!state.executedMethods || state.executedMethods.length !== conf.order.length) {
-          runtimeError('Task is not finished');
+          runtimeError('Task is not finished', field);
         }
       }
     }

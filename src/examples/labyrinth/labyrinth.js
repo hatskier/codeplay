@@ -21,9 +21,9 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
       // 'man-static': 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png',
       // 'man-going-left': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif',
       // 'man-going-right': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif'
-      'man-static': 'file:///Users/alex/Downloads/caveman-waiting.png',
-      'man-going-left': 'file:///Users/alex/Downloads/caveman-going-left.gif',
-      'man-going-right': 'file:///Users/alex/Downloads/caveman-going-right.gif',
+      'man-static': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/caveman-waiting.png',
+      'man-going-left': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/caveman-going-left.gif',
+      'man-going-right': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/caveman-going-right.gif',
     },
 
     bg: 'skale',
@@ -176,10 +176,10 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
   conf.size = size;
 
   conf.methods = {
-    'man.moveRight': movingMethod('Man goes right', stepWidth, 0, 'right'),
-    'man.moveLeft': movingMethod('Man goes left', -stepWidth, 0, 'left'),
-    'man.moveUp': movingMethod('Man goes up', 0, -stepWidth, 'up'),
-    'man.moveDown': movingMethod('Man goes down', 0, stepWidth, 'down')
+    'man.moveRight': movingMethod('The caveman goes right', stepWidth, 0, 'right'),
+    'man.moveLeft': movingMethod('The caveman goes left', -stepWidth, 0, 'left'),
+    'man.moveUp': movingMethod('The caveman goes up', 0, -stepWidth, 'up'),
+    'man.moveDown': movingMethod('The caveman goes down', 0, stepWidth, 'down')
   };
 
   conf.iterations = [

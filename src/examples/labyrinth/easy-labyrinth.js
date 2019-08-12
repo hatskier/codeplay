@@ -14,14 +14,15 @@ let conf = prepareLabyrinthConf({
 
   stepWidth: 25,
 
-  startCodeVal:   '// This is a comment\n'
-                + 'man.moveRight();\n'
-                + 'man.moveRight();\n'
-                + 'man.moveDown();\n'
-                + 'man.moveDown();\n'
-                + 'man.moveDown();\n'
-                + 'man.moveRight();\n'
-                + '// man.moveRight();\n'
+  startCodeVal: '// You just need to go through the labyrinth\n'
+                + '// Write your code below\n\n'
+                + 'man.moveRight();\n',
+                // + 'man.moveRight();\n'
+                // + 'man.moveDown();\n'
+                // + 'man.moveDown();\n'
+                // + 'man.moveDown();\n'
+                // + 'man.moveRight();\n'
+                // + '// man.moveRight();\n'
 });
 
 export default conf;

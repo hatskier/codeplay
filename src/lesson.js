@@ -17,9 +17,10 @@ import hardLabyrinth from './examples/labyrinth/hard-labyrinth';
 // Battle
 import oneArcher from './examples/battle/one-archer';
 import oneWarrior from './examples/battle/one-warrior';
-import warriorsAndArcher from './examples/battle/warriors-and-archer';
+// import warriorsAndArcher from './examples/battle/later/warriors-and-archer';
 import oneDragon from './examples/battle/one-dragon';
-import allTogether from './examples/battle/all-together';
+import twoWarriors from './examples/battle/two-warriors';
+// import allTogether from './examples/battle/all-together';
 
 // Avengers
 import ironMan from './examples/avengers/iron-man';
@@ -43,12 +44,12 @@ const configs = {
   oneArcher,
   oneWarrior,
   oneDragon,
-  allTogether,
+  // allTogether,
   ironMan,
   callGranny,
   readMore,
   workHard,
-  warriorsAndArcher
+  twoWarriors,
 };
 
 // Global field variable
@@ -118,7 +119,7 @@ $( document ).ready(async function() {
   function preventHotKeys() {
     $(document).bind('keydown', function(e) {
       keysPressed[e.key] = true;
-      Logger.debug(keysPressed);
+      // Logger.debug(keysPressed);
       const macHotKeySaving = keysPressed['Meta'] && keysPressed['s'];
       const windowsHotKeySaving = keysPressed['Control'] && keysPressed['s'];
       if (macHotKeySaving || windowsHotKeySaving) {

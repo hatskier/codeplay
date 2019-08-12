@@ -4,7 +4,7 @@ let conf = prepareBattle({
   enemies: {
     'Archer': {
       action(tickNr) {
-        if (tickNr == 0) {
+        if (tickNr == 0 || tickNr == 1) {
           return 'attack';
         } else {
           return 'skip';
@@ -18,7 +18,7 @@ let conf = prepareBattle({
 
   stepWidth: 10,
   startPosX: 34,
-  maxTicksToWin: 4,
+  maxTicksToWin: 10,
 
   solutionCode:
 `hero.defend();
@@ -31,6 +31,8 @@ hero.attack();
 `// Defeat the archer and don't let him kill you
 // Archer could attack you from any distance
 // Use your shield to defend
+
+hero.defend();
 `
 });
 

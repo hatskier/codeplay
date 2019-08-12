@@ -41,13 +41,15 @@ export default prepareQuestion({
 
   tickTime: 2000,
 
-  taskDescription: 'You have noticed that you don\'t have enough words to describe your thoughts. Select the right action to fix that problem',
+  taskDescription: `You have noticed that you don't have enough words to describe your thoughts. Select the right action to fix that problem`,
 
   rightChoice: 'readMoreBooks',
 
   startCodeVal:
-`// You don't have enough words to describe your thoughts
-// Choose the right action
+`// You've noticed that usually you don't have
+// enough words to describe your thoughts.
+// What should you do solve this problem?
+
 `,
 
 });

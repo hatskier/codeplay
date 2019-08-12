@@ -16,12 +16,20 @@ let conf = prepareBattle({
     }
   },
 
-  stepWidth: 20,
-  startPosX: 44,
+  stepWidth: 10,
+  startPosX: 14,
   maxTicksToWin: 12,
 
   solutionCode:
 `// Defeat the dragon
+hero.defend();
+hero.go();
+hero.defend();
+hero.go();
+hero.defend();
+hero.go();
+hero.defend();
+hero.go();
 hero.defend();
 hero.go();
 hero.defend();
@@ -31,9 +39,6 @@ hero.spearAttack();
 
 startCodeVal:
 `// Defeat the dragon
-// Note that you can't kill the dragon with sword
-// Dragon don't want to be killed and will try to
-// stop you
 `
 
 });

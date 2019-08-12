@@ -37,11 +37,17 @@ export default createOrderTask({
   tickTime: 2500,
   startWithBg: 'start',
   order: ['takeHands', 'takeBody', 'takeHead', 'fly'],
-  taskDescription: 'You are Tony Stark. You need to fly and save the world again. But for now you just need to get dressed. Use the commands below (use each command exactly once). Find the correct order and fly to help other Avengers!',
-  startCodeVal: `// Get the iron man dressed!
+  taskDescription: 'Imagine that you are the Iron Man. You have to get dressed and fly to help your friends.',
+  startCodeVal: `// Get the iron man dressed
+// And fly to save the world again
+
+takeHands();
+takeBody();
 `,
 
-  solutionCode: `// Get the iron man dressed!
+  solutionCode: `// Get the iron man dressed
+  // And fly to save the world again
+  
   takeHands();
   takeBody();
   takeHead();

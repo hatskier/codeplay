@@ -238,7 +238,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
         }
       }
     ],
-    taskDescription: 'You are a hero and you must solve your princess. But you may have some troubles on your way. Warriors, archers and even dragons will try to kill you. Create an algorithm that helps to defeat all your enemies and stay alive.',
+    taskDescription: 'Just kill your enemies and don\'t let them kill you. The game has rounds, the hero acts first and the enemies - after him. You should write a command for each round so the hero will know what to do.',
     size: {
       width: 550,
       height: 450
