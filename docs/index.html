@@ -155,7 +155,7 @@
             <!-- <img style="width: 30px;" src="file:///Users/alex/Downloads/done.png"> -->
             <div v-bind:id="`done-gif-container-${task.id}`">
               {{ task.title }}
-              <img v-if="solvedTasks[task.id]" class="done-gif" src="file:///Users/alex/Downloads/done.gif" >
+              <img v-if="solvedTasks[task.id]" class="done-gif" src="https://s3.amazonaws.com/alcourses.codeplay/common/done.gif" >
             </div>
             <div v-if="solvedTasks[task.id]" class="mdl-tooltip" v-bind:data-mdl-for="`done-gif-container-${task.id}`">
               This task is solved. Great job!
@@ -268,20 +268,20 @@
             {
               title: 'Battle 1',
               id: 'oneWarrior',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/battle.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior.png',
               unit: 'Instructions',
               color: 'yellow',
             },
             {
               title: 'Battle 2',
               id: 'oneArcher',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/battle.png',
               unit: 'Instructions',
               color: 'yellow',
             },
             {
               title: 'Battle 3',
-              id: 'warriorsAndArcher',
+              id: 'twoWarriors',
               img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
               unit: 'Instructions',
               color: 'red',
