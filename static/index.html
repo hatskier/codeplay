@@ -193,11 +193,35 @@
     </div>
 
     <script>
+      function reportToGA(currentSolvedTasksStringified) {
+        try {
+          const solvedTasksKeyGA = 'codeplaySolvedTasksGA';
+          if (currentSolvedTasksStringified !== localStorage.getItem(solvedTasksKeyGA)) {
+            localStorage.setItem(solvedTasksKeyGA, currentSolvedTasksStringified);
+            ga('send', 'event', 'Task', 'Completed', currentSolvedTasksStringified);
+
+            let currentSolvedTasks = JSON.parse(currentSolvedTasksStringified || "{}");
+            let numberOfSolvedTasks = Object.keys(currentSolvedTasks).length;
+            if (numberOfSolvedTasks == 7) {
+              ga('send', 'event', 'Task', 'AlmostAllCompleted', currentSolvedTasksStringified);
+            }
+            if (numberOfSolvedTasks == 10) {
+              ga('send', 'event', 'Task', 'AllCompleted', currentSolvedTasksStringified);
+            }
+          }
+          
+        } catch (e) {
+          console.error(e);
+          ga('send', 'event', 'Error', 'occured', e.toString());
+        }
+      }
+      
       function getSolvedTasks() {
         const solvedTasksKey = 'codeplaySolvedTasks';
         let solvedTasksFromLocalStorage = localStorage.getItem(solvedTasksKey);
         if (solvedTasksFromLocalStorage) {
           try {
+            reportToGA(solvedTasksFromLocalStorage);
             return JSON.parse(solvedTasksFromLocalStorage);
           } catch (e) {
             console.error(e);
