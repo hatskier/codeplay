@@ -193,26 +193,36 @@
     </div>
 
     <script>
+      function sendEventToGA(category, action, label) {
+        // sendEventToGA('send', 'event', 'Task', 'AllCompleted', currentSolvedTasksStringified);
+        console.log(`Sending event to ga: ${category}, ${action}, ${label}`);
+        gtag('event', action, {
+          'event_label': label,
+          'event_category': category
+        });
+      }
+
+
       function reportToGA(currentSolvedTasksStringified) {
         try {
           const solvedTasksKeyGA = 'codeplaySolvedTasksGA';
           if (currentSolvedTasksStringified !== localStorage.getItem(solvedTasksKeyGA)) {
             localStorage.setItem(solvedTasksKeyGA, currentSolvedTasksStringified);
-            ga('send', 'event', 'Task', 'Completed', currentSolvedTasksStringified);
+            sendEventToGA('Task', 'Completed', currentSolvedTasksStringified);
 
             let currentSolvedTasks = JSON.parse(currentSolvedTasksStringified || "{}");
             let numberOfSolvedTasks = Object.keys(currentSolvedTasks).length;
             if (numberOfSolvedTasks == 7) {
-              ga('send', 'event', 'Task', 'AlmostAllCompleted', currentSolvedTasksStringified);
+              sendEventToGA('Task', 'AlmostAllCompleted', currentSolvedTasksStringified);
             }
             if (numberOfSolvedTasks == 10) {
-              ga('send', 'event', 'Task', 'AllCompleted', currentSolvedTasksStringified);
+              sendEventToGA('Task', 'AllCompleted', currentSolvedTasksStringified);
             }
           }
           
         } catch (e) {
           console.error(e);
-          ga('send', 'event', 'Error', 'occured', e.toString());
+          sendEventToGA('Error', 'occured', e.toString());
         }
       }
       
