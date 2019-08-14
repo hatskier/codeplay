@@ -1,13 +1,16 @@
-- Prepare simple index.html with localStorage progress saving
+- Urgent fixes
+  - fix autocomplete
+  - add terms of use and privacy policy
+  - add video tutorial
+
+
 
 - Make tasks usable
-  - fix tony stark task - IN PROGRESS
+  - fix tony stark task
   - change mechanism of gif tasks
     - now we willl have separate slides switching
       - it will give us a speed control
       - and fix of freezed animation for repeated tasks
-  - reorder battle tasks
-  - replace moving man in labyrinth task
 
 - Translation
   - use "notranslate" class to hide from google translation
