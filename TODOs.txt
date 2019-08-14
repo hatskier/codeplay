@@ -2,6 +2,7 @@
   - fix autocomplete
   - add terms of use and privacy policy
   - add video tutorial
+  - add sharing links
 
 
 

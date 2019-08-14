@@ -11,6 +11,9 @@
       gtag('config', 'UA-145552506-1');
     </script>
 
+    <meta property="og:image" content="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png" />
+    <meta name="twitter:image" content="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png">
+
     <title>Codenplay - main</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
@@ -91,6 +94,11 @@
         text-align: center;
       }
 
+      .social-link img {
+        /* float: left; */
+        
+      }
+
       @media only screen and (max-width: 839px) {
         .mdl-cell--3-col {
           width: 45vw;
@@ -119,6 +127,9 @@
         x.parentNode.insertBefore(s, x);
       })();
     </script>
+
+    <!-- TODO - maybe will remove it later -->
+    <img src="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png" style="display:none">
 
     <!-- <script src="./src/index.js"></script> -->
     <div class="custom-header">
@@ -205,6 +216,47 @@
       </div>
 
     </div>
+
+    <footer class = "mdl-mini-footer">
+        <div class = "mdl-mini-footer__left-section">
+           <div class = "mdl-logo">
+            © 2019 codenplay.io
+           </div>
+           <ul class = "mdl-mini-footer__link-list">
+              <!-- <li><a href = "#">Help</a></li> -->
+              <!-- <li><a href = "#">Privacy and Terms</a></li>
+              <li><a href = "#">User Agreement</a></li> -->
+              <li><a style="cursor: pointer" onclick="displayPreferenceModal()">Manage Cookie Preferences</a></li>
+              <!-- <button style="background: white; width: 165px; height: 30px; border-radius: 3px; border: 1px solid #5f7d9c; font-family: Roboto, Arial; font-size: 10px; color: #5f7d9c; font-weight: 600; box-sizing: border-box; cursor: pointer; padding: 0; outline: none;" onclick="displayPreferenceModal()">Manage Cookie Preferences</button> -->
+              
+           </ul>
+        </div>
+        
+        <!-- TODO - coulr be refactored with vue.js -->
+        <div class = "mdl-mini-footer__right-section">
+            <!-- FB -->
+            <a class="social-link" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://codenplay.io&quote=I've just tried to learn coding by playing with codenplay.io">
+              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/facebook.svg">
+            </a>
+            <!-- Twitter -->
+            <a class="social-link" target="_blank" href="http://twitter.com/intent/tweet?status=I've just tried to learn coding by playing with codenplay.io+https://codenplay.io">
+              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/twitter.svg">
+            </a>
+            <!-- vk.com -->
+            <a class="social-link" target="_blank" href="https://vk.com/share.php?url=https://codenplay.io&title=I have just tried to learn coding by playing with codenplay.io&image=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png">
+              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/vk.svg">
+            </a>
+            <!-- LinkedIn -->
+            <a class="social-link" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codenplay.io&title=&summary=I've just tried to learn coding by playing with codenplay.io&source=">
+              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/linkedin.svg">
+            </a>
+            <!-- Pinterest -->
+            <a class="social-link" target="_blank" href="https://pinterest.com/pin/create/button/?url=https://codenplay.io&media=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png&description=I've just tried to learn coding by playing with codenplay.io">
+              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/pinterest.svg">
+            </a>
+        </div>
+     
+     </footer>
 
     <script>
       function sendEventToGA(category, action, label) {
