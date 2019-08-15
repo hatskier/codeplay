@@ -83,6 +83,22 @@
         text-align: center;
       }
 
+      .social-link-conainer {
+        text-align: center;
+      }
+
+      .social-link img {
+        width: 40px;
+      }
+
+      .copyright-container {
+        text-align: center;
+      }
+
+      .mdl-mini-footer {
+        background-color: whitesmoke;
+      }
+
       @media only screen and (max-width: 839px) {
         .mdl-cell--3-col {
           width: 45vw;
@@ -163,43 +179,45 @@
     </div>
 
     <footer class = "mdl-mini-footer">
-        <div class = "mdl-mini-footer__left-section">
-           <div class = "mdl-logo">
-            © 2019 codenplay.io
-           </div>
-           <ul class = "mdl-mini-footer__link-list">
-              <!-- <li><a href = "#">Help</a></li> -->
-              <!-- <li><a href = "#">Privacy and Terms</a></li>
-              <li><a href = "#">User Agreement</a></li> -->
-              <li><a style="cursor: pointer" onclick="displayPreferenceModal()">Manage Cookie Preferences</a></li>
-              <!-- <button style="background: white; width: 165px; height: 30px; border-radius: 3px; border: 1px solid #5f7d9c; font-family: Roboto, Arial; font-size: 10px; color: #5f7d9c; font-weight: 600; box-sizing: border-box; cursor: pointer; padding: 0; outline: none;" onclick="displayPreferenceModal()">Manage Cookie Preferences</button> -->
-              
-           </ul>
-        </div>
+
         
         <!-- TODO - could and should be refactored with vue.js -->
-        <div class = "mdl-mini-footer__right-section">
-            <!-- FB -->
-            <a class="social-link" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://codenplay.io&quote=I've just tried to learn coding by playing with codenplay.io">
-              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/facebook.svg">
-            </a>
-            <!-- Twitter -->
-            <a class="social-link" target="_blank" href="http://twitter.com/intent/tweet?status=I've just tried to learn coding by playing with codenplay.io+https://codenplay.io">
-              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/twitter.svg">
-            </a>
-            <!-- vk.com -->
-            <a class="social-link" target="_blank" href="https://vk.com/share.php?url=https://codenplay.io&title=I have just tried to learn coding by playing with codenplay.io&image=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png">
-              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/vk.svg">
-            </a>
-            <!-- LinkedIn -->
-            <a class="social-link" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codenplay.io&title=&summary=I've just tried to learn coding by playing with codenplay.io&source=">
-              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/linkedin.svg">
-            </a>
-            <!-- Pinterest -->
-            <a class="social-link" target="_blank" href="https://pinterest.com/pin/create/button/?url=https://codenplay.io&media=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png&description=I've just tried to learn coding by playing with codenplay.io">
-              <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/pinterest.svg">
-            </a>
-        </div>
+        <!-- <div class="mdl-grid"> -->
+                <div class="mdl-cell mdl-cell--2-col social-link-conainer mdl-cell-1-offset">
+                  <!-- FB -->
+                  <a class="social-link" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://codenplay.io&quote=Try to learn coding by playing with codenplay.io">
+                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/facebook.svg">
+                  </a>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col social-link-conainer">
+                  <!-- Twitter -->
+                  <a class="social-link" target="_blank" href="http://twitter.com/intent/tweet?status=Try to learn coding by playing with codenplay.io+https://codenplay.io">
+                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/twitter.svg">
+                  </a>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col social-link-conainer">
+                  <!-- vk.com -->
+                  <a class="social-link" target="_blank" href="https://vk.com/share.php?url=https://codenplay.io&title=Try to learn coding by playing with codenplay.io&image=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png">
+                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/vk.svg">
+                  </a>
+                </div>
+                <div  class="mdl-cell mdl-cell--2-col social-link-conainer">
+                  <!-- LinkedIn -->
+                  <a class="social-link" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codenplay.io&title=&summary=Try to learn coding by playing with codenplay.io&source=">
+                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/linkedin.svg">
+                  </a>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col social-link-conainer">
+                  <!-- Pinterest -->
+                  <a class="social-link" target="_blank" href="https://pinterest.com/pin/create/button/?url=https://codenplay.io&media=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png&description=Try to learn coding by playing with codenplay.io">
+                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/pinterest.svg">
+                  </a>
+                </div>
+
+                <!-- <div class="mdl-cell mdl-cell--12-col copyright-container">
+                    © 2019 codenplay.io
+                </div> -->
+        <!-- </div> -->
      
      </footer>
 

@@ -1,10 +1,13 @@
 - Urgent fixes
   - fix autocomplete - DONE
   - add terms of use and privacy policy - DONE
-  - fix footer styles + refactor sharing links
-  - add video tutorial
   - add sharing links - DONE
+  - disable for mobile
+  - add video tutorial
+  - fix footer styles + refactor sharing links - DONE
 
+
+- Later
   - generate terms of use and privacy policy and add links to them in footer
 
 
