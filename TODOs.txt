@@ -4,7 +4,7 @@
   - add sharing links - DONE
   - fix footer styles + refactor sharing links - DONE
   - disable for mobile - DONE
-  - add video tutorial
+  - add video tutorial - DONE
 
 - Later
   - generate terms of use and privacy policy and add links to them in footer
