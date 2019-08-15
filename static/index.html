@@ -44,11 +44,6 @@
         src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
       }
 
-      /* $blue : #4285F4;
-      $red : #EA4335;
-      $yellow : #FBBC05;
-      $green : #34A853; */
-
       .blue-text {
         color: #4285F4;
       }
@@ -84,29 +79,16 @@
         width: 23px;
       }
 
-      /* .mdl-cell {
-        height: 500px;
-        border:1px solid #ccc;
-      } */
-
-
       #app {
         text-align: center;
-      }
-
-      .social-link img {
-        /* float: left; */
-        
       }
 
       @media only screen and (max-width: 839px) {
         .mdl-cell--3-col {
           width: 45vw;
-          /* height: 23vw; */
         }
 
         .task-card-image {
-           /* width: 100%; */
           min-height: 27vw;
         }
       }
@@ -144,44 +126,7 @@
           <span class="blue-text">a</span>
           <span class="red-text">y</span>
         </h2>
-      <!-- <div class="mdl-layout__header-row"> -->
-        <!-- <img id="logo" src="https://s3.amazonaws.com/alcourses.codeplay/logo.png"> -->
-        
-        <!-- <div class="mdl-layout-spacer"></div> -->
-        <!-- </nav> -->
-      <!-- </div> -->
     </div>
-
-    <!-- Old version -->
-    <!-- <div id="app">
-        <h2>Labyrinths</h2>
-        <h4 v-for="labyrinthName in labyrinths">
-          <a v-bind:href=`lesson.html?config=${labyrinthName}&nextPage=index.html`>
-            {{labyrinthName}}
-          </a>
-        </h4>
-    
-        <h2>Battles</h2>
-        <h4 v-for="battleName in battles">
-          <a v-bind:href=`lesson.html?config=${battleName}&nextPage=index.html`>
-            {{battleName}}
-          </a>
-        </h4>
-    
-        <h2>Avengers</h2>
-        <h4 v-for="avengersName in avengers">
-          <a v-bind:href=`lesson.html?config=${avengersName}&nextPage=index.html`>
-            {{avengersName}}
-          </a>
-        </h4>
-    
-        <h2>Questions</h2>
-        <h4 v-for="questionName in questions">
-          <a v-bind:href=`lesson.html?config=${questionName}&nextPage=index.html`>
-            {{questionName}}
-          </a>
-        </h4>
-    </div> -->
 
     <div id="app" class="mdl-grid">
       <div v-for="task in tasks" class="mdl-cell mdl-cell--3-col">
@@ -232,7 +177,7 @@
            </ul>
         </div>
         
-        <!-- TODO - coulr be refactored with vue.js -->
+        <!-- TODO - could and should be refactored with vue.js -->
         <div class = "mdl-mini-footer__right-section">
             <!-- FB -->
             <a class="social-link" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://codenplay.io&quote=I've just tried to learn coding by playing with codenplay.io">
@@ -328,26 +273,6 @@
           }
         },
         data: {
-          // labyrinths: [
-          //   'easyLabyrinth',
-          //   'mediumLabyrinth',
-          //   'hardLabyrinth'
-          // ],
-          // battles: [
-          //   'oneWarrior',
-          //   'oneArcher',
-          //   'warriorsAndArcher',
-          //   'oneDragon',
-          //   'allTogether'
-          // ],
-          // avengers: [
-          //   'ironMan'
-          // ],
-          // questions: [
-          //   'callGranny',
-          //   'readMore',
-          //   'workHard'
-          // ],
 
           solvedTasks: getSolvedTasks(),
 
