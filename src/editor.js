@@ -4,18 +4,33 @@ import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 export default {
   setUp(conf) { 
     monaco.languages.registerCompletionItemProvider('javascript', {
-      provideCompletionItems() {
+      provideCompletionItems(model, position) {
         let suggestions = [];
         for (let method in conf.methods) {
-          suggestions.push({
-            label: method,
-            kind: monaco.languages.CompletionItemKind.Function,
-            documentation: conf.methods[method].doc,
-            insertText: method + '();'
-          });
+          let insertText = method + '();';
+
+          // HACK - Fix with autocomplete after "."
+          let lineContent = model.getLineContent(position.lineNumber);
+          let lineContentWithoutSpaces = lineContent.replace(/ /g, '');
+          if (lineContentWithoutSpaces.includes('.')) {
+            insertText = insertText.slice(lineContentWithoutSpaces.length - 1, insertText.length);
+          }
+
+          if (method.includes(lineContentWithoutSpaces)) {
+            suggestions.push({
+              label: method,
+              detail: 'PRESS ENTER OR TAB ',
+              preselect: 'asdas',
+              kind: monaco.languages.CompletionItemKind.Method,
+              documentation: conf.methods[method].doc,
+              insertText, 
+            });
+          }
+
         }
         return {suggestions};
-      }
+      },
+
     });
 
     return monaco.editor.create(document.getElementById('code-editor'), {
