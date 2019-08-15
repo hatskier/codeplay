@@ -6,11 +6,8 @@
   - disable for mobile - DONE
   - add video tutorial
 
-
 - Later
   - generate terms of use and privacy policy and add links to them in footer
-
-
 
 - Make tasks usable
   - fix tony stark task
