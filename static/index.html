@@ -99,6 +99,19 @@
         background-color: whitesmoke;
       }
 
+      /* Show only desktop notification */
+      #only-desktop-notification {
+        display: none;
+      }
+      @media only screen and (max-width: 1023px) {
+        #only-desktop-notification {
+          background-color: #FBBC05;
+          /* color: #4285F4; */
+          padding: 20px;
+          display: block;
+        }
+      }
+
       @media only screen and (max-width: 839px) {
         .mdl-cell--3-col {
           width: 45vw;
@@ -128,6 +141,15 @@
 
     <!-- TODO - maybe will remove it later -->
     <img src="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png" style="display:none">
+
+    <div id="only-desktop-notification">
+      <h5>NOT COMPATIBLE WITH MOBILE DEVICES</h3>
+      <p>
+        This website doesn't work correctly with mobile devices.
+        Please use your computer to see it.
+        We work hard to create easy to use mobile app 😉
+      </p>
+    </div>
 
     <!-- <script src="./src/index.js"></script> -->
     <div class="custom-header">

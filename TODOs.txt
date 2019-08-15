@@ -2,9 +2,9 @@
   - fix autocomplete - DONE
   - add terms of use and privacy policy - DONE
   - add sharing links - DONE
-  - disable for mobile
-  - add video tutorial
   - fix footer styles + refactor sharing links - DONE
+  - disable for mobile - DONE
+  - add video tutorial
 
 
 - Later
