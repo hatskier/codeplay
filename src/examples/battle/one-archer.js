@@ -31,7 +31,6 @@ hero.attack();
 `// Defeat the archer and don't let him kill you
 // Archer could attack you from any distance
 // Use your shield to defend
-
 hero.defend();
 `
 });

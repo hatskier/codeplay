@@ -40,7 +40,6 @@ export default createOrderTask({
   taskDescription: 'Imagine that you are the Iron Man. You have to get dressed and fly to help your friends.',
   startCodeVal: `// Get the iron man dressed
 // And fly to save the world again
-
 takeHands();
 takeBody();
 `,
