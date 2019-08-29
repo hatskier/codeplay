@@ -19,8 +19,8 @@ let conf = prepareLabyrinthConf({
   stepWidth: 11,
 
 
-  startCodeVal: '// You just need to go through the labyrinth\n'
-  + '// Write your code below\n'
+  startCodeVal: '// Write the directions for the man\n'
+  + '// to get through the labyrinth\n'
   + 'man.moveRight(4);\n',
 });
 

@@ -9,6 +9,13 @@ function executingError(context, msg) {
   throw new Error(msg);
 }
 
+function taskFinished(pathFromConf, path) {
+  let len1 = pathFromConf.length, len2 = path.length;
+  return pathFromConf && path && len1 == len2 &&
+  (pathFromConf[len1 - 1].length - path[len2 - 1].length) <= 1 && // hack for counterintuitive last move
+  (pathFromConf[len1 - 1].length - path[len2 - 1].length) >= 0;
+}
+
 function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
   const startPos = {
     x: 0,
@@ -42,7 +49,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
       }
     ],
   
-    taskDescription: 'You just need to go through the labyrinth'
+    taskDescription: 'Write the directions for the man to get through the labyrinth'
   }
 
   function drawLabyrinth() {
@@ -189,7 +196,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
       },
       post: async function(context) {
         await context.field.changeImage('Man', 'man-static');
-        if (JSON.stringify(path) !== JSON.stringify(context.state.path)) {
+        if (!taskFinished(path, context.state.path)) {
           executingError(context, 'You have not reached the target');
         }
       }

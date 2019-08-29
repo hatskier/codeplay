@@ -11,17 +11,17 @@ export default createOrderTask({
   methods: {
     'takeHands': {
       bg: 'hands',
-      doc: 'Iron make wears iron hands',
+      doc: 'Iron make takes iron hands',
       log: 'Iron man is taking his iron hands...'
     },
     'takeBody': {
       bg: 'body',
-      doc: 'Iron make wears iron body',
+      doc: 'Iron make takes iron body',
       log: 'Iron man is taking his iron body...'
     },
     'takeHead': {
       bg: 'head',
-      doc: 'Iron make wears iron helmet',
+      doc: 'Iron make takes iron helmet',
       log: 'Iron man is taking his iron head...'
     },
     'fly': {
@@ -37,16 +37,14 @@ export default createOrderTask({
   tickTime: 2500,
   startWithBg: 'start',
   order: ['takeHands', 'takeBody', 'takeHead', 'fly'],
-  taskDescription: 'Imagine that you are the Iron Man. You have to get dressed and fly to help your friends.',
-  startCodeVal: `// Get the iron man dressed
-// And fly to save the world again
+  taskDescription: 'Imagine you are iron man. Let’s get your outfit on to fly and save your friends.',
+  startCodeVal: `// Let’s get iron man into his outfit
+// Then make him fly to save the world
 takeHands();
 takeBody();
 `,
 
-  solutionCode: `// Get the iron man dressed
-  // And fly to save the world again
-  
+  solutionCode: `  
   takeHands();
   takeBody();
   takeHead();
