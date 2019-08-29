@@ -4,7 +4,7 @@ import Parser from './lang/parser';
 import Logger from './logger';
 
 import $ from 'jquery';
-import Typed from 'typed.js';
+// import Typed from 'typed.js';
 
 // Car
 import car from './examples/car';
@@ -318,13 +318,19 @@ $( document ).ready(async function() {
 
   }
 
-  // TODO
-  function updateLoadingProgress(loaded, total) {
-    document.getElementById('percentage-loaded').innerHTML = Math.round(loaded / total * 100);
+  async function updateLoadingProgress(target) {
+    let prevVal = Number(document.getElementById('percentage-loaded').innerHTML) || 0;
+    if (prevVal < target) {
+      await sleep(10);
+      document.getElementById('percentage-loaded').innerHTML = (prevVal + 1);
+      await updateLoadingProgress(target);
+    }
   }
 
-  // TODO show progress
-  // TODO hide everything except spinner
+  function getLoadingProgress(loaded, total) {
+    return Math.round(loaded / total * 100);
+  }
+
   async function preLoadImages(images) {
     let imagesLoadedCounter = 0;
     for (const imageKey in images) {
@@ -333,7 +339,8 @@ $( document ).ready(async function() {
       Logger.info(`Image loading: ${imageKey}`);
       await preLoadImage(url);
       imagesLoadedCounter++;
-      updateLoadingProgress(imagesLoadedCounter, Object.keys(images).length);
+      let loadingProgress = getLoadingProgress(imagesLoadedCounter, Object.keys(images).length);
+      await updateLoadingProgress(loadingProgress);
       Logger.info(`Image loaded: ${imageKey}`);
     }
   }
