@@ -11,22 +11,22 @@ export default createOrderTask({
   methods: {
     'takeHands': {
       bg: 'hands',
-      doc: 'Iron make takes iron hands',
+      doc: 'Iron man takes iron hands',
       log: 'Iron man is taking his iron hands...'
     },
     'takeBody': {
       bg: 'body',
-      doc: 'Iron make takes iron body',
+      doc: 'Iron man takes iron body',
       log: 'Iron man is taking his iron body...'
     },
     'takeHead': {
       bg: 'head',
-      doc: 'Iron make takes iron helmet',
+      doc: 'Iron man takes iron helmet',
       log: 'Iron man is taking his iron head...'
     },
     'fly': {
       bg: 'flying',
-      doc: 'Iron make flies',
+      doc: 'Iron man flies',
       log: 'Iron man is flying...'
     }
   },

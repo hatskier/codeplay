@@ -2,8 +2,9 @@ import Field from './field';
 import Editor from './editor';
 import Parser from './lang/parser';
 import Logger from './logger';
+import GifUrls from './gifUrls';
 
-import $ from 'jquery';
+// import $ from 'jquery';
 // import Typed from 'typed.js';
 
 // Car
@@ -35,6 +36,8 @@ import Tour from './codeplay-tour';
 
 const MINIMAL_LOADING_TIME = 500; // ms
 const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
+const solvedTasksKey = 'codeplaySolvedTasks';
+const allTasksKey = 'codeplayAllTasks';
 
 const configs = {
   car,
@@ -217,6 +220,45 @@ $( document ).ready(async function() {
     }
   };
 
+  window.goToTheNextLesson = function () {
+    let redirected = false;
+    try {
+      let allTasksStr = localStorage[allTasksKey];
+
+      // Hack for the time being
+      if (!allTasksStr) {
+        allTasksStr = JSON.stringify([
+          'ironMan',
+          'easyLabyrinth',
+          'mediumLabyrinth',
+          'hardLabyrinth',
+          'workHard',
+          'oneWarrior',
+          'oneArcher',
+          'twoWarriors',
+          'oneDragon',
+          'readMore'
+        ]);
+        localStorage[allTasksKey] = allTasksStr;
+      }
+      let allTasks = JSON.parse(allTasksStr);
+  
+      let solvedStr = localStorage[solvedTasksKey] || '[]';
+      let solved = JSON.parse(solvedStr);
+
+      for (let task of allTasks) {
+        if (!solved[task] && !redirected) {
+          window.location.href = `lesson.html?config=${task}`;
+          redirected = true;
+        }
+      }
+    } finally {
+      if (!redirected) {
+        window.location.href = 'index.html';
+      }
+    }
+  };
+
   // TODO implement
   function changeManageButtons(opts) {
     if (opts && opts.showStop) {
@@ -248,14 +290,15 @@ $( document ).ready(async function() {
   }
 
   function fail(err) {
-    toastr.error(`${err}`);
+    let failUrl = GifUrls.getFailImg();
+    toastr.error(`<img class="error-notification-img" src='${failUrl}'>
+                  <div class="error-notification-text">${err}</div>`);
     // TODO uncomment later
     // alert('Unfortunately not all tests passed yet :( Please try again. '
     //       + err.toString());
   }
 
   function addLessonToLocalStorage(lessonName) {
-    const solvedTasksKey = 'codeplaySolvedTasks';
     let solvedLessonsFromLocalStorage = localStorage.getItem(solvedTasksKey);
     let solvedLessons = {};
     try {
@@ -271,12 +314,22 @@ $( document ).ready(async function() {
   }
   
   async function success() {
-    toastr.success('Lesson completed! Well done! Saving your result... Please don\'t close the window');
+    // toastr.success('Lesson completed! Well done! Saving your result... Please don\'t close the window');
+    toastr.success('Well done!');
     // TODO uncomment
     addLessonToLocalStorage(configName);
-    await sleep(1000);
+    // await sleep(1000);
     // alert(nextPage);
-    window.location.href = nextPage;
+    // window.location.href = nextPage;
+
+    // I should AB test if gif or done img is better
+    document.getElementById('success-modal-img').src = GifUrls.getSuccessImg();
+
+    $('#success-modal').modal({
+      escapeClose: false,
+      clickClose: false,
+      showClose: false
+    });
   }
   
   function buildDocumentationView(conf) {
@@ -310,6 +363,9 @@ $( document ).ready(async function() {
         await sleep(MINIMAL_LOADING_TIME - loadingTime);
       }
       hideOverlaySpinner();
+
+      // Then we also preload gifs for fail cases in background
+      GifUrls.preLoad();
     } catch (e) {
       toastr.error(e.toString());
       toastr.warning('Please check your internet connection.');
