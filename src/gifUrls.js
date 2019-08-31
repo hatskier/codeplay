@@ -2,21 +2,21 @@ import Logger from './logger';
 
 export default {
   success: [
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/barnie-success.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/barnie-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/bear-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/brad-pit-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/fortnite-dance-1-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/fortnite-dance-2-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/friends-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/hangover-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/jump-success.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/friends-success.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/hangover-success.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/jump-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/tony-stark-success.gif'
   ],
   fail: [
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/incorrect.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/incorrect.gif', // large
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-cock.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-duck.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-gray.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-duck.gif', // large
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-gray.gif', // large
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-guitar.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-indian.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-kid.gif',
@@ -26,7 +26,7 @@ export default {
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-show.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-parrot.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-try-again.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/nope-commentator.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/nope-commentator.gif', // large
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/wrong.gif'
   ],
   thanks: [
@@ -50,7 +50,7 @@ export default {
   },
 
   preLoad() {
-    for (let type of ['success', 'fail', 'thanks']) {
+    for (let type of ['fail', 'success']) {
       Logger.info(`Loading gifs for type: ${type}`);
       for (let imgUrl of this[type]) {
         const img = new Image();
