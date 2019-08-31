@@ -34,6 +34,9 @@ import workHard from './examples/question/work-hard';
 
 import Tour from './codeplay-tour';
 
+const $ = window.$;
+const toastr = window.toastr;
+
 const MINIMAL_LOADING_TIME = 500; // ms
 const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
 const solvedTasksKey = 'codeplaySolvedTasks';
