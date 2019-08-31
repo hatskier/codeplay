@@ -33,9 +33,15 @@
       <script src="./tour.css.bundle.js"></script>
 
       <!-- TODO in future it should be loaded from node_modules -->
+
+      <!-- Toastr notifications -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+      <!-- Jquery -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+      <!-- Jquery modal -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
       <style>
         /* CUSTOM MANUAL STYLES */
@@ -242,6 +248,66 @@
           color: #ff3c2c;
         }
 
+        /* Notifications styling */
+
+        .toast {
+          opacity: 0.97 !important;
+        }
+
+        .error-notification-img {
+          width: 230px;
+        }
+
+        .error-notification-text {
+          margin-top: 10px;
+        }
+
+        @font-face {
+          font-family: 'Product Sans';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+        }
+
+        /* Success modal styling */
+
+        #success-modal a {
+          color: #4285F4;
+          cursor: pointer;
+        }
+
+        #success-modal {
+          display: none;
+          text-align: center;
+          font-family: Product Sans;
+          color: #4285F4;
+        }
+
+        #success-modal-img {
+          margin: auto;
+          /* width: 150px; */
+          height: 250px;
+          margin-bottom: 15px;
+        }
+
+        #next-lesson-button {
+          padding-top: 20px;
+          padding-bottom: 20px;
+          background: rgb(112, 180, 73);
+          cursor: pointer;
+          margin: auto;
+          margin-bottom: 20px;
+          width: 200px;
+          border-radius: 5px;
+        }
+
+        #next-lesson-button a {
+          font-size: 30px;
+          color: white;
+          text-decoration: none;
+          border-radius: 3px;
+        }
+
       </style>
 
       <!-- This div could be used for toastr message customization -->
@@ -250,6 +316,23 @@
       <div id="overlay">
         <img id="spinner" src="img/spinner2.svg">
         <div id="loading-progress"><span id="percentage-loaded">1</span>%</div>
+      </div>
+
+      <div id="success-modal" class="modal">
+        <!-- <h2>Well done!</h2> -->
+        <img id="success-modal-img" src="https://s3.amazonaws.com/alcourses.codeplay/common/done.gif">
+        <div onclick="goToTheNextLesson()" id="next-lesson-button">
+          <a>
+            Next
+          </a>
+        </div>
+
+        <div>
+          <a href="index.html">
+            Back to main
+          </a>
+        </div>
+        
       </div>
     
       <div id="top-container">
@@ -270,9 +353,7 @@
         <div class="window">
 
           <div class="terminal">
-            <p class="log" id="logs">
-              
-            </p>
+            <p class="log" id="logs"></p>
 
             <div id="documentation-container">
               <h4 class="doc centered-header">Docs</h4>
