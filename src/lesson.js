@@ -235,12 +235,12 @@ $( document ).ready(async function() {
           'easyLabyrinth',
           'mediumLabyrinth',
           'hardLabyrinth',
-          'workHard',
+          // 'workHard',
           'oneWarrior',
           'oneArcher',
           'twoWarriors',
           'oneDragon',
-          'readMore'
+          // 'readMore'
         ]);
         localStorage[allTasksKey] = allTasksStr;
       }
