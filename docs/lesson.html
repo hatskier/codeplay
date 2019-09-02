@@ -132,6 +132,7 @@
 
         .clickable:hover {
           cursor: pointer;
+          /* transition: 0.5; */
           opacity: 0.7;
         }
 
@@ -269,6 +270,21 @@
           src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
         }
 
+        /* .back-to-home-container .back-to-main-text {
+          font-size: 12px;
+          text-decoration: none !important;
+        } */
+
+        .main-page-button-container {
+          position: fixed;
+          top: 5px;
+          left: 5px;
+        }
+
+        .close-icon {
+          width: 30px;
+        }
+
         /* Success modal styling */
 
         #success-modal a {
@@ -363,19 +379,26 @@
         </div>
       </div>
 
+      <div class="main-page-button-container">
+        <a href="index.html">
+          <img class="close-icon md-icon clickable" src="./img/back-circle.svg">
+        </a>
+      </div>
+
       <div id="control-bar">
+        <!-- <div>
+          <a href="index.html">
+            <img class="home-icon md-icon clickable" src="./img/blue-home.svg">
+          </a>
+        </div> -->
+
         <div>
           <a href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
             <!-- <img id="video-tutorial-button" class="md-icon clickable" src="./img/video-icon-blue.svg"> -->
             <img class="md-icon clickable" src="./img/blue-help.png">
           </a>
         </div>
-        <div>
-          <img id="toggle-terminal-mode-button" class="md-icon clickable" onclick="toggleTerminalMode()" src="./img/code-icon-blue.svg">
-        </div>
-        <!-- <div>
-          <img id="help-button" class="md-icon clickable" onclick="help()" src="./img/blue-help.png">
-        </div> -->
+
         <div>
           <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/blue-settings.png">
         </div>

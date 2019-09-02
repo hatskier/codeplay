@@ -1,0 +1,119 @@
+@font-face {
+  font-family: 'Product Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+.blue-text {
+  color: #4285F4;
+}
+.red-text {
+  color: #EA4335;
+}
+.yellow-text {
+  color: #FBBC05;
+}
+.green-text {
+  color: #34A853
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.first-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url('../img/children-using-macbook.jpg') no-repeat fixed center; 
+  /* width: 100vw; */
+  /* height: 600px; */
+  height: 100vh;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 80px;
+  margin-top: 0;
+}
+
+.description h1 {
+  margin: 0;
+  color: white;
+  padding-top: 30vh;
+  font-size: 7vw;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: Product Sans;
+}
+
+.task-card-image {
+  /* width: 100%; */
+  width: 100%;
+  min-height: 15vw;
+}
+
+.done-gif {
+  width: 23px;
+}
+
+#app {
+  text-align: center;
+}
+
+.tutorial-header {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.video-tutorial-container {
+  width: 70vw;
+  margin: auto;
+}
+
+.social-link-conainer {
+  text-align: center;
+}
+
+.social-link img {
+  width: 40px;
+}
+
+.copyright-container {
+  text-align: center;
+}
+
+.mdl-mini-footer {
+  margin-top: 150px;
+  background-color: whitesmoke;
+}
+
+.codenplay-title {
+  letter-spacing: 3px;
+}
+
+/* Show only desktop notification */
+#only-desktop-notification {
+  display: none;
+}
+@media only screen and (max-width: 1023px) {
+  #only-desktop-notification {
+    background-color: #FBBC05;
+    /* color: #4285F4; */
+    padding: 20px;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 839px) {
+  .mdl-cell--3-col {
+    width: 45vw;
+  }
+
+  .task-card-image {
+    min-height: 27vw;
+  }
+}
