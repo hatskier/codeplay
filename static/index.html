@@ -47,6 +47,11 @@
         src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
       }
 
+      @font-face {
+        font-family: RalewayExtraLight;
+        src: url(fonts/RalewayExtraLight.ttf);
+      }
+
       .blue-text {
         color: #4285F4;
       }
@@ -68,7 +73,7 @@
         text-decoration: none;
       }
 
-      h2,h3,h4,h5,h6 {
+      p,h1,h2,h3,h4,h5,h6 {
         font-family: Product Sans;
       }
 
@@ -120,6 +125,22 @@
         text-align: center;
       }
 
+      .codenplay-description {
+        font-size: 25px;
+        line-height: 35px;
+        /* font-weight: 100; */
+        text-align: center;
+        margin: auto;
+        max-width: 700px;
+        /* color: #4285F4; */
+        color: #5f6368;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        /* font-family: Verdana, Geneva, sans-serif; */
+        font-family: RalewayExtraLight;
+        /* font-family: RobotoSlabRegular; */
+      }
+
       /* Show only desktop notification */
       #only-desktop-notification {
         display: none;
@@ -163,14 +184,14 @@
     <!-- TODO - maybe will remove it later -->
     <img src="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png" style="display:none">
 
-    <div id="only-desktop-notification">
+    <!-- <div id="only-desktop-notification">
       <h5>NOT COMPATIBLE WITH MOBILE DEVICES</h3>
       <p>
         This website doesn't work correctly with mobile devices.
         Please use your computer to see it.
         We work hard to create easy to use mobile app 😉
       </p>
-    </div>
+    </div> -->
 
     <!-- <iframe width="916" height="515" src="https://www.youtube.com/embed/4oaV1TfcxIo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
@@ -192,7 +213,13 @@
         </h2> -->
     </div>
 
-    <h4 class="centered blue-text">Get coding experience by playing</h3>
+    <p class="codenplay-description">
+      Codenplay.io is an easy and interactive game-based environment
+      where even kids can learn to code without having any previous
+      knowledge or experience.
+    </p>
+
+    <!-- <h3 class="centered blue-text">Try it now</h3> -->
 
     <div id="app" class="mdl-grid">
       <div v-for="task in tasks" class="mdl-cell mdl-cell--3-col">
