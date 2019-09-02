@@ -3,3 +3,5 @@ package-lock.json
 dist
 .DS_Store
 README*.md
+chromedriver.log
+tests_output/
