@@ -116,6 +116,10 @@
         letter-spacing: 3px;
       }
 
+      .centered {
+        text-align: center;
+      }
+
       /* Show only desktop notification */
       #only-desktop-notification {
         display: none;
@@ -143,7 +147,7 @@
   </head>
   <body>
     <!-- PRIVACY POLICY -->
-    <script>
+    <!-- <script>
       (function () {
         var s = document.createElement('script');
         s.type = 'text/javascript';
@@ -154,7 +158,7 @@
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
       })();
-    </script>
+    </script> -->
 
     <!-- TODO - maybe will remove it later -->
     <img src="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png" style="display:none">
@@ -187,6 +191,8 @@
           <span class="blue-text codenplay-title">Codenplay</span>
         </h2> -->
     </div>
+
+    <h4 class="centered blue-text">Get coding experience by playing</h3>
 
     <div id="app" class="mdl-grid">
       <div v-for="task in tasks" class="mdl-cell mdl-cell--3-col">
