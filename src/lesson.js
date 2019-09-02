@@ -145,6 +145,8 @@ $( document ).ready(async function() {
 
   preventHotKeys();
 
+  window.editor = editor;
+
   window.reset = function() {
     changeManageButtons({showStop: false, showRun: false});
     field.stopExecution(function () {

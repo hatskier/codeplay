@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "publish": "bash scripts/publish.sh",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "e2e": "nightwatch",
     "start": "webpack --mode development --watch && webpack-dev-server",
     "dev": "webpack --mode development --watch",
     "lint": "eslint ./src",
@@ -26,6 +26,7 @@
     "typed.js": "^2.0.10"
   },
   "devDependencies": {
+    "chromedriver": "^76.0.1",
     "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
