@@ -40,6 +40,10 @@ let code =
   car.go();
 
   // Last comment
+
+  var x = 123;
+
+  x = test(1,  2,3, x + 3);
 `;
 
 let codeTree = parse(code)[0];

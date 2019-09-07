@@ -31,6 +31,9 @@ import callGranny from './examples/question/call-granny';
 import readMore from './examples/question/read-more';
 import workHard from './examples/question/work-hard';
 
+// Variables
+import varExample from './examples/variables/example';
+
 
 import Tour from './codeplay-tour';
 
@@ -56,6 +59,8 @@ const configs = {
   readMore,
   workHard,
   twoWarriors,
+
+  varExample,
 };
 
 // Global field variable

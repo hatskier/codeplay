@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 // const url = 'https://codenplay.io';
 const url = 'file:///Users/alex/Alcourses/codeplay/dist/index.html';
+=======
+const url = 'https://codenplay.io';
+// const url = 'file:///Users/alex/Alcourses/codeplay/dist/index.html';
+>>>>>>> Stashed changes
 
 
 module.exports = {

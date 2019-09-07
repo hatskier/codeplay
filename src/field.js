@@ -25,7 +25,9 @@ class Field {
     this.log = Page.addLog;
 
     // TODO maybe it's better to store state outside
-    this.state = {};
+    this.state = {
+      vars: {},
+    };
   }
 
   init() {
@@ -98,14 +100,25 @@ class Field {
 
     let tickNr = 0;
 
+    const context = {field: this, state: this.state};
+
+    function getValForExpr(expr, context) {
+      if (expr.type == 'exprVal') {
+        return expr.value;
+      } else if (expr.type == 'funCallExpr') {
+        // expr.name
+        // return context.state.funtions
+        throw 'Not implemented';
+      } 
+      throw 'Not implemented';
+    }
+
     for (let node of codeTree) {
 
       this.checkIfExecutionStopped();
 
       switch (node.type) {
         case 'funCall': {
-          const context = {field: this, state: this.state};
-
           Logger.debug('--------------------------------------------------------');
           Logger.debug(context);
 
@@ -153,6 +166,12 @@ class Field {
           const errMsg = 'While stm not implemented';
           Logger.error(errMsg);
           throw new Error(errMsg);
+        }
+        case 'varDecl': {
+          const val = getValForExpr(node.expr);
+          Logger.debug(`Setting val: ${val} for variable: ${node.name}`);
+          context.state.vars[node.name] = val;
+          break;
         }
         default: {
           const errMsg = 'Other statements not allowed';
