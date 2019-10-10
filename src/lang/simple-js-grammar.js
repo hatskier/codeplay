@@ -12,7 +12,7 @@ let lexer = moo.compile({
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
     string: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ","]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+"]
 });
 
 var grammar = {
@@ -43,7 +43,30 @@ var grammar = {
     {"name": "stm", "symbols": ["funCall"], "postprocess": id},
     {"name": "stm", "symbols": ["ifElseStm"], "postprocess": id},
     {"name": "stm", "symbols": ["whileStm"], "postprocess": id},
-    {"name": "expr", "symbols": ["value"], "postprocess": id},
+    {"name": "stm", "symbols": ["varDecl"], "postprocess": id},
+    {"name": "stm", "symbols": ["varDeclEmpty"], "postprocess": id},
+    {"name": "stm", "symbols": ["varAssign"], "postprocess": id},
+    {"name": "expr", "symbols": ["value"], "postprocess": 
+        function(data) {
+          return {
+            type: "exprVal",
+            value: data[0],
+          }
+        }
+          },
+    {"name": "expr", "symbols": ["funCallExpr"], "postprocess": id},
+    {"name": "expr", "symbols": ["varExpr"], "postprocess": id},
+    {"name": "expr", "symbols": ["expr", "_", {"literal":"+"}, "_", "expr"], "postprocess": 
+        function(data) {
+          return {
+            type: "exprPlus",
+            exprs: [
+              data[0],
+              data[4]
+            ]
+          }
+        }
+          },
     {"name": "funCall", "symbols": ["identifier", {"literal":"("}, "funArgs", {"literal":")"}, "_", {"literal":";"}], "postprocess": 
         function(data) {
           return {
@@ -51,6 +74,15 @@ var grammar = {
             name: data[0],
             args: data[2],
             line: data[1].line
+          };
+        }
+        },
+    {"name": "funCallExpr", "symbols": ["identifier", {"literal":"("}, "funArgs", {"literal":")"}, "_"], "postprocess": 
+        function(data) {
+          return {
+            type: 'funCallExpr',
+            name: data[0],
+            args: data[2],
           };
         }
         },
@@ -71,7 +103,8 @@ var grammar = {
           let res = {
             type: 'ifElseStm',
             expr: data[4],
-            ifStmts: data[8]
+            ifStmts: data[8],
+            line: data[0].line
           };
           if (data[9]) {
             res.elseStmts = data[9][4];
@@ -86,9 +119,47 @@ var grammar = {
           let res = {
             type: 'whileStm',
             expr: data[4],
-            stmts: data[8]
+            stmts: data[8],
+            line: data[0].line
           };
           return res;
+        }
+        },
+    {"name": "varDecl", "symbols": [{"literal":"var"}, "_", "identifier", "_", {"literal":"="}, "_", "expr", {"literal":";"}], "postprocess": 
+        function(data) {
+          return {
+            type: "varDecl",
+            name: data[2],
+            expr: data[6],
+            line: data[0].line
+          }
+        }
+        },
+    {"name": "varDeclEmpty", "symbols": [{"literal":"var"}, "_", "identifier", {"literal":";"}], "postprocess": 
+        function(data) {
+          return {
+            type: "varDeclEmpty",
+            name: data[2],
+            line: data[0].line
+          }
+        }
+        },
+    {"name": "varAssign", "symbols": ["identifier", "_", {"literal":"="}, "_", "expr", {"literal":";"}], "postprocess": 
+        function(data) {
+          return {
+            type: "varAssign",
+            name: data[0],
+            expr: data[4],
+            line: data[2].line,
+          }
+        }
+        },
+    {"name": "varExpr", "symbols": ["identifier"], "postprocess": 
+        function(data) {
+          return {
+            type: "varExpr",
+            name: data[0]
+          }
         }
         },
     {"name": "stmBlock", "symbols": [{"literal":"{"}, "stmts", {"literal":"}"}], "postprocess": 

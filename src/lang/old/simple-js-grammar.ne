@@ -8,7 +8,7 @@ let lexer = moo.compile({
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
     string: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+"]
+    keywords: ["(", ")", ";", "{", "}", ","]
 });
 
 %}
@@ -30,34 +30,9 @@ stm ->
     funCall {% id %}
   | ifElseStm {% id %}
   | whileStm {% id %}
-  | varDecl {% id %}
-  | varDeclEmpty {% id %}
-  | varAssign {% id %}
 
-expr ->
-  value {%
-    function(data) {
-      return {
-        type: "exprVal",
-        value: data[0],
-      }
-    }
-  %}
-  | funCallExpr {% id %}
-  | varExpr {% id %}
-  | expr _ "+" _ expr {%
-    function(data) {
-      return {
-        type: "exprPlus",
-        exprs: [
-          data[0],
-          data[4]
-        ]
-      }
-    }
-  %}
+expr -> value {% id %}
 
-# funCall and funCallExpr could be refactored
 # TODO in future not only funCall will have location linked
 funCall -> identifier "(" funArgs ")" _ ";" {%
   function(data) {
@@ -66,16 +41,6 @@ funCall -> identifier "(" funArgs ")" _ ";" {%
       name: data[0],
       args: data[2],
       line: data[1].line
-    };
-  }
-%}
-
-funCallExpr -> identifier "(" funArgs ")" _ {%
-  function(data) {
-    return {
-      type: 'funCallExpr',
-      name: data[0],
-      args: data[2],
     };
   }
 %}
@@ -93,8 +58,7 @@ ifElseStm -> "if" _ "(" _ expr _ ")" _ stmBlock (_ "else" _ "{" stmts "}"):? {%
     let res = {
       type: 'ifElseStm',
       expr: data[4],
-      ifStmts: data[8],
-      line: data[0].line
+      ifStmts: data[8]
     };
     if (data[9]) {
       res.elseStmts = data[9][4];
@@ -110,52 +74,9 @@ whileStm -> "while" _ "(" _ expr _ ")" _ stmBlock {%
     let res = {
       type: 'whileStm',
       expr: data[4],
-      stmts: data[8],
-      line: data[0].line
+      stmts: data[8]
     };
     return res;
-  }
-%}
-
-# varDecl and varAssign could be refactored
-varDecl -> "var" _ identifier _ "=" _ expr ";" {%
-  function(data) {
-    return {
-      type: "varDecl",
-      name: data[2],
-      expr: data[6],
-      line: data[0].line
-    }
-  }
-%}
-
-varDeclEmpty -> "var" _ identifier ";" {%
-  function(data) {
-    return {
-      type: "varDeclEmpty",
-      name: data[2],
-      line: data[0].line
-    }
-  }
-%}
-
-varAssign -> identifier _ "=" _ expr ";" {%
-  function(data) {
-    return {
-      type: "varAssign",
-      name: data[0],
-      expr: data[4],
-      line: data[2].line,
-    }
-  }
-%}
-
-varExpr -> identifier {%
-  function(data) {
-    return {
-      type: "varExpr",
-      name: data[0]
-    }
   }
 %}
 

@@ -31,6 +31,14 @@ import callGranny from './examples/question/call-granny';
 import readMore from './examples/question/read-more';
 import workHard from './examples/question/work-hard';
 
+// Variables
+import varExample from './examples/variables/example';
+
+// Conditions
+import condExample from './examples/conditions/example';
+
+import sleep from './sleep';
+
 
 import Tour from './codeplay-tour';
 
@@ -56,6 +64,10 @@ const configs = {
   readMore,
   workHard,
   twoWarriors,
+
+  varExample,
+
+  condExample,
 };
 
 // Global field variable
@@ -156,13 +168,21 @@ $( document ).ready(async function() {
   };
 
   window.run = async function() {
+    await Editor.reorderLines();
     changeManageButtons({showStop: true, showRun: false});
     showTerminalManagerLink();
     const code = editor.getValue();
     if (code) {
       try {
         const codeTree = Parser.parse(code);
+        let iterationNr = 1;
         for (let iteration of conf.iterations) {
+          initField();
+          if (conf.iterations.length > 1) {
+            toastr.success(`Running test interation No. ${iterationNr}`);
+            iterationNr++;
+          }
+
           await iteration.pre({field, state: field.state});
 
           await field.run(codeTree, {
@@ -440,11 +460,5 @@ $( document ).ready(async function() {
     } else {
       elem.style.display = 'none';
     }
-  }
-
-  function sleep(ms) {
-    return new Promise(function(resolve) {
-      setTimeout(resolve, ms);
-    });
   }
 });

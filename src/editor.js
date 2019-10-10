@@ -1,5 +1,6 @@
 // import * as monaco from 'monaco-editor';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import sleep from './sleep';
 
 export default {
   setUp(conf) { 
@@ -45,9 +46,17 @@ export default {
     });
   },
 
+  // This function solves bug with newly added lines and solves ordering
+  // by reloading code content inside the editor
+  async reorderLines() {
+    const value = window.editor.getValue();
+    window.editor.setValue(value);
+    await sleep(300);
+  },
+
   highlightLine(nr, color) {
     // const oldBg = document.getElementsByClassName('view-lines')[0].children[nr - 1].style.background;
-    let lines = document.getElementsByClassName('view-lines')[0].children;
+    let lines = document.getElementsByClassName('view-line');
     if (lines.length >= nr) {
       lines[nr - 1].style.background = color;
     }
