@@ -75,7 +75,7 @@ conf.iterations = [
       state.funResults.getSteps = 20;
     },
     async post(context) {
-      if (!context.state.solved) {
+      if (context.state.solved) {
         executingError(context, 'Task is not solved');
       }
     }
@@ -92,6 +92,11 @@ conf.tickHooks = {
 conf.startCodeVal =
 `var x = getSteps();
 
+if (x < 5) {
+  testVar(x);
+} else {
+  var y;
+}
 `;
 
 export default conf;

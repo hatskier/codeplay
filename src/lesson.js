@@ -382,6 +382,7 @@ $( document ).ready(async function() {
       showOverlaySpinner();
       Logger.info('Image preloading started');
       await preLoadImages(conf.images);
+      // await GifUrls.preLoad();
       Logger.info('Image preloading finished');
       const loadingTime = Date.now() - loadingStartedTime;
       if (loadingTime < MINIMAL_LOADING_TIME) {

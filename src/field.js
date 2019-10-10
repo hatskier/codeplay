@@ -128,6 +128,38 @@ class Field {
     throw 'Not implemented';
   }
 
+  getBoolValForExpr(expr) {
+    switch (expr.type) {
+      case 'gtExpr': {
+        return this.getValForExpr(expr.exprs[0]) > this.getValForExpr(expr.exprs[1]);
+      }
+      case 'ltExpr': {
+        return this.getValForExpr(expr.exprs[0]) < this.getValForExpr(expr.exprs[1]);
+      }
+      case 'eqExpr': {
+        return this.getValForExpr(expr.exprs[0]) == this.getValForExpr(expr.exprs[1]);
+      }
+      case 'exprVal': {
+        if (expr.value == true) {
+          return true;
+        }
+        if (expr.value == false) {
+          return false;
+        }
+
+        // TODO refactor it
+        let errMsg = 'Bad condition inside ()';
+        this.log(errMsg, {error: true});
+        throw new Error(errMsg);
+      }
+      default: {
+        let errMsg = 'Bad condition inside ()';
+        this.log(errMsg, {error: true});
+        throw new Error(errMsg);
+      }
+    }
+  }
+
   setVariableValue(varName, val, mustBeDeclared) {
     if (mustBeDeclared && !this.isVariableDeclared(varName)) {
       const errMsg =
@@ -142,16 +174,17 @@ class Field {
   }
 
   showProgramState() {
+    this.log('-----------------------------');
     for (let varName in this.state.vars) {
       let val = this.state.vars[varName];
-      this.log('-----------------------------');
+      
       if (val == null) {
         this.log(`Variable "${varName}" is empty`);
       } else {
         this.log(`Variable "${varName}" equals to ${val}`);
       }
-      this.log('-----------------------------');
     }
+    this.log('-----------------------------');
   }
 
   //////////////////////////
@@ -211,15 +244,13 @@ class Field {
           break;
         }
         case 'ifElseStm': {
-          this.tickSleep();
-          // TODO alex implement better if statements
-          // if (node.expr) {
-          if (true) {
+          await this.tickSleep();
+          if (this.getBoolValForExpr(node.expr)) {
             Logger.debug('Running if statements');
-            await this.run(node.ifStmts);
+            await this.run(node.ifStmts, lineHighlighter);
           } else {
             Logger.debug('Running else statements');
-            await this.run(node.elseStmts);
+            await this.run(node.elseStmts, lineHighlighter);
           }
           break;
         }

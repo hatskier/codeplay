@@ -27,6 +27,20 @@ let code =
 
   }
 
+  if (x >   y) {
+    great();
+  }
+
+  if (343  < 43) {
+    hmm();
+  } else {
+    yo();
+  }
+
+  if (x == 23) {
+    yohoho();
+  }
+
   // TODO comment
 
   while(true) {

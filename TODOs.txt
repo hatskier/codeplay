@@ -7,6 +7,7 @@
   - add video tutorial - DONE
 
 - Later
+  - Implement image preloading while student is coding
   - Add nice appearing animation
   - Refactor error messages
   - generate terms of use and privacy policy and add links to them in footer

@@ -12,7 +12,7 @@ let lexer = moo.compile({
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
     string: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+"]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", ">", "<", "=="]
 });
 
 var grammar = {
@@ -56,6 +56,7 @@ var grammar = {
           },
     {"name": "expr", "symbols": ["funCallExpr"], "postprocess": id},
     {"name": "expr", "symbols": ["varExpr"], "postprocess": id},
+    {"name": "expr", "symbols": ["cmpExpr"], "postprocess": id},
     {"name": "expr", "symbols": ["expr", "_", {"literal":"+"}, "_", "expr"], "postprocess": 
         function(data) {
           return {
@@ -159,6 +160,33 @@ var grammar = {
           return {
             type: "varExpr",
             name: data[0]
+          }
+        }
+        },
+    {"name": "cmpExpr", "symbols": ["eqExpr"], "postprocess": id},
+    {"name": "cmpExpr", "symbols": ["gtExpr"], "postprocess": id},
+    {"name": "cmpExpr", "symbols": ["ltExpr"], "postprocess": id},
+    {"name": "eqExpr", "symbols": ["expr", "_", {"literal":"=="}, "_", "expr"], "postprocess": 
+        function(data) {
+          return {
+            type: "eqExpr",
+            exprs: [data[0], data[4]]
+          }
+        }
+        },
+    {"name": "gtExpr", "symbols": ["expr", "_", {"literal":">"}, "_", "expr"], "postprocess": 
+        function(data) {
+          return {
+            type: "gtExpr",
+            exprs: [data[0], data[4]]
+          }
+        }
+        },
+    {"name": "ltExpr", "symbols": ["expr", "_", {"literal":"<"}, "_", "expr"], "postprocess": 
+        function(data) {
+          return {
+            type: "ltExpr",
+            exprs: [data[0], data[4]]
           }
         }
         },

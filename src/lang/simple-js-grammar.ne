@@ -8,7 +8,7 @@ let lexer = moo.compile({
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
     string: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+"]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", ">", "<", "=="]
 });
 
 %}
@@ -45,6 +45,7 @@ expr ->
   %}
   | funCallExpr {% id %}
   | varExpr {% id %}
+  | cmpExpr {% id %}
   | expr _ "+" _ expr {%
     function(data) {
       return {
@@ -155,6 +156,38 @@ varExpr -> identifier {%
     return {
       type: "varExpr",
       name: data[0]
+    }
+  }
+%}
+
+cmpExpr ->
+      eqExpr {% id %}
+    | gtExpr {% id %}
+    | ltExpr {% id %}
+
+eqExpr -> expr _ "==" _ expr {%
+  function(data) {
+    return {
+      type: "eqExpr",
+      exprs: [data[0], data[4]]
+    }
+  }
+%}
+
+gtExpr -> expr _ ">" _ expr {%
+  function(data) {
+    return {
+      type: "gtExpr",
+      exprs: [data[0], data[4]]
+    }
+  }
+%}
+
+ltExpr -> expr _ "<" _ expr {%
+  function(data) {
+    return {
+      type: "ltExpr",
+      exprs: [data[0], data[4]]
     }
   }
 %}
