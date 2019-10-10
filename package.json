@@ -11,7 +11,7 @@
     "dev": "webpack --mode development --watch",
     "lint": "eslint ./src",
     "compile-grammar": "nearleyc ./src/lang/simple-js-grammar.ne -o ./src/lang/simple-js-grammar.js",
-    "test-grammar": "npm run compile-grammar && node test/grammar.js"
+    "test-grammar": "npm run compile-grammar && node tests/grammar.js"
   },
   "keywords": [],
   "author": "Suvorovalex1997@gmail.com",

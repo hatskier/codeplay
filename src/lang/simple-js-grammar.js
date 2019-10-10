@@ -44,6 +44,7 @@ var grammar = {
     {"name": "stm", "symbols": ["ifElseStm"], "postprocess": id},
     {"name": "stm", "symbols": ["whileStm"], "postprocess": id},
     {"name": "stm", "symbols": ["varDecl"], "postprocess": id},
+    {"name": "stm", "symbols": ["varDeclEmpty"], "postprocess": id},
     {"name": "stm", "symbols": ["varAssign"], "postprocess": id},
     {"name": "expr", "symbols": ["value"], "postprocess": 
         function(data) {
@@ -82,7 +83,6 @@ var grammar = {
             type: 'funCallExpr',
             name: data[0],
             args: data[2],
-            line: data[1].line
           };
         }
         },
@@ -103,7 +103,8 @@ var grammar = {
           let res = {
             type: 'ifElseStm',
             expr: data[4],
-            ifStmts: data[8]
+            ifStmts: data[8],
+            line: data[0].line
           };
           if (data[9]) {
             res.elseStmts = data[9][4];
@@ -118,7 +119,8 @@ var grammar = {
           let res = {
             type: 'whileStm',
             expr: data[4],
-            stmts: data[8]
+            stmts: data[8],
+            line: data[0].line
           };
           return res;
         }
@@ -128,7 +130,17 @@ var grammar = {
           return {
             type: "varDecl",
             name: data[2],
-            expr: data[6]
+            expr: data[6],
+            line: data[0].line
+          }
+        }
+        },
+    {"name": "varDeclEmpty", "symbols": [{"literal":"var"}, "_", "identifier", {"literal":";"}], "postprocess": 
+        function(data) {
+          return {
+            type: "varDeclEmpty",
+            name: data[2],
+            line: data[0].line
           }
         }
         },
@@ -137,7 +149,8 @@ var grammar = {
           return {
             type: "varAssign",
             name: data[0],
-            expr: data[4]
+            expr: data[4],
+            line: data[2].line,
           }
         }
         },

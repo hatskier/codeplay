@@ -59,7 +59,9 @@ conf.methods = {
 
 conf.iterations = [
   {
-    pre: async function() {},
+    pre: async function({state}) {
+      state.funResults.getSteps = 2;
+    },
     post: async function(context) {
       if (!context.state.solved) {
         executingError(context, 'Task is not solved');
@@ -69,7 +71,9 @@ conf.iterations = [
   },
 
   {
-    async pre() {},
+    async pre({state}) {
+      state.funResults.getSteps = 20;
+    },
     async post(context) {
       if (!context.state.solved) {
         executingError(context, 'Task is not solved');
@@ -86,7 +90,7 @@ conf.tickHooks = {
 }
 
 conf.startCodeVal =
-`var x = 12;
+`var x = getSteps();
 
 `;
 

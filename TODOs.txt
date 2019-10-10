@@ -7,6 +7,8 @@
   - add video tutorial - DONE
 
 - Later
+  - Add nice appearing animation
+  - Refactor error messages
   - generate terms of use and privacy policy and add links to them in footer
 
 - Make tasks usable

@@ -43,6 +43,8 @@ let code =
 
   var x = 123;
 
+  var y;
+
   x = test(1,  2,3, x + 3);
 `;
 

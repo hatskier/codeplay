@@ -31,6 +31,7 @@ stm ->
   | ifElseStm {% id %}
   | whileStm {% id %}
   | varDecl {% id %}
+  | varDeclEmpty {% id %}
   | varAssign {% id %}
 
 expr ->
@@ -75,7 +76,6 @@ funCallExpr -> identifier "(" funArgs ")" _ {%
       type: 'funCallExpr',
       name: data[0],
       args: data[2],
-      line: data[1].line
     };
   }
 %}
@@ -93,7 +93,8 @@ ifElseStm -> "if" _ "(" _ expr _ ")" _ stmBlock (_ "else" _ "{" stmts "}"):? {%
     let res = {
       type: 'ifElseStm',
       expr: data[4],
-      ifStmts: data[8]
+      ifStmts: data[8],
+      line: data[0].line
     };
     if (data[9]) {
       res.elseStmts = data[9][4];
@@ -109,7 +110,8 @@ whileStm -> "while" _ "(" _ expr _ ")" _ stmBlock {%
     let res = {
       type: 'whileStm',
       expr: data[4],
-      stmts: data[8]
+      stmts: data[8],
+      line: data[0].line
     };
     return res;
   }
@@ -121,7 +123,18 @@ varDecl -> "var" _ identifier _ "=" _ expr ";" {%
     return {
       type: "varDecl",
       name: data[2],
-      expr: data[6]
+      expr: data[6],
+      line: data[0].line
+    }
+  }
+%}
+
+varDeclEmpty -> "var" _ identifier ";" {%
+  function(data) {
+    return {
+      type: "varDeclEmpty",
+      name: data[2],
+      line: data[0].line
     }
   }
 %}
@@ -131,7 +144,8 @@ varAssign -> identifier _ "=" _ expr ";" {%
     return {
       type: "varAssign",
       name: data[0],
-      expr: data[4]
+      expr: data[4],
+      line: data[2].line,
     }
   }
 %}

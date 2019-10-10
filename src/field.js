@@ -27,6 +27,7 @@ class Field {
     // TODO maybe it's better to store state outside
     this.state = {
       vars: {},
+      funResults: {}, // hacky dict (TODO should be solved better in future)
     };
   }
 
@@ -91,6 +92,70 @@ class Field {
     }
   }
 
+  //////////////////////////
+  // Functions for variables
+  //////////////////////////
+
+  isVariableDeclared(varName) {
+    return (varName in this.state.vars);
+  }
+
+  getValForExpr(expr) {
+    if (expr.type == 'exprVal') {
+      return expr.value;
+    } else if (expr.type == 'varExpr') {
+      if (!this.isVariableDeclared(expr.name)) {
+        this.log(`You were trying to use an undeclared variable "${expr.name}"`, { error: true });
+        throw new Error(`Trying to use an undeclared variable "${expr.name}"`);
+      }
+
+      const val = this.state.vars[expr.name];
+
+      if (val == null) {
+        this.log(`You were trying to use an empty variable "${expr.name}"`
+                 + 'Please assign it with some value before', { error: true });
+        throw new Error(`Trying to use an empty variable "${expr.name}"`);
+      }
+
+      return this.state.vars[expr.name];
+    } else if (expr.type == 'exprPlus') {
+      return this.getValForExpr(expr.exprs[0])
+             + this.getValForExpr(expr.exprs[1]);
+    } else if (expr.type == 'funCallExpr') {
+      // TODO it's hacky but it is enough for now
+      return this.state.funResults[expr.name];
+    }
+    throw 'Not implemented';
+  }
+
+  setVariableValue(varName, val, mustBeDeclared) {
+    if (mustBeDeclared && !this.isVariableDeclared(varName)) {
+      const errMsg =
+        `Variable "${varName}" does not exist. It can be created using "var ${varName};"`;
+      this.log(errMsg, {error: true});
+      Logger.error(errMsg);
+      throw new Error(errMsg);
+    }
+
+    Logger.debug(`Setting val: ${val} for variable: ${varName}`);
+    this.state.vars[varName] = val;
+  }
+
+  showProgramState() {
+    for (let varName in this.state.vars) {
+      let val = this.state.vars[varName];
+      this.log('-----------------------------');
+      if (val == null) {
+        this.log(`Variable "${varName}" is empty`);
+      } else {
+        this.log(`Variable "${varName}" equals to ${val}`);
+      }
+      this.log('-----------------------------');
+    }
+  }
+
+  //////////////////////////
+
   // TODO in future we can add speed and other motion params
   async run(codeTree, lineHighlighter) {
     // TODO handle other types of statement
@@ -102,20 +167,13 @@ class Field {
 
     const context = {field: this, state: this.state};
 
-    function getValForExpr(expr, context) {
-      if (expr.type == 'exprVal') {
-        return expr.value;
-      } else if (expr.type == 'funCallExpr') {
-        // expr.name
-        // return context.state.funtions
-        throw 'Not implemented';
-      } 
-      throw 'Not implemented';
-    }
-
     for (let node of codeTree) {
 
       this.checkIfExecutionStopped();
+
+      if (lineHighlighter) {
+        lineHighlighter.start(node.line);
+      }
 
       switch (node.type) {
         case 'funCall': {
@@ -129,17 +187,17 @@ class Field {
             await this.tickHooks.pre(tickNr, context);
 
             // TODO make running line highlighting better
-            if (lineHighlighter) {
-              lineHighlighter.start(node.line);
-            }
+            // if (lineHighlighter) {
+            //   lineHighlighter.start(node.line);
+            // }
             // Logger.debug(`Running ${node.line} line of code`);
             // Logger.debug(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
             // Page.addLog(`Running method ${node.name}, arg list: ${JSON.stringify(node)}`);
             await method.run(context, node.args);
             // TODO make running line highlighting better
-            if (lineHighlighter) {
-              lineHighlighter.stop(node.line);
-            }
+            // if (lineHighlighter) {
+            //   lineHighlighter.stop(node.line);
+            // }
 
             // Running post hook
             Logger.debug(`Running post hook for tickNr: ${tickNr}`);
@@ -153,7 +211,10 @@ class Field {
           break;
         }
         case 'ifElseStm': {
-          if (node.expr) {
+          this.tickSleep();
+          // TODO alex implement better if statements
+          // if (node.expr) {
+          if (true) {
             Logger.debug('Running if statements');
             await this.run(node.ifStmts);
           } else {
@@ -163,14 +224,26 @@ class Field {
           break;
         }
         case 'whileStm': {
+          await this.tickSleep();
           const errMsg = 'While stm not implemented';
           Logger.error(errMsg);
           throw new Error(errMsg);
         }
+        case 'varDeclEmpty': {
+          await this.tickSleep();
+          this.setVariableValue(node.name, null, false);
+          break;
+        }
         case 'varDecl': {
-          const val = getValForExpr(node.expr);
-          Logger.debug(`Setting val: ${val} for variable: ${node.name}`);
-          context.state.vars[node.name] = val;
+          await this.tickSleep();
+          const val = this.getValForExpr(node.expr, false);
+          this.setVariableValue(node.name, val);
+          break;
+        }
+        case 'varAssign': {
+          await this.tickSleep();
+          const val = this.getValForExpr(node.expr);
+          this.setVariableValue(node.name, val, true);
           break;
         }
         default: {
@@ -179,6 +252,8 @@ class Field {
           throw new Error(errMsg);
         }
       }
+
+      this.showProgramState();
     }
   }
 
@@ -232,6 +307,10 @@ class Field {
     return new Promise(function(resolve) {
       setTimeout(resolve, ms);
     });
+  }
+
+  async tickSleep() {
+    await this.sleep(this.tickTime);
   }
 
   checkPosById(id, pos) {
