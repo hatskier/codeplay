@@ -245,44 +245,44 @@ $( document ).ready(async function() {
     }
   };
 
-  window.goToTheNextLesson = function () {
-    let redirected = false;
-    try {
-      let allTasksStr = localStorage[allTasksKey];
+  // window.goToTheNextLesson = function () {
+  //   let redirected = false;
+  //   try {
+  //     let allTasksStr = localStorage[allTasksKey];
 
-      // Hack for the time being
-      if (!allTasksStr) {
-        allTasksStr = JSON.stringify([
-          'ironMan',
-          'easyLabyrinth',
-          'mediumLabyrinth',
-          'hardLabyrinth',
-          // 'workHard',
-          'oneWarrior',
-          'oneArcher',
-          'twoWarriors',
-          'oneDragon',
-          // 'readMore'
-        ]);
-        localStorage[allTasksKey] = allTasksStr;
-      }
-      let allTasks = JSON.parse(allTasksStr);
+  //     // Hack for the time being
+  //     if (!allTasksStr) {
+  //       allTasksStr = JSON.stringify([
+  //         'ironMan',
+  //         'easyLabyrinth',
+  //         'mediumLabyrinth',
+  //         'hardLabyrinth',
+  //         // 'workHard',
+  //         'oneWarrior',
+  //         'oneArcher',
+  //         'twoWarriors',
+  //         'oneDragon',
+  //         // 'readMore'
+  //       ]);
+  //       localStorage[allTasksKey] = allTasksStr;
+  //     }
+  //     let allTasks = JSON.parse(allTasksStr);
   
-      let solvedStr = localStorage[solvedTasksKey] || '[]';
-      let solved = JSON.parse(solvedStr);
+  //     let solvedStr = localStorage[solvedTasksKey] || '[]';
+  //     let solved = JSON.parse(solvedStr);
 
-      for (let task of allTasks) {
-        if (!solved[task] && !redirected) {
-          window.location.href = `lesson.html?config=${task}`;
-          redirected = true;
-        }
-      }
-    } finally {
-      if (!redirected) {
-        window.location.href = 'index.html';
-      }
-    }
-  };
+  //     for (let task of allTasks) {
+  //       if (!solved[task] && !redirected) {
+  //         window.location.href = `lesson.html?config=${task}`;
+  //         redirected = true;
+  //       }
+  //     }
+  //   } finally {
+  //     if (!redirected) {
+  //       window.location.href = 'index.html';
+  //     }
+  //   }
+  // };
 
   // TODO implement
   function changeManageButtons(opts) {
@@ -314,13 +314,29 @@ $( document ).ready(async function() {
     link.style.display = 'block';
   }
 
+  // TODO Alex implement it better later
+  // We replace screen and the revert it
+  async function showGifResult(gifUrl) {
+    // let oldHtmlForScreen = $('#screen-view').html();
+    // $('#screen-view').remove();
+    // let htmlCode = `<img src=${gifUrl} id='screen-view' />`;
+    // $('#screen-view-container').append(htmlCode);
+    // document.getElementById('screen-view').append(htmlCode);
+    // await sleep(3000);
+    // $('#gif-result').remove();
+    // $('#screen-view-container').append(oldHtmlForScreen);
+    // document.getElementById('result-gif').style.display = 'block';
+    // await sleep(3000);
+    // document.getElementById('result-gif').style.display = 'none';
+  }
+
   function fail(err) {
     let failUrl = GifUrls.getFailImg();
+    // Toastr message with fail gif
     toastr.error(`<img class="error-notification-img" src='${failUrl}'>
                   <div class="error-notification-text">${err}</div>`);
-    // TODO uncomment later
-    // alert('Unfortunately not all tests passed yet :( Please try again. '
-    //       + err.toString());
+    // toastr.error(err);
+    // showGifResult(failUrl);
   }
 
   function addLessonToLocalStorage(lessonName) {
@@ -340,7 +356,7 @@ $( document ).ready(async function() {
   
   async function success() {
     // toastr.success('Lesson completed! Well done! Saving your result... Please don\'t close the window');
-    toastr.success('Well done!');
+    // toastr.success('Well done!');
     // TODO uncomment
     addLessonToLocalStorage(configName);
     // await sleep(1000);
@@ -348,13 +364,23 @@ $( document ).ready(async function() {
     // window.location.href = nextPage;
 
     // I should AB test if gif or done img is better
-    document.getElementById('success-modal-img').src = GifUrls.getSuccessImg();
+    // document.getElementById('success-modal-img').src = GifUrls.getSuccessImg();
 
-    $('#success-modal').modal({
-      escapeClose: false,
-      clickClose: false,
-      showClose: false
-    });
+    // $('#success-modal').modal({
+    //   escapeClose: false,
+    //   clickClose: false,
+    //   showClose: false
+    // });
+
+    let successImgUrl = GifUrls.getSuccessImg();
+    // toastr.success('Well done!');
+    toastr.success(`<img class="error-notification-img" src='${successImgUrl}'>
+    <div class="error-notification-text">Well done! Saving your result...</div>`);
+    // showGifResult(successImgUrl);
+    await sleep(2500);
+
+    // TODO uncomment for connecting to blockstack app
+    // window.location.href = nextPage;
   }
   
   function buildDocumentationView(conf) {

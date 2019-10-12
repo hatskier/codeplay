@@ -119,7 +119,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
 
         let stepsAmount = 1;
         if (params.length > 0) {
-          stepsAmount = params[0];
+          stepsAmount = context.field.getValForExpr(params[0]);
         }
         context.field.log(`Man is going ${stepsAmount} steps ${direction}...`);
 
@@ -167,7 +167,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
 
         validateParams(params);
         if (params && params.length == 1) {
-          for (let i = 0; i < params[0]; i++) {
+          for (let i = 0; i < stepsAmount; i++) {
             await runStep();
           }
         } else {
@@ -193,6 +193,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
     {
       pre: async function(context) {
         await context.field.changeImage('Man', 'man-going-left');
+        // context.state.path = [];
       },
       post: async function(context) {
         await context.field.changeImage('Man', 'man-static');

@@ -210,8 +210,8 @@ class Field {
 
       switch (node.type) {
         case 'funCall': {
-          Logger.debug('--------------------------------------------------------');
-          Logger.debug(context);
+          // Logger.debug('--------------------------------------------------------');
+          // Logger.debug(context);
 
           const method = this.methods[node.name];
           if (method) {
