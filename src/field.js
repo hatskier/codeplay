@@ -199,6 +199,9 @@ class Field {
     this.log("======================= GAME STARTED =====================");
     this.log("==========================================================");
 
+    // TODO remove
+    console.log(codeTree);
+
     let tickNr = 0;
 
     const context = {field: this, state: this.state};
@@ -261,10 +264,14 @@ class Field {
           await this.tickSleep();
           if (this.getBoolValForExpr(node.expr)) {
             Logger.debug('Running if statements');
-            await this.run(node.ifStmts, lineHighlighter);
+            if (node.ifStmts.length > 0) {
+              await this.run(node.ifStmts, lineHighlighter);
+            }
           } else {
             Logger.debug('Running else statements');
-            await this.run(node.elseStmts, lineHighlighter);
+            if (node.ifStmts.length > 0) {
+              await this.run(node.elseStmts, lineHighlighter);  
+            }
           }
           break;
         }

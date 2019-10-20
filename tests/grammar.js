@@ -41,6 +41,10 @@ let code =
     yohoho();
   }
 
+  if (y > 3) {
+    yGt3();
+  }
+
   // TODO comment
 
   // while(true) {
@@ -60,10 +64,7 @@ let code =
   // var y;
 
   // x = go(length - 1);
-
-  var strVar = "somehting";
-  var xxxx = 'some other value';
-//`;
+`;
 
 let codeTree = parse(code)[0];
 

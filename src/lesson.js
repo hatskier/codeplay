@@ -44,6 +44,7 @@ import battleVarWeaponAndDistance from './examples/variables/battleVarWeaponAndD
 
 // Conditions
 import condExample from './examples/conditions/example';
+import battleCondEnemyType from './examples/conditions/battleCondEnemyType'
 
 import sleep from './sleep';
 
@@ -83,6 +84,7 @@ const configs = {
   battleVarWeaponAndDistance,
 
   condExample,
+  battleCondEnemyType
 };
 
 // Global field variable

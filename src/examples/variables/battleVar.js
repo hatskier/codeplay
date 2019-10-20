@@ -19,42 +19,94 @@ function runtimeError(msg, field) {
 
 function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, stepWidth}) {
 
+  function getEnemiesToAdd(enemies) {
+    let enemiesToAdd = [];
+    for (const enemyId in enemies) {
+      const enemy = enemies[enemyId];
+
+      let yPos = landYPos;
+      let size = {
+        width: defaultSize,
+        height: defaultSize * 1.2
+      };
+
+      if (enemy.kind == 'dragon') {
+        yPos = 0;
+        size.width *= 3;
+        size.height *= 2;
+      }
+
+      if (enemy.kind == 'warrior') {
+        size.width /= 1.4;
+      }
+
+      enemiesToAdd.push({
+        kind: 'img',
+        id: enemyId,
+        imgKey: enemy.kind,
+        startPos: {
+          x: enemy.location,
+          y: yPos
+        },
+        size
+      });
+    }
+    return enemiesToAdd;
+  }
+
   function createIterations() {
     let iterationsConf = [];
 
+    let firstIteration = true;
     for (let iteration of iterations) {
       iterationsConf.push({
-        async pre({state, field}) {
-          for (const enemyId in iteration.enemies) {
-            const enemy = iteration.enemies[enemyId];
-
-            let yPos = landYPos;
-            let size = {
-              width: defaultSize,
-              height: defaultSize * 1.2
-            };
-
-            if (enemy.kind == 'dragon') {
-              yPos = 0;
-              size.width *= 3;
-              size.height *= 2;
+        async pre({state, field}, iterationNr) {
+          if (!firstIteration) {
+            // Removing enemies which were drawed for the first iteration
+            for (let firstIterationEnemy in iterations[0].enemies) {
+              field.removeObject(firstIterationEnemy);
             }
 
-            if (enemy.kind == 'warrior') {
-              size.width /= 1.4;
+            // Adding appropriate enemies
+            let enemiesToAdd = getEnemiesToAdd(iteration.enemies);
+            for (let enemyToAdd of enemiesToAdd) {
+              field.addObject(enemyToAdd);
             }
-
-            field.addObject({
-              kind: 'img',
-              id: enemyId,
-              imgKey: enemy.kind,
-              startPos: {
-                x: enemy.location,
-                y: yPos
-              },
-              size
-            });
+            // addEnemiesToField(iteration.enemies);
+          } else {
+            firstIteration = false;
           }
+          
+          // for (const enemyId in iteration.enemies) {
+          //   const enemy = iteration.enemies[enemyId];
+
+          //   let yPos = landYPos;
+          //   let size = {
+          //     width: defaultSize,
+          //     height: defaultSize * 1.2
+          //   };
+
+          //   if (enemy.kind == 'dragon') {
+          //     yPos = 0;
+          //     size.width *= 3;
+          //     size.height *= 2;
+          //   }
+
+          //   if (enemy.kind == 'warrior') {
+          //     size.width /= 1.4;
+          //   }
+
+          //   field.addObject({
+          //     kind: 'img',
+          //     id: enemyId,
+          //     imgKey: enemy.kind,
+          //     startPos: {
+          //       x: enemy.location,
+          //       y: yPos
+          //     },
+          //     size
+          //   });
+          // }
 
           state.funResults = iteration.funResults;
           state.enemies = Object.assign({}, iteration.enemies);
@@ -436,7 +488,6 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
       },
     },
 
-
     iterations: createIterations(),
 
     tickHooks: {
@@ -476,6 +527,12 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
     },
     startCodeVal
   };
+
+
+  // Adding enemies to show
+  for (let enemyToAdd of getEnemiesToAdd(iterations[0].enemies)) {
+    conf.objects.push(enemyToAdd);
+  }
 
   return conf;
 }
