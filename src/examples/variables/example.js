@@ -48,7 +48,7 @@ conf.methods = {
       if (!params || params.length != 1) {
         executingError(context, `Incorrect number of arguments passed to function: testVar`);
       }
-      if (params[0].name != 'x') {
+      if (params[0] != 12) {
         context.field.log(JSON.stringify(params[0]));
         executingError(context, `NONONONON`);
       }

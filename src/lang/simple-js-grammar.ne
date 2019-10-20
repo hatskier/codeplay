@@ -6,9 +6,9 @@ let lexer = moo.compile({
     comment: /\/\/.*?$/,
     space: {match: /\s+/, lineBreaks: true},
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
-    string: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/,
+    string: /["'](?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*["']/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", ">", "<", "=="]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "=="]
 });
 
 %}
@@ -50,6 +50,17 @@ expr ->
     function(data) {
       return {
         type: "exprPlus",
+        exprs: [
+          data[0],
+          data[4]
+        ]
+      }
+    }
+  %}
+  | expr _ "-" _ expr {%
+    function(data) {
+      return {
+        type: "exprMinus",
         exprs: [
           data[0],
           data[4]
@@ -211,6 +222,10 @@ identifier -> %identifier {% function(d) { return d[0].value } %}
 
 comment ->  %comment {% function(d) { return null; } %}
 
-string -> %string {% function(d) { return JSON.parse(d[0].value) } %}
+string -> %string {%
+  function(d) {
+    return d[0].value.replace(new RegExp("'", 'g'), "").replace(new RegExp("\"", 'g'), "")
+  }
+%}
 
 _ -> null | %space {% function(d) { return null; } %}

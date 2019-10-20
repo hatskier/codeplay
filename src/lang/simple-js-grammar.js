@@ -10,9 +10,9 @@ let lexer = moo.compile({
     comment: /\/\/.*?$/,
     space: {match: /\s+/, lineBreaks: true},
     number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/,
-    string: /"(?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*"/,
+    string: /["'](?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^"\\])*["']/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", ">", "<", "=="]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "=="]
 });
 
 var grammar = {
@@ -61,6 +61,17 @@ var grammar = {
         function(data) {
           return {
             type: "exprPlus",
+            exprs: [
+              data[0],
+              data[4]
+            ]
+          }
+        }
+          },
+    {"name": "expr", "symbols": ["expr", "_", {"literal":"-"}, "_", "expr"], "postprocess": 
+        function(data) {
+          return {
+            type: "exprMinus",
             exprs: [
               data[0],
               data[4]
@@ -203,7 +214,11 @@ var grammar = {
     {"name": "number", "symbols": [(lexer.has("number") ? {type: "number"} : number)], "postprocess": function(d) { return parseFloat(d[0].value) }},
     {"name": "identifier", "symbols": [(lexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": function(d) { return d[0].value }},
     {"name": "comment", "symbols": [(lexer.has("comment") ? {type: "comment"} : comment)], "postprocess": function(d) { return null; }},
-    {"name": "string", "symbols": [(lexer.has("string") ? {type: "string"} : string)], "postprocess": function(d) { return JSON.parse(d[0].value) }},
+    {"name": "string", "symbols": [(lexer.has("string") ? {type: "string"} : string)], "postprocess": 
+        function(d) {
+          return d[0].value.replace(new RegExp("'", 'g'), "").replace(new RegExp("\"", 'g'), "")
+        }
+        },
     {"name": "_", "symbols": []},
     {"name": "_", "symbols": [(lexer.has("space") ? {type: "space"} : space)], "postprocess": function(d) { return null; }}
 ]

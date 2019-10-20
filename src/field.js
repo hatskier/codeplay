@@ -121,6 +121,9 @@ class Field {
     } else if (expr.type == 'exprPlus') {
       return this.getValForExpr(expr.exprs[0])
              + this.getValForExpr(expr.exprs[1]);
+    } else if (expr.type == 'exprMinus') {
+      return this.getValForExpr(expr.exprs[0])
+             - this.getValForExpr(expr.exprs[1]);
     } else if (expr.type == 'funCallExpr') {
       // TODO it's hacky but it is enough for now
       return this.state.funResults[expr.name];
@@ -226,7 +229,18 @@ class Field {
             // Logger.debug(`Running ${node.line} line of code`);
             // Logger.debug(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
             // Page.addLog(`Running method ${node.name}, arg list: ${JSON.stringify(node)}`);
-            await method.run(context, node.args);
+
+            // Evaluate values for each argument
+            let argValues = [];
+            if (node.args && node.args.length > 0) {
+              node.args.forEach(function(nodeArg) {
+                let argVal = context.field.getValForExpr(nodeArg);
+                argValues.push(argVal);
+              });
+            }
+            node.args
+
+            await method.run(context, argValues);
             // TODO make running line highlighting better
             // if (lineHighlighter) {
             //   lineHighlighter.stop(node.line);

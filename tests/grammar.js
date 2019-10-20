@@ -43,24 +43,27 @@ let code =
 
   // TODO comment
 
-  while(true) {
-    doSmthInWhile(4,5,6);
-  }
+  // while(true) {
+    // doSmthInWhile(4,5,6);
+  // }
 
   //First comment
   // Second comment
   // Thrird one
 
-  car.go();
+  // car.go();
 
   // Last comment
 
-  var x = 123;
+  // var x = 123;
 
-  var y;
+  // var y;
 
-  x = test(1,  2,3, x + 3);
-`;
+  // x = go(length - 1);
+
+  var strVar = "somehting";
+  var xxxx = 'some other value';
+//`;
 
 let codeTree = parse(code)[0];
 

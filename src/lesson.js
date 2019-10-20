@@ -33,6 +33,14 @@ import workHard from './examples/question/work-hard';
 
 // Variables
 import varExample from './examples/variables/example';
+import battleVarDistance from './examples/variables/battleVarDistance';
+import battleVarDistanceWithDragon from './examples/variables/battleVarDistanceWithDragon';
+import battleVarDistanceWithVarDragon from './examples/variables/battleVarDistanceWithVarDragon';
+import battleVarWeaponSimpleDragon from './examples/variables/battleVarWeaponSimpleDragon';
+import battleVarWeaponSimpleWarrior from './examples/variables/battleVarWeaponSimpleWarrior';
+import battleVarWeapon from './examples/variables/battleVarWeapon';
+import battleVarWeaponAndDistance from './examples/variables/battleVarWeaponAndDistance';
+
 
 // Conditions
 import condExample from './examples/conditions/example';
@@ -66,6 +74,13 @@ const configs = {
   twoWarriors,
 
   varExample,
+  battleVarDistance,
+  battleVarDistanceWithDragon,
+  battleVarDistanceWithVarDragon,
+  battleVarWeaponSimpleDragon,
+  battleVarWeaponSimpleWarrior,
+  battleVarWeapon,
+  battleVarWeaponAndDistance,
 
   condExample,
 };
@@ -168,6 +183,7 @@ $( document ).ready(async function() {
   };
 
   window.run = async function() {
+    toastr.success('Program started');
     await Editor.reorderLines();
     changeManageButtons({showStop: true, showRun: false});
     showTerminalManagerLink();
@@ -175,11 +191,12 @@ $( document ).ready(async function() {
     if (code) {
       try {
         const codeTree = Parser.parse(code);
-        let iterationNr = 1;
+        let iterationNr = 0;
         for (let iteration of conf.iterations) {
           initField();
+          field.state.__iterationNr = iterationNr;
           if (conf.iterations.length > 1) {
-            toastr.success(`Running test interation No. ${iterationNr}`);
+            toastr.success(`Running test interation No. ${iterationNr + 1}`);
             iterationNr++;
           }
 
@@ -352,6 +369,9 @@ $( document ).ready(async function() {
     }
     solvedLessons[lessonName] = true;
     localStorage.setItem(solvedTasksKey, JSON.stringify(solvedLessons));
+
+    // This is important (it is saved in blockstack on the next page)
+    localStorage.lastSolvedLessonCodenplay = lessonName;
   }
   
   async function success() {
