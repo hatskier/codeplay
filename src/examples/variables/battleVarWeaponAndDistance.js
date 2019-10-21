@@ -44,10 +44,10 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
 
   solutionCode:
-`// Defeat the warrior
-// Come closer and attack using your sword
+`// Defeat your enemy
+// Come closer and attack
 // Distance to your enemy may differ
-// Hint: you can use variable "distance"
+// Enemy also may differ
 
 var weapon = getPerfectWeapon();
 var distance = getDistance();
@@ -58,17 +58,15 @@ hero.attackWith(weapon);
 `,
 
 startCodeVal:
-`// Defeat the warrior
-// Come closer and attack using your sword
+`// Defeat your enemy
+// Come closer and attack
 // Distance to your enemy may differ
-// Hint: you can use variable "distance"
+// Enemy also may differ
 
 var weapon = getPerfectWeapon();
 var distance = getDistance();
 
 // Write your code below
-hero.go(distance);
-hero.attackWith(weapon);
 `
 });
 

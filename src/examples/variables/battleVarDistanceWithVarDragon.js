@@ -60,32 +60,44 @@ let conf = prepareBattle({
 
   solutionCode:
 `// Defeat the warrior and the dragon
-// Come closer and attack using your sword
-// Distance to your enemy may differ
+// Make 1 step forward and
+// attack the dragon
+// Then come to the warrior and use
+// your sword
 // Hint: you can use variable "distance"
+// Hint: you can use math operations (like -)
 
+// Distance to warrior
 var distance = getDistance();
 
 // Write your code below
-hero.move(distance);
-hero.attack();
+hero.go(1);
+hero.attackWith('spear');
+hero.go(distance - 1);
+hero.attackWith('sword');
 `,
 
 startCodeVal:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
+`// Defeat the warrior and the dragon
+// Make 1 step forward and
+// attack the dragon
+// Then come to the warrior and use
+// your sword
 // Hint: you can use variable "distance"
+// Hint: you can use math operations (like -)
 
+// Distance to warrior
 var distance = getDistance();
 
 // Write your code below
+hero.go(1);
+hero.attackWith('spear');
 `
 });
 
 // conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
-// delete conf.methods["hero.swordAttack"];
-// delete conf.methods['hero.spearAttack'];
-delete conf.methods['hero.attackWith'];
+delete conf.methods["hero.swordAttack"];
+delete conf.methods['hero.spearAttack'];
+// delete conf.methods['hero.attackWith'];
 
 export default conf;

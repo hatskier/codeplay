@@ -43,26 +43,23 @@ let conf = prepareBattle({
 
   solutionCode:
 `// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
 
-var weapon = getPerfectWeapon();
+var weapon = 'sword';
 
-// Write your code below
+// Replace "print" with the appropriate instruction
+// to attack the warrior
 hero.attackWith(weapon);
 `,
 
 startCodeVal:
 `// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
 
 var weapon = 'sword';
 
-// Uncomment this text
-// hero.attackWith(weapon);
+// Replace "print" with
+// the appropriate instruction
+// to attack the warrior
+print(weapon);
 `
 });
 

@@ -54,12 +54,10 @@ hero.attackWith('spear');
 `,
 
 startCodeVal:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
+`// Defeat the dragon
 
-// Select one option and uncomment it removing //
+// Select the correct option
+// and uncomment it removing //
 // hero.attackWith('sword');
 // hero.attackWith('spear');
 `

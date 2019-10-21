@@ -43,24 +43,31 @@ let conf = prepareBattle({
 
   solutionCode:
 `// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
+// Note, that there are multiple
+// testing iterations
+// so your enemies will change
 
+// Fortunately, you have information
+// about perfect weapon for every
+// testing iteration
 var weapon = getPerfectWeapon();
 
-//hero.attackWith(weapon);
+// Type your code below
+hero.attackWith(weapon);
 `,
 
 startCodeVal:
 `// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
+// Note, that there are multiple
+// testing iterations
+// so your enemies will change
 
+// Fortunately, you have information
+// about perfect weapon for each
+// testing iteration
 var weapon = getPerfectWeapon();
 
-hero.attackWith(weapon);
+// Type your code below
 `
 });
 

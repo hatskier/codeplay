@@ -17,7 +17,7 @@ function runtimeError(msg, field) {
   throw new Error(msg);
 }
 
-function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, stepWidth}) {
+function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, stepWidth, solutionCode}) {
 
   function getEnemiesToAdd(enemies) {
     let enemiesToAdd = [];
@@ -525,7 +525,8 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
         }
       }
     },
-    startCodeVal
+    startCodeVal,
+    solutionCode
   };
 
 

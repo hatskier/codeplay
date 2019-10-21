@@ -184,6 +184,13 @@ $( document ).ready(async function() {
     });
   };
 
+  window.solveTask = function() {
+    if (conf.solutionCode) {
+      editor.setValue(conf.solutionCode);
+    }
+    
+  }
+
   window.run = async function() {
     toastr.success('Program started');
     await Editor.reorderLines();
@@ -402,7 +409,7 @@ $( document ).ready(async function() {
     await sleep(2500);
 
     // TODO uncomment for connecting to blockstack app
-    // window.location.href = nextPage;
+    window.location.href = nextPage;
   }
   
   function buildDocumentationView(conf) {

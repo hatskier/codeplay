@@ -65,7 +65,7 @@ let conf = prepareBattle({
 var distance = getDistance();
 
 // Write your code below
-hero.move(distance);
+hero.go(distance);
 hero.attack();
 `,
 
@@ -81,9 +81,9 @@ var distance = getDistance();
 `
 });
 
-// conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
-// delete conf.methods["hero.swordAttack"];
-// delete conf.methods['hero.spearAttack'];
+conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
+delete conf.methods["hero.swordAttack"];
+delete conf.methods['hero.spearAttack'];
 delete conf.methods['hero.attackWith'];
 
 export default conf;

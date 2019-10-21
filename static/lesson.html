@@ -281,6 +281,13 @@
           left: 5px;
         }
 
+        .hidden-solver-button-container {
+          position: fixed;
+          bottom: 5px;
+          left: 5px;
+          opacity: 0;
+        }
+
         .close-icon {
           width: 30px;
         }
@@ -383,6 +390,10 @@
         <a href="javascript:history.back()">
           <img class="close-icon md-icon clickable" src="./img/back-circle.svg">
         </a>
+      </div>
+
+      <div class="hidden-solver-button-container">
+        <img class="close-icon md-icon hidden-solver-button" onclick="solveTask()" src="./img/back-circle.svg">
       </div>
 
       <div id="control-bar">

@@ -85,21 +85,25 @@ let conf = prepareBattle({
 
   solutionCode:
 `// Defeat the warrior and the dragon
-// Come closer and attack using your sword
-// Distance to your enemy may differ
+// Attack the dragon firstly
+// Then come to the warrior and use
+// your sword
+// Distance to the warrior may differ
 // Hint: you can use variable "distance"
 
 var distance = getDistance();
 
 // Write your code below
-hero.move(distance);
+hero.go(distance);
 hero.attack();
 `,
 
 startCodeVal:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
+`// Defeat the warrior and the dragon
+// Attack the dragon firstly
+// Then come to the warrior and use
+// your sword
+// Distance to the warrior may differ
 // Hint: you can use variable "distance"
 
 var distance = getDistance();
