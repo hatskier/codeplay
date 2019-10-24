@@ -17,7 +17,7 @@ function runtimeError(msg, field) {
   throw new Error(msg);
 }
 
-function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWidth}) {
+function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, solutionCode, stepWidth}) {
 
   // TODO refactor crete common function getClosestEnemyID
   function gerClosestWarriorId(pos, field, {enemies}) {
@@ -360,7 +360,8 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, stepWid
         }
       }
     },
-    startCodeVal
+    startCodeVal,
+    solutionCode,
   };
 
   // Adding enemies to objects

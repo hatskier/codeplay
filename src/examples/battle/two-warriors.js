@@ -46,8 +46,11 @@ let conf = prepareBattle({
 
   solutionCode:
 `
-// TODO
-
+hero.go();
+hero.attack();
+hero.defend();
+hero.go();
+hero.attack();
 `,
 
 startCodeVal:

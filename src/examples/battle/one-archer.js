@@ -22,6 +22,7 @@ let conf = prepareBattle({
 
   solutionCode:
 `hero.defend();
+hero.defend();
 hero.go();
 hero.go();
 hero.attack();

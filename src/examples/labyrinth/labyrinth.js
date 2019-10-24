@@ -16,7 +16,7 @@ function taskFinished(pathFromConf, path) {
   (pathFromConf[len1 - 1].length - path[len2 - 1].length) >= 0;
 }
 
-function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
+function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
   const startPos = {
     x: 0,
     y: 5
@@ -119,7 +119,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
 
         let stepsAmount = 1;
         if (params.length > 0) {
-          stepsAmount = context.field.getValForExpr(params[0]);
+          stepsAmount = params[0];
         }
         context.field.log(`Man is going ${stepsAmount} steps ${direction}...`);
 
@@ -212,6 +212,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, size}) {
   }
 
   conf.startCodeVal = startCodeVal;
+  conf.solutionCode = solutionCode;
 
   return conf;
 }

@@ -94,8 +94,9 @@ let conf = prepareBattle({
 var distance = getDistance();
 
 // Write your code below
+hero.attackWith('spear');
 hero.go(distance);
-hero.attack();
+hero.attackWith('sword');
 `,
 
 startCodeVal:
@@ -112,7 +113,7 @@ var distance = getDistance();
 `
 });
 
-conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
+// conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
 delete conf.methods["hero.swordAttack"];
 delete conf.methods['hero.spearAttack'];
 
