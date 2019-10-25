@@ -8,7 +8,8 @@ module.exports = {
 		// Custom scripts
 		// "app": './src/index.js',
 		// "app.plugable": './src/plugable.js',
-		"lesson": './src/lesson.js',
+		"lesson": "./src/lesson.js",
+		"image-preloader": "./src/image-preloader.js",
 
 		// Tour styles
 		"tour.css": "tour/dist/tour.css",

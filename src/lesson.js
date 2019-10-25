@@ -7,49 +7,14 @@ import GifUrls from './gifUrls';
 // import $ from 'jquery';
 // import Typed from 'typed.js';
 
-// Car
-import car from './examples/car';
 
-// Labyrinth
-import easyLabyrinth from './examples/labyrinth/easy-labyrinth';
-import mediumLabyrinth from './examples/labyrinth/medium-labyrinth';
-import hardLabyrinth from './examples/labyrinth/hard-labyrinth';
-
-// Battle
-import oneArcher from './examples/battle/one-archer';
-import oneWarrior from './examples/battle/one-warrior';
-// import warriorsAndArcher from './examples/battle/later/warriors-and-archer';
-import oneDragon from './examples/battle/one-dragon';
-import twoWarriors from './examples/battle/two-warriors';
-// import allTogether from './examples/battle/all-together';
-
-// Avengers
-import ironMan from './examples/avengers/iron-man';
-
-// Question
-import callGranny from './examples/question/call-granny';
-import readMore from './examples/question/read-more';
-import workHard from './examples/question/work-hard';
-
-// Variables
-import varExample from './examples/variables/example';
-import battleVarDistance from './examples/variables/battleVarDistance';
-import battleVarDistanceWithDragon from './examples/variables/battleVarDistanceWithDragon';
-import battleVarDistanceWithVarDragon from './examples/variables/battleVarDistanceWithVarDragon';
-import battleVarWeaponSimpleDragon from './examples/variables/battleVarWeaponSimpleDragon';
-import battleVarWeaponSimpleWarrior from './examples/variables/battleVarWeaponSimpleWarrior';
-import battleVarWeapon from './examples/variables/battleVarWeapon';
-import battleVarWeaponAndDistance from './examples/variables/battleVarWeaponAndDistance';
-
-
-// Conditions
-import condExample from './examples/conditions/example';
-import battleCondEnemyType from './examples/conditions/battleCondEnemyType'
 
 import sleep from './sleep';
 
 
 import Tour from './codeplay-tour';
+
+import lessonConfigs from './lesson-configs';
 
 const $ = window.$;
 const toastr = window.toastr;
@@ -58,34 +23,6 @@ const MINIMAL_LOADING_TIME = 500; // ms
 const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
 const solvedTasksKey = 'codeplaySolvedTasks';
 const allTasksKey = 'codeplayAllTasks';
-
-const configs = {
-  car,
-  easyLabyrinth,
-  mediumLabyrinth,
-  hardLabyrinth,
-  oneArcher,
-  oneWarrior,
-  oneDragon,
-  // allTogether,
-  ironMan,
-  callGranny,
-  readMore,
-  workHard,
-  twoWarriors,
-
-  varExample,
-  battleVarDistance,
-  battleVarDistanceWithDragon,
-  battleVarDistanceWithVarDragon,
-  battleVarWeaponSimpleDragon,
-  battleVarWeaponSimpleWarrior,
-  battleVarWeapon,
-  battleVarWeaponAndDistance,
-
-  condExample,
-  battleCondEnemyType
-};
 
 // Global field variable
 let field;
@@ -142,7 +79,7 @@ $( document ).ready(async function() {
     throw 'Bad config';
   }
 
-  let conf = configs[configName];
+  let conf = lessonConfigs[configName];
 
   await assetsLoading();
 
@@ -440,9 +377,11 @@ $( document ).ready(async function() {
       // await GifUrls.preLoad();
       Logger.info('Image preloading finished');
       const loadingTime = Date.now() - loadingStartedTime;
-      if (loadingTime < MINIMAL_LOADING_TIME) {
-        await sleep(MINIMAL_LOADING_TIME - loadingTime);
-      }
+
+      Logger.debug(`Loading time: ${loadingTime}`);
+      // if (loadingTime < MINIMAL_LOADING_TIME) {
+      //   await sleep(MINIMAL_LOADING_TIME - loadingTime);
+      // }
       hideOverlaySpinner();
 
       // Then we also preload gifs for fail cases in background
@@ -458,7 +397,7 @@ $( document ).ready(async function() {
   async function updateLoadingProgress(target) {
     let prevVal = Number(document.getElementById('percentage-loaded').innerHTML) || 0;
     if (prevVal < target) {
-      await sleep(10);
+      await sleep(3);
       document.getElementById('percentage-loaded').innerHTML = (prevVal + 1);
       await updateLoadingProgress(target);
     }
@@ -472,7 +411,6 @@ $( document ).ready(async function() {
     let imagesLoadedCounter = 0;
     for (const imageKey in images) {
       const url = images[imageKey];
-      Logger.info();
       Logger.info(`Image loading: ${imageKey}`);
       await preLoadImage(url);
       imagesLoadedCounter++;
