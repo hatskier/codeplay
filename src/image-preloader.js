@@ -1,5 +1,6 @@
 import Logger from './logger';
 import lessonConfigs from './lesson-configs';
+import gifUrls from './gifUrls';
 
 const START_PRELOADING_TIMEOUT = 3000;
 
@@ -10,12 +11,27 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 async function startImagePreloading() {
+  // Lessons images preloading
   for (let lessonConfigName in lessonConfigs) {
     Logger.info(`-------- PreLoading images for config: ${lessonConfigName} - started --------`);
     let config = lessonConfigs[lessonConfigName];
     await preLoadImagesForConfig(config);
     Logger.info(`-------- PreLoading images for config: ${lessonConfigName} - finished --------`);
   }
+
+  // Gifs preloading
+  for (let gifType of ['success', 'fail']) {
+    Logger.info(`-------- Preloading gifs for type: ${gifType} - started --------`);
+    for (let gifUrl of gifUrls[gifType]) {
+      Logger.info(`PreLoading image ${gifUrl} - started`);
+      await preLoadImage(gifUrl);
+      Logger.info(`PreLoading image ${gifUrl} - started`);
+    }
+    Logger.info(`-------- Preloading gifs for type: ${gifType} - finished --------`);
+  }
+
+  Logger.info(`--------------------------------------`);
+  Logger.info(`-------- Preloading finished! --------`);
 }
 
 async function preLoadImagesForConfig(conf) {

@@ -10,6 +10,7 @@ module.exports = {
 		// "app.plugable": './src/plugable.js',
 		"lesson": "./src/lesson.js",
 		"image-preloader": "./src/image-preloader.js",
+		"gif-urls-preview": "./src/gif-urls-preview.js",
 
 		// Tour styles
 		"tour.css": "tour/dist/tour.css",

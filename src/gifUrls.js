@@ -2,14 +2,14 @@ import Logger from './logger';
 
 export default {
   success: [
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/barnie-success.gif',
+    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/barnie-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/bear-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/brad-pit-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/fortnite-dance-1-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/fortnite-dance-2-success.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/friends-success.gif',
+    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/friends-success.gif',
     // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/hangover-success.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/jump-success.gif',
+    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/jump-success.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/tony-stark-success.gif'
   ],
   fail: [
@@ -27,13 +27,13 @@ export default {
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-parrot.gif',
     // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-try-again.gif',
     // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/nope-commentator.gif', // large
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/wrong.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-tom-cat-no.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-iron-man-np.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/wrong.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-tom-cat-no.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-iron-man-np.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-no-2.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-no-3.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-no.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-shrek-no.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-no.gif',
+    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-shrek-no.gif',
     'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-sonic-no.gif',
   ],
   thanks: [

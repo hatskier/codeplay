@@ -20,6 +20,7 @@ const $ = window.$;
 const toastr = window.toastr;
 
 const MINIMAL_LOADING_TIME = 500; // ms
+const FAILED_TIMES_TO_SHOW_SOLUTION = 4;
 const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
 const solvedTasksKey = 'codeplaySolvedTasks';
 const allTasksKey = 'codeplayAllTasks';
@@ -125,8 +126,9 @@ $( document ).ready(async function() {
     if (conf.solutionCode) {
       editor.setValue(conf.solutionCode);
     }
-    
-  }
+  };
+
+  window.gifUrls = GifUrls;
 
   window.run = async function() {
     toastr.success('Program started');
@@ -277,6 +279,16 @@ $( document ).ready(async function() {
     link.style.display = 'block';
   }
 
+  function showSolution() {
+    if (confirm('Do you want to see the solution code?')) {
+      window.solveTask();
+      window.toastr('Read the solution code! Try to understand it and then click the run button');
+    } else {
+      // We set it to -2 so the user should fail 2 more times next time to see this question
+      window.failedTimes = -2;
+    }
+  }
+
   // TODO Alex implement it better later
   // We replace screen and the revert it
   async function showGifResult(gifUrl) {
@@ -294,6 +306,16 @@ $( document ).ready(async function() {
   }
 
   function fail(err) {
+    if (window.failedTimes) {
+      window.failedTimes++;
+    } else {
+      window.failedTimes = 1;
+    }
+
+    if (window.failedTimes > FAILED_TIMES_TO_SHOW_SOLUTION) {
+      showSolution();
+    }
+    
     let failUrl = GifUrls.getFailImg();
     // Toastr message with fail gif
     toastr.error(`<img class="error-notification-img" src='${failUrl}'>

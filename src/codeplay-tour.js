@@ -18,32 +18,23 @@ const myTour = {
     dark: false // Dark mode (Works great with `mask.visible = false`)
    },
   canExit: true,
-  nextText: 'Proceed!',
+  nextText: 'Got it!',
   steps: [
   {
     target: '.window',
     content: 'Read the task description and documentation for all the commands you can use'
   }, {
     target: '#code-editor',
-    content: 'Then type code here'
+    content: 'Then type your code here'
   }, {
     target: '#run-button',
-    content: 'When you are sure that code is finished click the run button',
+    content: 'When you are sure that the code is finished click the run button',
   }, {
     target: '#screen-view',
     content: 'And see your program running on the screen!'
   }, {
     target: '.window',
-    content: 'Additional logs will be printed here'
-  }, {
-    target: '#toggle-terminal-mode-button',
-    content: 'To toggle logs visibility click this button'
-  }, {
-    target: '#settings-button',
-    content: 'To change program running speed click this button'
-  }, {
-    target: '#help-button',
-    content: 'To see this tour again click this button'
+    content: 'Additional information will be printed here'
   }
 ]
 };
