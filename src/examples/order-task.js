@@ -73,6 +73,7 @@ export default function (conf) {
     size: conf.size,
     images: conf.images,
     startCodeVal: conf.startCodeVal,
+    solutionCode: conf.solutionCode,
     taskDescription: conf.taskDescription,
   }
 

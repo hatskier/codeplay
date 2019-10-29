@@ -45,9 +45,9 @@ takeBody();
 `,
 
   solutionCode: `  
-  takeHands();
-  takeBody();
-  takeHead();
-  fly();
+takeHands();
+takeBody();
+takeHead();
+fly();
     `,
 });
