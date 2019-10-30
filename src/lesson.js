@@ -20,7 +20,8 @@ const $ = window.$;
 const toastr = window.toastr;
 
 const MINIMAL_LOADING_TIME = 500; // ms
-const FAILED_TIMES_TO_SHOW_SOLUTION = 4;
+// const FAILED_TIMES_TO_SHOW_SOLUTION = 4;
+const FAILED_TIMES_TO_SHOW_SOLUTION = 1;
 const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
 const solvedTasksKey = 'codeplaySolvedTasks';
 const allTasksKey = 'codeplayAllTasks';
@@ -280,18 +281,29 @@ $( document ).ready(async function() {
   }
 
   function showSolution() {
-    if (confirm('Do you want to see the solution code?')) {
-      window.solveTask();
-      window.toastr('Read the solution code! Try to understand it and then click the run button');
-    } else {
-      // We set it to -2 so the user should fail 2 more times next time to see this question
-      window.failedTimes = -2;
-    }
+    // if (snackBarConfirm('Do you want to see the solution code?')) {
+    //   window.solveTask();
+    //   window.toastr('Read the solution code! Try to understand it and then click the run button');
+    // } else {
+    //   // We set it to -2 so the user should fail 2 more times next time to see this question
+    //   window.failedTimes = -2;
+    // }
+    let snackbarContainer = document.querySelector('#snackbar');
+    let data = {
+      message: 'Do you want to see the solution code?',
+      timeout: 7000,
+      actionHandler: function() {
+        window.solveTask();
+        window.toastr.success('Read the solution code! Try to understand it and then click the run button');
+      },
+      actionText: 'Yes'
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
   }
 
   // TODO Alex implement it better later
   // We replace screen and the revert it
-  async function showGifResult(gifUrl) {
+  // async function showGifResult(gifUrl) {
     // let oldHtmlForScreen = $('#screen-view').html();
     // $('#screen-view').remove();
     // let htmlCode = `<img src=${gifUrl} id='screen-view' />`;
@@ -303,7 +315,7 @@ $( document ).ready(async function() {
     // document.getElementById('result-gif').style.display = 'block';
     // await sleep(3000);
     // document.getElementById('result-gif').style.display = 'none';
-  }
+  // }
 
   function fail(err) {
     if (window.failedTimes) {
