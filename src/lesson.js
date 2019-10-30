@@ -20,8 +20,7 @@ const $ = window.$;
 const toastr = window.toastr;
 
 const MINIMAL_LOADING_TIME = 500; // ms
-// const FAILED_TIMES_TO_SHOW_SOLUTION = 4;
-const FAILED_TIMES_TO_SHOW_SOLUTION = 1;
+const FAILED_TIMES_TO_SHOW_SOLUTION = 3;
 const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
 const solvedTasksKey = 'codeplaySolvedTasks';
 const allTasksKey = 'codeplayAllTasks';
