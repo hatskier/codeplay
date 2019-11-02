@@ -49,6 +49,22 @@ function getParamStr(url) {
   return paramsStr;
 }
 
+function isMobile() {
+  return window.screen.width < 1024;
+}
+
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
+
+function getFailedTimeToShowSolution() {
+  if (isMobile()) {
+    return 0;
+  } else {
+    return FAILED_TIMES_TO_SHOW_SOLUTION;
+  }
+}
+
 function getParam(paramStr, param) {
   let jsonStr = 
     '{"'
@@ -132,6 +148,7 @@ $( document ).ready(async function() {
 
   window.run = async function() {
     toastr.success('Program started');
+    scrollToTop();
     await Editor.reorderLines();
     changeManageButtons({showStop: true, showRun: false});
     showTerminalManagerLink();
@@ -194,9 +211,16 @@ $( document ).ready(async function() {
   window.help = function() {
     Tour.start();
   };
-  if (!localStorage.tourStarted) {
+  if (!localStorage.tourStarted && !isMobile()) {
     localStorage.tourStarted = true;
     Tour.start();
+  }
+
+  if (!localStorage.mobileNotificationShowed && isMobile()) {
+    localStorage.mobileNotificationShowed = true;
+    alert('As you know programmers usually use computers to work,'
+          + ' so we strongly recommend to check our website on'
+          + ' desktop to have the best posssible experience :)');
   }
 
   window.toggleTerminalMode = function () {
@@ -323,7 +347,7 @@ $( document ).ready(async function() {
       window.failedTimes = 1;
     }
 
-    if (window.failedTimes > FAILED_TIMES_TO_SHOW_SOLUTION) {
+    if (window.failedTimes > getFailedTimeToShowSolution()) {
       showSolution();
     }
     
@@ -386,6 +410,10 @@ $( document ).ready(async function() {
     let html = `
       <p class="doc doc-task-description">${conf.taskDescription}</p>
       <table id="doc-table">
+        <tr>
+          <th>Instruction</th>
+          <th>Description</th>
+        </tr>
         ${
           Object.keys(conf.methods).map(method =>
                                         '<tr><td class="doc doc-method-name notranslate">'
@@ -467,14 +495,14 @@ $( document ).ready(async function() {
 
   // TODO - make it better
   function showOverlaySpinner() {
-    changeVisibility('top-container', false);
+    changeVisibility('code-editor', false);
     changeVisibility('bottom-container', false);
     changeVisibility('control-bar', false);
     changeVisibility('overlay', true);
   }
 
   function hideOverlaySpinner() {
-    changeVisibility('top-container', true);
+    changeVisibility('code-editor', true);
     changeVisibility('bottom-container', true);
     changeVisibility('control-bar', true);
     changeVisibility('overlay', false);

@@ -13,6 +13,8 @@
 
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="shortcut icon" type="image/png" href="./favicon.ico"/>
     <title>Codenplay - task</title>
     <script>
@@ -51,12 +53,12 @@
       <style>
         /* CUSTOM MANUAL STYLES */
 
-        #top-container,#bottom-container,#control-bar {
+        #top-container,#bottom-container,#control-bar,#code-editor {
           display: none; /* for image preloading spinner */
         }
 
         #top-container {
-          height: 500px;
+          /* height: 500px; */
         }
 
         .toast {
@@ -70,7 +72,25 @@
         }
 
         #screen-view-container,#control-container {
-          float: left;
+          /* float: left; */
+        }
+
+        #screen-view-container {
+          /* width: 50%; */
+        }
+
+        #screen-view {
+          margin: auto;
+          /* Position relative is important for dynamic objects in codeplay */
+          position: relative;
+          box-shadow: 0 0 3px;
+        }
+
+        @media only screen and (max-width: 1023px) {
+          #screen-view {
+            /* margin: initial; */
+            margin-top: 40px;
+          }
         }
 
         #control-bar {
@@ -87,12 +107,17 @@
         }
 
         #bottom-container {
-          clear: both;
+          /* clear: both; */
+          margin-top: 25px;
         }
 
         #control-container {
-          width: 49%;
+          /* width: 49%; */
         }
+
+        /* #top-container {
+          
+        } */
 
         #code-editor {
           margin: auto;
@@ -103,15 +128,11 @@
           box-shadow: 0 0 2px;
         }
 
-        #screen-view-container {
-          width: 50%;
-        }
-
-        #screen-view {
-          margin: auto;
-          /* Position relative is important for dynamic objects in codeplay */
-          position: relative;
-          box-shadow: 0 0 3px;
+        @media only screen and (max-width: 1023px) {
+          #code-editor {
+            /* margin: initial; */
+            width: 90vw;
+          }
         }
 
         #run-button {
@@ -147,12 +168,15 @@
         }
 
         #overlay {
-          position: fixed;
+          top: 0;
+          left: 0;
+          position: absolute;
           width: 100vw;
           height: 100vh;
           /* background: white url(img/spinner2.svg) center center no-repeat; */
           opacity: 1;
           text-align: center;
+          z-index: 30 !important;
         }
 
         img#spinner {
@@ -176,12 +200,17 @@
           transition-delay: 0s;
         }
 
+        #doc-table td, #doc-table th {
+          padding: 10px;
+          border: 1px solid green;
+        }
+
         .doc-method-name {
           font-weight: bolder;
         }
 
         .doc-method-description {
-          padding-left: 20px;
+          /* padding-left: 20px; */
           font-size: small;
         }
 
@@ -216,6 +245,16 @@
           width: 70%;
           height: 500px;
         }
+
+        @media only screen and (max-width: 1023px) {
+          .window {
+            margin: initial;
+            width: 98%;
+            margin-bottom: 200px;
+          }
+        }
+
+
         .window:before {
           content: ' ';
           display: block;
@@ -266,6 +305,10 @@
 
         .error-notification-text {
           margin-top: 10px;
+        }
+
+        .mdl-snackbar--active {
+          position: fixed;
         }
 
         @font-face {
@@ -341,10 +384,7 @@
       <!-- This div could be used for toastr message customization -->
       <!-- <div id="toast-container"></div> -->
 
-      <div id="overlay">
-        <img id="spinner" src="img/spinner2.svg">
-        <div id="loading-progress"><span id="percentage-loaded">1</span>%</div>
-      </div>
+
 
       <!-- <div id="success-modal" class="modal">
         <h2>Well done!</h2>
@@ -361,35 +401,43 @@
           </a>
         </div>
       </div> -->
-    
-      <div id="top-container">
-        <div id="screen-view-container">
+
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col">
           <div id="screen-view">
           </div>
         </div>
-        <div class="notranslate" id="control-container" >
+        <div class="mdl-cell mdl-cell--6-col notranslate">
           <div id="code-editor"></div>
         </div>
-      </div>
-  
-      <div id="bottom-container">
 
-        <div id="terminal-manager-links">
-          <span onclick="toggleTerminalMode()" id="terminal-manager-link">hide logs</span>
-        </div>
-
-        <div class="window">
-
-          <div class="terminal">
-            <p class="log" id="logs"></p>
-
-            <div id="documentation-container">
-              <h4 class="doc centered-header">Docs</h4>
-              <div id="doc-view"></div>
+        <div class="mdl-cell mdl-cell--12-col notranslate">
+          <div id="bottom-container">
+            <div id="terminal-manager-links">
+              <span onclick="toggleTerminalMode()" id="terminal-manager-link">hide logs</span>
+            </div>
+            <div class="window">
+              <div class="terminal">
+                <p class="log" id="logs"></p>
+                <div id="documentation-container">
+                  <h4 class="doc centered-header">Documentation</h4>
+                  <div id="doc-view"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    
+      <!-- <div id="top-container" class="mdl-grid">
+        <div class="mdl-cell mdl-cell--1-col">
+          <div id="screen-view">
+          </div>
+        </div>
+        <div class="notranslate mdl-cell mdl-cell--1-col" id="control-container" >
+          <div id="code-editor"></div>
+        </div>
+      </div> -->
 
       <div class="main-page-button-container">
         <a href="javascript:history.back()">
@@ -433,6 +481,11 @@
         <button class="mdl-snackbar__action" type="button"></button>
       </div>
 
+    </div>
+
+    <div id="overlay">
+      <img id="spinner" src="img/spinner2.svg">
+      <div id="loading-progress"><span id="percentage-loaded">1</span>%</div>
     </div>
 
     <script src="./lesson.bundle.js"></script>
