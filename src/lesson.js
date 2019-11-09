@@ -408,22 +408,27 @@ $( document ).ready(async function() {
   
   function buildDocumentationView(conf) {
     let html = `
+      <h6>Task: ${configName}</h6>
       <p class="doc doc-task-description">${conf.taskDescription}</p>
+
+      <h6>Available instructions</h6>
+
       <table id="doc-table">
-        <tr>
-          <th>Instruction</th>
-          <th>Description</th>
-        </tr>
         ${
           Object.keys(conf.methods).map(method =>
                                         '<tr><td class="doc doc-method-name notranslate">'
                                         + method
-                                        + '</td><td class="doc doc-method-description">'
-                                        + conf.methods[method].doc
-                                        + '</td></tr>')
+                                        // + '</td><td class="doc doc-method-description">'
+                                        // + conf.methods[method].doc
+                                        // + '</td></tr>'
+                                        )
           .join('')
         }
       </table>
+
+      <h6>Please note</h6>
+      <p>Each instruction should end with ();</p>
+      <p>Comments (lines with // at the beginning) are ignored by program executor</p>
     `;
     $('#doc-view').html(html);
   }

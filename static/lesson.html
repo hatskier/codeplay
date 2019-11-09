@@ -53,6 +53,7 @@
       <style>
         /* CUSTOM MANUAL STYLES */
 
+
         #top-container,#bottom-container,#control-bar,#code-editor {
           display: none; /* for image preloading spinner */
         }
@@ -90,6 +91,10 @@
           #screen-view {
             /* margin: initial; */
             margin-top: 40px;
+          }
+
+          .error-notification-img {
+            width: 80px !important;
           }
         }
 
@@ -133,6 +138,8 @@
             /* margin: initial; */
             width: 90vw;
           }
+
+
         }
 
         #run-button {
@@ -379,6 +386,10 @@
           border-radius: 3px;
         }
 
+        .terminal h6 {
+          font-weight: 900;
+        }
+
       </style>
 
       <!-- This div could be used for toastr message customization -->
@@ -420,7 +431,7 @@
               <div class="terminal">
                 <p class="log" id="logs"></p>
                 <div id="documentation-container">
-                  <h4 class="doc centered-header">Documentation</h4>
+                  <!-- <h6 class="doc">Documentation</h6> -->
                   <div id="doc-view"></div>
                 </div>
               </div>
