@@ -18,6 +18,11 @@ import lessonConfigs from './lesson-configs';
 
 const $ = window.$;
 const toastr = window.toastr;
+toastr.options = {
+  closeButton: true,
+  showDuration: 3000,
+  hideDuration: 10,
+};
 
 const MINIMAL_LOADING_TIME = 500; // ms
 const FAILED_TIMES_TO_SHOW_SOLUTION = 3;
