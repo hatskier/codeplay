@@ -54,7 +54,7 @@
         /* CUSTOM MANUAL STYLES */
 
 
-        #top-container,#bottom-container,#control-bar,#code-editor {
+        #top-container,#bottom-container,#control-bar,#code-editor,#main-page-button-container {
           display: none; /* for image preloading spinner */
         }
 
@@ -222,7 +222,8 @@
         }
 
         #terminal-manager-link {
-          font-family: "Courier New", monospace;
+          /* font-family: "Courier New", monospace; */
+          font-family: 'PT Mono', monospace;
           cursor: pointer;
           text-decoration: underline;
           position: relative;
@@ -239,7 +240,6 @@
 
 
         /* TERMINAL STYLES (copied from https://codepen.io/alidavut/pen/OXzxOO) */
-
 
         /* TODO refactor - remove commented parts */
         .window {
@@ -282,7 +282,8 @@
 
         .terminal {
           margin: 20px;
-          font-family: monospace;
+          /* font-family: monospace; */
+          font-family: 'PT Mono', monospace;
           font-size: 16px;
           color: #22da26;
         }
@@ -388,6 +389,7 @@
 
         .terminal h6 {
           font-weight: 900;
+          font-family: 'PT Mono', monospace;;
         }
 
       </style>
@@ -450,8 +452,8 @@
         </div>
       </div> -->
 
-      <div class="main-page-button-container">
-        <a href="javascript:history.back()">
+      <div id="main-page-button-container" class="main-page-button-container">
+        <a href="#" onclick="goBack()">
           <img class="close-icon md-icon clickable" src="./img/back-circle.svg">
         </a>
       </div>
@@ -475,7 +477,23 @@
         </div>
 
         <div>
+          <img id="language-button" class="md-icon clickable" src="./img/language.svg">
+          <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
+              for="language-button">
+            <li class="mdl-menu__item" onclick="reloadWithLang('en')">English</li>
+            <li class="mdl-menu__item" onclick="reloadWithLang('ru')">Русский</li>
+            <li class="mdl-menu__item" onclick="reloadWithLang('pl')">Polski</li>
+          </ul>
+        </div>
+
+        <div>
           <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/blue-settings.png">
+          <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
+              for="settings-button">
+            <li class="mdl-menu__item" onclick="setSpeed('normal')">Normal speed</li>
+            <li class="mdl-menu__item" onclick="setSpeed('fast')">Fast speed</li>
+            <li class="mdl-menu__item" onclick="setSpeed('slow')">Slow speed</li>
+          </ul>
         </div>
 
         <div id="stop-button" class="clickable" onclick="reset()">

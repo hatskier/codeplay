@@ -2,6 +2,7 @@ import Position from './position';
 import ObjectOnField from './object-on-field';
 import Page from './page';
 import Logger from './logger';
+// import Translation from './translation';
 
 const DEFAULT_TICK_TIME = 500;
 
@@ -63,7 +64,7 @@ class Field {
   setSpeed(speed) {
     switch (speed) {
       case 'fast':
-        this.tickTime = 100;
+        this.tickTime = 200;
         break;
       case 'normal':
         this.tickTime = 400;
@@ -207,6 +208,8 @@ class Field {
     const context = {field: this, state: this.state};
 
     for (let node of codeTree) {
+
+
 
       this.checkIfExecutionStopped();
 

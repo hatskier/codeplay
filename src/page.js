@@ -87,9 +87,9 @@ Page.addLog = function(msg, opts) {
   // }
   // $('#logs').html('<p class="command">' + msg + '</p>' + $('#logs').html());
   if (opts && opts.error) {
-    $('#logs').prepend('<p class="command command-error">' + msg + '</p>');  
+    $('#logs').prepend('<p class="command notranslate command-error">' + msg + '</p>');  
   } else {
-    $('#logs').prepend('<p class="command">' + msg + '</p>');
+    $('#logs').prepend('<p class="command notranslate">' + msg + '</p>');
   }
 
 };

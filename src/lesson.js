@@ -11,6 +11,7 @@ import GifUrls from './gifUrls';
 
 import sleep from './sleep';
 
+import Translation from './translation';
 
 import Tour from './codeplay-tour';
 
@@ -95,6 +96,12 @@ $( document ).ready(async function() {
   let paramsStr = getParamStr(location.href);
   let configName = getParam(paramsStr, 'config');
   let nextPage = getParam(paramsStr, 'nextPage');
+  let lang = getParam(paramsStr, 'lang');
+
+  if (lang !== 'pl' && lang !== 'ru') {
+    lang = 'en';
+  }
+  window.lang = lang;
 
   if (!configName) {
     alert('Bad config param!');
@@ -134,6 +141,15 @@ $( document ).ready(async function() {
   preventHotKeys();
 
   window.editor = editor;
+
+  if (localStorage.savedCodeInEditor) {
+    window.editor.setValue(localStorage.savedCodeInEditor);
+    localStorage.removeItem('savedCodeInEditor');
+  }
+
+  if (lang !== 'en') {
+    Translation.translatePage(lang);
+  }
 
   window.reset = function() {
     changeManageButtons({showStop: false, showRun: false});
@@ -200,18 +216,25 @@ $( document ).ready(async function() {
     }
   };
 
-  window.toggleSpeed = function() {
-    if (!localStorage.programSpeed || localStorage.programSpeed == 'slow') {
-      localStorage.programSpeed = 'normal';
-    } else if (localStorage.programSpeed == 'normal') {
-      localStorage.programSpeed = 'fast';
-    } else {
-      localStorage.programSpeed = 'slow';
-    }
+  // Deprecated
+  // window.toggleSpeed = function() {
+  //   if (!localStorage.programSpeed || localStorage.programSpeed == 'slow') {
+  //     localStorage.programSpeed = 'normal';
+  //   } else if (localStorage.programSpeed == 'normal') {
+  //     localStorage.programSpeed = 'fast';
+  //   } else {
+  //     localStorage.programSpeed = 'slow';
+  //   }
 
+  //   field.setSpeed(localStorage.programSpeed);
+  //   toastr.success('Speed set to: ' + localStorage.programSpeed);
+  // };
+
+  window.setSpeed = function(speed) {
+    localStorage.programSpeed = speed;
     field.setSpeed(localStorage.programSpeed);
-    toastr.success('Speed set to: ' + localStorage.programSpeed);
-  };
+    toastr.success('Program execution speed set to: ' + localStorage.programSpeed);
+  }
 
   window.help = function() {
     Tour.start();
@@ -228,7 +251,7 @@ $( document ).ready(async function() {
           + ' desktop to have the best posssible experience :)');
   }
 
-  window.toggleTerminalMode = function () {
+  window.toggleTerminalMode = function() {
     $('#logs').toggle(300);
     showTerminalManagerLink();
     const link = document.getElementById('terminal-manager-link');
@@ -237,6 +260,26 @@ $( document ).ready(async function() {
     } else {
       link.innerHTML = 'hide logs';
     }
+  };
+
+  window.reloadWithLang = function(lang) {
+    // localStorage.savedCodeInEditor = window.editor.getValue();
+    // Rebuild url
+    if (lang == window.lang) {
+      return;
+    }
+
+    if (location.href.includes('lang=')) {
+      location.href = location.href.replace(
+        /lang=../g,
+        `lang=${lang}`);
+    } else {
+      location.href += `&lang=${lang}`;
+    }
+  };
+
+  window.goBack = function() {
+    location.href = nextPage;
   };
 
   // window.goToTheNextLesson = function () {
@@ -380,6 +423,7 @@ $( document ).ready(async function() {
 
     // This is important (it is saved in blockstack on the next page)
     localStorage.lastSolvedLessonCodenplay = lessonName;
+    localStorage.gameTaskJustSolved = true;
   }
   
   async function success() {
@@ -413,10 +457,10 @@ $( document ).ready(async function() {
   
   function buildDocumentationView(conf) {
     let html = `
-      <h6>Task: ${configName}</h6>
-      <p class="doc doc-task-description">${conf.taskDescription}</p>
+      <h6 class="notranslate"><span class="notranslate">Task</span>: ${configName}</h6>
+      <p class="doc doc-task-description notranslate">${conf.taskDescription}</p>
 
-      <h6>Available instructions</h6>
+      <h6 class="notranslate">Available instructions</h6>
 
       <table id="doc-table">
         ${
@@ -431,9 +475,9 @@ $( document ).ready(async function() {
         }
       </table>
 
-      <h6>Please note</h6>
-      <p>Each instruction should end with ();</p>
-      <p>Comments (lines with // at the beginning) are ignored by program executor</p>
+      <h6 class="notranslate">Please note</h6>
+      <p class="notranslate">Each instruction should end with ();</p>
+      <p class="notranslate">Comments (lines with // at the beginning) are ignored by program executor</p>
     `;
     $('#doc-view').html(html);
   }
@@ -506,6 +550,7 @@ $( document ).ready(async function() {
   // TODO - make it better
   function showOverlaySpinner() {
     changeVisibility('code-editor', false);
+    changeVisibility('main-page-button-container', false);
     changeVisibility('bottom-container', false);
     changeVisibility('control-bar', false);
     changeVisibility('overlay', true);
@@ -513,6 +558,7 @@ $( document ).ready(async function() {
 
   function hideOverlaySpinner() {
     changeVisibility('code-editor', true);
+    changeVisibility('main-page-button-container', true);
     changeVisibility('bottom-container', true);
     changeVisibility('control-bar', true);
     changeVisibility('overlay', false);
