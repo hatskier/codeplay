@@ -19,7 +19,10 @@ let conf = prepareLabyrinthConf({
   stepWidth: 11,
 
   solutionCode:
-`
+`// Write the directions for the man
+// to get through the labyrinth.
+// You can add numbers to specify
+// the number of steps.
 man.moveRight(4);
 man.moveDown(2);
 man.moveLeft(3);
@@ -31,7 +34,9 @@ man.moveRight(3);
 
 
   startCodeVal: '// Write the directions for the man\n'
-  + '// to get through the labyrinth\n'
+  + '// to get through the labyrinth.\n'
+  + '// You can add numbers to specify\n'
+  + '// the number of steps.\n'
   + 'man.moveRight(4);\n',
 });
 

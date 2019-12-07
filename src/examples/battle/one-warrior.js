@@ -22,11 +22,10 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
 
   solutionCode:
-`hero.defend();
-hero.defend();
+`// Defeat the warrior
+// Come closer and attack using your sword
 hero.go();
 hero.attack();
-
 `,
 
 startCodeVal:

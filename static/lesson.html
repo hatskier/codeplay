@@ -250,7 +250,7 @@
           position: relative;
           margin: 0 auto;
           width: 70%;
-          height: 500px;
+          /* height: 600px; */
         }
 
         @media only screen and (max-width: 1023px) {
@@ -269,7 +269,7 @@
           background: #C6C6C6;
         }
         .window:after {
-          content: '. . .';
+          /* content: '. . .'; */
           position: absolute;
           left: 12px;
           right: 0;
@@ -317,6 +317,8 @@
 
         .mdl-snackbar--active {
           position: fixed;
+          top: 0;
+          height: 50px;
         }
 
         @font-face {
@@ -419,6 +421,9 @@
         <div class="mdl-cell mdl-cell--6-col">
           <div id="screen-view">
           </div>
+          <div class="mdl-tooltip" data-mdl-for="screen-view">
+            Click the big green button in the right bottom corner to run the code and see how it's running on the screen
+          </div>
         </div>
         <div class="mdl-cell mdl-cell--6-col notranslate">
           <div id="code-editor"></div>
@@ -457,6 +462,9 @@
           <img class="close-icon md-icon clickable" src="./img/back-circle.svg">
         </a>
       </div>
+      <div class="mdl-tooltip" data-mdl-for="main-page-button-container">
+        Go back
+      </div>
 
       <div class="hidden-solver-button-container">
         <img class="close-icon md-icon hidden-solver-button" onclick="solveTask()" src="./img/back-circle.svg">
@@ -470,13 +478,27 @@
         </div> -->
 
         <div>
-          <a href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
-            <!-- <img id="video-tutorial-button" class="md-icon clickable" src="./img/video-icon-blue.svg"> -->
-            <img class="md-icon clickable" src="./img/blue-help.png">
-          </a>
+          <!-- <a href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
+          </a> -->
+          <img id="help-button" class="md-icon clickable" src="./img/blue-help.png">
+          <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
+              for="help-button">
+            <li class="mdl-menu__item" onclick="solveTask()">
+              Show the solution code
+            </li>
+            <li class="mdl-menu__item" onclick="startCodeplayTour()">Show the tutorial</li>
+            <a class="mdl-menu__item" href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
+              Explanation on YouTube
+            </a>
+          </ul>
+
+          <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="help-button">
+            Click if you need any help
+          </div>
         </div>
 
-        <div>
+        <!-- TODO uncomment when translations will be available -->
+        <!-- <div>
           <img id="language-button" class="md-icon clickable" src="./img/language.svg">
           <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
               for="language-button">
@@ -484,7 +506,7 @@
             <li class="mdl-menu__item" onclick="reloadWithLang('ru')">Русский</li>
             <li class="mdl-menu__item" onclick="reloadWithLang('pl')">Polski</li>
           </ul>
-        </div>
+        </div> -->
 
         <div>
           <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/blue-settings.png">
@@ -494,14 +516,24 @@
             <li class="mdl-menu__item" onclick="setSpeed('fast')">Fast speed</li>
             <li class="mdl-menu__item" onclick="setSpeed('slow')">Slow speed</li>
           </ul>
+
+          <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="settings-button">
+            Set program execution speed
+          </div>
         </div>
 
         <div id="stop-button" class="clickable" onclick="reset()">
           <img class="md-icon" src="./img/white-stop-icon.png">
         </div>
+        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="stop-button">
+          Stop the program
+        </div>
 
         <div id="run-button" class="clickable" onclick="run()">
           <img class="md-icon" src="./img/white-play-icon.png">
+        </div>
+        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="run-button">
+          Run the program
         </div>
       </div>
 

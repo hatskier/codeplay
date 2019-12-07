@@ -238,7 +238,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, solutio
         }
       }
     ],
-    taskDescription: 'Just kill your enemies and don\'t let them kill you. The game has rounds, the hero acts first and the enemies - after him. You should write a command for each round so the hero will know what to do. If you want to skip some round just use the defend instruction ;)',
+    taskDescription: 'Just kill your enemies and don\'t let them kill you. The game has rounds, and you should write a command for each round. To skip some round you can use the defend instruction.',
     size: {
       width: 550,
       height: 450

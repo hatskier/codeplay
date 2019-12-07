@@ -7,7 +7,7 @@ const translationsFromEnglish = {
     'Available instructions': 'Доступные инструкции',
     'Please note': 'Обрати внимание',
     'Each instruction should end with ();': 'Каждая инструкция должна заканчиваться ();',
-    'Comments (lines with // at the beginning) are ignored by program executor': 'Комментарии (строки с // в начале) игнорируются при выполнении программы',
+    'Green lines with // are ignored by the program executor (this is comments)': 'Комментарии (строки с // в начале) игнорируются при выполнении программы',
     'Task': 'Задание',
 
     // Tasks descriptions
@@ -19,7 +19,7 @@ const translationsFromEnglish = {
     'Available instructions': 'Dostępne instrukcje',
     'Please note': 'Zwróć uwagę',
     'Each instruction should end with ();': 'Każda instrukcja powinna się kończyć na ();',
-    'Comments (lines with // at the beginning) are ignored by program executor': 'Komentarze (linijki z // na początku) są ignorowane podczas wykonywania programu',
+    'Green lines with // are ignored by the program executor (this is comments)': 'Komentarze (linijki z // na początku) są ignorowane podczas wykonywania programu',
     'Task': 'Zadanie',
 
     // Tasks descriptions

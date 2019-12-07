@@ -162,6 +162,7 @@ $( document ).ready(async function() {
   window.solveTask = function() {
     if (conf.solutionCode) {
       editor.setValue(conf.solutionCode);
+      window.toastr.success('Read the solution code! Try to understand it and then click the run button');
     }
   };
 
@@ -173,6 +174,7 @@ $( document ).ready(async function() {
     await Editor.reorderLines();
     changeManageButtons({showStop: true, showRun: false});
     showTerminalManagerLink();
+    window.showLogsInTerminal();
     const code = editor.getValue();
     if (code) {
       try {
@@ -210,6 +212,7 @@ $( document ).ready(async function() {
         initField();
       } finally {
         changeManageButtons({showStop: false, showRun: true});
+        window.hideLogsInTerminal();
         // To revert normal color fot the last code line
         Editor.highlightLine(prevNr, '');
       }
@@ -236,7 +239,7 @@ $( document ).ready(async function() {
     toastr.success('Program execution speed set to: ' + localStorage.programSpeed);
   }
 
-  window.help = function() {
+  window.startCodeplayTour = function() {
     Tour.start();
   };
   if (!localStorage.tourStarted && !isMobile()) {
@@ -251,16 +254,28 @@ $( document ).ready(async function() {
           + ' desktop to have the best posssible experience :)');
   }
 
-  window.toggleTerminalMode = function() {
-    $('#logs').toggle(300);
+  function updateTerminalModeLinkText() {
     showTerminalManagerLink();
     const link = document.getElementById('terminal-manager-link');
-    if (link.innerHTML == 'hide logs') {
-      link.innerHTML = 'show logs';
+
+    if ($('#logs').is(':visible')) {
+      link.innerHTML = 'show less';
     } else {
-      link.innerHTML = 'hide logs';
+      link.innerHTML = 'show more';
     }
+  }
+
+  window.toggleTerminalMode = function() {
+    $('#logs').toggle(300, updateTerminalModeLinkText);
   };
+  
+  window.showLogsInTerminal = function() {
+    $('#logs').show(300, updateTerminalModeLinkText);
+  };
+  
+  window.hideLogsInTerminal = function() {
+    $('#logs').hide(300, updateTerminalModeLinkText);
+  }
 
   window.reloadWithLang = function(lang) {
     // localStorage.savedCodeInEditor = window.editor.getValue();
@@ -365,7 +380,6 @@ $( document ).ready(async function() {
       timeout: 7000,
       actionHandler: function() {
         window.solveTask();
-        window.toastr.success('Read the solution code! Try to understand it and then click the run button');
       },
       actionText: 'Yes'
     };
@@ -395,7 +409,7 @@ $( document ).ready(async function() {
       window.failedTimes = 1;
     }
 
-    if (window.failedTimes > getFailedTimeToShowSolution()) {
+    if (window.failedTimes >= getFailedTimeToShowSolution()) {
       showSolution();
     }
     
@@ -477,7 +491,7 @@ $( document ).ready(async function() {
 
       <h6 class="notranslate">Please note</h6>
       <p class="notranslate">Each instruction should end with ();</p>
-      <p class="notranslate">Comments (lines with // at the beginning) are ignored by program executor</p>
+      <p class="notranslate">Green lines with // are ignored by the program executor (this is comments)</p>
     `;
     $('#doc-view').html(html);
   }

@@ -44,10 +44,12 @@ takeHands();
 takeBody();
 `,
 
-  solutionCode: `  
+  solutionCode: 
+`// Let’s get iron man into his outfit
+// Then make him fly to save the world
 takeHands();
 takeBody();
 takeHead();
 fly();
-    `,
+`,
 });

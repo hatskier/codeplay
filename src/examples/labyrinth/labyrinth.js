@@ -49,7 +49,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
       }
     ],
   
-    taskDescription: 'Write the directions for the man to get through the labyrinth'
+    taskDescription: 'Write the directions for the caveman to get through the labyrinth'
   }
 
   function drawLabyrinth() {

@@ -22,22 +22,20 @@ let conf = prepareBattle({
 
   solutionCode:
 `// Defeat the dragon
+// You can't kill the dragon with a sword
 hero.defend();
 hero.go();
 hero.defend();
 hero.spearAttack();
-
 `,
 
 startCodeVal:
 `// Defeat the dragon
-// Note that you can't kill the dragon with sword
-// Dragon don't want to be killed and will try to
-// stop you
+// You can't kill the dragon with a sword
 `
 
 });
 
-conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
+// conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
 
 export default conf;

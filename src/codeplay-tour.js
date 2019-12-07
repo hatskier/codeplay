@@ -25,7 +25,7 @@ const myTour = {
     content: 'Read the task description and documentation for all the commands you can use'
   }, {
     target: '#code-editor',
-    content: 'Then type your code here'
+    content: 'Then type your code here. Each code instruction should end with (); Green lines with // are ignored by the program executor'
   }, {
     target: '#run-button',
     content: 'When you are sure that the code is finished click the run button',
@@ -34,7 +34,7 @@ const myTour = {
     content: 'And see your program running on the screen!'
   }, {
     target: '.window',
-    content: 'Additional information will be printed here'
+    content: 'Additional information will be printed here. Start to code and have fun ;)'
   }
 ]
 };

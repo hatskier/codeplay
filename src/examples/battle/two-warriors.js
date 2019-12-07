@@ -45,7 +45,8 @@ let conf = prepareBattle({
   maxTicksToWin: 30,
 
   solutionCode:
-`
+`// Defeat all the enemies and don't let them
+// kill you
 hero.go();
 hero.attack();
 hero.defend();

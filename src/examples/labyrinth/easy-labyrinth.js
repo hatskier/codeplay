@@ -15,7 +15,8 @@ let conf = prepareLabyrinthConf({
   stepWidth: 25,
 
     solutionCode:
-`
+`// Write the directions for the caveman
+// to get through the labyrinth
 man.moveRight();
 man.moveRight();
 man.moveDown();
@@ -25,7 +26,7 @@ man.moveRight();
 man.moveRight();
 `,
 
-  startCodeVal: '// Write the directions for the man\n'
+  startCodeVal: '// Write the directions for the caveman\n'
                 + '// to get through the labyrinth\n'
                 + 'man.moveRight();\n',
                 // + 'man.moveRight();\n'
