@@ -468,6 +468,47 @@ $( document ).ready(async function() {
     // TODO uncomment for connecting to blockstack app
     window.location.href = nextPage;
   }
+
+  function buildDocTable(conf) {
+    // let docTable = Object.keys(conf.methods).map(method =>
+    //   `<tr><td id="${method}" class="doc doc-method-name notranslate">`
+    //   + method
+      
+    //   + '</td><td class="doc doc-method-description">'
+    //   + conf.methods[method].doc
+    //   + '</td>'
+    //   // conf.docTableExtended ? 
+    //   + '</tr>'
+    //   )
+    // .join('');
+
+    let docTable = '';
+
+    if (conf.docTableExtended) {
+      let tableHeaders = `<tr>
+        <th>Instruction</th>
+        <th>Description</th>
+        <th>Examples</th>
+      </tr>`
+      docTable += tableHeaders;
+    }
+
+    for (let method of Object.keys(conf.methods)) {
+      docTable +=
+        `<tr><td id="${method}" class="doc doc-method-name notranslate">${method}</td>`;
+
+      if (conf.docTableExtended) {
+        docTable +=
+          `<td class="doc doc-method-description">${conf.methods[method].doc}</td>`;
+        docTable +=
+          `<td class="doc doc-method-examples">${conf.methods[method].examples || ''}</td>`
+      }
+
+      docTable += '</tr>';
+    }
+
+    return docTable;
+  }
   
   function buildDocumentationView(conf) {
     let html = `
@@ -477,21 +518,12 @@ $( document ).ready(async function() {
       <h6 class="notranslate">Available instructions</h6>
 
       <table id="doc-table">
-        ${
-          Object.keys(conf.methods).map(method =>
-                                        '<tr><td class="doc doc-method-name notranslate">'
-                                        + method
-                                        // + '</td><td class="doc doc-method-description">'
-                                        // + conf.methods[method].doc
-                                        // + '</td></tr>'
-                                        )
-          .join('')
-        }
+        ${buildDocTable(conf)}
       </table>
 
       <h6 class="notranslate">Please note</h6>
       <p class="notranslate">Each instruction should end with ();</p>
-      <p class="notranslate">Green lines with // are ignored by the program executor (this is comments)</p>
+      <p class="notranslate">Green lines with // are ignored by the program executor (we call 'em comments)</p>
     `;
     $('#doc-view').html(html);
   }

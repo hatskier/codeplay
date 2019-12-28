@@ -42,14 +42,11 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
 
   solutionCode:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
+`// Defeat the dragon
 
-var weapon = getPerfectWeapon();
-
-// Select one option and uncomment it removing //
+// Select the correct option
+// and uncomment it (remove //)
+// hero.attackWith('sword');
 hero.attackWith('spear');
 `,
 
@@ -57,7 +54,7 @@ startCodeVal:
 `// Defeat the dragon
 
 // Select the correct option
-// and uncomment it removing //
+// and uncomment it (remove //)
 // hero.attackWith('sword');
 // hero.attackWith('spear');
 `

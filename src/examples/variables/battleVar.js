@@ -382,7 +382,8 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
         }
       }
     ],
-    taskDescription: 'Just kill your enemies and don\'t let them kill you. The game has rounds, the hero acts first and the enemies - after him. You should write a command for each round so the hero will know what to do.',
+    docTableExtended: true,
+    taskDescription: 'Just kill your enemies and don\'t let them kill you.',
     size: {
       width: 550,
       height: 450
@@ -390,7 +391,8 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
 
     methods: {
       'hero.go': {
-        doc: 'Hero goes right, you also can pass number of steps, like: hero.go(2);',
+        doc: 'You can specify a number of steps (1 step is default)',
+        examples: 'hero.go(2); <br /> hero.go(distance);',
         async run({field, state}, params) {
           field.log('Hero is going...');
 
@@ -407,7 +409,9 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
       },
 
       'hero.swordAttack': {
-        doc: 'Hero attacks using sword. Note that dragons can not be killed with sword',
+        doc: 'This instruction doesn\'t accept arguments.',
+        examples: 'hero.swordAttack();',
+
         async run({field, state}) {
           await swordAttack({field, state});
           // field.log('Hero is attacking with sword...');
@@ -431,7 +435,8 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
       },
 
       'hero.spearAttack': {
-        doc: 'Use this command to attack with spear. Note that spear can kill only dragons use this command to attack with spear. Note that spear can kill only dragons',
+        doc: 'This instruction doesn\'t accept arguments.',
+        examples: 'hero.spearAttack();',
         async run({field, state}) {
           await spearAttack({field, state});
           // field.log('Hero is attacking with spear...');
@@ -454,7 +459,9 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
       },
 
       'hero.attackWith': {
-        doc: 'The hero attacks using the selected weapon. Weapon should be passed by argument. Example: hero.attackWith(\'sword\'); or hero.attackWith(\'spear\');',
+        // doc: 'The hero attacks using the selected weapon. Weapon should be passed by argument. Example: hero.attackWith(\'sword\'); or hero.attackWith(\'spear\');',
+        doc: 'You can specify the weapon to attack with',
+        examples: 'hero.attackWith(\'spear\'); <br /> hero.attackWith(\'sword\');',
         async run({field, state}, args) {
           if (args.length != 1) {
             runtimeError('hero.attackWith takes only one argument: \'spear\' or \'sword\'');
@@ -471,7 +478,8 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
       },
 
       'hero.defend': {
-        doc: 'Hero stays at the place and defends. Noone can kill him. You also could use this command to skip your step.',
+        doc: 'This instruction doesn\'t accept arguments.',
+        examples: 'hero.defend();',
         async run({field, state}) {
           field.log('Hero is defending...');
           await field.changeImage('Hero', 'hero-defending');
@@ -480,12 +488,12 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, step
         }
       },
 
-      'print': {
-        doc: 'You can use this instruction to print value of some variable to the terminal. Example: print(x);',
-        async run({field}, params) {
-          field.log(`Printing using command "print": ${params[0]}`);
-        }
-      },
+      // 'print': {
+      //   doc: 'You can use this instruction to print value of some variable to the terminal. Example: print(x);',
+      //   async run({field}, params) {
+      //     field.log(`Printing using command "print": ${params[0]}`);
+      //   }
+      // },
     },
 
     iterations: createIterations(),

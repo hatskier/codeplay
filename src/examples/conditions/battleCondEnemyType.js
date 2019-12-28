@@ -42,10 +42,7 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
 
   solutionCode:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
+`// Fix the code
 
 var enemy = getEnemyType();
 
@@ -59,21 +56,17 @@ if (enemy == 'warrior') {
 `,
 
 startCodeVal:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
+`// Fix the code
 
 var enemy = getEnemyType();
 
 if (enemy == 'dragon') {
-  hero.spearAttack();
+  hero.swordAttack();
 }
 
 if (enemy == 'warrior') {
   hero.swordAttack();
 }
-
 `
 });
 

@@ -243,7 +243,7 @@
           <h5 class="clickable">
             <!-- <img style="width: 30px;" src="file:///Users/alex/Downloads/done.png"> -->
             <div v-bind:id="`done-gif-container-${task.id}`">
-              {{ task.title }}
+              {{ task.id }}
               <img v-if="solvedTasks[task.id]" class="done-gif" src="https://s3.amazonaws.com/alcourses.codeplay/common/done.gif" >
             </div>
             <div v-if="solvedTasks[task.id]" class="mdl-tooltip" v-bind:data-mdl-for="`done-gif-container-${task.id}`">
@@ -457,56 +457,60 @@
             {
               title: 'Battle var',
               id: 'battleVarDistance',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            {
-              title: 'Battle var with dragon',
-              id: 'battleVarDistanceWithDragon',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            {
-              title: 'Battle var with dragon 2',
-              id: 'battleVarDistanceWithVarDragon',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            {
-              title: 'battleVarWeaponSimpleWarrior',
-              id: 'battleVarWeaponSimpleWarrior',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
               title: 'battleVarWeaponSimpleDragon',
               id: 'battleVarWeaponSimpleDragon',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
               title: 'battleVarWeaponSimpleWarrior',
               id: 'battleVarWeaponSimpleWarrior',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
               title: 'battleVarWeapon',
               id: 'battleVarWeapon',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
+              title: 'Battle var with dragon',
+              id: 'battleVarDistanceWithDragon',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              unit: 'Variables',
+              color: 'red',
+            },
+
+
+            {
+              title: 'Battle var with dragon 2',
+              id: 'battleVarDistanceWithVarDragon',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              unit: 'Variables',
+              color: 'red',
+            },
+            
+            {
+              title: 'battleVarWeaponSimpleWarrior',
+              id: 'battleVarWeaponSimpleWarrior',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              unit: 'Variables',
+              color: 'red',
+            },
+            
+            {
               title: 'battleVarWeaponAndDistance',
               id: 'battleVarWeaponAndDistance',
-              img: 'https://codenplay.io/img/codenplay-logo.png',
+              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },

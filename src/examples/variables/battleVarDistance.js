@@ -58,7 +58,7 @@ let conf = prepareBattle({
 
   solutionCode:
 `// Defeat the warrior
-// Come closer and attack using your sword
+// Come closer and attack
 // Distance to your enemy may differ
 // Hint: you can use variable "distance"
 
@@ -71,7 +71,7 @@ hero.attack();
 
 startCodeVal:
 `// Defeat the warrior
-// Come closer and attack using your sword
+// Come closer and attack
 // Distance to your enemy may differ
 // Hint: you can use variable "distance"
 
@@ -82,6 +82,7 @@ var distance = getDistance();
 });
 
 conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
+conf.methods["hero.attack"].examples = 'hero.attack();';
 delete conf.methods["hero.swordAttack"];
 delete conf.methods['hero.spearAttack'];
 delete conf.methods['hero.attackWith'];

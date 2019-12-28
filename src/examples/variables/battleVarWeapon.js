@@ -42,13 +42,14 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
 
   solutionCode:
-`// Defeat the warrior
+`// Defeat your enemies
+
 // Note, that there are multiple
 // testing iterations
-// so your enemies will change
+// and your enemies will change
 
 // Fortunately, you have information
-// about perfect weapon for every
+// about the most fitting weapon for each
 // testing iteration
 var weapon = getPerfectWeapon();
 
@@ -57,13 +58,14 @@ hero.attackWith(weapon);
 `,
 
 startCodeVal:
-`// Defeat the warrior
+`// Defeat your enemies
+
 // Note, that there are multiple
 // testing iterations
-// so your enemies will change
+// and your enemies will change
 
 // Fortunately, you have information
-// about perfect weapon for each
+// about the most fitting weapon for each
 // testing iteration
 var weapon = getPerfectWeapon();
 
@@ -72,6 +74,7 @@ var weapon = getPerfectWeapon();
 });
 
 // conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
+conf.methods["hero.attackWith"].examples += " <br /> hero.attackWith(weapon);";
 delete conf.methods["hero.swordAttack"];
 delete conf.methods['hero.spearAttack'];
 

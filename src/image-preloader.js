@@ -12,12 +12,13 @@ window.addEventListener('DOMContentLoaded', function() {
 
 async function startImagePreloading() {
   // Lessons images preloading
-  for (let lessonConfigName in lessonConfigs) {
-    Logger.info(`-------- PreLoading images for config: ${lessonConfigName} - started --------`);
-    let config = lessonConfigs[lessonConfigName];
-    await preLoadImagesForConfig(config);
-    Logger.info(`-------- PreLoading images for config: ${lessonConfigName} - finished --------`);
-  }
+  // TODO uncomment to enable
+  // for (let lessonConfigName in lessonConfigs) {
+  //   Logger.info(`-------- PreLoading images for config: ${lessonConfigName} - started --------`);
+  //   let config = lessonConfigs[lessonConfigName];
+  //   await preLoadImagesForConfig(config);
+  //   Logger.info(`-------- PreLoading images for config: ${lessonConfigName} - finished --------`);
+  // }
 
   // Gifs preloading
   for (let gifType of ['success', 'fail']) {

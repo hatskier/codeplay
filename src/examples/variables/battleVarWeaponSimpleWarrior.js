@@ -46,9 +46,9 @@ let conf = prepareBattle({
 
 var weapon = 'sword';
 
-// Replace "print" with the appropriate instruction
-// to attack the warrior
+// Just uncomment any of lines below
 hero.attackWith(weapon);
+// hero.attackWith('sword');
 `,
 
 startCodeVal:
@@ -56,10 +56,9 @@ startCodeVal:
 
 var weapon = 'sword';
 
-// Replace "print" with
-// the appropriate instruction
-// to attack the warrior
-print(weapon);
+// Just uncomment any of lines below
+// hero.attackWith(weapon);
+// hero.attackWith('sword');
 `
 });
 

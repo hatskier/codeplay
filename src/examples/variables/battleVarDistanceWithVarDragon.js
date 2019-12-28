@@ -60,17 +60,11 @@ let conf = prepareBattle({
 
   solutionCode:
 `// Defeat the warrior and the dragon
-// Make 1 step forward and
-// attack the dragon
-// Then come to the warrior and use
-// your sword
-// Hint: you can use variable "distance"
-// Hint: you can use math operations (like -)
 
 // Distance to warrior
 var distance = getDistance();
 
-// Write your code below
+// Add one instruction below
 hero.go(1);
 hero.attackWith('spear');
 hero.go(distance - 1);
@@ -79,19 +73,14 @@ hero.attackWith('sword');
 
 startCodeVal:
 `// Defeat the warrior and the dragon
-// Make 1 step forward and
-// attack the dragon
-// Then come to the warrior and use
-// your sword
-// Hint: you can use variable "distance"
-// Hint: you can use math operations (like -)
 
-// Distance to warrior
+// Distance to the warrior
 var distance = getDistance();
 
-// Write your code below
+// Add one instruction below
 hero.go(1);
 hero.attackWith('spear');
+hero.go(distance - 1);
 `
 });
 
