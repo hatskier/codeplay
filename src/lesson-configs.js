@@ -36,6 +36,10 @@ import battleVarWeaponAndDistance from './examples/variables/battleVarWeaponAndD
 // Conditions
 import condExample from './examples/conditions/example';
 import battleCondEnemyType from './examples/conditions/battleCondEnemyType';
+import battleCondEnemyTypeWithElse from './examples/conditions/battleCondEnemyTypeWithElse';
+import battleCondEnemyTypeWithAttack from './examples/conditions/battleCondEnemyTypeWithAttack';
+import battleCondThreeEnemies from './examples/conditions/battleCondThreeEnemies';
+import battleCondThreeEnemiesWithAttack from './examples/conditions/battleCondThreeEnemiesWithAttack';
 
 export default {
   car,
@@ -62,5 +66,9 @@ export default {
   battleVarWeaponAndDistance,
 
   condExample,
-  battleCondEnemyType
+  battleCondEnemyType,
+  battleCondEnemyTypeWithElse,
+  battleCondEnemyTypeWithAttack,
+  battleCondThreeEnemies,
+  battleCondThreeEnemiesWithAttack,
 };
