@@ -55,7 +55,7 @@ let conf = prepareBattle({
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         }
       },
       funResults: {
@@ -79,13 +79,12 @@ if (enemy == 'archer') {
 }
 if (enemy == 'dragon') {
   hero.defend();
+  hero.go();
   hero.spearAttack();
 }
 if (enemy == 'warrior') {
-  hero.defend();
   hero.swordAttack();
 }
-
 `,
 
 startCodeVal:
@@ -94,9 +93,11 @@ startCodeVal:
 var enemy = getEnemyType();
 
 if (enemy == 'archer') {
+  hero.go();
   hero.swordAttack();
 }
 if (enemy == 'dragon') {
+  hero.go();
   hero.spearAttack();
 }
 if (enemy == 'warrior') {

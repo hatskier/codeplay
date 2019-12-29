@@ -16,7 +16,7 @@ let conf = prepareBattle({
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 49
+          location: 59
         }
       },
       funResults: {
@@ -60,6 +60,7 @@ if (enemy == 'dragon') {
 
 if (enemy == 'warrior') {
   hero.defend();
+  hero.go();
   hero.swordAttack();
 }
 `,
