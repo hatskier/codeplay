@@ -1,5 +1,5 @@
 let conf = {
-  bg: 'https://s3.amazonaws.com/alcourses.codeplay/example1/city-miami.jpg',
+  bg: 'https://codenplay.io/img/tasks/example1/city-miami.jpg',
 
   size: {
     width: 500,

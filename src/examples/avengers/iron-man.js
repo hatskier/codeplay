@@ -2,11 +2,11 @@ import createOrderTask from '../order-task';
 
 export default createOrderTask({
   images: {
-    'body': 'https://s3.amazonaws.com/alcourses.codeplay/avengers/iron-man/iron-man-body.gif', 
-    'flying': 'https://s3.amazonaws.com/alcourses.codeplay/avengers/iron-man/iron-man-flying.gif',
-    'hands': 'https://s3.amazonaws.com/alcourses.codeplay/avengers/iron-man/iron-man-hands.gif',
-    'head': 'https://s3.amazonaws.com/alcourses.codeplay/avengers/iron-man/iron-man-head.gif',
-    'start': 'https://s3.amazonaws.com/alcourses.codeplay/avengers/iron-man/iron-man-start.png',
+    'body': 'https://codenplay.io/img/tasks/avengers/iron-man/iron-man-body.gif', 
+    'flying': 'https://codenplay.io/img/tasks/avengers/iron-man/iron-man-flying.gif',
+    'hands': 'https://codenplay.io/img/tasks/avengers/iron-man/iron-man-hands.gif',
+    'head': 'https://codenplay.io/img/tasks/avengers/iron-man/iron-man-head.gif',
+    'start': 'https://codenplay.io/img/tasks/avengers/iron-man/iron-man-start.png',
   },
   methods: {
     'takeHands': {

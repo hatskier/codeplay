@@ -2,11 +2,11 @@ import prepareQuestion from './question';
 
 export default prepareQuestion({
   images: {
-    'question': 'https://s3.amazonaws.com/alcourses.codeplay/question/question-emoji.gif',
-    'procrastination': 'https://s3.amazonaws.com/alcourses.codeplay/question/procrastinating.gif',
-    'dancing': 'https://s3.amazonaws.com/alcourses.codeplay/question/club-dancing.gif',
-    'computer': 'https://s3.amazonaws.com/alcourses.codeplay/question/work-hard.gif',
-    'money': 'https://s3.amazonaws.com/alcourses.codeplay/question/spend-money.gif',
+    'question': 'https://codenplay.io/img/tasks/question/question-emoji.gif',
+    'procrastination': 'https://codenplay.io/img/tasks/question/procrastinating.gif',
+    'dancing': 'https://codenplay.io/img/tasks/question/club-dancing.gif',
+    'computer': 'https://codenplay.io/img/tasks/question/work-hard.gif',
+    'money': 'https://codenplay.io/img/tasks/question/spend-money.gif',
   },
 
   startWithBg: 'question',

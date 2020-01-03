@@ -153,7 +153,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, solutio
           break;
         }
         case 'archer': {
-          let arrowYPos = obj.pos.y + 8;
+          let arrowYPos = obj.pos.y + 12;
           const newObj = field.addObject({
             kind: 'img',
             imgKey: 'arrow',
@@ -193,31 +193,31 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, solutio
     // This field is used for caching
     images: {
       // Hero
-      'hero': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-waiting.gif',
-      'hero-sword-attack': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-attacking.gif',
-      'hero-spear-attack': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-waiting.gif',
-      'hero-going': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-running.gif',
-      'hero-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
-      'hero-defending': 'https://s3.amazonaws.com/alcourses.codeplay/battle/hero-defending.gif',
+      'hero': 'https://codenplay.io/img/tasks/battle/hero-waiting.gif',
+      'hero-sword-attack': 'https://codenplay.io/img/tasks/battle/hero-attacking.gif',
+      'hero-spear-attack': 'https://codenplay.io/img/tasks/battle/hero-waiting.gif',
+      'hero-going': 'https://codenplay.io/img/tasks/battle/hero-running.gif',
+      'hero-dying': 'https://codenplay.io/img/tasks/battle/grave.png',
+      'hero-defending': 'https://codenplay.io/img/tasks/battle/hero-defending.gif',
 
       // Enemies
-      'dragon': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon-flying.gif',
-      'dragon-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/dragon-flying.gif',
-      'dragon-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave-with-wings.gif',
-      'warrior': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-new-waiting.gif',
-      'warrior-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/warrior-new-attacking.gif',
-      'warrior-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
-      'archer': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer_new.png',
-      'archer-attacking': 'https://s3.amazonaws.com/alcourses.codeplay/battle/archer_new.png',
-      'archer-dying': 'https://s3.amazonaws.com/alcourses.codeplay/battle/grave.png',
+      'dragon': 'https://codenplay.io/img/tasks/battle/dragon-flying.gif',
+      'dragon-attacking': 'https://codenplay.io/img/tasks/battle/dragon-flying.gif',
+      'dragon-dying': 'https://codenplay.io/img/tasks/battle/grave-with-wings.gif',
+      'warrior': 'https://codenplay.io/img/tasks/battle/warrior-new-waiting.gif',
+      'warrior-attacking': 'https://codenplay.io/img/tasks/battle/warrior-new-attacking.gif',
+      'warrior-dying': 'https://codenplay.io/img/tasks/battle/grave.png',
+      'archer': 'https://codenplay.io/img/tasks/battle/warrior-archer-purchased.png',
+      'archer-attacking': 'https://codenplay.io/img/tasks/battle/warrior-archer-purchased.png',
+      'archer-dying': 'https://codenplay.io/img/tasks/battle/grave.png',
 
       // Weapon
-      'spear': 'https://s3.amazonaws.com/alcourses.codeplay/battle/spear.png',
-      'arrow': 'https://s3.amazonaws.com/alcourses.codeplay/battle/arrow-transparent.png',
-      'fire': 'https://s3.amazonaws.com/alcourses.codeplay/battle/fireball.png',
+      'spear': 'https://codenplay.io/img/tasks/battle/spear.png',
+      'arrow': 'https://codenplay.io/img/tasks/battle/arrow-transparent.png',
+      'fire': 'https://codenplay.io/img/tasks/battle/fireball.png',
 
       // Other images
-      'landscape': 'https://s3.amazonaws.com/alcourses.codeplay/battle/landscape.jpg'
+      'landscape': 'https://codenplay.io/img/tasks/battle/landscape.jpg'
     },
     bg: 'landscape',
     objects: [

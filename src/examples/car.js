@@ -1,5 +1,5 @@
 let conf = {
-  bg: 'https://s3.amazonaws.com/alcourses.codeplay/example1/city-miami.jpg',
+  bg: 'https://codenplay.io/img/tasks/example1/city-miami.jpg',
 
   size: {
     width: 500,
@@ -9,7 +9,7 @@ let conf = {
   objects: [
     {
       id: 'Car',
-      img: 'https://s3.amazonaws.com/alcourses.codeplay/example1/car-black.png',
+      img: 'https://codenplay.io/img/tasks/example1/car-black.png',
       size: {
         width: 50,
         height: 50
@@ -21,7 +21,7 @@ let conf = {
     },
     {
       id: 'Rocket',
-      img: 'https://s3.amazonaws.com/alcourses.codeplay/example1/rocket.png',
+      img: 'https://codenplay.io/img/tasks/example1/rocket.png',
       size: {
         width: 50,
         height: 100

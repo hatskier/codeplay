@@ -13,20 +13,8 @@
   font-size: small;
 }
 
-#top-container,#screen-view-container,#control-container {
-  /* Uncomment for CSS debugging */
-  /* border: 1px solid lightblue; */
-}
-
-#screen-view-container,#control-container {
-  /* float: left; */
-}
-
-#screen-view-container {
-  /* width: 50%; */
-}
-
 #screen-view {
+  /* To center align */
   margin: auto;
   /* Position relative is important for dynamic objects in codeplay */
   position: relative;

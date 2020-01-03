@@ -24,13 +24,13 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
   
   let conf = {
     images: {
-      'skale': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/skale.jpg',
-      // 'man-static': 'https://s3.amazonaws.com/alcourses.codeplay/example-labyrinth/man-static.png',
-      // 'man-going-left': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick-going-left.gif',
-      // 'man-going-right': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif'
-      'man-static': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/caveman-waiting.png',
-      'man-going-left': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/caveman-going-left.gif',
-      'man-going-right': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/caveman-going-right.gif',
+      'skale': 'https://codenplay.io/img/tasks/labyrinth/skale.jpg',
+      // 'man-static': 'https://codenplay.io/img/tasks/example-labyrinth/man-static.png',
+      // 'man-going-left': 'https://codenplay.io/img/tasks/labyrinth/man-with-stick-going-left.gif',
+      // 'man-going-right': 'https://codenplay.io/img/tasks/labyrinth/man-with-stick.gif'
+      'man-static': 'https://codenplay.io/img/tasks/labyrinth/caveman-waiting.png',
+      'man-going-left': 'https://codenplay.io/img/tasks/labyrinth/caveman-going-left.gif',
+      'man-going-right': 'https://codenplay.io/img/tasks/labyrinth/caveman-going-right.gif',
     },
 
     bg: 'skale',
@@ -39,7 +39,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
       {
         kind: 'img',
         id: 'Man',
-        // img: 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif',
+        // img: 'https://codenplay.io/img/tasks/labyrinth/man-with-stick.gif',
         imgKey: 'man-static',
         size: {
           width: defaultSize,

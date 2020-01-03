@@ -2,39 +2,39 @@ import Logger from './logger';
 
 export default {
   success: [
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/barnie-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/bear-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/brad-pit-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/fortnite-dance-1-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/fortnite-dance-2-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/friends-success.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/hangover-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/jump-success.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Success/tony-stark-success.gif'
+    'https://codenplay.io/img/tasks/Gifs/Success/barnie-success.gif',
+    'https://codenplay.io/img/tasks/Gifs/Success/bear-success.gif',
+    'https://codenplay.io/img/tasks/Gifs/Success/brad-pit-success.gif',
+    'https://codenplay.io/img/tasks/Gifs/Success/fortnite-dance-1-success.gif',
+    'https://codenplay.io/img/tasks/Gifs/Success/fortnite-dance-2-success.gif',
+    'https://codenplay.io/img/tasks/Gifs/Success/friends-success.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Success/hangover-success.gif',
+    'https://codenplay.io/img/tasks/Gifs/Success/jump-success.gif',
+    'https://codenplay.io/img/tasks/Gifs/Success/tony-stark-success.gif'
   ],
   fail: [
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/incorrect.gif', // large
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-cock.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-duck.gif', // large
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-gray.gif', // large
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-guitar.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-indian.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-kid.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-minion.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-no-no.gif', // too large size
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-old-man.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-show.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-parrot.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/no-try-again.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/nope-commentator.gif', // large
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/wrong.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-tom-cat-no.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-iron-man-np.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-no-2.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-no-3.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-no.gif',
-    // 'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-shrek-no.gif',
-    'https://s3.amazonaws.com/alcourses.codeplay/Gifs/Fail/giphy-sonic-no.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/incorrect.gif', // large
+    'https://codenplay.io/img/tasks/Gifs/Fail/no-cock.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-duck.gif', // large
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-gray.gif', // large
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-guitar.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-indian.gif',
+    'https://codenplay.io/img/tasks/Gifs/Fail/no-kid.gif',
+    'https://codenplay.io/img/tasks/Gifs/Fail/no-minion.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-no-no.gif', // too large size
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-old-man.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-show.gif',
+    'https://codenplay.io/img/tasks/Gifs/Fail/no-parrot.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/no-try-again.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/nope-commentator.gif', // large
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/wrong.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/giphy-tom-cat-no.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/giphy-iron-man-np.gif',
+    'https://codenplay.io/img/tasks/Gifs/Fail/giphy-no-2.gif',
+    'https://codenplay.io/img/tasks/Gifs/Fail/giphy-no-3.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/giphy-no.gif',
+    // 'https://codenplay.io/img/tasks/Gifs/Fail/giphy-shrek-no.gif',
+    'https://codenplay.io/img/tasks/Gifs/Fail/giphy-sonic-no.gif',
   ],
   thanks: [
     // Commented for now

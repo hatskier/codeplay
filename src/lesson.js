@@ -27,7 +27,7 @@ toastr.options = {
 
 const MINIMAL_LOADING_TIME = 500; // ms
 const FAILED_TIMES_TO_SHOW_SOLUTION = 3;
-const spinnerUrl = 'https://s3.amazonaws.com/alcourses.codeplay/common/spinner2.svg';
+const spinnerUrl = 'https://codenplay.io/img/tasks/common/spinner2.svg';
 const solvedTasksKey = 'codeplaySolvedTasks';
 const allTasksKey = 'codeplayAllTasks';
 
@@ -84,6 +84,18 @@ function getParam(paramStr, param) {
   return obj[param];
 }
 
+function adjustFieldScreenScaling(conf) {
+  if (window.screen.width < conf.size.width) {
+    // const scaling = window.screen.width / (conf.size.width + 50);
+    // document.getElementById('screen-view-container').style.transform = `scale(${scaling})`;
+    // document.getElementById('screen-view-container').style['margin-top'] = `-${(1 - scaling) * conf.size.height}px`;
+    // document.getElementById('screen-view-container').style['-webkit-transform-origin'] = 'left bottom';
+    // document.getElementById('screen-view-container').style['-moz-transform-origin'] = 'left bottom';
+    // document.getElementById('screen-view').width = window.screen.width;
+    // document.getElementById('screen-view').height = window.screen.width;
+  }
+}
+
 
 $( document ).ready(async function() {
   Logger.info('Page is loaded');
@@ -111,6 +123,8 @@ $( document ).ready(async function() {
   let conf = lessonConfigs[configName];
 
   await assetsLoading();
+
+  adjustFieldScreenScaling(conf);
 
   initField();
 
@@ -245,6 +259,9 @@ $( document ).ready(async function() {
   if (!localStorage.tourStarted && !isMobile()) {
     localStorage.tourStarted = true;
     Tour.start();
+  }
+  if (isMobile()) {
+    window.solveTask();
   }
 
   if (!localStorage.mobileNotificationShowed && isMobile()) {

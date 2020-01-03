@@ -2,19 +2,19 @@
 <html>
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145552506-1"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145552506-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'UA-145552506-1');
-    </script>
+    </script> -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:image" content="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png" />
-    <meta name="twitter:image" content="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png">
+    <meta property="og:image" content="https://codenplay.io/img/tasks/common/codenplay-share-image.png" />
+    <meta name="twitter:image" content="https://codenplay.io/img/tasks/common/codenplay-share-image.png">
 
     <title>Codenplay - main</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -184,7 +184,7 @@
     </script> -->
 
     <!-- TODO - maybe will remove it later -->
-    <img src="https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png" style="display:none">
+    <img src="https://codenplay.io/img/tasks/common/codenplay-share-image.png" style="display:none">
 
     <!-- <div id="only-desktop-notification">
       <h5>NOT COMPATIBLE WITH MOBILE DEVICES</h3>
@@ -244,7 +244,7 @@
             <!-- <img style="width: 30px;" src="file:///Users/alex/Downloads/done.png"> -->
             <div v-bind:id="`done-gif-container-${task.id}`">
               {{ task.id }}
-              <img v-if="solvedTasks[task.id]" class="done-gif" src="https://s3.amazonaws.com/alcourses.codeplay/common/done.gif" >
+              <img v-if="solvedTasks[task.id]" class="done-gif" src="https://codenplay.io/img/tasks/common/done.gif" >
             </div>
             <div v-if="solvedTasks[task.id]" class="mdl-tooltip" v-bind:data-mdl-for="`done-gif-container-${task.id}`">
               This task is solved. Great job!
@@ -273,31 +273,31 @@
                 <div class="mdl-cell mdl-cell--2-col social-link-conainer mdl-cell-1-offset">
                   <!-- FB -->
                   <a class="social-link" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://codenplay.io&quote=Try to learn coding by playing with codenplay.io">
-                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/facebook.svg">
+                    <img src="https://codenplay.io/img/tasks/social-icons/facebook.svg">
                   </a>
                 </div>
                 <div class="mdl-cell mdl-cell--2-col social-link-conainer">
                   <!-- Twitter -->
                   <a class="social-link" target="_blank" href="http://twitter.com/intent/tweet?status=Try to learn coding by playing with codenplay.io+https://codenplay.io">
-                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/twitter.svg">
+                    <img src="https://codenplay.io/img/tasks/social-icons/twitter.svg">
                   </a>
                 </div>
                 <div class="mdl-cell mdl-cell--2-col social-link-conainer">
                   <!-- vk.com -->
-                  <a class="social-link" target="_blank" href="https://vk.com/share.php?url=https://codenplay.io&title=Try to learn coding by playing with codenplay.io&image=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png">
-                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/vk.svg">
+                  <a class="social-link" target="_blank" href="https://vk.com/share.php?url=https://codenplay.io&title=Try to learn coding by playing with codenplay.io&image=https://codenplay.io/img/tasks/common/codenplay-share-image.png">
+                    <img src="https://codenplay.io/img/tasks/social-icons/vk.svg">
                   </a>
                 </div>
                 <div  class="mdl-cell mdl-cell--2-col social-link-conainer">
                   <!-- LinkedIn -->
                   <a class="social-link" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://codenplay.io&title=&summary=Try to learn coding by playing with codenplay.io&source=">
-                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/linkedin.svg">
+                    <img src="https://codenplay.io/img/tasks/social-icons/linkedin.svg">
                   </a>
                 </div>
                 <div class="mdl-cell mdl-cell--2-col social-link-conainer">
                   <!-- Pinterest -->
-                  <a class="social-link" target="_blank" href="https://pinterest.com/pin/create/button/?url=https://codenplay.io&media=https://s3.amazonaws.com/alcourses.codeplay/common/codenplay-share-image.png&description=Try to learn coding by playing with codenplay.io">
-                    <img src="https://s3.amazonaws.com/alcourses.codeplay/social-icons/pinterest.svg">
+                  <a class="social-link" target="_blank" href="https://pinterest.com/pin/create/button/?url=https://codenplay.io&media=https://codenplay.io/img/tasks/common/codenplay-share-image.png&description=Try to learn coding by playing with codenplay.io">
+                    <img src="https://codenplay.io/img/tasks/social-icons/pinterest.svg">
                   </a>
                 </div>
 
@@ -310,12 +310,12 @@
 
     <script>
       function sendEventToGA(category, action, label) {
-        // sendEventToGA('send', 'event', 'Task', 'AllCompleted', currentSolvedTasksStringified);
-        console.log(`Sending event to ga: ${category}, ${action}, ${label}`);
-        gtag('event', action, {
-          'event_label': label,
-          'event_category': category
-        });
+        // Commented to disable email saving to GA
+        // console.log(`Sending event to ga: ${category}, ${action}, ${label}`);
+        // gtag('event', action, {
+        //   'event_label': label,
+        //   'event_category': category
+        // });
       }
 
 
@@ -385,70 +385,70 @@
             {
               title: 'Iron man',
               id: 'ironMan',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/iron-man.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
               unit: 'Instructions',
               color: 'green',
             },
             {
               title: 'Labyrinth 1',
               id: 'easyLabyrinth',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/caveman.jpg',
+              img: 'https://codenplay.io/img/tasks/Tasks/caveman.jpg',
               unit: 'Instructions',
               color: 'green',
             },
             {
               title: 'Labyrinth 2',
               id: 'mediumLabyrinth',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/labyrinth-2.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
               unit: 'Instructions',
               color: 'yellow',
             },
             {
               title: 'Labyrinth 3',
               id: 'hardLabyrinth',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/labyrinth.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth.png',
               unit: 'Instructions',
               color: 'yellow',
             },
             // {
             //   title: 'Achieve your goals',
             //   id: 'workHard',
-            //   img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/achieve-goal.png',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/achieve-goal.png',
             //   unit: 'Instructions',
             //   color: 'green',
             // },
             {
               title: 'Battle 1',
               id: 'oneWarrior',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior.png',
               unit: 'Instructions',
               color: 'yellow',
             },
             {
               title: 'Battle 2',
               id: 'oneArcher',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/battle.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
               unit: 'Instructions',
               color: 'yellow',
             },
             {
               title: 'Battle 3',
               id: 'twoWarriors',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Instructions',
               color: 'red',
             },
             {
               title: 'Battle with dragon',
               id: 'oneDragon',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/dragon.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/dragon.png',
               unit: 'Instructions',
               color: 'red',
             },
             // {
             //   title: 'Var example',
             //   id: 'varExample',
-            //   img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/dragon.png',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/dragon.png',
             //   unit: 'Variables',
             //   color: 'red',
             // },
@@ -457,35 +457,35 @@
             {
               title: 'Battle var',
               id: 'battleVarDistance',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
               title: 'battleVarWeaponSimpleDragon',
               id: 'battleVarWeaponSimpleDragon',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
               title: 'battleVarWeaponSimpleWarrior',
               id: 'battleVarWeaponSimpleWarrior',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
               title: 'battleVarWeapon',
               id: 'battleVarWeapon',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             {
               title: 'Battle var with dragon',
               id: 'battleVarDistanceWithDragon',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
@@ -494,7 +494,7 @@
             {
               title: 'Battle var with dragon 2',
               id: 'battleVarDistanceWithVarDragon',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
@@ -502,7 +502,7 @@
             {
               title: 'battleVarWeaponSimpleWarrior',
               id: 'battleVarWeaponSimpleWarrior',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
@@ -510,14 +510,14 @@
             {
               title: 'battleVarWeaponAndDistance',
               id: 'battleVarWeaponAndDistance',
-              img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/warrior-equipped.png',
+              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
               unit: 'Variables',
               color: 'red',
             },
             // {
             //   title: 'Speak better',
             //   id: 'readMore',
-            //   img: 'https://s3.amazonaws.com/alcourses.codeplay/Tasks/speak.png',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/speak.png',
             //   unit: 'Instructions',
             //   color: 'green',
             // }

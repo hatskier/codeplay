@@ -12,7 +12,7 @@ function executingError(context, msg) {
   
 let conf = {
   images: {
-    'skale': 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/skale.jpg'
+    'skale': 'https://codenplay.io/img/tasks/labyrinth/skale.jpg'
   },
 
   bg: 'skale',
@@ -21,7 +21,7 @@ let conf = {
     // {
     //   kind: 'img',
     //   id: 'Man',
-    //   // img: 'https://s3.amazonaws.com/alcourses.codeplay/labyrinth/man-with-stick.gif',
+    //   // img: 'https://codenplay.io/img/tasks/labyrinth/man-with-stick.gif',
     //   imgKey: 'man-static',
     //   size: {
     //     width: defaultSize,
