@@ -85,12 +85,13 @@ function getParam(paramStr, param) {
 }
 
 function adjustFieldScreenScaling(conf) {
-  if (window.screen.width < conf.size.width) {
-    // const scaling = window.screen.width / (conf.size.width + 50);
-    // document.getElementById('screen-view-container').style.transform = `scale(${scaling})`;
-    // document.getElementById('screen-view-container').style['margin-top'] = `-${(1 - scaling) * conf.size.height}px`;
-    // document.getElementById('screen-view-container').style['-webkit-transform-origin'] = 'left bottom';
-    // document.getElementById('screen-view-container').style['-moz-transform-origin'] = 'left bottom';
+  if (window.screen.width < (conf.size.width + 20)) {
+    const scaling = window.screen.width / (conf.size.width + 50);
+    console.log('Adjusting field screen size with scale: ' + scaling);
+    document.getElementById('screen-view-container').style.transform = `scale(${scaling})`;
+    document.getElementById('screen-view-container').style['margin-top'] = `-${(1 - scaling) * conf.size.height}px`;
+    document.getElementById('screen-view-container').style['-webkit-transform-origin'] = 'left bottom';
+    document.getElementById('screen-view-container').style['-moz-transform-origin'] = 'left bottom';
     // document.getElementById('screen-view').width = window.screen.width;
     // document.getElementById('screen-view').height = window.screen.width;
   }
