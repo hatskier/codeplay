@@ -5,6 +5,7 @@ import Logger from './logger';
 // import Translation from './translation';
 
 const DEFAULT_TICK_TIME = 500;
+const WHILE_LOOP_MAX_ITERATIONS_NUMBER = 30;
 
 class Field {
   constructor({bg, objects, methods, size, tickHooks, images}) {
@@ -28,6 +29,7 @@ class Field {
     // TODO maybe it's better to store state outside
     this.state = {
       vars: {},
+      functions: {},
       funResults: {}, // hacky dict (TODO should be solved better in future)
     };
   }
@@ -177,6 +179,20 @@ class Field {
     this.state.vars[varName] = val;
   }
 
+
+  // Functions for functions
+  setFunArgsAndStatements(funName, args, stmts) {
+    Logger.debug(`Function declaration: ${funName}`);
+    this.state.functions[funName] = {
+      args,
+      stmts,
+    };
+  }
+
+  isFunctionDeclared(funName) {
+    return Boolean(this.state.functions[funName]);
+  }
+
   showProgramState() {
     this.log('-----------------------------');
     for (let varName in this.state.vars) {
@@ -247,7 +263,6 @@ class Field {
                 argValues.push(argVal);
               });
             }
-            node.args
 
             await method.run(context, argValues);
             // TODO make running line highlighting better
@@ -259,8 +274,15 @@ class Field {
             Logger.debug(`Running post hook for tickNr: ${tickNr}`);
             await this.tickHooks.post(tickNr, context);
             tickNr++;
+          } else if (this.isFunctionDeclared(node.name)) {
+            // TODO implement argument support for function calls
+            await this.tickSleep();
+            let { args, stmts } = this.state.functions[node.name];
+            if (stmts.length > 0) {
+              await this.run(stmts, lineHighlighter);
+            }
           } else {
-            const errMsg = `Method ${node.name} was not found`;
+            const errMsg = `Instruction ${node.name} was not found`;
             Logger.error(errMsg);
             throw new Error(errMsg);
           }
@@ -281,11 +303,27 @@ class Field {
           }
           break;
         }
+        // TODO test this case
         case 'whileStm': {
           await this.tickSleep();
-          const errMsg = 'While stm not implemented';
-          Logger.error(errMsg);
-          throw new Error(errMsg);
+          let loopCounter = 0;
+          while (this.getBoolValForExpr(node.expr)) {
+            Logger.debug(`Running while iteration nr: ${loopCounter}`);
+            loopCounter++;
+            if (node.stmts.length > 0) {
+              await this.run(node.stmts, lineHighlighter);
+            }
+            if (loopCounter > WHILE_LOOP_MAX_ITERATIONS_NUMBER) {
+              throw new Error('Maximum loop iterations number exceeded');
+              break;
+            }
+          }
+          break;
+        }
+        // TODO test this case
+        case 'funDecl': {
+          await this.tickSleep();
+          this.setFunArgsAndStatements(node.name, node.args, node.stmts);
         }
         case 'varDeclEmpty': {
           await this.tickSleep();

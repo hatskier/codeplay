@@ -1,4 +1,4 @@
-// Generated automatically by nearley, version 2.16.0
+// Generated automatically by nearley, version 2.19.0
 // http://github.com/Hardmath123/nearley
 (function () {
 function id(x) { return x[0]; }
@@ -42,6 +42,7 @@ var grammar = {
         }
         },
     {"name": "stm", "symbols": ["funCall"], "postprocess": id},
+    {"name": "stm", "symbols": ["funDecl"], "postprocess": id},
     {"name": "stm", "symbols": ["ifElseStm"], "postprocess": id},
     {"name": "stm", "symbols": ["whileStm"], "postprocess": id},
     {"name": "stm", "symbols": ["varDecl"], "postprocess": id},
@@ -86,10 +87,30 @@ var grammar = {
             type: 'funCall',
             name: data[0],
             args: data[2],
-            line: data[1].line
+            line: data[1].line,
           };
         }
         },
+    {"name": "funDecl", "symbols": [{"literal":"function"}, "_", "identifier", "_", {"literal":"("}, "funArgsNames", {"literal":")"}, "_", "stmBlock"], "postprocess": 
+        function(data) {
+          return {
+            type: 'funDecl',
+            name: data[2],
+            args: data[5],
+            stmts: data[8],
+            line: data[0].line,
+          };
+        }
+        },
+    {"name": "funArgsNames", "symbols": ["_"], "postprocess": id},
+    {"name": "funArgsNames$ebnf$1", "symbols": []},
+    {"name": "funArgsNames$ebnf$1$subexpression$1", "symbols": [{"literal":","}, "_", "identifier"]},
+    {"name": "funArgsNames$ebnf$1", "symbols": ["funArgsNames$ebnf$1", "funArgsNames$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "funArgsNames", "symbols": ["_", "identifier", "funArgsNames$ebnf$1"], "postprocess": 
+        function(data) {
+          return [data[1]].concat(data[2].map(el => el[2]))
+        }
+          },
     {"name": "funCallExpr", "symbols": ["identifier", {"literal":"("}, "funArgs", {"literal":")"}, "_"], "postprocess": 
         function(data) {
           return {

@@ -29,6 +29,7 @@ stmts -> _ (comment _):* (stm _ (comment _):* _):+ {%
 
 stm ->
     funCall {% id %}
+  | funDecl {% id %}
   | ifElseStm {% id %}
   | whileStm {% id %}
   | varDecl {% id %}
@@ -71,17 +72,36 @@ expr ->
   %}
 
 # funCall and funCallExpr could be refactored
-# TODO in future not only funCall will have location linked
 funCall -> identifier "(" funArgs ")" _ ";" {%
   function(data) {
     return {
       type: 'funCall',
       name: data[0],
       args: data[2],
-      line: data[1].line
+      line: data[1].line,
     };
   }
 %}
+
+funDecl -> "function" _ identifier _ "(" funArgsNames ")" _ stmBlock {%
+  function(data) {
+    return {
+      type: 'funDecl',
+      name: data[2],
+      args: data[5],
+      stmts: data[8],
+      line: data[0].line,
+    };
+  }
+%}
+
+funArgsNames ->
+  _ {% id %}
+  | _ identifier ("," _ identifier):* {%
+    function(data) {
+      return [data[1]].concat(data[2].map(el => el[2]))
+    }
+  %}
 
 funCallExpr -> identifier "(" funArgs ")" _ {%
   function(data) {
