@@ -127,6 +127,12 @@ $( document ).ready(async function() {
 
   adjustFieldScreenScaling(conf);
 
+  if (!isMobile()) {
+    document.getElementById('window').classList.add('slide-down-el');
+    document.getElementById('screen-view').classList.add('slide-left-el');
+    document.getElementById('code-editor').classList.add('slide-right-el');
+  }
+
   initField();
 
   const editor = Editor.setUp(conf);

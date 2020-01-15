@@ -51,6 +51,7 @@
       <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
       <!-- Custom styles -->
+      <link rel="stylesheet" href="animations.css" />
       <link rel="stylesheet" href="lesson.css" />
 
       <!-- This div could be used for toastr message customization -->
@@ -83,6 +84,27 @@
           </div>
         </div>
         <div class="mdl-cell mdl-cell--6-col notranslate">
+          <div id="variables-values-container">
+            <span id="variables-title">Variables</span>
+            <table class="mdl-data-table mdl-js-data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    x
+                  </td>
+                  <td>
+                    123
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div id="code-editor"></div>
         </div>
 
@@ -91,7 +113,7 @@
             <div id="terminal-manager-links">
               <span onclick="toggleTerminalMode()" id="terminal-manager-link">hide logs</span>
             </div>
-            <div class="window">
+            <div id="window" class="window">
               <div class="terminal">
                 <p class="log" id="logs"></p>
                 <div id="documentation-container">

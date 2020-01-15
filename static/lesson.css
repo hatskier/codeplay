@@ -194,6 +194,7 @@ img#spinner {
   position: relative;
   margin: 0 auto;
   width: 70%;
+  
   /* height: 600px; */
 }
 
@@ -336,4 +337,31 @@ img#spinner {
 .terminal h6 {
   font-weight: 900;
   font-family: 'PT Mono', monospace;;
+}
+
+#variables-values-container {
+  width: 200px;
+  background: white;
+  z-index: 101;
+  position: fixed;
+  top: calc(50vh - 150px);
+  height: 300px;
+  right: 0;
+  animation: slide-left-light 0.5s ease 0s forwards;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #00A5FB;
+}
+
+#variables-title {
+  font-size: 14px;
+  color: rgba(0,0,0,.54);;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: table;
+  font-weight: 600;
+  margin: auto;
+}
+
+#variables-values-container table {
+  margin: auto;
 }
