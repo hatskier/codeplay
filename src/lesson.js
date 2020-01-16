@@ -3,6 +3,7 @@ import Editor from './editor';
 import Parser from './lang/parser';
 import Logger from './logger';
 import GifUrls from './gifUrls';
+import Page from './page';
 
 // import $ from 'jquery';
 // import Typed from 'typed.js';
@@ -23,6 +24,7 @@ toastr.options = {
   closeButton: true,
   showDuration: 3000,
   hideDuration: 10,
+  positionClass: 'toast-bottom-left',
 };
 
 const MINIMAL_LOADING_TIME = 500; // ms
@@ -131,6 +133,9 @@ $( document ).ready(async function() {
     document.getElementById('window').classList.add('slide-down-el');
     document.getElementById('screen-view').classList.add('slide-left-el');
     document.getElementById('code-editor').classList.add('slide-right-el');
+
+    // It is commented because tooltips stop working when it's enabled
+    // document.getElementById('control-bar').classList.add('slide-left-el');
   }
 
   initField();
@@ -233,6 +238,7 @@ $( document ).ready(async function() {
         initField();
       } finally {
         changeManageButtons({showStop: false, showRun: true});
+        Page.setVariablesTableVisibility(false);
         window.hideLogsInTerminal();
         // To revert normal color fot the last code line
         Editor.highlightLine(prevNr, '');
@@ -263,10 +269,16 @@ $( document ).ready(async function() {
   window.startCodeplayTour = function() {
     Tour.start();
   };
+
   if (!localStorage.tourStarted && !isMobile()) {
-    localStorage.tourStarted = true;
-    Tour.start();
+    // This timeout added
+    // because we should wait until initial animation is finished
+    setTimeout(() => {
+      localStorage.tourStarted = true;
+      Tour.start();  
+    }, 1510);
   }
+
   if (isMobile()) {
     window.solveTask();
   }
@@ -484,6 +496,7 @@ $( document ).ready(async function() {
 
     let successImgUrl = GifUrls.getSuccessImg();
     // toastr.success('Well done!');
+    // toastr.options.positionClass = 'toast-top-right';
     toastr.success(`<img class="error-notification-img" src='${successImgUrl}'>
     <div class="error-notification-text">Well done! Saving your result...</div>`);
     // showGifResult(successImgUrl);

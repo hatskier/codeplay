@@ -122,6 +122,25 @@ Page.changeObjectRotation = function(id, degrees, duration) {
   });
 };
 
+Page.setVariablesTableVisibility = function(isVisible) {
+  let display = (isVisible ? 'block' : 'none');
+  console.log('setVariablesTableVisibility: ' + display);
+  document.getElementById('variables-values-container').style.display = display;
+}
+
+Page.updateVariablesTable = function(variables) {
+  if (variables && Object.keys(variables).length > 0) {
+    Page.setVariablesTableVisibility(true);
+  }
+  let htmlTableBody = '<tr>';
+  for (let variableName in variables) {
+    htmlTableBody += `<td class="mdl-data-table__cell--non-numeric variable-name-bold">${variableName}</td>`;
+    htmlTableBody += `<td>${variables[variableName]}</td>`;
+    htmlTableBody += '</tr>';
+  }
+  document.getElementById('variables-table-body').innerHTML = htmlTableBody;
+};
+
 function getPxCoords(object) {
   // if (object.kind == 'html') {
     return {

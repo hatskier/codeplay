@@ -11,6 +11,9 @@
 .toast {
   font-family: "Verdana", monospace;
   font-size: small;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
 }
 
 #screen-view {
@@ -340,23 +343,30 @@ img#spinner {
 }
 
 #variables-values-container {
+  display: none;
   width: 200px;
-  background: white;
+  background: #fbfbff;
   z-index: 101;
-  position: fixed;
-  top: calc(50vh - 150px);
-  height: 300px;
-  right: 0;
-  animation: slide-left-light 0.5s ease 0s forwards;
-  border-radius: 5px 0 0 5px;
-  border: 1px solid #00A5FB;
+  position: absolute;
+  /* top: calc(50vh - 150px); */
+  top: 26px;
+  height: 440px;
+  right: 17.5px;
+  animation: slide-left-light 0.3s ease 0s forwards;
+  /* border-radius: 50px 0 0 50px; */
+
+  /* border-left: 1px solid lightgray; */
+  /* border-top: 1px solid #00A5FB;
+  border-bottom: 1px solid #00A5FB; */
 }
 
 #variables-title {
   font-size: 14px;
-  color: rgba(0,0,0,.54);;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  /* color: rgba(0,0,0,.54); */
+  /* color: #22da26; */
+  color: #00A5FB;
+  padding-top: 15px;
+  padding-bottom: 15px;
   display: table;
   font-weight: 600;
   margin: auto;
@@ -364,4 +374,10 @@ img#spinner {
 
 #variables-values-container table {
   margin: auto;
+}
+
+.variable-name-bold {
+  font-weight: bold;
+  color: #5f6368;
+  /* color: #00A5FB; */
 }

@@ -205,6 +205,9 @@ class Field {
       }
     }
     this.log('-----------------------------');
+
+    // Update variables in variables table
+    Page.updateVariablesTable(this.state.vars);
   }
 
   //////////////////////////
