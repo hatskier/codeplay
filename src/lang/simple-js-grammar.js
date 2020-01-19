@@ -13,7 +13,7 @@ let lexer = moo.compile({
     string: /["'](?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^\'\"\\])*["']/,
     // string:  /["'](?:\\["\\]|[^\n"\\])*["']/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "=="]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "==", "!="]
 });
 
 var grammar = {
@@ -197,12 +197,21 @@ var grammar = {
         }
         },
     {"name": "cmpExpr", "symbols": ["eqExpr"], "postprocess": id},
+    {"name": "cmpExpr", "symbols": ["neqExpr"], "postprocess": id},
     {"name": "cmpExpr", "symbols": ["gtExpr"], "postprocess": id},
     {"name": "cmpExpr", "symbols": ["ltExpr"], "postprocess": id},
     {"name": "eqExpr", "symbols": ["expr", "_", {"literal":"=="}, "_", "expr"], "postprocess": 
         function(data) {
           return {
             type: "eqExpr",
+            exprs: [data[0], data[4]]
+          }
+        }
+        },
+    {"name": "neqExpr", "symbols": ["expr", "_", {"literal":"!="}, "_", "expr"], "postprocess": 
+        function(data) {
+          return {
+            type: "neqExpr",
             exprs: [data[0], data[4]]
           }
         }

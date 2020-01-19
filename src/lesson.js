@@ -8,8 +8,6 @@ import Page from './page';
 // import $ from 'jquery';
 // import Typed from 'typed.js';
 
-
-
 import sleep from './sleep';
 
 import Translation from './translation';

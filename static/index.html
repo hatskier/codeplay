@@ -79,6 +79,10 @@
         font-family: Product Sans;
       }
 
+      h5 {
+        font-size: 12px;
+      }
+
       .task-card-image {
         /* width: 100%; */
         width: 100%;
@@ -224,7 +228,7 @@
     <!-- <h3 class="centered blue-text">Try it now</h3> -->
 
     <div id="app" class="mdl-grid">
-      <div v-for="task in tasks" class="mdl-cell mdl-cell--3-col">
+      <div v-for="task in tasks" :key="task.title" v-if="shouldTaskBeDisplayed(task)" class="mdl-cell mdl-cell--3-col">
         <!-- <img v-bind:src="task.img"> -->
         <a v-bind:href="`lesson.html?config=${task.id}&nextPage=index.html`">
           <div
@@ -375,7 +379,13 @@
             if (randVal < 1) {
               return 'yellow-text';
             }
-          }
+          },
+          shouldTaskBeDisplayed(task) {
+            return task.unit == 'Functions1';
+
+            // To display all tasks
+            return true;
+          },
         },
         data: {
 
@@ -522,40 +532,142 @@
             //   color: 'green',
             // }
 
-            // Tasks for conditions topic
+            // Conditions
             {
               title: 'battleCondEnemyType',
               id: 'battleCondEnemyType',
               img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Variables',
+              unit: 'Conditions',
               color: 'red',
             },
             {
               title: 'battleCondEnemyTypeWithElse',
               id: 'battleCondEnemyTypeWithElse',
               img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Variables',
+              unit: 'Conditions',
+              color: 'red',
+            },
+            {
+              title: 'battleCondEnemyTypeWithElseNotEqual',
+              id: 'battleCondEnemyTypeWithElseNotEqual',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Conditions',
               color: 'red',
             },
             {
               title: 'battleCondEnemyTypeWithAttack',
               id: 'battleCondEnemyTypeWithAttack',
               img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Variables',
+              unit: 'Conditions',
               color: 'red',
             },
             {
               title: 'battleCondThreeEnemies',
               id: 'battleCondThreeEnemies',
               img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Variables',
+              unit: 'Conditions',
+              color: 'red',
+            },
+            {
+              title: 'battleCondThreeEnemiesNested',
+              id: 'battleCondThreeEnemiesNested',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Conditions',
+              color: 'red',
+            },
+            {
+              title: 'battleCondThreeEnemiesNestedV2',
+              id: 'battleCondThreeEnemiesNestedV2',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Conditions',
               color: 'red',
             },
             {
               title: 'battleCondThreeEnemiesWithAttack',
               id: 'battleCondThreeEnemiesWithAttack',
               img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Variables',
+              unit: 'Conditions',
+              color: 'red',
+            },
+
+            // Loops
+            {
+              title: 'battle3Steps',
+              id: 'battle3Steps',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+            {
+              title: 'battle5Steps',
+              id: 'battle5Steps',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+            {
+              title: 'battle3Warriors',
+              id: 'battle3Warriors',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+            {
+              title: 'battle3Archers',
+              id: 'battle3Archers',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+            {
+              title: 'battle3Enemies',
+              id: 'battle3Enemies',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+            {
+              title: 'battleVarSteps',
+              id: 'battleVarSteps',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+            {
+              title: 'battleVarWarriors',
+              id: 'battleVarWarriors',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+            {
+              title: 'battleVarEnemies',
+              id: 'battleVarEnemies',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Loops',
+              color: 'red',
+            },
+
+            // Functions
+            {
+              title: 'battleFunAttackWarrior',
+              id: 'battleFunAttackWarrior',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Functions1',
+              color: 'red',
+            },
+            {
+              title: 'battleFunAttackDragon',
+              id: 'battleFunAttackDragon',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Functions1',
+              color: 'red',
+            },
+            {
+              title: 'battleFunDifferentTypes',
+              id: 'battleFunDifferentTypes',
+              img: 'https://codenplay.io/img/3-code.png',
+              unit: 'Functions1',
               color: 'red',
             },
           ]

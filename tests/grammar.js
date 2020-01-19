@@ -73,16 +73,21 @@ console.log(JSON.stringify(codeTree, null, 2));
 console.log("----------------------------------------------------------------------------");
 let code2 = `
 function foo (a,b,c, ddd)  {
-    console.log('asd');
+  console.log('asd');
 }
 
 function bar (firstArg) {
-    console.log(123 + 321);
+  console.log(123 + 321);
 }
 
 
 function foo (){
-    console.log(variableArg);
+  console.log(variableArg);
 }
+
+if (x != 'someStringToCompare') {
+  console.log('Conditions is fulfilled');
+}
+
 `;
 console.log(JSON.stringify(parse(code2)[0], null, 2));

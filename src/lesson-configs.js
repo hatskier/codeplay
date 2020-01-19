@@ -37,9 +37,28 @@ import battleVarWeaponAndDistance from './examples/variables/battleVarWeaponAndD
 import condExample from './examples/conditions/example';
 import battleCondEnemyType from './examples/conditions/battleCondEnemyType';
 import battleCondEnemyTypeWithElse from './examples/conditions/battleCondEnemyTypeWithElse';
+import battleCondEnemyTypeWithElseNotEqual from './examples/conditions/battleCondEnemyTypeWithElseNotEqual';
 import battleCondEnemyTypeWithAttack from './examples/conditions/battleCondEnemyTypeWithAttack';
 import battleCondThreeEnemies from './examples/conditions/battleCondThreeEnemies';
+import battleCondThreeEnemiesNested from './examples/conditions/battleCondThreeEnemiesNested';
+import battleCondThreeEnemiesNestedV2 from './examples/conditions/battleCondThreeEnemiesNestedV2';
 import battleCondThreeEnemiesWithAttack from './examples/conditions/battleCondThreeEnemiesWithAttack';
+
+// Loops
+import battle3Steps from './examples/loops/battle3Steps';
+import battle5Steps from './examples/loops/battle5Steps';
+import battle3Warriors from './examples/loops/battle3Warriors';
+import battle3Archers from './examples/loops/battle3Archers';
+import battle3Enemies from './examples/loops/battle3Enemies';
+import battleVarSteps from './examples/loops/battleVarSteps';
+import battleVarWarriors from './examples/loops/battleVarWarriors';
+import battleVarEnemies from './examples/loops/battleVarEnemies';
+
+// Functions
+import battleFunAttackWarrior from './examples/functions/battleFunAttackWarrior';
+import battleFunAttackDragon from './examples/functions/battleFunAttackDragon';
+import battleFunDifferentTypes from './examples/functions/battleFunDifferentTypes';
+
 
 export default {
   car,
@@ -56,6 +75,7 @@ export default {
   workHard,
   twoWarriors,
 
+  // Variables
   varExample,
   battleVarDistance,
   battleVarDistanceWithDragon,
@@ -65,10 +85,29 @@ export default {
   battleVarWeapon,
   battleVarWeaponAndDistance,
 
+  // Conditions
   condExample,
   battleCondEnemyType,
   battleCondEnemyTypeWithElse,
+  battleCondEnemyTypeWithElseNotEqual,
   battleCondEnemyTypeWithAttack,
   battleCondThreeEnemies,
+  battleCondThreeEnemiesNested,
+  battleCondThreeEnemiesNestedV2,
   battleCondThreeEnemiesWithAttack,
+
+  // Loops
+  battle3Steps,
+  battle5Steps,
+  battle3Warriors,
+  battle3Archers,
+  battle3Enemies,
+  battleVarSteps,
+  battleVarWarriors,
+  battleVarEnemies,
+
+  // Functions
+  battleFunAttackWarrior,
+  battleFunAttackDragon,
+  battleFunDifferentTypes,
 };

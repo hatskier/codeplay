@@ -9,7 +9,7 @@ let lexer = moo.compile({
     string: /["'](?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^\'\"\\])*["']/,
     // string:  /["'](?:\\["\\]|[^\n"\\])*["']/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "=="]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "==", "!="]
 });
 
 %}
@@ -194,6 +194,7 @@ varExpr -> identifier {%
 
 cmpExpr ->
       eqExpr {% id %}
+    | neqExpr {% id %}
     | gtExpr {% id %}
     | ltExpr {% id %}
 
@@ -201,6 +202,15 @@ eqExpr -> expr _ "==" _ expr {%
   function(data) {
     return {
       type: "eqExpr",
+      exprs: [data[0], data[4]]
+    }
+  }
+%}
+
+neqExpr -> expr _ "!=" _ expr {%
+  function(data) {
+    return {
+      type: "neqExpr",
       exprs: [data[0], data[4]]
     }
   }

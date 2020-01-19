@@ -145,6 +145,9 @@ class Field {
       case 'eqExpr': {
         return this.getValForExpr(expr.exprs[0]) == this.getValForExpr(expr.exprs[1]);
       }
+      case 'neqExpr': {
+        return this.getValForExpr(expr.exprs[0]) != this.getValForExpr(expr.exprs[1]);
+      }
       case 'exprVal': {
         if (expr.value == true) {
           return true;
@@ -311,6 +314,10 @@ class Field {
           await this.tickSleep();
           let loopCounter = 0;
           while (this.getBoolValForExpr(node.expr)) {
+            // Highligh line with the condition expression in each loop iteration
+            lineHighlighter.start(node.line);
+            await this.tickSleep();
+
             Logger.debug(`Running while iteration nr: ${loopCounter}`);
             loopCounter++;
             if (node.stmts.length > 0) {
