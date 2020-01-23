@@ -22,7 +22,7 @@ toastr.options = {
   closeButton: true,
   showDuration: 3000,
   hideDuration: 10,
-  positionClass: 'toast-bottom-left',
+  // positionClass: 'toast-top-center',
 };
 
 const MINIMAL_LOADING_TIME = 500; // ms
@@ -95,6 +95,15 @@ function adjustFieldScreenScaling(conf) {
     // document.getElementById('screen-view').width = window.screen.width;
     // document.getElementById('screen-view').height = window.screen.width;
   }
+}
+
+async function showIterationNrMsg(nr) {
+  // alert('Iteration: ' + nr);
+  // toastr.success('Running test iteration nr: ' + nr);
+  // let htmlWithMessageToAdd = `
+  //   <div id="iteration"></div>
+  // `;
+  // $('#scre')
 }
 
 
@@ -208,8 +217,8 @@ $( document ).ready(async function() {
           initField();
           field.state.__iterationNr = iterationNr;
           if (conf.iterations.length > 1) {
-            toastr.success(`Running test interation No. ${iterationNr + 1}`);
-            iterationNr++;
+            // toastr.success(`Running test interation No. ${iterationNr + 1}`);
+            await showIterationNrMsg(++iterationNr);
           }
 
           await iteration.pre({field, state: field.state});

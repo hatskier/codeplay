@@ -153,6 +153,16 @@
         <div>
           <!-- <a href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
           </a> -->
+          <img id="reload-button" onclick="location.reload()" class="md-icon clickable" src="./img/replay-blue-icon.svg">
+
+          <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="reload-button">
+            Reload task
+          </div>
+        </div>
+
+        <div>
+          <!-- <a href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
+          </a> -->
           <img id="help-button" class="md-icon clickable" src="./img/blue-help.png">
           <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
               for="help-button">
@@ -166,7 +176,7 @@
           </ul>
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="help-button">
-            Do you need help?
+            Need help?
           </div>
         </div>
 
@@ -182,12 +192,12 @@
         </div> -->
 
         <div>
-          <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/blue-settings.png">
+          <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/speed-blue-icon.svg">
           <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
               for="settings-button">
-            <li class="mdl-menu__item" onclick="setSpeed('normal')">Normal speed</li>
-            <li class="mdl-menu__item" onclick="setSpeed('fast')">Fast speed</li>
-            <li class="mdl-menu__item" onclick="setSpeed('slow')">Slow speed</li>
+            <li class="mdl-menu__item" onclick="setSpeed('normal')">Normal</li>
+            <li class="mdl-menu__item" onclick="setSpeed('fast')">Fast</li>
+            <li class="mdl-menu__item" onclick="setSpeed('slow')">Slow</li>
           </ul>
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="settings-button">

@@ -91,3 +91,25 @@ if (x != 'someStringToCompare') {
 
 `;
 console.log(JSON.stringify(parse(code2)[0], null, 2));
+
+
+console.log("----------------------------------------------------------------------------");
+let code3 = `
+var enemy = getEnemyType();
+
+function attackDragon() {
+  hero.go();
+  hero.spearAttack();
+}
+function attackWarrior() {
+  hero.go();
+  hero.swordAttack();
+}
+
+if (enemy == 'warrior') {
+  attackWarrior();
+} else {
+  attackDragon();
+}
+`;
+console.log(JSON.stringify(parse(code3)[0], null, 2));

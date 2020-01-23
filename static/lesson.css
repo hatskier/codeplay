@@ -361,14 +361,15 @@ img#spinner {
 }
 
 #variables-title {
-  font-size: 14px;
+  font-size: 16px;
+  /* font-family: "Roboto","Helvetica","Arial",sans-serif !important; */
   /* color: rgba(0,0,0,.54); */
   /* color: #22da26; */
-  color: #00A5FB;
+  /* color: #00A5FB; */
   padding-top: 15px;
   padding-bottom: 15px;
   display: table;
-  font-weight: 600;
+  /* font-weight: 400; */
   margin: auto;
 }
 

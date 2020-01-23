@@ -26,11 +26,10 @@ class Field {
 
     this.log = Page.addLog;
 
-    // TODO maybe it's better to store state outside
     this.state = {
       vars: {},
       functions: {},
-      funResults: {}, // hacky dict (TODO should be solved better in future)
+      funResults: {},
     };
   }
 
@@ -193,7 +192,7 @@ class Field {
   }
 
   isFunctionDeclared(funName) {
-    return Boolean(this.state.functions[funName]);
+    return (funName in this.state.functions);
   }
 
   showProgramState() {
@@ -209,8 +208,8 @@ class Field {
     }
     this.log('-----------------------------');
 
-    // Update variables in variables table
-    Page.updateVariablesTable(this.state.vars);
+    // Update variables in variables tables
+    // Page.updateVariablesTable(this.state.vars);
   }
 
   //////////////////////////
@@ -330,13 +329,15 @@ class Field {
           }
           break;
         }
-        // TODO test this case
         case 'funDecl': {
           await this.tickSleep();
           this.setFunArgsAndStatements(node.name, node.args, node.stmts);
+          break;
         }
         case 'varDeclEmpty': {
           await this.tickSleep();
+          // TODO alex 123
+          alert('Here it is 1');
           this.setVariableValue(node.name, null, false);
           break;
         }
