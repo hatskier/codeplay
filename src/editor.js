@@ -35,10 +35,10 @@ export default {
 
     // validation settings
     // Play with it later https://microsoft.github.io/monaco-editor/playground.html
-    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-      noSemanticValidation: true,
-      noSyntaxValidation: false
-    });
+    // monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+    //   noSemanticValidation: true,
+    //   noSyntaxValidation: false
+    // });
 
     return monaco.editor.create(document.getElementById('code-editor'), {
       value: conf.startCodeVal,
