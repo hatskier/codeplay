@@ -4,6 +4,8 @@
   --success-green-color: #4BB543;
   --light-green-color: #22da26;
   --warning-yellow-color: #ffae42;
+  --light-blue-color: #4285F4;
+  --light-yellow-color: #FBBC05;
 }
 
 #top-container,#bottom-container,#control-bar,#code-editor,#main-page-button-container {
@@ -27,7 +29,20 @@
   margin: auto;
   /* Position relative is important for dynamic objects in codeplay */
   position: relative;
-  box-shadow: 0 0 3px;
+  box-shadow: 0 0 1px;
+  border-radius: 3px 3px 0px 0px;
+}
+
+#screen-view:before {
+  content: '';
+  display: block;
+  border-radius: 3px 3px 0px 0px;
+  margin-bottom: 200px;
+  height: 20px;
+  font-size: 15px;
+  color: white;
+  /* background: #C6C6C6; */
+  background: var(--light-yellow-color);
 }
 
 @media only screen and (max-width: 1023px) {
@@ -69,11 +84,25 @@
 
 #code-editor {
   margin: auto;
-  margin-top: 10px;
-  /* border:1px solid #ccc; */
+  margin-top: 0px;
+  /* border: 1px solid #ccc; */
   width: 100%;
-  height: 440px;
-  box-shadow: 0 0 2px;
+  height: 430px;
+  /* border-radius: 5px !important; */
+  box-shadow: 0 0 0.5px;
+}
+
+#code-editor-container:before {
+  /* position: absolute; */
+  content: ' ';
+  display: block;
+  height: 20px;
+  /* margin-bottom: 10px; */
+  /* border: 10px solid var(--light-blue-color); */
+  /* border-right: 10px solid var(--light-blue-color); */
+  border-radius: 3px 3px 0px 0px;
+  /* background: #C6C6C6; */
+  background: var(--light-blue-color);
 }
 
 @media only screen and (max-width: 1023px) {
@@ -81,8 +110,6 @@
     /* margin: initial; */
     width: 90vw;
   }
-
-
 }
 
 #run-button {

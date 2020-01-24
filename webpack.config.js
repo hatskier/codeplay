@@ -43,7 +43,7 @@ module.exports = {
 		]),
 		new MonacoWebpackPlugin({
 			// languages: ['javascript', 'typescript'] <- experiment with typescript later
-			languages: ['javascript'],
+			languages: ['javascript']
 		}),
 		// new webpack.optimize.CommonsChunkPlugin({
     //   names: ["vendor"],

@@ -138,8 +138,8 @@ $( document ).ready(async function() {
 
   if (!isMobile()) {
     document.getElementById('window').classList.add('slide-down-el');
-    document.getElementById('screen-view').classList.add('slide-left-el');
-    document.getElementById('code-editor').classList.add('slide-right-el');
+    document.getElementById('screen-view-container').classList.add('slide-left-el');
+    document.getElementById('code-editor-container').classList.add('slide-right-el');
 
     // It is commented because tooltips stop working when it's enabled
     // document.getElementById('control-bar').classList.add('slide-left-el');

@@ -35,17 +35,17 @@ export default {
 
     // validation settings
     // Play with it later https://microsoft.github.io/monaco-editor/playground.html
-    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
-      noSemanticValidation: true,
-      noSyntaxValidation: false
-    });
+    // monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+    //   noSemanticValidation: true,
+    //   noSyntaxValidation: false
+    // });
 
     return monaco.editor.create(document.getElementById('code-editor'), {
       value: conf.startCodeVal,
       language: 'javascript',
       theme: 'vs', // vs, vs-dark, hc-black
       scrollBeyondLastLine: false,
-      accessibilitySupport: 'off', // to disable unusable code preview in scrollbar
+      accessibilitySupport: 'on', // to disable unusable code preview in scrollbar
       scrollbar: {
         verticalScrollbarSize: 7,
       },
