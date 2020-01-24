@@ -1,5 +1,11 @@
 /* CUSTOM MANUAL STYLES */
 
+:root {
+  --success-green-color: #4BB543;
+  --light-green-color: #22da26;
+  --warning-yellow-color: #ffae42;
+}
+
 #top-container,#bottom-container,#control-bar,#code-editor,#main-page-button-container {
   display: none; /* for image preloading spinner */
 }
@@ -80,17 +86,20 @@
 }
 
 #run-button {
-  background: greenyellow;
-  width: 70px;
-  border-radius: 5px;
+  background: var(--light-green-color);
+  /* width: 70px; */
+  padding: 10px;
+  border-radius: 50px;
   float: left;
 }
 
 #stop-button {
   display: none;
-  background: #ffae42;
-  width: 70px;
-  border-radius: 5px;
+  background: var(--warning-yellow-color);
+  /* width: 70px; */
+  /* border-radius: 5px; */
+  padding: 10px;
+  border-radius: 50px;
   float: left;
 }
 
@@ -150,9 +159,8 @@ img#spinner {
 }
 
 #doc-table th {
-  background: green;
-  color: black;
-  border: 1px solid darkgreen;
+  color: var(--light-green-color);
+  border: 1px solid green;
 }
 
 .doc-method-name {
@@ -213,8 +221,9 @@ img#spinner {
 .window:before {
   content: ' ';
   display: block;
-  height: 30px;
-  background: #C6C6C6;
+  height: 20px;
+  /* background: #C6C6C6; */
+  background: var(--light-green-color);
 }
 .window:after {
   /* content: '. . .'; */
@@ -233,12 +242,12 @@ img#spinner {
   /* font-family: monospace; */
   font-family: 'PT Mono', monospace;
   font-size: 16px;
-  color: #22da26;
+  color: var(--light-green-color);
 }
 
 .terminal .command:before {
   content: '$ ';
-  color: #22da26;
+  color: var(--light-green-color);
 }
 
 .command-error {
@@ -295,7 +304,8 @@ img#spinner {
 }
 
 .close-icon {
-  width: 30px;
+  /* width: 30px; */
+  width: 35px;
 }
 
 /* Success modal styling */
@@ -362,14 +372,9 @@ img#spinner {
 
 #variables-title {
   font-size: 16px;
-  /* font-family: "Roboto","Helvetica","Arial",sans-serif !important; */
-  /* color: rgba(0,0,0,.54); */
-  /* color: #22da26; */
-  /* color: #00A5FB; */
   padding-top: 15px;
   padding-bottom: 15px;
   display: table;
-  /* font-weight: 400; */
   margin: auto;
 }
 
