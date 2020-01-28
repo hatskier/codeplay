@@ -1,9 +1,18 @@
 /* CUSTOM MANUAL STYLES */
 
+@font-face {
+  font-family: SFMono;
+  src: url(fonts/SFMonoRegular.otf);
+}
+
 :root {
   --success-green-color: #4BB543;
   --light-green-color: #22da26;
   --warning-yellow-color: #ffae42;
+  --light-blue-color: #00A4F5;
+  /* --terminal-font-family: 'Roboto Mono', monospace; */
+  /* --terminal-font-family: 'PT Mono', monospace; */
+  --terminal-font-family: "SF Mono", monospace;
 }
 
 #top-container,#bottom-container,#control-bar,#code-editor,#main-page-button-container {
@@ -133,8 +142,13 @@
 }
 
 img#spinner {
-  margin-top: 45vh;
-  height: 10vh;
+  /* For option with spinner */
+  margin-top: 38vh;
+  height: 14vh;
+
+  /* For option with original loader */
+  /* margin-top: 45vh;
+  height: 10vh; */
 }
 
 #loading-progress {
@@ -240,7 +254,9 @@ img#spinner {
 .terminal {
   margin: 20px;
   /* font-family: monospace; */
-  font-family: 'PT Mono', monospace;
+  /* font-family: 'PT Mono', monospace; */
+  /* font-family: 'Roboto Mono', monospace; */
+  font-family: var(--terminal-font-family);
   font-size: 16px;
   color: var(--light-green-color);
 }
@@ -319,7 +335,7 @@ img#spinner {
   display: none;
   text-align: center;
   font-family: Product Sans;
-  color: #4285F4;
+  color: var(--light-blue-color);
 }
 
 #success-modal-img {
@@ -349,7 +365,8 @@ img#spinner {
 
 .terminal h6 {
   font-weight: 900;
-  font-family: 'PT Mono', monospace;;
+  /* font-family: 'PT Mono', monospace; */
+  font-family: var(--terminal-font-family);
 }
 
 #variables-values-container {

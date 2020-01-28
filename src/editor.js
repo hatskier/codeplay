@@ -45,11 +45,12 @@ export default {
       language: 'javascript',
       theme: 'vs', // vs, vs-dark, hc-black
       scrollBeyondLastLine: false,
-      accessibilitySupport: 'off', // to disable unusable code preview in scrollbar
+      accessibilitySupport: 'on', // to disable unusable code preview in scrollbar
       scrollbar: {
         verticalScrollbarSize: 7,
       },
       fontSize: 18,
+      fontFamily: 'SF Mono, monospace',
       contextmenu: false
     });
   },
