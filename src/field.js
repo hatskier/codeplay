@@ -381,6 +381,8 @@ class Field {
     
   }
 
+  // TODO
+  // check why this function even exists
   async moveToPos(id, pos) {
     let obj = this.findById(id);
     obj.pos = pos;
@@ -398,10 +400,10 @@ class Field {
     obj.rotation = newRotation;
   }
 
-  async changeImage(id, imgKey) {
+  changeImage(id, imgKey) {
     const obj = this.findById(id);
     obj.changeImage(imgKey);
-    await Page.changeObjectImg(id, obj.img.src);
+    Page.changeObjectImg(id, obj.img.src);
   }
 
   changeImageSize(id, newSize) {
@@ -420,6 +422,8 @@ class Field {
     await this.sleep(this.tickTime);
   }
 
+  // TODO remove
+  // Looks like deprecated functions
   checkPosById(id, pos) {
     return JSON.stringify(this.findById(id).pos) === JSON.stringify(pos);
   }
