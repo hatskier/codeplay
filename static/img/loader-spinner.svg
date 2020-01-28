@@ -10,6 +10,6 @@
       </g>
     </g>
   </g>
-  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.2s" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.59s" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
 </g>
 </svg>

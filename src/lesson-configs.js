@@ -1,6 +1,3 @@
-// Car
-import car from './examples/car';
-
 // Labyrinth
 import easyLabyrinth from './examples/labyrinth/easy-labyrinth';
 import mediumLabyrinth from './examples/labyrinth/medium-labyrinth';
@@ -61,7 +58,6 @@ import battleFunDifferentTypes from './examples/functions/battleFunDifferentType
 
 
 export default {
-  car,
   easyLabyrinth,
   mediumLabyrinth,
   hardLabyrinth,
