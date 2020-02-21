@@ -20,7 +20,7 @@ export default {
           if (method.includes(lineContentWithoutSpaces)) {
             suggestions.push({
               label: method,
-              detail: 'PRESS ENTER OR TAB',
+              detail: 'PRESS ENTER OR TAB TO AUTOCOMPLETE',
               kind: monaco.languages.CompletionItemKind.Method,
               documentation: conf.methods[method].doc,
               insertText, 
@@ -33,15 +33,24 @@ export default {
 
     });
 
+    // validation settings
+    // Play with it later https://microsoft.github.io/monaco-editor/playground.html
+    // monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+    //   noSemanticValidation: true,
+    //   noSyntaxValidation: false
+    // });
+
     return monaco.editor.create(document.getElementById('code-editor'), {
       value: conf.startCodeVal,
       language: 'javascript',
       theme: 'vs', // vs, vs-dark, hc-black
       scrollBeyondLastLine: false,
+      accessibilitySupport: 'on', // to disable unusable code preview in scrollbar
       scrollbar: {
         verticalScrollbarSize: 7,
       },
       fontSize: 18,
+      fontFamily: 'SF Mono, monospace',
       contextmenu: false
     });
   },

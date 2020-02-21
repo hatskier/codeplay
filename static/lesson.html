@@ -54,6 +54,9 @@
       <link rel="stylesheet" href="animations.css" />
       <link rel="stylesheet" href="lesson.css" />
 
+      <!-- Roboto Mono font -->
+      <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet"> -->
+
       <!-- This div could be used for toastr message customization -->
       <!-- <div id="toast-container"></div> -->
 
@@ -133,7 +136,7 @@
 
       <div id="main-page-button-container" class="main-page-button-container">
         <a href="#" onclick="goBack()">
-          <img class="close-icon md-icon clickable" src="./img/back-circle.svg">
+          <img class="close-icon md-icon clickable" src="./img/blue-back-circle-icon.png">
         </a>
       </div>
       <div class="mdl-tooltip" data-mdl-for="main-page-button-container">
@@ -229,10 +232,16 @@
     </div>
 
     <div id="overlay">
-      <img id="spinner" src="img/spinner2.svg">
+      <!-- Second option with rotating spinner -->
+      <img id="spinner" src="img/loader-spinner.svg">
+
+      <!-- First option -->
+      <!-- <img id="spinner" src="img/spinner2.svg"> -->
+
       <div id="loading-progress"><span id="percentage-loaded">1</span>%</div>
     </div>
 
+    <!-- <script src="./ts.worker.bundle.js"></script> -->
     <script src="./lesson.bundle.js"></script>
 
   </body>

@@ -42,7 +42,8 @@ module.exports = {
 			{ from: 'static' }
 		]),
 		new MonacoWebpackPlugin({
-			languages: ['javascript']
+			// languages: ['javascript', 'typescript'] <- experiment with typescript later
+			languages: ['javascript'],
 		}),
 		// new webpack.optimize.CommonsChunkPlugin({
     //   names: ["vendor"],
