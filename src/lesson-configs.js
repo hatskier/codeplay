@@ -122,9 +122,15 @@ import ironManIntro from './examples/pro.codenplay/1.basics/1.iron-man-intro';
 
 // Instructions
 import ironMan from './examples/pro.codenplay/2.instructions/1.iron-man';
+import labyrinthSuperEasy from './examples/pro.codenplay/2.instructions/2.labyrinth-super-easy';
+import labyrinthEasy from './examples/pro.codenplay/2.instructions/3.labyrinth-easy';
 
 // Expressions
 import ironManArgs from './examples/pro.codenplay/3.expressions/1.iron-man-args';
+import labyrinthArgsMedium from './examples/pro.codenplay/3.expressions/2.labyrinth-args-medium';
+import labyrinthArgsHard from './examples/pro.codenplay/3.expressions/3.labyrinth-args-hard';
+import labyrinthArgsDirection from './examples/pro.codenplay/3.expressions/4.labyrinth-args-direction';
+import labyrinthArgsDirectionAndSteps from './examples/pro.codenplay/3.expressions/5.labyrinth-args-direction-and-steps';
 
 // Variables
 import ironManVars from './examples/pro.codenplay/4.variables/1.iron-man-vars';
@@ -135,9 +141,15 @@ export default {
 
   // Instructions
   ironMan,
+  labyrinthSuperEasy,
+  labyrinthEasy,
 
   // Expressions
   ironManArgs,
+  labyrinthArgsMedium,
+  labyrinthArgsHard,
+  labyrinthArgsDirection,
+  labyrinthArgsDirectionAndSteps,
 
   // Variables
   ironManVars,

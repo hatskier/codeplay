@@ -50,6 +50,7 @@ config.methods['take'] = {
         break;
       default:
         throw new Error(`Инструкция take не поддерживает аргумент: ${params[0] || '\'\''}`);
+        break;
     }
   },
 };

@@ -1,11 +1,21 @@
+// TODO
+  // - stepsArgumentSupported
+  // - many iterations
+  // - funResults
+
 const defaultSize = 50;
+
+const size = {
+  width: 550,
+  height: 450,
+};
 
 function copyObject(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
 function executingError(context, msg) {
-  context.field.log(`Error: ${msg}. Please fix your code and try again ;)`);
+  context.field.log(`Ошибка: ${msg}. Поправь код и попробуй снова ;)`, { error: true });
   throw new Error(msg);
 }
 
@@ -16,7 +26,15 @@ function taskFinished(pathFromConf, path) {
   (pathFromConf[len1 - 1].length - path[len2 - 1].length) >= 0;
 }
 
-function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
+function prepareLabyrinth({ iterations, stepsArgumentSupported, startCodeVal, solutionCode }) {
+  // TODO fix it later for multiple iterations
+  const { path, stepWidth, funResults } = iterations[0];
+
+  // TODO
+  // - stepsArgumentSupported
+  // - many iterations
+  // - funResults
+
   const startPos = {
     x: 0,
     y: 5
@@ -33,6 +51,8 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
       'man-going-right': 'https://codenplay.io/img/tasks/labyrinth/caveman-going-right.gif',
     },
 
+    size,
+
     bg: 'skale',
   
     objects: [
@@ -45,11 +65,13 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
           width: defaultSize,
           height: defaultSize
         },
-        startPos
+        startPos,
       }
     ],
+
+    docTableExtended: true,
   
-    taskDescription: 'Write the directions for the caveman to get through the labyrinth'
+    taskDescription: 'Помоги пещерному человеку пройти лабиринт'
   }
 
   function drawLabyrinth() {
@@ -99,7 +121,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
             break;
           }
           default: {
-            throw new Error('Unsupported statement: ' + step.direction);
+            throw new Error('Неизвестное направление: ' + step.direction);
           }
         }
       }
@@ -107,13 +129,14 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
     conf.objects = htmlObjects.concat(conf.objects);
   }
   
-  function movingMethod(doc, dx, dy, direction) {
+  function movingMethod(doc, dx, dy, direction, examples) {
     return {
       doc,
+      examples,
       async run(context, params) {
         function validateParams(params) {
           if (params && params.length > 1) {
-            throw new Error('Too many arguments');
+            throw new Error('Слишком много аргументов');
           }
         }
 
@@ -121,7 +144,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
         if (params.length > 0) {
           stepsAmount = params[0];
         }
-        context.field.log(`Man is going ${stepsAmount} steps ${direction}...`);
+        context.field.log(`Человек делает шагов: ${stepsAmount} в направлении: ${direction}...`);
 
         async function runStep() {
           if (direction == 'left') {
@@ -155,12 +178,12 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
           let len = context.state.path.length;
           let lastStep = context.state.path[len - 1];
           if (lastStep.direction !== path[len - 1].direction || lastStep.length > path[len - 1].length) {
-            executingError(context, 'Bad move - man can\'t go there');
+            executingError(context, 'Ошибочка - туда идти нельзя');
           }
           if (len > 1) {
             let preLastStep = context.state.path[len - 2];
             if (preLastStep.length !== path[len - 2].length) {
-              executingError(context, 'Bad move - man can\'t go there');
+              executingError(context, 'Ошибочка - туда идти нельзя');
             }
           }
         }
@@ -180,13 +203,11 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
 
   drawLabyrinth();
 
-  conf.size = size;
-
   conf.methods = {
-    'man.moveRight': movingMethod('The caveman goes right', stepWidth, 0, 'right'),
-    'man.moveLeft': movingMethod('The caveman goes left', -stepWidth, 0, 'left'),
-    'man.moveUp': movingMethod('The caveman goes up', 0, -stepWidth, 'up'),
-    'man.moveDown': movingMethod('The caveman goes down', 0, stepWidth, 'down')
+    'man.moveRight': movingMethod('Человек идет вправо', stepWidth, 0, 'right', 'man.moveRight();'),
+    'man.moveLeft': movingMethod('Человек идет влево', -stepWidth, 0, 'left', 'man.moveLeft();'),
+    'man.moveUp': movingMethod('Человек идет вверх', 0, -stepWidth, 'up', 'man.moveUp();'),
+    'man.moveDown': movingMethod('Человек идет вниз', 0, stepWidth, 'down', 'man.moveDown();')
   };
 
   conf.iterations = [
@@ -198,7 +219,7 @@ function prepareLabyrinth({path, stepWidth, startCodeVal, solutionCode, size}) {
       post: async function(context) {
         await context.field.changeImage('Man', 'man-static');
         if (!taskFinished(path, context.state.path)) {
-          executingError(context, 'You have not reached the target');
+          executingError(context, 'Нужно выйти из лабиринта');
         }
       }
     }

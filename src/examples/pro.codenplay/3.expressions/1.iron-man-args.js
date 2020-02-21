@@ -36,7 +36,8 @@ config.methods['take'] = {
         await oldMethods.takeHead.run(context, params);
         break;
       default:
-        throw new Error(`Инструкция take не поддерживает аргумент: ${params[0] || ''}`);
+        throw new Error(`Инструкция take не поддерживает аргумент: ${params[0] || '\'\''}`);
+        break;
     }
   },
 };

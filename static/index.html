@@ -383,9 +383,10 @@
           shouldTaskBeDisplayed(task) {
             // return task.unit == 'Functions1';
             // return task.unit == 'Loops';
+            return task.id.includes('labyrinth');
 
             // To display all tasks
-            return true;
+            // return true;
           },
         },
         data: {
@@ -408,12 +409,48 @@
               img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
               unit: 'Instructions',
             },
+            {
+              title: 'Labyrinth - super easy',
+              id: 'labyrinthSuperEasy',
+              img: 'https://codenplay.io/img/tasks/Tasks/caveman.jpg',
+              unit: 'Instructions',
+            },
+            {
+              title: 'Labyrinth - easy',
+              id: 'labyrinthEasy',
+              img: 'https://codenplay.io/img/tasks/Tasks/caveman.jpg',
+              unit: 'Instructions',
+            },
 
             // Expressions
             {
               title: 'Iron man args',
               id: 'ironManArgs',
               img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'Expressions',
+            },
+            {
+              title: 'labyrinthArgsMedium',
+              id: 'labyrinthArgsMedium',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
+              unit: 'Expressions',
+            },
+            {
+              title: 'labyrinthArgsHard',
+              id: 'labyrinthArgsHard',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
+              unit: 'Expressions',
+            },
+            {
+              title: 'labyrinthArgsDirection',
+              id: 'labyrinthArgsDirection',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
+              unit: 'Expressions',
+            },
+            {
+              title: 'labyrinthArgsDirectionAndSteps',
+              id: 'labyrinthArgsDirectionAndSteps',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
               unit: 'Expressions',
             },
 
