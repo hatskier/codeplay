@@ -41,7 +41,24 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
 
   solutionCode:
-`
+`var enemy = getEnemyType();
+
+function attackDragon() {
+  hero.go();
+  hero.go();
+  hero.spearAttack();
+}
+function attackWarrior() {
+  hero.go();
+  hero.swordAttack();
+}
+
+// Fix the code below
+if (enemy == 'warrior') {
+  attackWarrior();
+} else {
+  attackDragon();
+}
 `,
 
 startCodeVal:
@@ -57,10 +74,11 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
+// Fix the code below
 if (enemy == 'warrior') {
-  attackWarrior();
-} else {
   attackDragon();
+} else {
+  attackWarrior();
 }
 `
 });

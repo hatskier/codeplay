@@ -31,7 +31,7 @@ export default createOrderTask({
     }
   },
   size: {
-    width: 500,
+    width: 550,
     height: 450
   },
   tickTime: 2500,

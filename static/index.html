@@ -381,7 +381,7 @@
             }
           },
           shouldTaskBeDisplayed(task) {
-            return task.unit == 'Functions1';
+            // return task.unit == 'Functions1';
             // return task.unit == 'Loops';
 
             // To display all tasks
@@ -393,284 +393,316 @@
           solvedTasks: getSolvedTasks(),
 
           tasks: [
+            // Basics
+            {
+              title: 'Iron man intro',
+              id: 'ironManIntro',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'Basics',
+            },
+
+            // Instructions
             {
               title: 'Iron man',
               id: 'ironMan',
               img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
               unit: 'Instructions',
-              color: 'green',
             },
+
+            // Expressions
             {
-              title: 'Labyrinth 1',
-              id: 'easyLabyrinth',
-              img: 'https://codenplay.io/img/tasks/Tasks/caveman.jpg',
-              unit: 'Instructions',
-              color: 'green',
+              title: 'Iron man args',
+              id: 'ironManArgs',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'Expressions',
             },
+
+            // Variables
             {
-              title: 'Labyrinth 2',
-              id: 'mediumLabyrinth',
-              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
-              unit: 'Instructions',
-              color: 'yellow',
+              title: 'Iron man vars',
+              id: 'ironManVars',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'Variables',
             },
-            {
-              title: 'Labyrinth 3',
-              id: 'hardLabyrinth',
-              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth.png',
-              unit: 'Instructions',
-              color: 'yellow',
-            },
+
             // {
-            //   title: 'Achieve your goals',
-            //   id: 'workHard',
-            //   img: 'https://codenplay.io/img/tasks/Tasks/achieve-goal.png',
+            //   title: 'Iron man',
+            //   id: 'ironMan',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
             //   unit: 'Instructions',
             //   color: 'green',
             // },
-            {
-              title: 'Battle 1',
-              id: 'oneWarrior',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior.png',
-              unit: 'Instructions',
-              color: 'yellow',
-            },
-            {
-              title: 'Battle 2',
-              id: 'oneArcher',
-              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
-              unit: 'Instructions',
-              color: 'yellow',
-            },
-            {
-              title: 'Battle 3',
-              id: 'twoWarriors',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Instructions',
-              color: 'red',
-            },
-            {
-              title: 'Battle with dragon',
-              id: 'oneDragon',
-              img: 'https://codenplay.io/img/tasks/Tasks/dragon.png',
-              unit: 'Instructions',
-              color: 'red',
-            },
             // {
-            //   title: 'Var example',
-            //   id: 'varExample',
+            //   title: 'Labyrinth 1',
+            //   id: 'easyLabyrinth',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/caveman.jpg',
+            //   unit: 'Instructions',
+            //   color: 'green',
+            // },
+            // {
+            //   title: 'Labyrinth 2',
+            //   id: 'mediumLabyrinth',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
+            //   unit: 'Instructions',
+            //   color: 'yellow',
+            // },
+            // {
+            //   title: 'Labyrinth 3',
+            //   id: 'hardLabyrinth',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/labyrinth.png',
+            //   unit: 'Instructions',
+            //   color: 'yellow',
+            // },
+            // // {
+            // //   title: 'Achieve your goals',
+            // //   id: 'workHard',
+            // //   img: 'https://codenplay.io/img/tasks/Tasks/achieve-goal.png',
+            // //   unit: 'Instructions',
+            // //   color: 'green',
+            // // },
+            // {
+            //   title: 'Battle 1',
+            //   id: 'oneWarrior',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior.png',
+            //   unit: 'Instructions',
+            //   color: 'yellow',
+            // },
+            // {
+            //   title: 'Battle 2',
+            //   id: 'oneArcher',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+            //   unit: 'Instructions',
+            //   color: 'yellow',
+            // },
+            // {
+            //   title: 'Battle 3',
+            //   id: 'twoWarriors',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Instructions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'Battle with dragon',
+            //   id: 'oneDragon',
             //   img: 'https://codenplay.io/img/tasks/Tasks/dragon.png',
+            //   unit: 'Instructions',
+            //   color: 'red',
+            // },
+            // // {
+            // //   title: 'Var example',
+            // //   id: 'varExample',
+            // //   img: 'https://codenplay.io/img/tasks/Tasks/dragon.png',
+            // //   unit: 'Variables',
+            // //   color: 'red',
+            // // },
+
+            // // Tasks for variables topic
+            // {
+            //   title: 'Battle var',
+            //   id: 'battleVarDistance',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Variables',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleVarWeaponSimpleDragon',
+            //   id: 'battleVarWeaponSimpleDragon',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Variables',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleVarWeaponSimpleWarrior',
+            //   id: 'battleVarWeaponSimpleWarrior',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Variables',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleVarWeapon',
+            //   id: 'battleVarWeapon',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Variables',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'Battle var with dragon',
+            //   id: 'battleVarDistanceWithDragon',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
             //   unit: 'Variables',
             //   color: 'red',
             // },
 
-            // Tasks for variables topic
-            {
-              title: 'Battle var',
-              id: 'battleVarDistance',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            {
-              title: 'battleVarWeaponSimpleDragon',
-              id: 'battleVarWeaponSimpleDragon',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            {
-              title: 'battleVarWeaponSimpleWarrior',
-              id: 'battleVarWeaponSimpleWarrior',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            {
-              title: 'battleVarWeapon',
-              id: 'battleVarWeapon',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            {
-              title: 'Battle var with dragon',
-              id: 'battleVarDistanceWithDragon',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
 
-
-            {
-              title: 'Battle var with dragon 2',
-              id: 'battleVarDistanceWithVarDragon',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            
-            {
-              title: 'battleVarWeaponSimpleWarrior',
-              id: 'battleVarWeaponSimpleWarrior',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
-            
-            {
-              title: 'battleVarWeaponAndDistance',
-              id: 'battleVarWeaponAndDistance',
-              img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
-              unit: 'Variables',
-              color: 'red',
-            },
             // {
-            //   title: 'Speak better',
-            //   id: 'readMore',
-            //   img: 'https://codenplay.io/img/tasks/Tasks/speak.png',
-            //   unit: 'Instructions',
-            //   color: 'green',
-            // }
+            //   title: 'Battle var with dragon 2',
+            //   id: 'battleVarDistanceWithVarDragon',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Variables',
+            //   color: 'red',
+            // },
+            
+            // {
+            //   title: 'battleVarWeaponSimpleWarrior',
+            //   id: 'battleVarWeaponSimpleWarrior',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Variables',
+            //   color: 'red',
+            // },
+            
+            // {
+            //   title: 'battleVarWeaponAndDistance',
+            //   id: 'battleVarWeaponAndDistance',
+            //   img: 'https://codenplay.io/img/tasks/Tasks/warrior-equipped.png',
+            //   unit: 'Variables',
+            //   color: 'red',
+            // },
+            // // {
+            // //   title: 'Speak better',
+            // //   id: 'readMore',
+            // //   img: 'https://codenplay.io/img/tasks/Tasks/speak.png',
+            // //   unit: 'Instructions',
+            // //   color: 'green',
+            // // }
 
-            // Conditions
-            {
-              title: 'battleCondEnemyType',
-              id: 'battleCondEnemyType',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
-            {
-              title: 'battleCondEnemyTypeWithElse',
-              id: 'battleCondEnemyTypeWithElse',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
-            {
-              title: 'battleCondEnemyTypeWithElseNotEqual',
-              id: 'battleCondEnemyTypeWithElseNotEqual',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
-            {
-              title: 'battleCondEnemyTypeWithAttack',
-              id: 'battleCondEnemyTypeWithAttack',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
-            {
-              title: 'battleCondThreeEnemies',
-              id: 'battleCondThreeEnemies',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
-            {
-              title: 'battleCondThreeEnemiesNested',
-              id: 'battleCondThreeEnemiesNested',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
-            {
-              title: 'battleCondThreeEnemiesNestedV2',
-              id: 'battleCondThreeEnemiesNestedV2',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
-            {
-              title: 'battleCondThreeEnemiesWithAttack',
-              id: 'battleCondThreeEnemiesWithAttack',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Conditions',
-              color: 'red',
-            },
+            // // Conditions
+            // {
+            //   title: 'battleCondEnemyType',
+            //   id: 'battleCondEnemyType',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleCondEnemyTypeWithElse',
+            //   id: 'battleCondEnemyTypeWithElse',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleCondEnemyTypeWithElseNotEqual',
+            //   id: 'battleCondEnemyTypeWithElseNotEqual',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleCondEnemyTypeWithAttack',
+            //   id: 'battleCondEnemyTypeWithAttack',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleCondThreeEnemies',
+            //   id: 'battleCondThreeEnemies',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleCondThreeEnemiesNested',
+            //   id: 'battleCondThreeEnemiesNested',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleCondThreeEnemiesNestedV2',
+            //   id: 'battleCondThreeEnemiesNestedV2',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleCondThreeEnemiesWithAttack',
+            //   id: 'battleCondThreeEnemiesWithAttack',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Conditions',
+            //   color: 'red',
+            // },
 
-            // Loops
-            {
-              title: 'battle3Steps',
-              id: 'battle3Steps',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
-            {
-              title: 'battle5Steps',
-              id: 'battle5Steps',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
-            {
-              title: 'battle3Warriors',
-              id: 'battle3Warriors',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
-            {
-              title: 'battle3Archers',
-              id: 'battle3Archers',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
-            {
-              title: 'battle3Enemies',
-              id: 'battle3Enemies',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
-            {
-              title: 'battleVarSteps',
-              id: 'battleVarSteps',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
-            {
-              title: 'battleVarWarriors',
-              id: 'battleVarWarriors',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
-            {
-              title: 'battleVarEnemies',
-              id: 'battleVarEnemies',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Loops',
-              color: 'red',
-            },
+            // // Loops
+            // {
+            //   title: 'battle3Steps',
+            //   id: 'battle3Steps',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battle5Steps',
+            //   id: 'battle5Steps',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battle3Warriors',
+            //   id: 'battle3Warriors',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battle3Archers',
+            //   id: 'battle3Archers',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battle3Enemies',
+            //   id: 'battle3Enemies',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleVarSteps',
+            //   id: 'battleVarSteps',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleVarWarriors',
+            //   id: 'battleVarWarriors',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleVarEnemies',
+            //   id: 'battleVarEnemies',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Loops',
+            //   color: 'red',
+            // },
 
-            // Functions
-            {
-              title: 'battleFunAttackWarrior',
-              id: 'battleFunAttackWarrior',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Functions1',
-              color: 'red',
-            },
-            {
-              title: 'battleFunAttackDragon',
-              id: 'battleFunAttackDragon',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Functions1',
-              color: 'red',
-            },
-            {
-              title: 'battleFunDifferentTypes',
-              id: 'battleFunDifferentTypes',
-              img: 'https://codenplay.io/img/3-code.png',
-              unit: 'Functions1',
-              color: 'red',
-            },
+            // // Functions
+            // {
+            //   title: 'battleFunAttackWarrior',
+            //   id: 'battleFunAttackWarrior',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Functions1',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleFunAttackDragon',
+            //   id: 'battleFunAttackDragon',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Functions1',
+            //   color: 'red',
+            // },
+            // {
+            //   title: 'battleFunDifferentTypes',
+            //   id: 'battleFunDifferentTypes',
+            //   img: 'https://codenplay.io/img/3-code.png',
+            //   unit: 'Functions1',
+            //   color: 'red',
+            // },
           ]
         }
       });

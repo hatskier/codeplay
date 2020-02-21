@@ -1,3 +1,10 @@
+FIXES FOR PRO.CODENPLAY.IO
+- Fix show more logs
+- Implement translation (не криво)
+- 
+
+
+
 - Urgent fixes
   - Implement preloading script (to run ti on landing page and video pages)
   - Fix solutionCodes for each task

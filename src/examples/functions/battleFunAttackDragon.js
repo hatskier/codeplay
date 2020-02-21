@@ -24,6 +24,19 @@ let conf = prepareBattle({
 
   solutionCode:
 `
+function attackDragon() {
+  hero.go();
+  hero.go();
+  hero.spearAttack();
+}
+
+function attackWarrior() {
+  hero.go();
+  hero.swordAttack();
+}
+
+// Add only one instruction below
+attackDragon();
 `,
 
 startCodeVal:
@@ -39,7 +52,7 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-attackDragon();
+// Add only one instruction below
 `
 });
 

@@ -1,0 +1,3 @@
+man.go('up', 2);
+man.go('down', 2);
+...
