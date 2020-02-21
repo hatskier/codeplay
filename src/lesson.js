@@ -195,14 +195,14 @@ $( document ).ready(async function() {
   window.solveTask = function() {
     if (conf.solutionCode) {
       editor.setValue(conf.solutionCode);
-      window.toastr.success('Read the solution code! Try to understand it and then click the run button');
+      window.toastr.success('Прочти код решения! Попытайся его понять, затем нажми на зеленую кнопку');
     }
   };
 
   window.gifUrls = GifUrls;
 
   window.run = async function() {
-    toastr.success('Program started');
+    toastr.success('Программа запущена');
     scrollToTop();
     await Editor.reorderLines();
     changeManageButtons({showStop: true, showRun: false});
@@ -270,7 +270,7 @@ $( document ).ready(async function() {
   window.setSpeed = function(speed) {
     localStorage.programSpeed = speed;
     field.setSpeed(localStorage.programSpeed);
-    toastr.success('Program execution speed set to: ' + localStorage.programSpeed);
+    toastr.success('Скорость выполнения программы установлена на: ' + localStorage.programSpeed);
   }
 
   window.startCodeplayTour = function() {
@@ -302,9 +302,9 @@ $( document ).ready(async function() {
     const link = document.getElementById('terminal-manager-link');
 
     if ($('#logs').is(':visible')) {
-      link.innerHTML = 'show less';
+      link.innerHTML = 'скрой логи';
     } else {
-      link.innerHTML = 'show more';
+      link.innerHTML = 'покажи логи';
     }
   }
 
@@ -419,12 +419,12 @@ $( document ).ready(async function() {
     // }
     let snackbarContainer = document.querySelector('#snackbar');
     let data = {
-      message: 'Do you want to see the solution code?',
+      message: 'Показать решение?',
       timeout: 7000,
       actionHandler: function() {
         window.solveTask();
       },
-      actionText: 'Yes'
+      actionText: 'Ага'
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
   }
@@ -505,7 +505,7 @@ $( document ).ready(async function() {
     // toastr.success('Well done!');
     // toastr.options.positionClass = 'toast-top-right';
     toastr.success(`<img class="error-notification-img" src='${successImgUrl}'>
-    <div class="error-notification-text">Well done! Saving your result...</div>`);
+    <div class="error-notification-text">Отлично! Сохраняю результат...</div>`);
     // showGifResult(successImgUrl);
     await sleep(2500);
 
@@ -530,9 +530,9 @@ $( document ).ready(async function() {
 
     if (conf.docTableExtended) {
       let tableHeaders = `<tr>
-        <th>Instruction</th>
-        <th>Description</th>
-        <th>Examples</th>
+        <th>Инструкция</th>
+        <th>Описание</th>
+        <th>Примеры</th>
       </tr>`
       docTable += tableHeaders;
     }
@@ -556,18 +556,18 @@ $( document ).ready(async function() {
   
   function buildDocumentationView(conf) {
     let html = `
-      <h6 class="notranslate"><span class="notranslate">Task</span>: ${configName}</h6>
+      <h6 class="notranslate"><span class="notranslate">Задание</span>: ${configName}</h6>
       <p class="doc doc-task-description notranslate">${conf.taskDescription}</p>
 
-      <h6 class="notranslate">Available instructions</h6>
+      <h6 class="notranslate">Инструкции</h6>
 
       <table id="doc-table">
         ${buildDocTable(conf)}
       </table>
 
-      <h6 class="notranslate">Please note</h6>
-      <p class="notranslate">Each instruction should end with ();</p>
-      <p class="notranslate">Green lines with // are ignored by the program executor (we call 'em comments)</p>
+      <h6 class="notranslate">Кстати</h6>
+      <p class="notranslate">Инструкции обычно заканчиваются на ();</p>
+      <p class="notranslate">Зелёные строки с "//" в начале - это комментарии, их компьютер игнорирует</p>
     `;
     $('#doc-view').html(html);
   }

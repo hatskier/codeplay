@@ -196,20 +196,20 @@ class Field {
   }
 
   showProgramState() {
-    this.log('-----------------------------');
+    // this.log('-----------------------------');
     for (let varName in this.state.vars) {
       let val = this.state.vars[varName];
       
-      if (val == null) {
-        this.log(`Variable "${varName}" is empty`);
-      } else {
-        this.log(`Variable "${varName}" equals to ${val}`);
-      }
+      // if (val == null) {
+      //   this.log(`Переменная "${varName}" пока пустая`);
+      // } else {
+      //   this.log(`Переменная "${varName}" равняется ${val}`);
+      // }
     }
-    this.log('-----------------------------');
+    // this.log('-----------------------------');
 
     // Update variables in variables tables
-    // Page.updateVariablesTable(this.state.vars);
+    Page.updateVariablesTable(this.state.vars);
   }
 
   //////////////////////////
@@ -217,9 +217,9 @@ class Field {
   // TODO in future we can add speed and other motion params
   async run(codeTree, lineHighlighter) {
     // TODO handle other types of statement
-    this.log("==========================================================");
-    this.log("======================= GAME STARTED =====================");
-    this.log("==========================================================");
+    this.log("====================================================");
+    this.log("=================== ИГРА НАЧАЛАСЬ ==================");
+    this.log("====================================================");
 
     // TODO remove
     console.log(codeTree);

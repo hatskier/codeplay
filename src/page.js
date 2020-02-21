@@ -134,7 +134,7 @@ Page.updateVariablesTable = function(variables) {
   }
   let htmlTableBody = '<tr>';
   for (let variableName in variables) {
-    htmlTableBody += `<td class="mdl-data-table__cell--non-numeric variable-name-bold">${variableName}</td>`;
+    htmlTableBody += `<td class="variable-name-bold">${variableName}</td>`;
     htmlTableBody += `<td>${variables[variableName]}</td>`;
     htmlTableBody += '</tr>';
   }

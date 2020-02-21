@@ -87,21 +87,6 @@
           </div>
         </div>
         <div class="mdl-cell mdl-cell--6-col notranslate">
-          <div id="variables-values-container">
-            <span id="variables-title">Variables</span>
-            <table class="mdl-data-table mdl-js-data-table">
-              <thead>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric">
-                    Name
-                  </th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody id="variables-table-body">
-              </tbody>
-            </table>
-          </div>
           <div id="code-editor"></div>
         </div>
 
@@ -111,6 +96,24 @@
               <div class="terminal">
                 <div id="terminal-manager-links">
                   <span onclick="toggleTerminalMode()" id="terminal-manager-link">hide logs</span>
+                </div>
+
+                <div id="variables-values-container">
+                  <!-- <span id="variables-title">Variables</span> -->
+                  <!-- <table class="mdl-data-table mdl-js-data-table"> -->
+                  <table>
+                    <thead>
+                      <tr>
+                        <!-- <th class="mdl-data-table__cell--non-numeric"> -->
+                        <th>
+                          Имя
+                        </th>
+                        <th>Значение</th>
+                      </tr>
+                    </thead>
+                    <tbody id="variables-table-body">
+                    </tbody>
+                  </table>
                 </div>
 
                 <p class="log" id="logs"></p>
@@ -160,7 +163,7 @@
           <img id="reload-button" onclick="location.reload()" class="md-icon clickable" src="./img/replay-blue-icon.svg">
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="reload-button">
-            Reload task
+            Перезапустить задание
           </div>
         </div>
 
@@ -171,16 +174,16 @@
           <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
               for="help-button">
             <li class="mdl-menu__item" onclick="solveTask()">
-              Show the solution code
+              Покажи решение
             </li>
-            <li class="mdl-menu__item" onclick="startCodeplayTour()">Show the tutorial</li>
+            <li class="mdl-menu__item" onclick="startCodeplayTour()">Покажи туториал</li>
             <a class="mdl-menu__item" href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
-              Explanation on YouTube
+              Туториал на youtube
             </a>
           </ul>
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="help-button">
-            Need help?
+            Нужна помощь?
           </div>
         </div>
 
@@ -199,28 +202,28 @@
           <img id="settings-button" class="md-icon clickable" onclick="toggleSpeed()" src="./img/speed-blue-icon.svg">
           <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
               for="settings-button">
-            <li class="mdl-menu__item" onclick="setSpeed('normal')">Normal</li>
-            <li class="mdl-menu__item" onclick="setSpeed('fast')">Fast</li>
-            <li class="mdl-menu__item" onclick="setSpeed('slow')">Slow</li>
+            <li class="mdl-menu__item" onclick="setSpeed('normal')">Нормально</li>
+            <li class="mdl-menu__item" onclick="setSpeed('fast')">Быстро</li>
+            <li class="mdl-menu__item" onclick="setSpeed('slow')">Медленно</li>
           </ul>
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="settings-button">
-            Set speed
+            Скорость выполнения
           </div>
         </div>
 
         <div id="stop-button" class="clickable" onclick="reset()">
           <img class="md-icon" src="./img/white-stop-icon.png">
         </div>
-        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="stop-button">
+        <!-- <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="stop-button">
           Stop the program
-        </div>
+        </div> -->
 
         <div id="run-button" class="clickable" onclick="run()">
           <img class="md-icon" src="./img/white-play-icon.png">
         </div>
         <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="run-button">
-          Run program
+          Запустить программу
         </div>
       </div>
 

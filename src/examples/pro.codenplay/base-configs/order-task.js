@@ -14,31 +14,30 @@ function runtimeError(msg, field) {
 export default function (conf) {
   let methods = {};
   for (let methodName in conf.methods) {
+    const { bg, doc, examples, log } = conf.methods[methodName];
     methods[methodName] = {
-      doc: conf.methods[methodName].doc,
-      examples: conf.methods[methodName].examples,
+      doc,
+      examples,
       async run({field, state}, params) {
-        if (!state.executedMethods) {
-          state.executedMethods = [];
+        if (!state.stages) {
+          state.stages = [];
         }
 
-        if (params && params.length > 0) {
-          runtimeError(`Метод ${methodName} не принимает аргументы`, field);
-        }
+        // if (params && params.length > 0) {
+        //   runtimeError(`Метод ${methodName} не принимает аргументы`, field);
+        // }
 
-        state.executedMethods.push(methodName);
+        state.stages.push(bg);
 
         let counter = 0;
-        for (let executedMethod of state.executedMethods) {
-          if (executedMethod !== conf.order[counter]) {
+        for (let stage of state.stages) {
+          if (stage !== conf.order[counter]) {
             runtimeError('Неверный порядок выполнения инструкций', field);
           }
           counter++;
         }
-
-        field.log(conf.methods[methodName].log);
-
-        field.changeBg(conf.methods[methodName].bg);
+        field.log(log);
+        field.changeBg(bg);
         await sleep(conf.tickTime);
       }
     }
@@ -50,7 +49,7 @@ export default function (conf) {
         // 
       },
       post: async function({state, field}) {
-        if (!state.executedMethods || state.executedMethods.length !== conf.order.length) {
+        if (!state.stages || state.stages.length !== conf.order.length) {
           runtimeError('Задание не закончено', field);
         }
       }
@@ -75,6 +74,7 @@ export default function (conf) {
 
     size: conf.size,
     images: conf.images,
+    docTableExtended: conf.docTableExtended,
     startCodeVal: conf.startCodeVal,
     solutionCode: conf.solutionCode,
     taskDescription: conf.taskDescription,
