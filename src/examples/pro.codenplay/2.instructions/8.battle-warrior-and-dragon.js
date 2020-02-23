@@ -1,8 +1,5 @@
 import prepareBattle from '../base-configs/battle';
 
-// TODO add warrior in config
-// TODO update solutionCode and startCodeVal
-
 let conf = prepareBattle({
   iterations: [
     {
@@ -33,6 +30,7 @@ let conf = prepareBattle({
 
   startPosX: 44,
   maxTicksToWin: 30,
+  stepsArgSupported: false,
 
 });
 
@@ -44,7 +42,9 @@ hero.defend();
 const solutionCode =
 `// Одолей врагов
 hero.defend();
-hero.go(2);
+hero.go();
+hero.defend();
+hero.go();
 hero.defend();
 hero.spearAttack();
 hero.go();

@@ -18,7 +18,7 @@ function runtimeError(msg, field) {
   throw new Error(msg);
 }
 
-function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solutionCode}) {
+function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solutionCode, stepsArgSupported}) {
 
   function getEnemiesToAdd(enemies) {
     let enemiesToAdd = [];
@@ -361,12 +361,16 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solu
 
     methods: {
       'hero.go': {
-        doc: 'Перемещение воина вправо на количество шагов, указанное в аргументе (по умолчанию 1 шаг)',
-        examples: 'hero.go(2); <br /> hero.go(distance);',
+        doc: (stepsArgSupported ? 'Перемещение воина вправо на количество шагов, указанное в аргументе (по умолчанию 1 шаг)' : 'Перемещение воина вправо на 1 шаг. Инструкция не принимает аргументы'),
+        examples: (stepsArgSupported ? 'hero.go(2); <br /> hero.go(distance);' : 'hero.go();'),
         async run({field, state}, params) {
           let stepsNumber = 1;
           if (params.length > 0) {
-            stepsNumber = params[0];
+            if (stepsArgSupported) {
+              stepsNumber = params[0];
+            } else {
+              runtimeError('Инструкция hero.go не принимает аргументы', field);
+            }
           }
 
           field.log(`Воин идет вправо на шагов: ${stepsNumber}`);

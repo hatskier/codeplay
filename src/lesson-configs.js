@@ -136,6 +136,9 @@ import labyrinthArgsMedium from './examples/pro.codenplay/3.expressions/2.labyri
 import labyrinthArgsHard from './examples/pro.codenplay/3.expressions/3.labyrinth-args-hard';
 import labyrinthArgsDirection from './examples/pro.codenplay/3.expressions/4.labyrinth-args-direction';
 import labyrinthArgsDirectionAndSteps from './examples/pro.codenplay/3.expressions/5.labyrinth-args-direction-and-steps';
+import battleArgsWeapon from './examples/pro.codenplay/3.expressions/6.battle-args-weapon';
+import battleArgsDistance from './examples/pro.codenplay/3.expressions/7.battle-args-distance';
+import battleArgsWeaponAndDistance from './examples/pro.codenplay/3.expressions/8.battle-args-weapon-and-distance';
 
 // Variables
 import ironManVars from './examples/pro.codenplay/4.variables/1.iron-man-vars';
@@ -162,6 +165,9 @@ export default {
   labyrinthArgsHard,
   labyrinthArgsDirection,
   labyrinthArgsDirectionAndSteps,
+  battleArgsWeapon,
+  battleArgsDistance,
+  battleArgsWeaponAndDistance,
 
   // Variables
   ironManVars,

@@ -22,6 +22,7 @@ let conf = prepareBattle({
 
   startPosX: 44,
   maxTicksToWin: 30,
+  stepsArgSupported: false,
 
 });
 
@@ -34,7 +35,9 @@ const solutionCode =
 `// Одолей дракона
 // Меч против него бессилен
 hero.defend();
-hero.go(2);
+hero.go();
+hero.defend();
+hero.go();
 hero.defend();
 hero.spearAttack();
 `;

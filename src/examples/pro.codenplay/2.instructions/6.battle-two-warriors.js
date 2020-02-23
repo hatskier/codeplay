@@ -34,18 +34,16 @@ let conf = prepareBattle({
 
   startPosX: 40,
   maxTicksToWin: 30,
+  stepsArgSupported: false,
 
 });
 
 const startCodeVal =
-`// Defeat all the enemies and don't let them
-// kill you
-
+`// Атакуй двух рыцарей
 `;
 
 const solutionCode =
-`// Defeat all the enemies and don't let them
-// kill you
+`// Атакуй двух рыцарей
 hero.go();
 hero.attack();
 hero.defend();

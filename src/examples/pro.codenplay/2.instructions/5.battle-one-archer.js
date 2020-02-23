@@ -16,25 +16,24 @@ let conf = prepareBattle({
           location: 60
         }
       },
-    }
+    },
   ],
 
   startPosX: 34,
   maxTicksToWin: 10,
+  stepsArgSupported: false,
 
 });
 
 const startCodeVal =
-`// Defeat the archer and don't let him kill you
-// Archer could attack you from any distance
-// Use your shield to defend
+`// В этот раз твой противник - лучник
+// он может атаковать с любого расстояния
 hero.defend();
 `;
 
 const solutionCode =
-`// Defeat the archer and don't let him kill you
-// Archer could attack you from any distance
-// Use your shield to defend
+`// В этот раз твой противник - лучник
+// он может атаковать с любого расстояния
 hero.defend();
 hero.defend();
 hero.go();
