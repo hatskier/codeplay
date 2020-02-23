@@ -124,6 +124,11 @@ import ironManIntro from './examples/pro.codenplay/1.basics/1.iron-man-intro';
 import ironMan from './examples/pro.codenplay/2.instructions/1.iron-man';
 import labyrinthSuperEasy from './examples/pro.codenplay/2.instructions/2.labyrinth-super-easy';
 import labyrinthEasy from './examples/pro.codenplay/2.instructions/3.labyrinth-easy';
+import battleOneWarrior from './examples/pro.codenplay/2.instructions/4.battle-one-warrior';
+import battleOneArcher from './examples/pro.codenplay/2.instructions/5.battle-one-archer';
+import battleTwoWarriors from './examples/pro.codenplay/2.instructions/6.battle-two-warriors';
+import battleOneDragon from './examples/pro.codenplay/2.instructions/7.battle-one-dragon';
+import battleWarriorAndDragon from './examples/pro.codenplay/2.instructions/8.battle-warrior-and-dragon';
 
 // Expressions
 import ironManArgs from './examples/pro.codenplay/3.expressions/1.iron-man-args';
@@ -145,6 +150,11 @@ export default {
   ironMan,
   labyrinthSuperEasy,
   labyrinthEasy,
+  battleOneWarrior,
+  battleOneArcher,
+  battleTwoWarriors,
+  battleOneDragon,
+  battleWarriorAndDragon,
 
   // Expressions
   ironManArgs,

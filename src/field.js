@@ -240,7 +240,7 @@ class Field {
 
     // To prevent showing non-friendly message that "codeTree is not iterable"
     if (!codeTree || !Array.isArray(codeTree)) {
-      throw new Error('The code is incorrect. It should contain at least one instruction. Green lines (with //) are ignored by program executor');
+      throw new Error('Код должен содержать хотя бы одну инструкцию');
     }
 
     for (let node of codeTree) {

@@ -349,7 +349,7 @@ $( document ).ready(async function() {
   };
   
   window.hideLogsInTerminal = function() {
-    $('#logs').hide(300, updateTerminalModeLinkText);
+    $('#logs').hide(2000, updateTerminalModeLinkText);
   }
 
   window.reloadWithLang = function(lang) {
