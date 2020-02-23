@@ -8,11 +8,10 @@ let config = createConfig({
         { direction: 'down', length: 3 },
         { direction: 'right', length: 2 },
       ],
-      stepWidth: 24.92, // %
     }
   ],
 
-  stepsArgumentSupported: false,
+  stepsArgumentSupported: true,
 });
 
 const startCodeVal =

@@ -134,6 +134,8 @@ import labyrinthArgsDirectionAndSteps from './examples/pro.codenplay/3.expressio
 
 // Variables
 import ironManVars from './examples/pro.codenplay/4.variables/1.iron-man-vars';
+import labyrinthVars from './examples/pro.codenplay/4.variables/2.labyrinth-vars';
+import labyrinthVarsWithExpr from './examples/pro.codenplay/4.variables/3.labyrinth-vars-with-expression';
 
 export default {
   // Basics
@@ -153,4 +155,7 @@ export default {
 
   // Variables
   ironManVars,
+  labyrinthVars,
+  labyrinthVarsWithExpr,
+
 };

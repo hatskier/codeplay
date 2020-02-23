@@ -5,7 +5,7 @@ let config = createConfig({
     {
       path: [
         { direction: 'right', length: 2 },
-        { direction: 'down', length: 2 },
+        { direction: 'down', length: 3 },
         { direction: 'right', length: 2 },
       ],
       funResults: {
@@ -15,7 +15,7 @@ let config = createConfig({
     {
       path: [
         { direction: 'right', length: 3 },
-        { direction: 'down', length: 3 },
+        { direction: 'down', length: 4 },
         { direction: 'right', length: 3 },
       ],
       funResults: {
@@ -25,7 +25,7 @@ let config = createConfig({
     {
       path: [
         { direction: 'right', length: 4 },
-        { direction: 'down', length: 4 },
+        { direction: 'down', length: 5 },
         { direction: 'right', length: 4 },
       ],
       funResults: {
@@ -52,7 +52,7 @@ const solutionCode =
 var length = getLength();
 
 man.moveRight(length);
-man.moveDown(length);
+man.moveDown(length + 1);
 man.moveRight(length);
 `;
 

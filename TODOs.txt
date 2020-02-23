@@ -1,9 +1,8 @@
 FIXES FOR PRO.CODENPLAY.IO
-- Fix show more logs
-- Implement translation (не криво)
-- 
-
-
+- Battle tasks
+  - Prepare configs fot the first 4 units
+  - Prepare battle base config
+  - Test and translate to russian
 
 - Urgent fixes
   - Implement preloading script (to run ti on landing page and video pages)

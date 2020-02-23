@@ -21,7 +21,7 @@ const toastr = window.toastr;
 toastr.options = {
   closeButton: true,
   showDuration: 3000,
-  hideDuration: 10,
+  hideDuration: 0,
   // positionClass: 'toast-top-center',
 };
 
@@ -97,13 +97,43 @@ function adjustFieldScreenScaling(conf) {
   }
 }
 
-async function showIterationNrMsg(nr) {
-  // alert('Iteration: ' + nr);
-  // toastr.success('Running test iteration nr: ' + nr);
-  // let htmlWithMessageToAdd = `
-  //   <div id="iteration"></div>
-  // `;
-  // $('#scre')
+function showIterationNrMsg(nr) {
+  const id = 'test-notification-nr';
+
+  // Clear previous message with iteration nr
+  field.removeObject(id);
+
+  // Adding a new message with iteration nr
+  field.addObject({
+    id,
+    kind: 'html',
+    html: `<div id="${id}">Тест номер: <strong>${nr}</strong></div>`,
+    size: {
+      width: 550,
+      height: 20,
+    },
+    style: {
+      'background': '#00A4F5',
+      'opacity': '0.95',
+      'line-height': '20px',
+      'font-size': '10px',
+      'color': 'white',
+      'text-align': 'center',
+      'border-radius': '0px 0px 3px 3px',
+    },
+    startPos: {
+      x: 0,
+      y: 95.6,
+    },
+  });
+
+  // setTimeout(() => {
+  //   field.removeObject(id);
+  // }, 10000);
+}
+
+function clearAllToasts() {
+  $('.toast').hide();
 }
 
 
@@ -195,6 +225,7 @@ $( document ).ready(async function() {
   window.solveTask = function() {
     if (conf.solutionCode) {
       editor.setValue(conf.solutionCode);
+      clearAllToasts();
       window.toastr.success('Прочти код решения! Попытайся его понять, затем нажми на зеленую кнопку');
     }
   };
@@ -202,6 +233,7 @@ $( document ).ready(async function() {
   window.gifUrls = GifUrls;
 
   window.run = async function() {
+    clearAllToasts();
     toastr.success('Программа запущена');
     scrollToTop();
     await Editor.reorderLines();
@@ -218,7 +250,7 @@ $( document ).ready(async function() {
           field.state.__iterationNr = iterationNr;
           if (conf.iterations.length > 1) {
             // toastr.success(`Running test interation No. ${iterationNr + 1}`);
-            await showIterationNrMsg(++iterationNr);
+            showIterationNrMsg(++iterationNr);
           }
 
           await iteration.pre({field, state: field.state});
@@ -424,7 +456,7 @@ $( document ).ready(async function() {
       actionHandler: function() {
         window.solveTask();
       },
-      actionText: 'Ага'
+      actionText: 'Да'
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
   }

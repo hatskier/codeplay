@@ -8,7 +8,6 @@ let config = createConfig({
         { direction: 'down', length: 1 },
         { direction: 'right', length: 1 },
       ],
-      stepWidth: 50, // %
     }
   ],
 

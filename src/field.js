@@ -58,6 +58,16 @@ class Field {
     Page.removeObject(id);
   }
 
+  removeObjects({ filter }) {
+    for (let objectId in this.objects) {
+      let object = this.objects[objectId];
+      if (!filter || filter(object)) {
+        this.removeObject(objectId);
+      }
+    }
+  }
+
+  // Should not be used from game config level
   clear() {
     Page.clearAll();
   }
