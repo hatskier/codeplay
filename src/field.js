@@ -100,7 +100,7 @@ class Field {
       if (this.cbAfterExecutionStopped !== null) {
         this.cbAfterExecutionStopped();
       }
-      throw new Error('Execution stopped');
+      throw new Error('Выполнение программы прервано');
     }
   }
 
@@ -117,16 +117,16 @@ class Field {
       return expr.value;
     } else if (expr.type == 'varExpr') {
       if (!this.isVariableDeclared(expr.name)) {
-        this.log(`You were trying to use an undeclared variable "${expr.name}"`, { error: true });
-        throw new Error(`Trying to use an undeclared variable "${expr.name}"`);
+        this.log(`Попытка использования несуществующей переменной "${expr.name}"`, { error: true });
+        throw new Error(`Попытка использования несуществующей переменной "${expr.name}"`);
       }
 
       const val = this.state.vars[expr.name];
 
-      if (val == null) {
-        this.log(`You were trying to use an empty variable "${expr.name}"`
-                 + 'Please assign it with some value before', { error: true });
-        throw new Error(`Trying to use an empty variable "${expr.name}"`);
+      if (val == null || val == undefined) {
+        this.log(`Попытка использования пустой переменной: "${expr.name}". `
+                 + 'Сначала присвой ей какое-нибудь значение', { error: true });
+        throw new Error(`Попытка использования пустой переменной: "${expr.name}"`);
       }
 
       return this.state.vars[expr.name];
@@ -181,7 +181,7 @@ class Field {
   setVariableValue(varName, val, mustBeDeclared) {
     if (mustBeDeclared && !this.isVariableDeclared(varName)) {
       const errMsg =
-        `Variable "${varName}" does not exist. It can be created using "var ${varName};"`;
+        `Переменная "${varName}" не существует. Чтобы создать ее используй инструкцию "var ${varName};"`;
       this.log(errMsg, {error: true});
       Logger.error(errMsg);
       throw new Error(errMsg);
@@ -333,7 +333,7 @@ class Field {
               await this.run(node.stmts, lineHighlighter);
             }
             if (loopCounter > WHILE_LOOP_MAX_ITERATIONS_NUMBER) {
-              throw new Error('Maximum loop iterations number exceeded');
+              throw new Error('Слишком много итераций цикла. Программа прервана');
               break;
             }
           }
@@ -346,21 +346,24 @@ class Field {
         }
         case 'varDeclEmpty': {
           await this.tickSleep();
-          // TODO alex 123
-          alert('Here it is 1');
           this.setVariableValue(node.name, null, false);
           break;
         }
         case 'varDecl': {
-          await this.tickSleep();
           const val = this.getValForExpr(node.expr, false);
+          if (this.isVariableDeclared(node.name)) {
+            throw new Error(`Попытка повторной декларации переменной: ${node.name}. Удали слово var`);
+          }
           this.setVariableValue(node.name, val);
+          this.showProgramState(); // update state table before sleep
+          await this.tickSleep();
           break;
         }
         case 'varAssign': {
-          await this.tickSleep();
           const val = this.getValForExpr(node.expr);
           this.setVariableValue(node.name, val, true);
+          this.showProgramState(); // update state table before sleep
+          await this.tickSleep();
           break;
         }
         default: {

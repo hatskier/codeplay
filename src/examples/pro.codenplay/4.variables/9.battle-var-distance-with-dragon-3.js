@@ -11,31 +11,6 @@ let conf = prepareBattle({
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 58
-        },
-
-        'Dragon': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
-        }
-      },
-      funResults: {
-        getDistance: 1
-      }
-    },
-
-    {
-      enemies: {
-        'Warrior': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
           location: 68
         },
 
@@ -45,7 +20,7 @@ let conf = prepareBattle({
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         }
       },
       funResults: {
@@ -70,7 +45,7 @@ let conf = prepareBattle({
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         },
       },
       funResults: {
@@ -83,7 +58,7 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
   stepsArgSupported: true,
   shortDescription: true,
-
+  codeFontSize: 16,
 });
 
 const startCodeVal =
@@ -91,10 +66,18 @@ const startCodeVal =
 // В каждом тесте код запустится заново
 
 // Переменная distance получает расстояние
-// до врага (число шагов)
+// до дальнего врага (число шагов)
 var distance = getDistance();
+var weapon;
 
-// Код пиши под этим комментарием
+// Нужно пофиксить баг (исправить ошибку) 
+// не добавляя новых инструкций
+hero.go(1);
+weapon = 'spear';
+hero.attackWith(weapon);
+hero.go(distance - 1);
+weapon = 'swooord';
+hero.attackWith(weapon);
 `;
 
 const solutionCode =
@@ -102,13 +85,18 @@ const solutionCode =
 // В каждом тесте код запустится заново
 
 // Переменная distance получает расстояние
-// до врага (число шагов)
+// до дальнего врага (число шагов)
 var distance = getDistance();
+var weapon;
 
-// Код пиши под этим комментарием
-hero.attackWith('spear');
-hero.go(distance);
-hero.attackWith('sword');
+// Нужно пофиксить баг (исправить ошибку) 
+// не добавляя новых инструкций
+hero.go(1);
+weapon = 'spear';
+hero.attackWith(weapon);
+hero.go(distance - 1);
+weapon = 'sword';
+hero.attackWith(weapon);
 `;
 
 delete conf.methods["hero.attack"];

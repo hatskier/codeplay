@@ -11,88 +11,46 @@ let conf = prepareBattle({
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 58
-        },
+          location: 68
+        }
+      },
+      funResults: {
+        getPerfectWeapon: 'sword',
+        getDistance: 2,
+      }
+    },
 
+    {
+      enemies: {
         'Dragon': {
           action() {
             return 'skip';
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         }
       },
       funResults: {
+        getPerfectWeapon: 'spear',
         getDistance: 1
       }
-    },
-
-    {
-      enemies: {
-        'Warrior': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 68
-        },
-
-        'Dragon': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
-        }
-      },
-      funResults: {
-        getDistance: 2
-      }
-    },
-
-    {
-      enemies: {
-        'Warrior': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 78
-        },
-
-        'Dragon': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
-        },
-      },
-      funResults: {
-        getDistance: 3
-      }
-    },
+    }
   ],
 
   startPosX: 40,
   maxTicksToWin: 12,
   stepsArgSupported: true,
   shortDescription: true,
-
 });
 
 const startCodeVal =
 `// Будет запущено несколько тестов
 // В каждом тесте код запустится заново
 
-// Переменная distance получает расстояние
-// до врага (число шагов)
+// Используй переменные для решения
 var distance = getDistance();
+var weapon = getPerfectWeapon();
 
 // Код пиши под этим комментарием
 `;
@@ -101,14 +59,13 @@ const solutionCode =
 `// Будет запущено несколько тестов
 // В каждом тесте код запустится заново
 
-// Переменная distance получает расстояние
-// до врага (число шагов)
+// Используй переменные для решения
 var distance = getDistance();
+var weapon = getPerfectWeapon();
 
 // Код пиши под этим комментарием
-hero.attackWith('spear');
 hero.go(distance);
-hero.attackWith('sword');
+hero.attackWith(weapon);
 `;
 
 delete conf.methods["hero.attack"];

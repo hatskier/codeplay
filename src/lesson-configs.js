@@ -144,6 +144,13 @@ import battleArgsWeaponAndDistance from './examples/pro.codenplay/3.expressions/
 import ironManVars from './examples/pro.codenplay/4.variables/1.iron-man-vars';
 import labyrinthVars from './examples/pro.codenplay/4.variables/2.labyrinth-vars';
 import labyrinthVarsWithExpr from './examples/pro.codenplay/4.variables/3.labyrinth-vars-with-expression';
+import battleVarDistance from './examples/pro.codenplay/4.variables/4.battle-var-distance';
+import battleVarWeaponSimple from './examples/pro.codenplay/4.variables/5.battle-var-weapon-simple';
+import battleVarWeapon from './examples/pro.codenplay/4.variables/6.battle-var-weapon';
+import battleVarDistanceWithDragon from './examples/pro.codenplay/4.variables/7.battle-var-distance-with-dragon';
+import battleVarDistanceWithDragon2 from './examples/pro.codenplay/4.variables/8.battle-var-distance-with-dragon-2';
+import battleVarDistanceWithDragon3 from './examples/pro.codenplay/4.variables/9.battle-var-distance-with-dragon-3';
+import battleVarWeaponAndDistance from './examples/pro.codenplay/4.variables/10.battle-var-weapon-and-distance';
 
 export default {
   // Basics
@@ -173,5 +180,12 @@ export default {
   ironManVars,
   labyrinthVars,
   labyrinthVarsWithExpr,
+  battleVarDistance,
+  battleVarWeaponSimple,
+  battleVarWeapon,
+  battleVarDistanceWithDragon,
+  battleVarDistanceWithDragon2,
+  battleVarDistanceWithDragon3,
+  battleVarWeaponAndDistance,
 
 };

@@ -107,9 +107,11 @@
 #run-button {
   background: var(--light-green-color);
   /* width: 70px; */
-  padding: 10px;
+  padding: 15px;
   border-radius: 50px;
   float: left;
+
+  /* animation: circle-waves-for-run-button 1s ease 2s 3 forwards;; */
 }
 
 #stop-button {

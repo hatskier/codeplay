@@ -134,8 +134,12 @@ Page.updateVariablesTable = function(variables) {
   }
   let htmlTableBody = '<tr>';
   for (let variableName in variables) {
+    let variableValueToDisplay = variables[variableName];
+    if (variableValueToDisplay == null) { // it handle == undefined case as well
+      variableValueToDisplay = '';
+    }
     htmlTableBody += `<td class="variable-name-bold">${variableName}</td>`;
-    htmlTableBody += `<td>${variables[variableName]}</td>`;
+    htmlTableBody += `<td>${variableValueToDisplay}</td>`;
     htmlTableBody += '</tr>';
   }
   document.getElementById('variables-table-body').innerHTML = htmlTableBody;

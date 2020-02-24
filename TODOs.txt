@@ -1,5 +1,18 @@
 FIXES FOR PRO.CODENPLAY.IO
-- Battle tasks
-  - Prepare configs fot the first 4 units
-  - Prepare battle base config
-  - Test and translate to russian
+- Implement support for code font-size - DONE
+- battle for the 4th unit - DONE
+- Implement save and continue button in codeplay - SKIPPED
+- Tasks
+  - Prepare configs for the 5th unit
+    - labyrinth for the 5th unit
+    - battles for the 5th unit
+
+
+- Start platform pro.codenplay implementations and materials binding
+  - create a page with game lessons
+  - create a page with current progress (it can be a course page)
+  - create or at least plan courses page
+- Test all the tasks again
+  - check documentation for each task
+  - check (and most likely update) comments in initial codes
+  - check running with the bad code and with the solution code

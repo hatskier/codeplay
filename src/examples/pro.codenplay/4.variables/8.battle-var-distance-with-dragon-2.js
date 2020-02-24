@@ -11,31 +11,6 @@ let conf = prepareBattle({
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 58
-        },
-
-        'Dragon': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
-        }
-      },
-      funResults: {
-        getDistance: 1
-      }
-    },
-
-    {
-      enemies: {
-        'Warrior': {
-          action() {
-            return 'skip';
-          },
-
-          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
           location: 68
         },
 
@@ -45,7 +20,7 @@ let conf = prepareBattle({
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         }
       },
       funResults: {
@@ -70,7 +45,7 @@ let conf = prepareBattle({
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         },
       },
       funResults: {
@@ -83,7 +58,6 @@ let conf = prepareBattle({
   maxTicksToWin: 12,
   stepsArgSupported: true,
   shortDescription: true,
-
 });
 
 const startCodeVal =
@@ -91,10 +65,13 @@ const startCodeVal =
 // В каждом тесте код запустится заново
 
 // Переменная distance получает расстояние
-// до врага (число шагов)
+// до дальнего врага (число шагов)
 var distance = getDistance();
 
-// Код пиши под этим комментарием
+hero.go(1); // Подходим к дракону
+// Замени этот коммент какой-то инструкцией
+hero.go(distance - 1); // Так можно :)
+// Этот коммент тоже замени
 `;
 
 const solutionCode =
@@ -102,12 +79,12 @@ const solutionCode =
 // В каждом тесте код запустится заново
 
 // Переменная distance получает расстояние
-// до врага (число шагов)
+// до дальнего врага (число шагов)
 var distance = getDistance();
 
-// Код пиши под этим комментарием
+hero.go(1); // Подходим к дракону
 hero.attackWith('spear');
-hero.go(distance);
+hero.go(distance - 1); // <- Передаем результат выражения как аргумент
 hero.attackWith('sword');
 `;
 

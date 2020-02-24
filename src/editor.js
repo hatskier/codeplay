@@ -2,6 +2,8 @@
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import sleep from './sleep';
 
+const DEFAULT_EDITOR_FONT_SIZE = 18;
+
 export default {
   setUp(conf) { 
     monaco.languages.registerCompletionItemProvider('javascript', {
@@ -49,7 +51,7 @@ export default {
       scrollbar: {
         verticalScrollbarSize: 7,
       },
-      fontSize: 18,
+      fontSize: conf.codeFontSize || DEFAULT_EDITOR_FONT_SIZE,
       fontFamily: 'SF Mono, monospace',
       contextmenu: false
     });
@@ -70,5 +72,9 @@ export default {
       lines[nr - 1].style.background = color;
     }
     // return oldBg;
-  }
+  },
+
+  // setFontSize(fontSize) {
+  //   window.editor.updateOptions({ fontSize });
+  // },
 };

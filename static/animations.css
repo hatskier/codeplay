@@ -99,6 +99,16 @@
   }
 }
 
+@keyframes circle-waves-for-run-button {
+  50% {
+    box-shadow: 0px 0px 0px 15px #22da26;
+  }
+
+  100% {
+    box-shadow: 0px 0px 0px 0px #22da26;
+  }
+}
+
 .slide-down-el {
   z-index: 101;
   animation: slide-down 1.5s ease 0s forwards;

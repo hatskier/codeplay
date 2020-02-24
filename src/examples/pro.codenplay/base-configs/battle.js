@@ -18,7 +18,7 @@ function runtimeError(msg, field) {
   throw new Error(msg);
 }
 
-function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solutionCode, stepsArgSupported}) {
+function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solutionCode, stepsArgSupported, codeFontSize, shortDescription}) {
 
   function getEnemiesToAdd(enemies) {
     let enemiesToAdd = [];
@@ -353,7 +353,7 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solu
       }
     ],
     docTableExtended: true,
-    taskDescription: 'Ты - средневековый рыцарь, постоянно встречающий на своем пути преграды и опасности. Ты многое повидал и поучаствовал во многих боях, сражаясь на мечах с другими рыцарями и даже метая копья в драконов. Настало время очередной битвы. Битвы, состоящей из раундов, в каждом из которых ты или твои противники выполняют действия (атакуют, защищаются или пропускают ход). Ты начинаешь первым, а затем ходы чередуются. Твоя цель безумно проста: одолей врагов и не дай им себя убить.',
+    taskDescription: (shortDescription ? 'Битва состоит из раундов, в каждом из которых ты или твои противники выполняют действия (атакуют, защищаются или пропускают ход). Ты начинаешь первым, а затем ходы чередуются. Твоя цель безумно проста: одолей врагов и не дай им себя убить.' : 'Ты - средневековый рыцарь, постоянно встречающий на своем пути преграды и опасности. Ты многое повидал и поучаствовал во многих боях, сражаясь на мечах с другими рыцарями и даже метая копья в драконов. Настало время очередной битвы. Битвы, состоящей из раундов, в каждом из которых ты или твои противники выполняют действия (атакуют, защищаются или пропускают ход). Ты начинаешь первым, а затем ходы чередуются. Твоя цель безумно проста: одолей врагов и не дай им себя убить.'),
     size: {
       width: 550,
       height: 450
@@ -413,7 +413,7 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solu
         examples: 'hero.attackWith(\'spear\'); <br /> hero.attackWith(\'sword\');',
         async run({field, state}, args) {
           if (args.length != 1) {
-            runtimeError('hero.attackWith принимает лишь один аргумент: \'spear\' или \'sword\'');
+            runtimeError('hero.attackWith принимает лишь один аргумент: \'spear\' или \'sword\'', field);
           }
           let arg = args[0];
           if (arg == 'spear') {
@@ -421,7 +421,7 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solu
           } else if (arg == 'sword') {
             await swordAttack({field, state});
           } else {
-            runtimeError('hero.attackWith принимает лишь один аргумент: \'spear\' или \'sword\'');
+            runtimeError('hero.attackWith принимает лишь один аргумент: \'spear\' или \'sword\'', field);
           }
         }
       },
@@ -493,7 +493,8 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solu
       }
     },
     startCodeVal,
-    solutionCode
+    solutionCode,
+    codeFontSize,
   };
 
 
