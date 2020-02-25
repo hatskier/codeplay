@@ -99,8 +99,8 @@ function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solu
       const enemy = enemies[enemyId];
       const enemyOnField = field.findById(enemyId);
       if (enemy.kind != 'dragon') {
-        // TODO change it (hero can attack only enemies on the right side)
-        if (Math.abs(enemyOnField.pos.x - pos.x) <= attackDistance) {
+        const posDiff = enemyOnField.pos.x - pos.x;
+        if (posDiff <= attackDistance && posDiff >= 0) {
           return enemyId;
         }
       }

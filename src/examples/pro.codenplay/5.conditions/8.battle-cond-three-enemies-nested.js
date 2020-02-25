@@ -2,12 +2,30 @@ import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
-    // Enemies in first iteration
+    {
+      enemies: {
+        'Archer': {
+          action(tickNr) {
+            return 'skip';
+          },
+
+          kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+          location: 59
+        }
+      },
+      funResults: {
+        getEnemyType: 'archer',
+      }
+    },
     {
       enemies: {
         'Warrior': {
-          action() {
-            return 'skip';
+          action(tickNr) {
+            if (tickNr == 0) {
+              return 'attack';
+            } else {
+              return 'skip';
+            }
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
@@ -22,12 +40,16 @@ let conf = prepareBattle({
     {
       enemies: {
         'Dragon': {
-          action() {
-            return 'skip';
+          action(tickNr) {
+            if (tickNr == 0) {
+              return 'attack';
+            } else {
+              return 'skip';
+            }
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         }
       },
       funResults: {
@@ -39,6 +61,7 @@ let conf = prepareBattle({
   startPosX: 40,
   maxTicksToWin: 12,
   shortDescription: true,
+  codeFontSize: 16,
 
 });
 
@@ -49,12 +72,15 @@ const solutionCode =
 var enemy = getEnemyType();
 
 // Поправь код ниже
-if (enemy == 'dragon') {
-  hero.spearAttack();
-}
-
-if (enemy == 'warrior') {
+if (enemy == 'archer') {
+  hero.go();
   hero.swordAttack();
+} else {
+  if (enemy == 'warrior') {
+    hero.swordAttack();
+  } else {
+    hero.spearAttack();
+  }
 }
 `;
 
@@ -65,12 +91,14 @@ const startCodeVal =
 var enemy = getEnemyType();
 
 // Поправь код ниже
-if (enemy == 'dragon') {
+if (enemy == 'archer') {
   hero.swordAttack();
-}
-
-if (enemy == 'warrior') {
-  hero.swordAttack();
+} else {
+  if (enemy == 'warrior') {
+    hero.swordAttack();
+  } else {
+    hero.spearAttack();
+  }
 }
 `;
 

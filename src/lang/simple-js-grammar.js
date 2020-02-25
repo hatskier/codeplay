@@ -22,16 +22,12 @@ var grammar = {
     {"name": "stmts$ebnf$1", "symbols": []},
     {"name": "stmts$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
     {"name": "stmts$ebnf$1", "symbols": ["stmts$ebnf$1", "stmts$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "stmts$ebnf$2", "symbols": []},
     {"name": "stmts$ebnf$2$subexpression$1$ebnf$1", "symbols": []},
     {"name": "stmts$ebnf$2$subexpression$1$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
     {"name": "stmts$ebnf$2$subexpression$1$ebnf$1", "symbols": ["stmts$ebnf$2$subexpression$1$ebnf$1", "stmts$ebnf$2$subexpression$1$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "stmts$ebnf$2$subexpression$1", "symbols": ["stm", "_", "stmts$ebnf$2$subexpression$1$ebnf$1", "_"]},
-    {"name": "stmts$ebnf$2", "symbols": ["stmts$ebnf$2$subexpression$1"]},
-    {"name": "stmts$ebnf$2$subexpression$2$ebnf$1", "symbols": []},
-    {"name": "stmts$ebnf$2$subexpression$2$ebnf$1$subexpression$1", "symbols": ["comment", "_"]},
-    {"name": "stmts$ebnf$2$subexpression$2$ebnf$1", "symbols": ["stmts$ebnf$2$subexpression$2$ebnf$1", "stmts$ebnf$2$subexpression$2$ebnf$1$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "stmts$ebnf$2$subexpression$2", "symbols": ["stm", "_", "stmts$ebnf$2$subexpression$2$ebnf$1", "_"]},
-    {"name": "stmts$ebnf$2", "symbols": ["stmts$ebnf$2", "stmts$ebnf$2$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "stmts$ebnf$2", "symbols": ["stmts$ebnf$2", "stmts$ebnf$2$subexpression$1"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "stmts", "symbols": ["_", "stmts$ebnf$1", "stmts$ebnf$2"], "postprocess":  
         function(data) {
           let res = data[2].map(function(el) {
@@ -129,7 +125,7 @@ var grammar = {
           return [data[1]].concat(data[2].map(el => el[2]))
         }
           },
-    {"name": "ifElseStm$ebnf$1$subexpression$1", "symbols": ["_", {"literal":"else"}, "_", {"literal":"{"}, "stmts", {"literal":"}"}]},
+    {"name": "ifElseStm$ebnf$1$subexpression$1", "symbols": ["_", {"literal":"else"}, "_", "stmBlock"]},
     {"name": "ifElseStm$ebnf$1", "symbols": ["ifElseStm$ebnf$1$subexpression$1"], "postprocess": id},
     {"name": "ifElseStm$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
     {"name": "ifElseStm", "symbols": [{"literal":"if"}, "_", {"literal":"("}, "_", "expr", "_", {"literal":")"}, "_", "stmBlock", "ifElseStm$ebnf$1"], "postprocess": 
@@ -141,7 +137,7 @@ var grammar = {
             line: data[0].line
           };
           if (data[9]) {
-            res.elseStmts = data[9][4];
+            res.elseStmts = data[9][3];
           } else {
             res.elseStmts = [];
           }

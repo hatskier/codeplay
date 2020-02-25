@@ -1,4 +1,4 @@
-import prepareBattle from '../variables/battleVar';
+import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
@@ -6,27 +6,27 @@ let conf = prepareBattle({
     {
       enemies: {
         'Warrior1': {
-          action(tickNr) {
+          action() {
             return 'skip';
           },
 
-          kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
           location: 38
         },
         'Warrior2': {
-          action(tickNr) {
+          action() {
             return 'skip';
           },
 
-          kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
           location: 48
         },
         'Warrior3': {
-          action(tickNr) {
+          action() {
             return 'skip';
           },
 
-          kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
           location: 58
         }
       },
@@ -36,10 +36,7 @@ let conf = prepareBattle({
     },
   ],
 
-  stepWidth: 10,
-  startPosX: 10,
-
-  // maxTicksToWin: 6,
+  startPosX: 20,
   
   requirements: {
     minInstructionsInWhileLoops: 6,
@@ -53,7 +50,6 @@ startCodeVal:
 `
 var counter = 0;
 
-hero.go();
 while (counter < 3) {
   counter = counter + 1;
   hero.go();
@@ -62,6 +58,6 @@ while (counter < 3) {
 `
 });
 
-// TODO Add methods cleaning
+// TODO config methods
 
 export default conf;

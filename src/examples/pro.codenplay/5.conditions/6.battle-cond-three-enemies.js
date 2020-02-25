@@ -2,7 +2,21 @@ import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
-    // Enemies in first iteration
+    {
+      enemies: {
+        'Archer': {
+          action() {
+            return 'skip';
+          },
+
+          kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+          location: 59
+        }
+      },
+      funResults: {
+        getEnemyType: 'archer',
+      }
+    },
     {
       enemies: {
         'Warrior': {
@@ -39,7 +53,7 @@ let conf = prepareBattle({
   startPosX: 40,
   maxTicksToWin: 12,
   shortDescription: true,
-
+  codeFontSize: 16,
 });
 
 const solutionCode =
@@ -49,10 +63,13 @@ const solutionCode =
 var enemy = getEnemyType();
 
 // Поправь код ниже
+if (enemy == 'archer') {
+  hero.go();
+  hero.swordAttack();
+}
 if (enemy == 'dragon') {
   hero.spearAttack();
 }
-
 if (enemy == 'warrior') {
   hero.swordAttack();
 }
@@ -65,10 +82,12 @@ const startCodeVal =
 var enemy = getEnemyType();
 
 // Поправь код ниже
-if (enemy == 'dragon') {
+if (enemy == 'archer') {
   hero.swordAttack();
 }
-
+if (enemy == 'dragon') {
+  hero.spearAttack();
+}
 if (enemy == 'warrior') {
   hero.swordAttack();
 }

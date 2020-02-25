@@ -1,4 +1,4 @@
-import prepareBattle from '../variables/battleVar';
+import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [

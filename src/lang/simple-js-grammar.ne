@@ -17,7 +17,7 @@ let lexer = moo.compile({
 @lexer lexer
 
 # This dirty hacks are used to ignore comments on grammar level
-stmts -> _ (comment _):* (stm _ (comment _):* _):+ {% 
+stmts -> _ (comment _):* (stm _ (comment _):* _):* {% 
   function(data) {
     let res = data[2].map(function(el) {
       return el[0];
@@ -121,7 +121,7 @@ funArgs ->
     }
   %}
 
-ifElseStm -> "if" _ "(" _ expr _ ")" _ stmBlock (_ "else" _ "{" stmts "}"):? {%
+ifElseStm -> "if" _ "(" _ expr _ ")" _ stmBlock (_ "else" _ stmBlock ):? {%
   function(data) {
     let res = {
       type: 'ifElseStm',
@@ -130,7 +130,7 @@ ifElseStm -> "if" _ "(" _ expr _ ")" _ stmBlock (_ "else" _ "{" stmts "}"):? {%
       line: data[0].line
     };
     if (data[9]) {
-      res.elseStmts = data[9][4];
+      res.elseStmts = data[9][3];
     } else {
       res.elseStmts = [];
     }

@@ -1,13 +1,38 @@
+// TODO replace configuration
+
 import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
-    // Enemies in first iteration
+    {
+      enemies: {
+        'Archer': {
+          action(tickNr) {
+            return 'skip';
+            // if (tickNr == 0) {
+            //   return 'attack';
+            // } else {
+            //   return 'skip';
+            // }
+          },
+
+          kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
+          location: 59
+        }
+      },
+      funResults: {
+        getEnemyType: 'archer',
+      }
+    },
     {
       enemies: {
         'Warrior': {
-          action() {
-            return 'skip';
+          action(tickNr) {
+            if (tickNr == 0) {
+              return 'attack';
+            } else {
+              return 'skip';
+            }
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
@@ -22,12 +47,16 @@ let conf = prepareBattle({
     {
       enemies: {
         'Dragon': {
-          action() {
-            return 'skip';
+          action(tickNr) {
+            if (tickNr == 0) {
+              return 'attack';
+            } else {
+              return 'skip';
+            }
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         }
       },
       funResults: {
@@ -49,11 +78,17 @@ const solutionCode =
 var enemy = getEnemyType();
 
 // Поправь код ниже
+if (enemy == 'archer') {
+  hero.go();
+  hero.swordAttack();
+}
 if (enemy == 'dragon') {
+  hero.defend();
+  hero.go();
   hero.spearAttack();
 }
-
 if (enemy == 'warrior') {
+  hero.defend();
   hero.swordAttack();
 }
 `;
@@ -65,10 +100,16 @@ const startCodeVal =
 var enemy = getEnemyType();
 
 // Поправь код ниже
-if (enemy == 'dragon') {
+var enemy = getEnemyType();
+
+if (enemy == 'archer') {
+  hero.go();
   hero.swordAttack();
 }
-
+if (enemy == 'dragon') {
+  hero.go();
+  hero.spearAttack();
+}
 if (enemy == 'warrior') {
   hero.swordAttack();
 }

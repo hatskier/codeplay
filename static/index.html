@@ -381,13 +381,7 @@
             }
           },
           shouldTaskBeDisplayed(task) {
-            // return task.unit == 'Functions1';
-            // return task.unit == 'Loops';
-            return task.id.includes('battle') && task.unit == 'Variables';
-            // return true;
-
-            // To display all tasks
-            // return true;
+            return task.unit == 'Conditions';
           },
         },
         data: {
@@ -565,6 +559,56 @@
               unit: 'Variables',
             },
             
+
+            // Conditions
+            {
+              title: 'labyrinthCond',
+              id: 'labyrinthCond',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
+              unit: 'Conditions',
+            },
+            {
+              title: 'battleCondEnemy',
+              id: 'battleCondEnemy',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Conditions',
+            },
+            {
+              title: 'battleCondEnemyWithElse',
+              id: 'battleCondEnemyWithElse',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Conditions',
+            },
+            {
+              title: 'battleCondEnemyWithElseNeq',
+              id: 'battleCondEnemyWithElseNeq',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Conditions',
+            },
+            {
+              title: 'battleCondEnemyAttacking',
+              id: 'battleCondEnemyAttacking',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Conditions',
+            },
+            {
+              title: 'battleCondThreeEnemies',
+              id: 'battleCondThreeEnemies',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Conditions',
+            },
+            {
+              title: 'battleCondThreeEnemies2',
+              id: 'battleCondThreeEnemies2',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Conditions',
+            },
+            {
+              title: 'battleCondThreeEnemiesNested',
+              id: 'battleCondThreeEnemiesNested',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Conditions',
+            },
 
             // {
             //   title: 'Iron man',

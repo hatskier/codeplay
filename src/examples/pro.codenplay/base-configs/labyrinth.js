@@ -158,7 +158,7 @@ function prepareIterations(iterations) {
   });
 }
 
-function prepareLabyrinth({ iterations, stepsArgumentSupported, startCodeVal, solutionCode }) {  
+function prepareLabyrinth({ iterations, stepsArgumentSupported, startCodeVal, solutionCode, codeFontSize }) {  
   let conf = {
     images: {
       'skale': 'https://codenplay.io/img/tasks/labyrinth/skale.jpg',
@@ -171,6 +171,7 @@ function prepareLabyrinth({ iterations, stepsArgumentSupported, startCodeVal, so
     objects: [],
     docTableExtended: true,
     taskDescription: 'Помоги пещерному человеку пройти лабиринт',
+    codeFontSize,
     startCodeVal,
     solutionCode,
     tickHooks: {

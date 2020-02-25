@@ -152,6 +152,16 @@ import battleVarDistanceWithDragon2 from './examples/pro.codenplay/4.variables/8
 import battleVarDistanceWithDragon3 from './examples/pro.codenplay/4.variables/9.battle-var-distance-with-dragon-3';
 import battleVarWeaponAndDistance from './examples/pro.codenplay/4.variables/10.battle-var-weapon-and-distance';
 
+// Conditions
+import labyrinthCond from './examples/pro.codenplay/5.conditions/1.labyrinth-cond';
+import battleCondEnemy from './examples/pro.codenplay/5.conditions/2.battle-cond-enemy';
+import battleCondEnemyWithElse from './examples/pro.codenplay/5.conditions/3.battle-cond-enemy-with-else';
+import battleCondEnemyWithElseNeq from './examples/pro.codenplay/5.conditions/4.battle-cond-enemy-with-else-neq';
+import battleCondEnemyAttacking from './examples/pro.codenplay/5.conditions/5.battle-cond-enemy-attacking';
+import battleCondThreeEnemies from './examples/pro.codenplay/5.conditions/6.battle-cond-three-enemies';
+import battleCondThreeEnemies2 from './examples/pro.codenplay/5.conditions/7.battle-cond-three-enemies-2';
+import battleCondThreeEnemiesNested from './examples/pro.codenplay/5.conditions/8.battle-cond-three-enemies-nested';
+
 export default {
   // Basics
   ironManIntro,
@@ -187,5 +197,15 @@ export default {
   battleVarDistanceWithDragon2,
   battleVarDistanceWithDragon3,
   battleVarWeaponAndDistance,
+
+  // Conditions
+  labyrinthCond,
+  battleCondEnemy,
+  battleCondEnemyWithElse,
+  battleCondEnemyWithElseNeq,
+  battleCondEnemyAttacking,
+  battleCondThreeEnemies,
+  battleCondThreeEnemies2,
+  battleCondThreeEnemiesNested,
 
 };

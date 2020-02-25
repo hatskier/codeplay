@@ -1,1 +1,0 @@
-// Noone attacks

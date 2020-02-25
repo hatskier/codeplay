@@ -1,0 +1,9 @@
+  - funLab1
+  - funLab2
+  - battle 1
+  - battle 2
+  - battle 3
+  - battle 4
+  - battle 5
+  - battle 6
+  - battle 7

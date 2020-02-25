@@ -6,12 +6,16 @@ let conf = prepareBattle({
     {
       enemies: {
         'Warrior': {
-          action() {
-            return 'skip';
+          action(tickNr) {
+            if (tickNr == 0) {
+              return 'attack';
+            }  else {
+              return 'skip';
+            }
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 49
+          location: 59
         }
       },
       funResults: {
@@ -22,8 +26,12 @@ let conf = prepareBattle({
     {
       enemies: {
         'Dragon': {
-          action() {
-            return 'skip';
+          action(tickNr) {
+            if (tickNr == 1) {
+              return 'attack';
+            }  else {
+              return 'skip';
+            }
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
@@ -39,7 +47,6 @@ let conf = prepareBattle({
   startPosX: 40,
   maxTicksToWin: 12,
   shortDescription: true,
-
 });
 
 const solutionCode =
@@ -52,8 +59,9 @@ var enemy = getEnemyType();
 if (enemy == 'dragon') {
   hero.spearAttack();
 }
-
 if (enemy == 'warrior') {
+  hero.skip();
+  hero.go();
   hero.swordAttack();
 }
 `;
@@ -66,9 +74,8 @@ var enemy = getEnemyType();
 
 // Поправь код ниже
 if (enemy == 'dragon') {
-  hero.swordAttack();
+  hero.spearAttack();
 }
-
 if (enemy == 'warrior') {
   hero.swordAttack();
 }
