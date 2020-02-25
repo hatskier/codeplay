@@ -5,13 +5,15 @@ let config = createConfig();
 const startCodeVal =
 `// Одень железного человека в его
 // костюм и отправь его в полет
-
-// В этот раз инструкция take принимает числа
+// В этот раз инструкция take
+// принимает числа
 
 // Нужно пофиксить баг в этом коде
 var elementNr = 0;
-while (elementNr < 3) {
+var numberOfElements = 4;
+while (elementNr < numberOfElements) {
   take(elementNr);
+  elementNr++;
 }
 fly();
 `;
@@ -19,13 +21,15 @@ fly();
 const solutionCode =
 `// Одень железного человека в его
 // костюм и отправь его в полет
-
-// В этот раз инструкция take принимает числа
+// В этот раз инструкция take
+// принимает числа
 
 // Нужно пофиксить баг в этом коде
 var elementNr = 0;
-while (elementNr < 4) {
+var numberOfElements = 3;
+while (elementNr < numberOfElements) {
   take(elementNr);
+  elementNr++;
 }
 fly();
 `;

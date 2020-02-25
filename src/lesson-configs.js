@@ -162,6 +162,25 @@ import battleCondThreeEnemies from './examples/pro.codenplay/5.conditions/6.batt
 import battleCondThreeEnemies2 from './examples/pro.codenplay/5.conditions/7.battle-cond-three-enemies-2';
 import battleCondThreeEnemiesNested from './examples/pro.codenplay/5.conditions/8.battle-cond-three-enemies-nested';
 
+// Loops
+import ironManArgsIndices from './examples/pro.codenplay/6.loops/1.iron-man-args-indices';
+import ironManLoops from './examples/pro.codenplay/6.loops/2.iron-man-loop';
+import labyrinthRepPatternsSmall from './examples/pro.codenplay/6.loops/3.labyrinth-rep-patterns-small';
+import labyrinthRepPatterns from './examples/pro.codenplay/6.loops/4.labyrinth-rep-patterns';
+import battleThreeSteps from './examples/pro.codenplay/6.loops/5.battle-three-steps';
+import battleFiveSteps from './examples/pro.codenplay/6.loops/6.battle-five-steps';
+import battleVarSteps from './examples/pro.codenplay/6.loops/7.battle-var-steps';
+import battleThreeWarriors from './examples/pro.codenplay/6.loops/8.battle-three-warriors';
+import battleThreeArchers from './examples/pro.codenplay/6.loops/9.battle-three-archers';
+import battleVarWarriors from './examples/pro.codenplay/6.loops/10.battle-var-warriors';
+import battleVarEnemies from './examples/pro.codenplay/6.loops/11.battle-var-enemies';
+
+// Functions
+import ironManFun from './examples/pro.codenplay/7.functions/1.iron-man-fun';
+
+// Functions args
+import ironManFunArgs from './examples/pro.codenplay/8.functions-args/1.iron-man-fun-args';
+
 export default {
   // Basics
   ironManIntro,
@@ -207,5 +226,24 @@ export default {
   battleCondThreeEnemies,
   battleCondThreeEnemies2,
   battleCondThreeEnemiesNested,
+
+  // Loops
+  ironManArgsIndices,
+  ironManLoops,
+  labyrinthRepPatternsSmall,
+  labyrinthRepPatterns,
+  battleThreeSteps,
+  battleFiveSteps,
+  battleVarSteps,
+  battleThreeWarriors,
+  battleThreeArchers,
+  battleVarWarriors,
+  battleVarEnemies,
+
+  // Functions
+  ironManFun,
+
+  // Functions args
+  ironManFunArgs,
 
 };

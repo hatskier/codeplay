@@ -36,8 +36,8 @@ let conf = prepareBattle({
     },
   ],
 
-  stepWidth: 10,
   startPosX: 10,
+  shortDescription: true,
 
   // maxTicksToWin: 6,
   
@@ -62,6 +62,8 @@ while (counter < 3) {
 `
 });
 
-// TODO Add methods cleaning
+delete conf.methods["hero.attackWith"];
+delete conf.methods["hero.swordAttack"];
+delete conf.methods["hero.spearAttack"];
 
 export default conf;

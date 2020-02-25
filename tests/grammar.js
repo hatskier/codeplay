@@ -111,5 +111,8 @@ if (enemy == 'warrior') {
 } else {
   attackDragon();
 }
+
+someVar++;
+otherVar--;
 `;
 console.log(JSON.stringify(parse(code3)[0], null, 2));

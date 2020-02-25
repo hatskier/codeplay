@@ -3,10 +3,7 @@ import createConfig from '../base-configs/iron-man';
 let config = createConfig();
 
 const startCodeVal =
-`// Одень железного человека в его
-// костюм и отправь его в полет
-
-// Поправь декларацию функции
+`// Поправь декларацию функции
 // В ней 2 бага (ошибки)
 function take() {
   if (elem == 'head') {
@@ -27,10 +24,7 @@ fly();
 `;
 
 const solutionCode =
-`// Одень железного человека в его
-// костюм и отправь его в полет
-
-// Поправь декларацию функции
+`// Поправь декларацию функции
 // В ней 2 бага (ошибки)
 function take(elem) {
   if (elem == 'head') {
@@ -54,4 +48,5 @@ export default {
   ...config,
   startCodeVal,
   solutionCode,
+  codeFontSize: 15,
 };

@@ -381,7 +381,8 @@
             }
           },
           shouldTaskBeDisplayed(task) {
-            return task.unit == 'Conditions';
+            // return task.unit == 'Loops';
+            return task.id.includes('ironMan');
           },
         },
         data: {
@@ -609,6 +610,94 @@
               img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
               unit: 'Conditions',
             },
+
+            // Loops
+            {
+              title: 'ironManArgsIndices',
+              id: 'ironManArgsIndices',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'ironManLoops',
+              id: 'ironManLoops',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'labyrinthRepPatternsSmall',
+              id: 'labyrinthRepPatternsSmall',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'labyrinthRepPatterns',
+              id: 'labyrinthRepPatterns',
+              img: 'https://codenplay.io/img/tasks/Tasks/labyrinth-2.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'battleThreeSteps',
+              id: 'battleThreeSteps',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'battleFiveSteps',
+              id: 'battleFiveSteps',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'battleVarSteps',
+              id: 'battleVarSteps',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'battleThreeWarriors',
+              id: 'battleThreeWarriors',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'battleThreeArchers',
+              id: 'battleThreeArchers',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'battleVarWarriors',
+              id: 'battleVarWarriors',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Loops',
+            },
+            {
+              title: 'battleVarEnemies',
+              id: 'battleVarEnemies',
+              img: 'https://codenplay.io/img/tasks/Tasks/battle.png',
+              unit: 'Loops',
+            },
+
+            // Functions
+            {
+              title: 'ironManFun',
+              id: 'ironManFun',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'Functions',
+            },
+
+
+
+
+            // Functions args
+            {
+              title: 'ironManFunArgs',
+              id: 'ironManFunArgs',
+              img: 'https://codenplay.io/img/tasks/Tasks/iron-man.png',
+              unit: 'FunctionsArgs',
+            },
+
 
             // {
             //   title: 'Iron man',

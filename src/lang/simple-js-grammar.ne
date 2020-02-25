@@ -9,7 +9,7 @@ let lexer = moo.compile({
     string: /["'](?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^\'\"\\])*["']/,
     // string:  /["'](?:\\["\\]|[^\n"\\])*["']/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "==", "!="]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "==", "!=", "++", "--"]
 });
 
 %}
@@ -34,7 +34,11 @@ stm ->
   | whileStm {% id %}
   | varDecl {% id %}
   | varDeclEmpty {% id %}
+  | varIncrPP {% id %}
+  | varDecrMM {% id %}
   | varAssign {% id %}
+  # | varIncrPE {% id %} # Implement it later
+  # | varDecrME {% id %} # Implement it later
 
 expr ->
   value {%
@@ -178,6 +182,26 @@ varAssign -> identifier _ "=" _ expr ";" {%
       type: "varAssign",
       name: data[0],
       expr: data[4],
+      line: data[2].line,
+    }
+  }
+%}
+
+varIncrPP -> identifier _ "++" _ ";" {%
+  function(data) {
+    return {
+      type: "varIncrPP",
+      name: data[0],
+      line: data[2].line,
+    }
+  }
+%}
+
+varDecrMM -> identifier _ "--" _ ";" {%
+  function(data) {
+    return {
+      type: "varDecrMM",
+      name: data[0],
       line: data[2].line,
     }
   }

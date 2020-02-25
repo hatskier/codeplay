@@ -37,6 +37,7 @@ let conf = prepareBattle({
   ],
 
   startPosX: 20,
+  shortDescription: true,
   
   requirements: {
     minInstructionsInWhileLoops: 6,
@@ -58,6 +59,8 @@ while (counter < 3) {
 `
 });
 
-// TODO config methods
+delete conf.methods["hero.attackWith"];
+delete conf.methods["hero.swordAttack"];
+delete conf.methods["hero.spearAttack"];
 
 export default conf;

@@ -30,6 +30,7 @@ let config = createConfig({
     }
   ],
   stepsArgumentSupported: true,
+  codeFontSize: 16,
 });
 
 const startCodeVal =

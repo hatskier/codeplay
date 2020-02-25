@@ -13,7 +13,7 @@ let lexer = moo.compile({
     string: /["'](?:\\["bfnrt\/\\]|\\u[a-fA-F0-9]{4}|[^\'\"\\])*["']/,
     // string:  /["'](?:\\["\\]|[^\n"\\])*["']/,
     identifier: /[a-zA-Z]+[a-zA-Z0-9\.]*/,
-    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "==", "!="]
+    keywords: ["(", ")", ";", "{", "}", ",", "=", "+", "-", ">", "<", "==", "!=", "++", "--"]
 });
 
 var grammar = {
@@ -43,6 +43,8 @@ var grammar = {
     {"name": "stm", "symbols": ["whileStm"], "postprocess": id},
     {"name": "stm", "symbols": ["varDecl"], "postprocess": id},
     {"name": "stm", "symbols": ["varDeclEmpty"], "postprocess": id},
+    {"name": "stm", "symbols": ["varIncrPP"], "postprocess": id},
+    {"name": "stm", "symbols": ["varDecrMM"], "postprocess": id},
     {"name": "stm", "symbols": ["varAssign"], "postprocess": id},
     {"name": "expr", "symbols": ["value"], "postprocess": 
         function(data) {
@@ -180,6 +182,24 @@ var grammar = {
             type: "varAssign",
             name: data[0],
             expr: data[4],
+            line: data[2].line,
+          }
+        }
+        },
+    {"name": "varIncrPP", "symbols": ["identifier", "_", {"literal":"++"}, "_", {"literal":";"}], "postprocess": 
+        function(data) {
+          return {
+            type: "varIncrPP",
+            name: data[0],
+            line: data[2].line,
+          }
+        }
+        },
+    {"name": "varDecrMM", "symbols": ["identifier", "_", {"literal":"--"}, "_", {"literal":";"}], "postprocess": 
+        function(data) {
+          return {
+            type: "varDecrMM",
+            name: data[0],
             line: data[2].line,
           }
         }

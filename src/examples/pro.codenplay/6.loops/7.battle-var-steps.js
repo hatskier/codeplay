@@ -1,4 +1,4 @@
-import prepareBattle from '../variables/battleVar';
+import prepareBattle from '../base-configs/battle'
 
 let conf = prepareBattle({
   iterations: [
@@ -35,14 +35,8 @@ let conf = prepareBattle({
     },
   ],
 
-  stepWidth: 10,
   startPosX: 20,
-
-  // maxTicksToWin: 6,
-  
-  requirements: {
-    minInstructionsInWhileLoops: 3,
-  },
+  shortDescription: true,
 
   solutionCode:
 `
@@ -54,13 +48,15 @@ var distance = getDistance();
 
 while (distance > 0) {
   hero.go();
-  distance = distance - 1;
+  distance--;
 }
 
 hero.attack();
 `
 });
 
-// TODO config methods
+delete conf.methods["hero.attackWith"];
+delete conf.methods["hero.swordAttack"];
+delete conf.methods["hero.spearAttack"];
 
 export default conf;

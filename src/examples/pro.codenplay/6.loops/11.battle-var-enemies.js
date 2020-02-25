@@ -75,11 +75,9 @@ let conf = prepareBattle({
     },
   ],
 
-  stepWidth: 10,
   startPosX: 20,
+  shortDescription: true,
 
-  // maxTicksToWin: 6,
-  
   requirements: {
     minInstructionsInWhileLoops: 6,
   },
@@ -107,6 +105,7 @@ while (counter < enemies) {
 `
 });
 
-// TODO config methods
+delete conf.methods["hero.attack"];
+delete conf.methods["hero.attackWith"];
 
 export default conf;

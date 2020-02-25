@@ -222,6 +222,56 @@ class Field {
     Page.updateVariablesTable(this.state.vars);
   }
 
+  async unaryOperator({ node, valModifier }) {
+    // getValForExpr will check if variable exists
+    const val = this.getValForExpr({
+      type: 'varExpr',
+      name: node.name,
+    });
+
+    if (typeof val != 'number') {
+      throw new Error(
+        `Переменная ${node.name} должна быть арифметического типа`);
+    }
+
+    this.setVariableValue(node.name, valModifier(val), true);
+
+    this.showProgramState(); // update state table before sleep
+    await this.tickSleep();
+  }
+
+  getArgValues(node) {
+    let result = [];
+    if (node.args && node.args.length > 0) {
+      node.args.forEach((nodeArg) => {
+        let argVal = this.getValForExpr(nodeArg);
+        result.push(argVal);
+      });
+    }
+    return result;
+  }
+
+  addArgsToState(args, argValues) {
+    let counter = 0;
+    for (let argName of args) {
+      this.state.vars[argName] = argValues[counter];
+      counter++;
+    }
+    console.log(this.state);
+  }
+
+  removeArgsFromState(stateSnapshot, args) {
+    // Hmmm, it should be smarter I think
+    // Later we should implement locations to enable
+    // Support for local variables
+    for (let argName of args) {
+      delete this.state.vars[argName];
+    }
+    this.state = { ...this.state, ...stateSnapshot };
+  }
+
+
+
   //////////////////////////
 
   // TODO in future we can add speed and other motion params
@@ -256,6 +306,8 @@ class Field {
           // Logger.debug('--------------------------------------------------------');
           // Logger.debug(context);
 
+          // Evaluate values for each argument
+          const argValues = this.getArgValues(node);
           const method = this.methods[node.name];
           if (method) {
             // Running pre hook
@@ -270,15 +322,6 @@ class Field {
             // Logger.debug(`Running method ${node.name}, arg list: ${JSON.stringify(node.args)}`);
             // Page.addLog(`Running method ${node.name}, arg list: ${JSON.stringify(node)}`);
 
-            // Evaluate values for each argument
-            let argValues = [];
-            if (node.args && node.args.length > 0) {
-              node.args.forEach(function(nodeArg) {
-                let argVal = context.field.getValForExpr(nodeArg);
-                argValues.push(argVal);
-              });
-            }
-
             await method.run(context, argValues);
             // TODO make running line highlighting better
             // if (lineHighlighter) {
@@ -290,11 +333,16 @@ class Field {
             await this.tickHooks.post(tickNr, context);
             tickNr++;
           } else if (this.isFunctionDeclared(node.name)) {
-            // TODO implement argument support for function calls
-            await this.tickSleep();
-            let { args, stmts } = this.state.functions[node.name];
+            const { args, stmts } = this.state.functions[node.name];
             if (stmts.length > 0) {
+              const stateSnapshot = { ...this.state.vars };
+              this.addArgsToState(args, argValues);
+              this.showProgramState(); // update state table before sleep
+              await this.tickSleep();
               await this.run(stmts, lineHighlighter);
+              this.removeArgsFromState(stateSnapshot, args)
+            } else {
+              await this.tickSleep();
             }
           } else {
             const errMsg = `Instruction ${node.name} was not found`;
@@ -345,8 +393,9 @@ class Field {
           break;
         }
         case 'varDeclEmpty': {
-          await this.tickSleep();
           this.setVariableValue(node.name, null, false);
+          this.showProgramState(); // update state table before sleep
+          await this.tickSleep();
           break;
         }
         case 'varDecl': {
@@ -364,6 +413,20 @@ class Field {
           this.setVariableValue(node.name, val, true);
           this.showProgramState(); // update state table before sleep
           await this.tickSleep();
+          break;
+        }
+        case 'varIncrPP': {
+          await this.unaryOperator({
+            node,
+            valModifier: (x => x + 1),
+          });
+          break;
+        }
+        case 'varDecrMM': {
+          await this.unaryOperator({
+            node,
+            valModifier: (x => x - 1),
+          });
           break;
         }
         default: {
