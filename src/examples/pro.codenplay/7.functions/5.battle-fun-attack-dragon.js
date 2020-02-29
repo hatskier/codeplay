@@ -1,5 +1,4 @@
-// TODO alex finish this task implementation
-import prepareBattle from '../variables/battleVar';
+import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
@@ -18,13 +17,12 @@ let conf = prepareBattle({
     },
   ],
 
-  stepWidth: 10,
   startPosX: 44,
   maxTicksToWin: 12,
+  shortDescription: true,
 
   solutionCode:
-`
-function attackDragon() {
+`function attackDragon() {
   hero.go();
   hero.go();
   hero.spearAttack();
@@ -35,13 +33,12 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Add only one instruction below
+// Добавь лишь одну инструкцию ниже
 attackDragon();
 `,
 
-startCodeVal:
-`
-function attackDragon() {
+  startCodeVal:
+`function attackDragon() {
   hero.go();
   hero.go();
   hero.spearAttack();
@@ -52,13 +49,11 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Add only one instruction below
+// Добавь лишь одну инструкцию ниже
 `
 });
 
-// conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
-// delete conf.methods["hero.swordAttack"];
-// delete conf.methods['hero.spearAttack'];
-delete conf.methods['hero.attackWith'];
+delete conf.methods["hero.attack"];
+delete conf.methods["hero.attackWith"];
 
 export default conf;

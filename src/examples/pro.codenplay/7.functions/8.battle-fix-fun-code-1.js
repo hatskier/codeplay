@@ -1,6 +1,43 @@
-// Just a code for now
+import prepareBattle from '../base-configs/battle';
 
-// Start code
+let conf = prepareBattle({
+  iterations: [
+    // Enemies in first iteration
+    {
+      enemies: {
+        'Dragon': {
+          action() {
+            return 'skip';
+          },
+
+          kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
+          location: 58
+        }
+      },
+      funResults: {
+        getEnemyType: 'dragon',
+      }
+    },
+  ],
+
+  startPosX: 40,
+  maxTicksToWin: 12,
+  shortDescription: true,
+
+  solutionCode:
+`// Нужно пофиксить баг в этой функции
+function attackDragon() {
+  hero.go();
+  hero.go();
+  hero.go();
+  hero.spearAttack();
+}
+
+attackDragon();
+`,
+
+  startCodeVal:
+`// Нужно пофиксить баг в этой функции
 function attackDragon() {
   hero.go();
   hero.go();
@@ -8,13 +45,10 @@ function attackDragon() {
 }
 
 attackDragon();
+`
+});
 
-// Solution code
-function attackDragon() {
-  hero.go();
-  hero.go();
-  hero.go();
-  hero.spearAttack();
-}
+delete conf.methods["hero.attack"];
+delete conf.methods["hero.attackWith"];
 
-attackDragon();
+export default conf;

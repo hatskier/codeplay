@@ -1,5 +1,4 @@
-// TODO alex finish this task implementation
-import prepareBattle from '../variables/battleVar';
+import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
@@ -36,9 +35,10 @@ let conf = prepareBattle({
     },
   ],
 
-  stepWidth: 10,
   startPosX: 40,
   maxTicksToWin: 12,
+  shortDescription: true,
+  codeFontSize: 15,
 
   solutionCode:
 `var enemy = getEnemyType();
@@ -53,7 +53,7 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Fix the code below
+// Поправь код ниже
 if (enemy == 'warrior') {
   attackWarrior();
 } else {
@@ -61,7 +61,7 @@ if (enemy == 'warrior') {
 }
 `,
 
-startCodeVal:
+  startCodeVal:
 `var enemy = getEnemyType();
 
 function attackDragon() {
@@ -74,7 +74,7 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Fix the code below
+// Поправь код ниже
 if (enemy == 'warrior') {
   attackDragon();
 } else {
@@ -83,9 +83,7 @@ if (enemy == 'warrior') {
 `
 });
 
-// conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
-// delete conf.methods["hero.swordAttack"];
-// delete conf.methods['hero.spearAttack'];
-delete conf.methods['hero.attackWith'];
+delete conf.methods["hero.attack"];
+delete conf.methods["hero.attackWith"];
 
 export default conf;

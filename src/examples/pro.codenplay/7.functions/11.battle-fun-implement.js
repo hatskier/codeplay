@@ -1,29 +1,84 @@
-// Start code
+import prepareBattle from '../base-configs/battle';
 
-// Declare functions winWarrior and winDragon
-var enemy = getEnemy();
+let conf = prepareBattle({
+  iterations: [
+    // Enemies in first iteration
+    {
+      enemies: {
+        'Dragon': {
+          action() {
+            return 'skip';
+          },
 
-if (enemy == 'dragon') {
-  winWarrior();
-} else {
-  winDragon();
+          kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
+          location: 48
+        }
+      },
+      funResults: {
+        getEnemyType: 'dragon',
+      }
+    },
+    {
+      enemies: {
+        'Warrior': {
+          action() {
+            return 'skip';
+          },
+
+          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
+          location: 58
+        }
+      },
+      funResults: {
+        getEnemyType: 'warrior',
+      }
+    },
+  ],
+
+  startPosX: 40,
+  maxTicksToWin: 12,
+  shortDescription: true,
+  codeFontSize: 15,
+
+  solutionCode:
+`// Поправь код функции winDragon
+// и добавь функцию winWarrior
+function winDragon() {
+  hero.go();
+  hero.go();
+  hero.spearAttack();
 }
-
-// Solution code
-var enemy = getEnemy();
-
 function winWarrior() {
   hero.go();
   hero.swordAttack();
 }
 
-function winDragon() {
-  hero.spearAttack();
-}
-
-if (enemy == 'dragon') {
+var enemy = getEnemyType();
+if (enemy == 'warrior') {
   winWarrior();
 } else {
   winDragon();
 }
+`,
 
+  startCodeVal:
+`// Поправь код функции winDragon
+// и добавь функцию winWarrior
+function winDragon() {
+  hero.go();
+  hero.spearAttack();
+}
+
+var enemy = getEnemyType();
+if (enemy == 'warrior') {
+  winWarrior();
+} else {
+  winDragon();
+}
+`,
+});
+
+delete conf.methods["hero.attack"];
+delete conf.methods["hero.attackWith"];
+
+export default conf;

@@ -177,6 +177,16 @@ import battleVarEnemies from './examples/pro.codenplay/6.loops/11.battle-var-ene
 
 // Functions
 import ironManFun from './examples/pro.codenplay/7.functions/1.iron-man-fun';
+import labyrinthFun1 from './examples/pro.codenplay/7.functions/2.labyrinth-fun-1';
+import labyrinthFun2 from './examples/pro.codenplay/7.functions/3.labyrinth-fun-2';
+import battleFunAttackWarrior from './examples/pro.codenplay/7.functions/4.battle-fun-attack-warrior';
+import battleFunAttackDragon from './examples/pro.codenplay/7.functions/5.battle-fun-attack-dragon';
+import battleFunBothEnemies from './examples/pro.codenplay/7.functions/6.battle-fun-both-enemies';
+import battleFunDifferentEnemies from './examples/pro.codenplay/7.functions/7.battle-fun-different-enemies';
+import battleFixFunCode1 from './examples/pro.codenplay/7.functions/8.battle-fix-fun-code-1';
+import battleFixFunCode2 from './examples/pro.codenplay/7.functions/9.battle-fix-fun-code-2';
+import battleFixFunCode3 from './examples/pro.codenplay/7.functions/10.battle-fix-fun-code-3';
+import battleFunImplement from './examples/pro.codenplay/7.functions/11.battle-fun-implement';
 
 // Functions args
 import ironManFunArgs from './examples/pro.codenplay/8.functions-args/1.iron-man-fun-args';
@@ -242,6 +252,16 @@ export default {
 
   // Functions
   ironManFun,
+  labyrinthFun1,
+  labyrinthFun2,
+  battleFunAttackWarrior,
+  battleFunAttackDragon,
+  battleFunBothEnemies,
+  battleFunDifferentEnemies,
+  battleFixFunCode1,
+  battleFixFunCode2,
+  battleFixFunCode3,
+  battleFunImplement,
 
   // Functions args
   ironManFunArgs,
