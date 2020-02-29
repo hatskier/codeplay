@@ -44,19 +44,34 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`
-`,
-
-startCodeVal:
-`
+`// Одолей всех врагов
 var counter = 0;
-
+// Откомментируй одну инструкцию
 while (counter < 3) {
   counter = counter + 1;
+  // counter = counter - 1;
+  // counter = counter * 1;
+  // counter = counter / 1;
+  // counter = counter + 2;
   hero.go();
   hero.attack();
 }
-`
+`,
+
+  startCodeVal:
+`// Одолей всех врагов
+var counter = 0;
+// Откомментируй одну инструкцию
+while (counter < 3) {
+  // counter = counter + 1;
+  // counter = counter - 1;
+  // counter = counter * 1;
+  // counter = counter / 1;
+  // counter = counter + 2;
+  hero.go();
+  hero.attack();
+}
+`,
 });
 
 delete conf.methods["hero.attackWith"];

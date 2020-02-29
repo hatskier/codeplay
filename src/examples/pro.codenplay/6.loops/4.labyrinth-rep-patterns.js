@@ -39,7 +39,6 @@ const startCodeVal =
 // из похожих по форме элементов
 // но их количество будет отличаться
 var patternsNumber = getPatternsNumber();
-// Вспомогательная переменная
 
 // Откомментируй одну из инструкций
 while (patternsNumber > 0) {
@@ -61,7 +60,6 @@ const solutionCode =
 // из похожих по форме элементов
 // но их количество будет отличаться
 var patternsNumber = getPatternsNumber();
-// Вспомогательная переменная
 
 // Откомментируй одну из инструкций
 while (patternsNumber > 0) {

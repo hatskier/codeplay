@@ -25,15 +25,31 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`
-`,
-
-startCodeVal:
-`
+`// Сделай 3 шага с помощью цикла
 var counter = 0;
 
+// Откомментируй одну из инструкций
 while (counter < 3) {
   counter++;
+  // counter--;
+  // counter = counter - 1;
+  // counter = 100500;
+  hero.go();
+}
+
+hero.attack();
+`,
+
+  startCodeVal:
+`// Сделай 3 шага с помощью цикла
+var counter = 0;
+
+// Откомментируй одну из инструкций
+while (counter < 3) {
+  // counter++;
+  // counter--;
+  // counter = counter - 1;
+  // counter = 100500;
   hero.go();
 }
 

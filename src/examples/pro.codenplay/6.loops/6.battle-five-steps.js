@@ -25,20 +25,28 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`
-`,
-
-startCodeVal:
-`
+`// Сделай 5 шагов с помощью цикла
+// Замени лишь одну букву или цифру
 var counter = 0;
-
 while (counter < 5) {
   counter++;
   hero.go();
 }
 
 hero.attack();
-`
+`,
+
+  startCodeVal:
+`// Сделай 5 шагов с помощью цикла
+// Замени лишь одну букву или цифру
+var counter = 0;
+while (counter < 3) {
+  counter++;
+  hero.go();
+}
+
+hero.attack();
+`,
 });
 
 delete conf.methods["hero.attackWith"];

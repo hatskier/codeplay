@@ -67,19 +67,27 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`
-`,
-
-startCodeVal:
-`
+`// Будет запущено несколько тестов
+// Переменная enemies хранит число врагов
 var enemies = getEnemiesCount();
 
+// Напиши код с использованием циклов
+// Можно даже не добавлять новые переменные
 while (enemies > 0) {
   hero.go();
   hero.attack();
-  enemies = enemies - 1;
+  enemies--;
 }
-`
+`,
+
+  startCodeVal:
+`// Будет запущено несколько тестов
+// Переменная enemies хранит число врагов
+var enemies = getEnemiesCount();
+
+// Напиши код с использованием циклов
+// Можно даже не добавлять новые переменные
+`,
 });
 
 delete conf.methods["hero.attackWith"];

@@ -39,7 +39,6 @@ const startCodeVal =
 // из похожих по форме элементов
 // но их количество будет отличаться
 var patternsNumber = getPatternsNumber();
-// Вспомогательная переменная
 var counter = 0;
 
 // Нужно пофиксить баг
@@ -49,7 +48,7 @@ while (counter < patternsNumber) {
   man.moveDown();
 }
 
-man.moveRight(2);
+man.moveRight(5);
 `;
 
 const solutionCode =
@@ -58,7 +57,6 @@ const solutionCode =
 // из похожих по форме элементов
 // но их количество будет отличаться
 var patternsNumber = getPatternsNumber();
-// Вспомогательная переменная
 var counter = 0;
 
 // Нужно пофиксить баг
@@ -68,7 +66,7 @@ while (counter < patternsNumber) {
   man.moveDown();
 }
 
-man.moveRight();
+man.moveRight(1);
 `;
 
 export default {

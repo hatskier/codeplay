@@ -83,24 +83,34 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`
-`,
-
-startCodeVal:
-`
+`// Будет запущено несколько тестов
+// Добавь недостающие инструкции
 var enemies = getEnemiesCount();
 var counter = 0;
-
 while (counter < enemies) {
   hero.go();
-  
   if (counter == 1) {
     hero.spearAttack();
   } else {
     hero.swordAttack();
   }
+  counter++;
+}
+`,
 
-  counter = counter + 1;
+startCodeVal:
+`// Будет запущено несколько тестов
+// Добавь недостающие инструкции
+var enemies = getEnemiesCount();
+var counter = 0;
+while (counter < enemies) {
+  // Делаем шаг (добавь инструкцию)
+  if (counter == 1) {
+    // Атакуем дракона (добавь инструкцию)
+  } else {
+    // Атакуем рыцаря (добавь инструкцию)
+  }
+  // Увеличиваем counter (добавь инструкцию)
 }
 `
 });

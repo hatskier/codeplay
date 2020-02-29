@@ -37,22 +37,39 @@ let conf = prepareBattle({
 
   startPosX: 20,
   shortDescription: true,
+  codeFontSize: 16,
 
   solutionCode:
-`
-`,
+`// Будет запущено несколько тестов
+// В каждом из них расстояние до
+// врага будет отличаться
 
-startCodeVal:
-`
+// Добавь одну инструкцию внутри цикла
 var distance = getDistance();
-
 while (distance > 0) {
   hero.go();
+  // Уменьши переменную distance на 1 (используй --)
   distance--;
 }
 
 hero.attack();
-`
+`,
+
+  startCodeVal:
+`// Будет запущено несколько тестов
+// В каждом из них расстояние до
+// врага будет отличаться
+
+// Добавь одну инструкцию внутри цикла
+var distance = getDistance();
+while (distance > 0) {
+  hero.go();
+  // Уменьши переменную distance на 1 (используй --)
+}
+
+hero.attack();
+`,
+
 });
 
 delete conf.methods["hero.attackWith"];

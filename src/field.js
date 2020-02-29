@@ -381,7 +381,7 @@ class Field {
               await this.run(node.stmts, lineHighlighter);
             }
             if (loopCounter > WHILE_LOOP_MAX_ITERATIONS_NUMBER) {
-              throw new Error('Слишком много итераций цикла. Программа прервана');
+              throw new Error('Слишком много итераций цикла. Зацикленная программа прервана');
               break;
             }
           }
