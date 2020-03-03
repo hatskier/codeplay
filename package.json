@@ -7,8 +7,7 @@
     "build": "webpack --mode production",
     "publish": "bash scripts/publish.sh",
     "e2e": "nightwatch",
-    "start": "webpack --mode development --watch && webpack-dev-server",
-    "dev": "webpack --mode development --watch",
+    "dev": "webpack --mode development --watch & http-server dist",
     "lint": "eslint ./src",
     "compile-grammar": "nearleyc ./src/lang/simple-js-grammar.ne -o ./src/lang/simple-js-grammar.js",
     "test-grammar": "npm run compile-grammar && node tests/grammar.js"

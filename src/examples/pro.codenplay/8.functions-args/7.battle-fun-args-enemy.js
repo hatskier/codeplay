@@ -2,7 +2,6 @@ import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
-    // Enemies in first iteration
     {
       enemies: {
         'Warrior': {
@@ -15,7 +14,7 @@ let conf = prepareBattle({
         }
       },
       funResults: {
-        getPerfectWeapon: 'sword',
+        getEnemy: 'warrior',
       }
     },
 
@@ -31,7 +30,7 @@ let conf = prepareBattle({
         }
       },
       funResults: {
-        getPerfectWeapon: 'spear',
+        getEnemy: 'dragon',
       }
     }
   ],
@@ -45,30 +44,40 @@ let conf = prepareBattle({
 
 const startCodeVal =
 `// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+var enemy = getEnemy();
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
-var weapon = getPerfectWeapon();
+// Поправь код функции attack
+function attack(currentEnemy) {
+  if (currentEnemy == 'dragon') {
+    // Добавь здесь инструкцию атаки копьём
+  }
+  if (currentEnemy == 'warrior') {
+    // Добавь здесь инструкцию атаки мечом
+  }
+}
 
-// Код пиши под этим комментарием
+attack(enemy);
 `;
 
 const solutionCode =
 `// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+var enemy = getEnemy();
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
-var weapon = getPerfectWeapon();
+// Поправь код функции attack
+function attack(currentEnemy) {
+  if (currentEnemy == 'dragon') {
+    hero.spearAttack();
+  }
+  if (currentEnemy == 'warrior') {
+    hero.swordAttack();
+  }
+}
 
-// Код пиши под этим комментарием
-hero.attackWith(weapon);
+attack(enemy);
 `;
 
 delete conf.methods["hero.attack"];
-delete conf.methods["hero.spearAttack"];
-delete conf.methods["hero.swordAttack"];
+delete conf.methods["hero.attackWith"];
 
 export default {
   ...conf,

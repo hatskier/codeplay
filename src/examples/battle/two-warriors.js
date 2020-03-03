@@ -42,7 +42,6 @@ let conf = prepareBattle({
 
   stepWidth: 10,
   startPosX: 40,
-  maxTicksToWin: 30,
 
   solutionCode:
 `// Defeat all the enemies and don't let them

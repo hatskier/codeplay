@@ -2,7 +2,6 @@ import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
-    // Enemies in first iteration
     {
       enemies: {
         'Warrior': {
@@ -45,30 +44,40 @@ let conf = prepareBattle({
 
 const startCodeVal =
 `// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+var perfectWeapon = getPerfectWeapon();
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
-var weapon = getPerfectWeapon();
+// Поправь код функции attack
+function attack(weapon) {
+  if (weapon == 'sword') {
+    hero.spearAttack();
+  }
+  if (weapon == 'spear') {
+    hero.swordAttack();
+  }
+}
 
-// Код пиши под этим комментарием
+attack(perfectWeapon);
 `;
 
 const solutionCode =
 `// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+var perfectWeapon = getPerfectWeapon();
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
-var weapon = getPerfectWeapon();
+// Поправь код функции attack
+function attack(weapon) {
+  if (weapon == 'sword') {
+    hero.swordAttack();
+  }
+  if (weapon == 'spear') {
+    hero.spearAttack();
+  }
+}
 
-// Код пиши под этим комментарием
-hero.attackWith(weapon);
+attack(perfectWeapon);
 `;
 
 delete conf.methods["hero.attack"];
-delete conf.methods["hero.spearAttack"];
-delete conf.methods["hero.swordAttack"];
+delete conf.methods["hero.attackWith"];
 
 export default {
   ...conf,

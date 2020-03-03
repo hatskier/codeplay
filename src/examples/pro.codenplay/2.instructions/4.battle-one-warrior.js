@@ -16,7 +16,7 @@ let conf = prepareBattle({
   ],
   stepsArgSupported: false,
   startPosX: 40,
-  maxTicksToWin: 12,
+  
 });
 
 const solutionCode =

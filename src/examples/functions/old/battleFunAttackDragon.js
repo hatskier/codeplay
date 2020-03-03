@@ -20,7 +20,7 @@ let conf = prepareBattle({
 
   stepWidth: 10,
   startPosX: 44,
-  maxTicksToWin: 12,
+  
 
   solutionCode:
 `

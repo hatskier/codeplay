@@ -39,7 +39,7 @@ let conf = prepareBattle({
 
   stepWidth: 10,
   startPosX: 40,
-  maxTicksToWin: 12,
+  
 
   solutionCode:
 `// Defeat the warrior

@@ -18,7 +18,6 @@ let conf = prepareBattle({
 
   stepWidth: 20,
   startPosX: 44,
-  maxTicksToWin: 12,
 
   solutionCode:
 `// Defeat the dragon

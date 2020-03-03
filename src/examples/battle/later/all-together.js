@@ -68,5 +68,4 @@ startCodeVal:
 
   stepWidth: 10,
   startPosX: 34,
-  maxTicksToWin: 14,
 });

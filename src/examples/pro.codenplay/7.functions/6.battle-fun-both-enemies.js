@@ -25,7 +25,7 @@ let conf = prepareBattle({
   ],
 
   startPosX: 44,
-  maxTicksToWin: 12,
+  
   shortDescription: true,
   codeFontSize: 16,
 

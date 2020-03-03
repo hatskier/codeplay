@@ -1,9 +1,7 @@
-// TODO alex finish this task implementation
-import prepareBattle from '../variables/battleVar';
+import prepareBattle from '../base-configs/battle';
 
 let conf = prepareBattle({
   iterations: [
-    // Enemies in first iteration
     {
       enemies: {
         'Warrior': {
@@ -12,7 +10,7 @@ let conf = prepareBattle({
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 48
+          location: 58
         }
       },
       funResults: {
@@ -53,37 +51,45 @@ let conf = prepareBattle({
     },
   ],
 
-  stepWidth: 10,
   startPosX: 40,
+  shortDescription: true,
+  stepsArgSupported: true,
 
   solutionCode:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
-
+`// Будет запущено несколько тестов
 var distance = getDistance();
 
-// Write your code below
-hero.move(distance);
-hero.attack();
+// Откомментируй две инструкции
+// в коде функции goAndAttack
+function goAndAttack(distance) {
+  hero.go(distance);
+  hero.attack();
+  // hero.spearAttack();
+  // hero.attackWith('spear');
+}
+
+goAndAttack(distance);
 `,
 
-startCodeVal:
-`// Defeat the warrior
-// Come closer and attack using your sword
-// Distance to your enemy may differ
-// Hint: you can use variable "distance"
-
+  startCodeVal:
+`// Будет запущено несколько тестов
 var distance = getDistance();
 
-// Write your code below
-`
+// Откомментируй две инструкции
+// в коде функции goAndAttack
+function goAndAttack(distance) {
+  // hero.go(distance);
+  // hero.attack();
+  // hero.spearAttack();
+  // hero.attackWith('spear');
+}
+
+goAndAttack(distance);
+`,
 });
 
-// conf.methods["hero.attack"] = conf.methods["hero.swordAttack"];
-// delete conf.methods["hero.swordAttack"];
-// delete conf.methods['hero.spearAttack'];
-delete conf.methods['hero.attackWith'];
+delete conf.methods["hero.spearAttack"];
+delete conf.methods["hero.swordAttack"];
+delete conf.methods["hero.attackWith"];
 
 export default conf;

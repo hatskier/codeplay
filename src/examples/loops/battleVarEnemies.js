@@ -78,7 +78,7 @@ let conf = prepareBattle({
   stepWidth: 10,
   startPosX: 20,
 
-  // maxTicksToWin: 6,
+  // 
   
   requirements: {
     minInstructionsInWhileLoops: 6,

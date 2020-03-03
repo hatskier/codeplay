@@ -31,7 +31,7 @@ function pattern() { // pattern (с англ.) шаблон
 pattern();
 pattern();
 pattern();
-man.moveRight(1);
+man.moveRight(2);
 `;
 
 const solutionCode =
@@ -47,7 +47,7 @@ function pattern() { // pattern (с англ.) шаблон
 pattern();
 pattern();
 pattern();
-man.moveRight(1);
+man.moveRight(2);
 `;
 
 export default {

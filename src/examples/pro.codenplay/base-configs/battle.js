@@ -19,6 +19,7 @@ function runtimeError(msg, field) {
 }
 
 function prepareBattle({iterations, startPosX, maxTicksToWin, startCodeVal, solutionCode, stepsArgSupported, codeFontSize, shortDescription}) {
+  maxTicksToWin = 50; // Override this value for now, because it's not clear for users what is tick and how it's counted
 
   function getEnemiesToAdd(enemies) {
     let enemiesToAdd = [];

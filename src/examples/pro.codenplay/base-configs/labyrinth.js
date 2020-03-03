@@ -41,6 +41,18 @@ function calculateStepWidth(path) {
   let bordersWidth = singleBorderWidth * (stepsInWidth + 2); // %
 
   // Hacks for special configurations
+  if (stepsInWidth == 5) {
+    bordersWidth -= 0.1;
+  }
+  if (stepsInWidth == 6) {
+    bordersWidth -= 0.2;
+  }
+  if (stepsInWidth == 7) {
+    bordersWidth -= 0.2;
+  }
+  if (stepsInWidth == 8) {
+    bordersWidth -= 0.3;
+  }
   if (stepsInWidth == 9) {
     bordersWidth -= 0.3;
   }

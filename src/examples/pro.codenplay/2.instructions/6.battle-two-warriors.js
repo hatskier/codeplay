@@ -33,7 +33,7 @@ let conf = prepareBattle({
   ],
 
   startPosX: 40,
-  maxTicksToWin: 30,
+  
   stepsArgSupported: false,
 
 });

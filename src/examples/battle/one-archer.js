@@ -18,7 +18,6 @@ let conf = prepareBattle({
 
   stepWidth: 10,
   startPosX: 34,
-  maxTicksToWin: 10,
 
   solutionCode:
 `// Defeat the archer and don't let him kill you

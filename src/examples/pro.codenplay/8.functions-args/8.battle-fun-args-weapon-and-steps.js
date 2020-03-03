@@ -11,11 +11,12 @@ let conf = prepareBattle({
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 49
+          location: 68
         }
       },
       funResults: {
         getPerfectWeapon: 'sword',
+        getDistanceToEnemy: 2,
       }
     },
 
@@ -27,11 +28,12 @@ let conf = prepareBattle({
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 28
+          location: 38
         }
       },
       funResults: {
         getPerfectWeapon: 'spear',
+        getDistanceToEnemy: 1
       }
     }
   ],
@@ -40,30 +42,36 @@ let conf = prepareBattle({
   
   stepsArgSupported: true,
   shortDescription: true,
-
 });
 
 const startCodeVal =
 `// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+var perfectWeapon = getPerfectWeapon();
+var distanceToEnemy = getDistanceToEnemy();
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
-var weapon = getPerfectWeapon();
+// Добавь 2 инструкции в код этой функции
+// Используй аргументы weapon и distance
+function goAndAttack(weapon, distance) {
+  // Добавь 2 инструкции в код этой функции
+  // Используй аргументы weapon и distance
+}
 
-// Код пиши под этим комментарием
+goAndAttack(perfectWeapon, distanceToEnemy);
 `;
 
 const solutionCode =
 `// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+var perfectWeapon = getPerfectWeapon();
+var distanceToEnemy = getDistanceToEnemy();
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
-var weapon = getPerfectWeapon();
+// Добавь 2 инструкции в код этой функции
+// Используй аргументы weapon и distance
+function goAndAttack(weapon, distance) {
+  hero.go(distance);
+  hero.attackWith(weapon);
+}
 
-// Код пиши под этим комментарием
-hero.attackWith(weapon);
+goAndAttack(perfectWeapon, distanceToEnemy);
 `;
 
 delete conf.methods["hero.attack"];

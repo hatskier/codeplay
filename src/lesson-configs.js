@@ -190,6 +190,13 @@ import battleFunImplement from './examples/pro.codenplay/7.functions/11.battle-f
 
 // Functions args
 import ironManFunArgs from './examples/pro.codenplay/8.functions-args/1.iron-man-fun-args';
+import labyrinthFunArgs1 from './examples/pro.codenplay/8.functions-args/2.labyrinth-fun-args-1';
+import labyrinthFunArgs2 from './examples/pro.codenplay/8.functions-args/3.labyrinth-fun-args-2';
+import battleFunArgsSteps from './examples/pro.codenplay/8.functions-args/4.battle-fun-args-steps';
+import battleFunArgsStepsLoop from './examples/pro.codenplay/8.functions-args/5.battle-fun-args-steps-loop';
+import battleFunArgsWeapon from './examples/pro.codenplay/8.functions-args/6.battle-fun-args-weapon';
+import battleFunArgsEnemy from './examples/pro.codenplay/8.functions-args/7.battle-fun-args-enemy';
+import battleFunArgsWeaponAndSteps from './examples/pro.codenplay/8.functions-args/8.battle-fun-args-weapon-and-steps';
 
 export default {
   // Basics
@@ -265,5 +272,12 @@ export default {
 
   // Functions args
   ironManFunArgs,
+  labyrinthFunArgs1,
+  labyrinthFunArgs2,
+  battleFunArgsSteps,
+  battleFunArgsStepsLoop,
+  battleFunArgsWeapon,
+  battleFunArgsEnemy,
+  battleFunArgsWeaponAndSteps,
 
 };
