@@ -21,7 +21,7 @@ let conf = prepareBattle({
   ],
 
   startPosX: 44,
-  
+  shortDescription: true,
   stepsArgSupported: false,
 
 });
@@ -29,11 +29,13 @@ let conf = prepareBattle({
 const startCodeVal =
 `// Одолей дракона
 // Меч против него бессилен
+// Он будет атаковать в каждом втором раунде
 `;
 
 const solutionCode =
 `// Одолей дракона
 // Меч против него бессилен
+// Он будет атаковать в каждом втором раунде
 hero.defend();
 hero.go();
 hero.defend();

@@ -51,7 +51,7 @@ function calculateStepWidth(path) {
     bordersWidth -= 0.2;
   }
   if (stepsInWidth == 8) {
-    bordersWidth -= 0.3;
+    bordersWidth -= 0.2;
   }
   if (stepsInWidth == 9) {
     bordersWidth -= 0.3;

@@ -2,7 +2,7 @@ import Logger from './logger';
 import lessonConfigs from './lesson-configs';
 import gifUrls from './gifUrls';
 
-const START_PRELOADING_TIMEOUT = 3000;
+const START_PRELOADING_TIMEOUT = 7000; // ms (increased to 7'000)
 
 window.addEventListener('DOMContentLoaded', function() {
   setTimeout(() => {

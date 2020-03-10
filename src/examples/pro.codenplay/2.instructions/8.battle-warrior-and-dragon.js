@@ -29,18 +29,20 @@ let conf = prepareBattle({
   ],
 
   startPosX: 44,
-  
+  shortDescription: true,
   stepsArgSupported: false,
 
 });
 
 const startCodeVal =
 `// Одолей врагов
+// Дракон атакует в каждом втором раунде
 hero.defend();
 `;
 
 const solutionCode =
 `// Одолей врагов
+// Дракон атакует в каждом втором раунде
 hero.defend();
 hero.go();
 hero.defend();

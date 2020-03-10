@@ -114,6 +114,10 @@
   /* animation: circle-waves-for-run-button 1s ease 2s 3 forwards;; */
 }
 
+#run-button i {
+  color: white;
+}
+
 #stop-button {
   display: none;
   background: var(--warning-yellow-color);
@@ -126,6 +130,8 @@
 
 .md-icon {
   /* filter:  */
+  color: var(--light-blue-color);
+  font-size: 34px;
   width: 35px;
   margin: 5px;
 }

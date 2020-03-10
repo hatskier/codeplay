@@ -33,7 +33,7 @@ let conf = prepareBattle({
   ],
 
   startPosX: 40,
-  
+  shortDescription: true,
   stepsArgSupported: false,
 
 });
@@ -46,7 +46,7 @@ const solutionCode =
 `// Атакуй двух рыцарей
 hero.go();
 hero.attack();
-hero.defend();
+hero.skip();
 hero.go();
 hero.attack();
 `;

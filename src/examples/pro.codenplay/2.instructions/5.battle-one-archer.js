@@ -20,7 +20,7 @@ let conf = prepareBattle({
   ],
 
   startPosX: 34,
-  
+  shortDescription: true,
   stepsArgSupported: false,
 
 });

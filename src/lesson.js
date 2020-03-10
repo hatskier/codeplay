@@ -25,6 +25,11 @@ toastr.options = {
   // positionClass: 'toast-top-center',
 };
 
+// Every time program speed is set to slow
+// So user is able to understand what is going
+// on in the task
+localStorage.removeItem('programSpeed');
+
 const MINIMAL_LOADING_TIME = 500; // ms
 const FAILED_TIMES_TO_SHOW_SOLUTION = 3;
 const spinnerUrl = 'https://codenplay.io/img/tasks/common/spinner2.svg';
