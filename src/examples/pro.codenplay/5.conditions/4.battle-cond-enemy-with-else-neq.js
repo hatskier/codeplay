@@ -17,33 +17,13 @@ let conf = prepareBattle({
           },
 
           kind: 'archer', // enum: ['archer', 'warrior', 'dragon']
-          location: 59
+          location: 49
         }
       },
       funResults: {
         getEnemyType: 'archer',
       }
     },
-    {
-      enemies: {
-        'Warrior': {
-          action(tickNr) {
-            if (tickNr == 0) {
-              return 'attack';
-            } else {
-              return 'skip';
-            }
-          },
-
-          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
-          location: 49
-        }
-      },
-      funResults: {
-        getEnemyType: 'warrior',
-      }
-    },
-
     {
       enemies: {
         'Dragon': {
@@ -56,61 +36,64 @@ let conf = prepareBattle({
           },
 
           kind: 'dragon', // enum: ['archer', 'warrior', 'dragon']
-          location: 38
+          location: 28
         }
       },
       funResults: {
         getEnemyType: 'dragon',
       }
-    }
+    },
+    {
+      enemies: {
+        'Warrior': {
+          action(tickNr) {
+            return 'skip';
+            // if (tickNr == 0) {
+            //   return 'attack';
+            // } else {
+            //   return 'skip';
+            // }
+          },
+
+          kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
+          location: 49
+        }
+      },
+      funResults: {
+        getEnemyType: 'warrior',
+      }
+    },
   ],
 
   startPosX: 40,
-  
   shortDescription: true,
 
 });
 
 const solutionCode =
 `// Будет запущено несколько тестов
+// Поправь код ниже
 
-// Переменная enemy будет хранить тип врага
 var enemy = getEnemyType();
 
-// Поправь код ниже
-if (enemy == 'archer') {
-  hero.go();
+// != значит "не равно"
+if (enemy != 'dragon') {
   hero.swordAttack();
-}
-if (enemy == 'dragon') {
-  hero.defend();
-  hero.go();
+} else {
   hero.spearAttack();
-}
-if (enemy == 'warrior') {
-  hero.defend();
-  hero.swordAttack();
 }
 `;
 
 const startCodeVal =
 `// Будет запущено несколько тестов
-
-// Переменная enemy будет хранить тип врага
-var enemy = getEnemyType();
-
 // Поправь код ниже
+
 var enemy = getEnemyType();
 
-if (enemy == 'archer') {
-  hero.go();
+// != значит "не равно"
+if (enemy != 'dragon') {
   hero.swordAttack();
-}
-if (enemy == 'dragon') {
-  hero.go();
-  hero.spearAttack();
-}
-if (enemy == 'warrior') {
+} else {
   hero.swordAttack();
 }
 `;
