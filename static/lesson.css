@@ -421,3 +421,9 @@ img#spinner {
 .variable-name-bold {
   font-weight: bold;
 }
+
+/* Styles for big screens */
+#main-container {
+  max-width: 1360px !important;
+  margin: auto;
+}
