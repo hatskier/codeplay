@@ -327,11 +327,17 @@ $( document ).ready(async function() {
     window.solveTask();
   }
 
-  if (!localStorage.mobileNotificationShowed && isMobile()) {
-    localStorage.mobileNotificationShowed = true;
-    alert('As you know programmers usually use computers to work,'
-          + ' so we strongly recommend to check our website on'
-          + ' desktop to have the best posssible experience :)');
+  // if (!localStorage.mobileNotificationShowed && isMobile()) {
+  //   localStorage.mobileNotificationShowed = true;
+  //   alert('As you know programmers usually use computers to work,'
+  //         + ' so we strongly recommend to check our website on'
+  //         + ' desktop to have the best posssible experience :)');
+  // }
+
+  if (isMobile()) {
+    alert('Как ты знаешь, программисты работают за компьютером.'
+          + ' Так что мы настоятельно рекомендуем зайти на codenplay'
+          + ' с компьютера, чтобы получить полноценный опыт :)');
   }
 
   function updateTerminalModeLinkText() {
