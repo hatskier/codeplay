@@ -231,7 +231,7 @@ $( document ).ready(async function() {
     if (conf.solutionCode) {
       editor.setValue(conf.solutionCode);
       clearAllToasts();
-      window.toastr.success('Прочти код решения! Попытайся его понять, затем нажми на зеленую кнопку');
+      window.toastr.success('Read the solution code! Try to understand it and then click the run button');
     }
   };
 
@@ -239,7 +239,7 @@ $( document ).ready(async function() {
 
   window.run = async function() {
     clearAllToasts();
-    toastr.success('Программа запущена');
+    toastr.success('Program started');
     scrollToTop();
     await Editor.reorderLines();
     changeManageButtons({showStop: true, showRun: false});
@@ -307,7 +307,7 @@ $( document ).ready(async function() {
   window.setSpeed = function(speed) {
     localStorage.programSpeed = speed;
     field.setSpeed(localStorage.programSpeed);
-    toastr.success('Скорость выполнения программы установлена на: ' + localStorage.programSpeed);
+    toastr.success('Program execution speed set to: ' + localStorage.programSpeed);
   }
 
   window.startCodeplayTour = function() {
@@ -335,9 +335,9 @@ $( document ).ready(async function() {
   // }
 
   if (isMobile()) {
-    alert('Как ты знаешь, программисты работают за компьютером.'
-          + ' Так что мы настоятельно рекомендуем зайти на codenplay'
-          + ' с компьютера, чтобы получить полноценный опыт :)');
+    alert('As you know programmers usually use computers to work,'
+          + ' so we strongly recommend to check our website on'
+          + ' desktop to have the best possible experience :)');
   }
 
   function updateTerminalModeLinkText() {
@@ -345,9 +345,9 @@ $( document ).ready(async function() {
     const link = document.getElementById('terminal-manager-link');
 
     if ($('#logs').is(':visible')) {
-      link.innerHTML = 'скрой логи';
+      link.innerHTML = 'hide logs';
     } else {
-      link.innerHTML = 'покажи логи';
+      link.innerHTML = 'show logs';
     }
   }
 
@@ -462,12 +462,12 @@ $( document ).ready(async function() {
     // }
     let snackbarContainer = document.querySelector('#snackbar');
     let data = {
-      message: 'Показать решение?',
+      message: 'Do you want to see the solution code?',
       timeout: 7000,
       actionHandler: function() {
         window.solveTask();
       },
-      actionText: 'Да'
+      actionText: 'Yes'
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
   }
@@ -548,7 +548,7 @@ $( document ).ready(async function() {
     // toastr.success('Well done!');
     // toastr.options.positionClass = 'toast-top-right';
     toastr.success(`<img class="error-notification-img" src='${successImgUrl}'>
-    <div class="error-notification-text">Отлично! Сохраняю результат...</div>`);
+    <div class="error-notification-text">Well done! Saving your result...</div>`);
     // showGifResult(successImgUrl);
     await sleep(2500);
 
@@ -573,9 +573,9 @@ $( document ).ready(async function() {
 
     if (conf.docTableExtended) {
       let tableHeaders = `<tr>
-        <th>Инструкция</th>
-        <th>Описание</th>
-        <th>Примеры</th>
+        <th>Instruction</th>
+        <th>Description</th>
+        <th>Examples</th>
       </tr>`
       docTable += tableHeaders;
     }
@@ -599,18 +599,18 @@ $( document ).ready(async function() {
   
   function buildDocumentationView(conf) {
     let html = `
-      <h6 class="notranslate"><span class="notranslate">Задание</span>: ${configName}</h6>
+      <h6 class="notranslate"><span class="notranslate">Task</span>: ${configName}</h6>
       <p class="doc doc-task-description notranslate">${conf.taskDescription}</p>
 
-      <h6 class="notranslate">Инструкции</h6>
+      <h6 class="notranslate">Available instructions</h6>
 
       <table id="doc-table">
         ${buildDocTable(conf)}
       </table>
 
-      <h6 class="notranslate">Кстати</h6>
-      <p class="notranslate">Инструкции обычно заканчиваются на ();</p>
-      <p class="notranslate">Зелёные строки с "//" в начале - это комментарии, их компьютер игнорирует</p>
+      <h6 class="notranslate">Please note</h6>
+      <p class="notranslate">Each instruction should end with ();</p>
+      <p class="notranslate">Green lines with // are ignored by the program executor (we call 'em comments)</p>
     `;
     $('#doc-view').html(html);
   }

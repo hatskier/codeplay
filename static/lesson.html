@@ -16,29 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" type="image/png" href="./favicon.ico"/>
-    <title>Codenplay - игра</title>
-    <!-- <script>
-      (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:1441531,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script> -->
+    <title>Codenplay - game</title>
 
-    <!-- Hotjar Tracking Code for https://pro.codenplay.io -->
-    <script>
-      (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:1734424,hjsv:6};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
   </head>
   <body>
 
@@ -97,7 +76,7 @@
           <div id="screen-view">
           </div>
           <div class="mdl-tooltip" data-mdl-for="screen-view">
-            Нажми большую зелёную кнопку, чтобы запустить код и увидеть как он выполняется на экране
+            Click the big green button in the right bottom corner to run the code and see how it's running on the screen
           </div>
         </div>
         <div class="mdl-cell mdl-cell--6-col notranslate">
@@ -120,9 +99,9 @@
                       <tr>
                         <!-- <th class="mdl-data-table__cell--non-numeric"> -->
                         <th>
-                          Имя
+                          Variable
                         </th>
-                        <th>Значение</th>
+                        <th>Value</th>
                       </tr>
                     </thead>
                     <tbody id="variables-table-body">
@@ -160,7 +139,7 @@
         </a>
       </div>
       <div class="mdl-tooltip" data-mdl-for="main-page-button-container">
-        Назад
+        Back
       </div>
 
       <div class="hidden-solver-button-container">
@@ -186,7 +165,7 @@
           </i>
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="reload-button">
-            Перезагрузка задания
+            Restart level
           </div>
         </div>
 
@@ -202,16 +181,16 @@
           <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
               for="help-button">
             <li class="mdl-menu__item" onclick="solveTask()">
-              Покажи решение
+              Show solution
             </li>
-            <li class="mdl-menu__item" onclick="startCodeplayTour()">Покажи туториал</li>
+            <li class="mdl-menu__item" onclick="startCodeplayTour()">Show tutorial</li>
             <a class="mdl-menu__item" href="https://www.youtube.com/watch?v=4oaV1TfcxIo" target="_blank">
-              Туториал на youtube
+              Tutorial on youtube
             </a>
           </ul>
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="help-button">
-            Нужна помощь?
+            Need help?
           </div>
         </div>
 
@@ -236,13 +215,13 @@
           </i>
           <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
               for="settings-button">
-            <li class="mdl-menu__item" onclick="setSpeed('normal')">Нормально</li>
-            <li class="mdl-menu__item" onclick="setSpeed('fast')">Быстро</li>
-            <li class="mdl-menu__item" onclick="setSpeed('slow')">Медленно</li>
+            <li class="mdl-menu__item" onclick="setSpeed('normal')">Normal</li>
+            <li class="mdl-menu__item" onclick="setSpeed('fast')">Fast</li>
+            <li class="mdl-menu__item" onclick="setSpeed('slow')">Slow</li>
           </ul>
 
           <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="settings-button">
-            Скорость выполнения
+            Execution speed
           </div>
         </div>
 
@@ -260,7 +239,7 @@
           </i>
         </div>
         <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="run-button">
-          Запуск программы
+          Run program
         </div>
       </div>
 

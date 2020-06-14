@@ -18,25 +18,25 @@ const myTour = {
     dark: false // Dark mode (Works great with `mask.visible = false`)
    },
   canExit: true,
-  previousText: 'Назад',
-  nextText: 'Дальше',
-  finishText: 'Поехали!',
+  previousText: 'Back',
+  nextText: 'Got it!',
+  finishText: `Ok, let's start!`,
   steps: [
   {
     target: '.window',
-    content: 'Сначала прочти описание задания и доступных инструкций',
+    content: 'Read the task description and documentation for all the commands you can use',
   }, {
     target: '#code-editor',
-    content: 'Затем напиши код решения здесь. Зеленые строки с // - это комментарии, они игнорируются компьютером',
+    content: 'Then type your code here. Green lines with // will be ignored by the program executor',
   }, {
     target: '#run-button',
-    content: 'Если код готов, нажми на эту кнопку',
+    content: 'Then click this button to run the code',
   }, {
     target: '#screen-view',
-    content: 'И смотри на экране как выполняется программа',
+    content: 'And see your program running on the screen',
   }, {
     target: '.window',
-    content: 'Здесь кстати будет выписываться вспомогательная информация (логи)',
+    content: 'Additional information (logs) will be printed here',
   }
 ]
 };
