@@ -22,7 +22,7 @@ export default {
           if (method.includes(lineContentWithoutSpaces)) {
             suggestions.push({
               label: method,
-              detail: 'НАЖМИ ENTER ИЛИ TAB',
+              detail: 'PRESS ENTER OR TAB',
               kind: monaco.languages.CompletionItemKind.Method,
               documentation: conf.methods[method].doc,
               insertText, 

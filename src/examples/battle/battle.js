@@ -88,7 +88,7 @@ function prepareBattle({enemies, startPosX, maxTicksToWin, startCodeVal, solutio
     if (id == 'Hero') {
       // We can't assume that hero's key always is the same (example: defending)
       newImgKey = 'hero-dying';
-      field.log(`Unfortunatelly hero was killed. Please try again!`);
+      field.log(`Unfortunately hero was killed. Please try again!`);
     } else {
       field.log(`${id} is dying...`);
     }

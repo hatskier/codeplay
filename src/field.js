@@ -100,7 +100,7 @@ class Field {
       if (this.cbAfterExecutionStopped !== null) {
         this.cbAfterExecutionStopped();
       }
-      throw new Error('Выполнение программы прервано');
+      throw new Error('Program execution stopped');
     }
   }
 
@@ -117,16 +117,17 @@ class Field {
       return expr.value;
     } else if (expr.type == 'varExpr') {
       if (!this.isVariableDeclared(expr.name)) {
-        this.log(`Попытка использования несуществующей переменной "${expr.name}"`, { error: true });
-        throw new Error(`Попытка использования несуществующей переменной "${expr.name}"`);
+        this.log(`You are trying to use undeclared variable "${expr.name}"`, { error: true });
+        throw new Error(`You are trying to use undeclared variable "${expr.name}"`);
       }
 
       const val = this.state.vars[expr.name];
 
       if (val == null || val == undefined) {
-        this.log(`Попытка использования пустой переменной: "${expr.name}". `
-                 + 'Сначала присвой ей какое-нибудь значение', { error: true });
-        throw new Error(`Попытка использования пустой переменной: "${expr.name}"`);
+        this.log(`You are trying to use an empty variable: "${expr.name}". `, {
+          error: true
+        });
+        throw new Error(`You are trying to use an empty variable: "${expr.name}"`);
       }
 
       return this.state.vars[expr.name];
@@ -181,7 +182,7 @@ class Field {
   setVariableValue(varName, val, mustBeDeclared) {
     if (mustBeDeclared && !this.isVariableDeclared(varName)) {
       const errMsg =
-        `Переменная "${varName}" не существует. Чтобы создать ее используй инструкцию "var ${varName};"`;
+        `Variable "${varName}" doesn't exist. To create it use "var ${varName};"`;
       this.log(errMsg, {error: true});
       Logger.error(errMsg);
       throw new Error(errMsg);
@@ -231,7 +232,7 @@ class Field {
 
     if (typeof val != 'number') {
       throw new Error(
-        `Переменная ${node.name} должна быть арифметического типа`);
+        `Variable ${node.name} must have arithmetic type`);
     }
 
     this.setVariableValue(node.name, valModifier(val), true);
@@ -277,9 +278,9 @@ class Field {
   // TODO in future we can add speed and other motion params
   async run(codeTree, lineHighlighter) {
     // TODO handle other types of statement
-    this.log("====================================================");
-    this.log("=================== ИГРА НАЧАЛАСЬ ==================");
-    this.log("====================================================");
+    this.log("===================================================");
+    this.log("=================== GAME STARTED ==================");
+    this.log("===================================================");
 
     // TODO remove
     console.log(codeTree);
@@ -290,7 +291,7 @@ class Field {
 
     // To prevent showing non-friendly message that "codeTree is not iterable"
     if (!codeTree || !Array.isArray(codeTree)) {
-      throw new Error('Код должен содержать хотя бы одну инструкцию');
+      throw new Error('Code should contain at least one instruction');
     }
 
     for (let node of codeTree) {
@@ -381,7 +382,7 @@ class Field {
               await this.run(node.stmts, lineHighlighter);
             }
             if (loopCounter > WHILE_LOOP_MAX_ITERATIONS_NUMBER) {
-              throw new Error('Слишком много итераций цикла. Зацикленная программа прервана');
+              throw new Error('Too many loops iterations. Program execution stopped');
               break;
             }
           }
@@ -401,7 +402,7 @@ class Field {
         case 'varDecl': {
           const val = this.getValForExpr(node.expr, false);
           if (this.isVariableDeclared(node.name)) {
-            throw new Error(`Попытка повторной декларации переменной: ${node.name}. Удали слово var`);
+            throw new Error(`Variable is already declared: ${node.name}. Delete keyword "var"`);
           }
           this.setVariableValue(node.name, val);
           this.showProgramState(); // update state table before sleep
