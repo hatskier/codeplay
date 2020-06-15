@@ -15,15 +15,15 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Укажи пещерному человеку путь
-// чтобы он смог выбраться из лабиринта
+`// Write directions for the caveman
+// to get through the labyrinth
 
 man.move('right');
 `;
 
 const solutionCode =
-`// Укажи пещерному человеку путь
-// чтобы он смог выбраться из лабиринта
+`// Write directions for the caveman
+// to get through the labyrinth
 
 man.move('right');
 man.move('down');
@@ -36,7 +36,7 @@ man.move('right');
 const oldMethods = { ...config.methods };
 
 config.methods['man.move'] = {
-  doc: 'Принимает как аргумент направление движения',
+  doc: `This instruction accepts direction as an argument (it may be: 'right', 'left', 'up' or 'down')`,
   examples: `man.move('right'); <br /> man.move('left'); <br /> man.move('up'); <br /> man.move('down');`,
   async run(context, params) {
     switch (params[0]) {
@@ -53,7 +53,7 @@ config.methods['man.move'] = {
         await oldMethods['man.moveUp'].run(context, []);
         break;
       default:
-        throw new Error(`Инструкция move не поддерживает аргумент: ${params[0] || '\'\''}`);
+        throw new Error(`Instruction "move" doesn't support this argument: ${params[0] || '\'\''}`);
     }
   },
 };

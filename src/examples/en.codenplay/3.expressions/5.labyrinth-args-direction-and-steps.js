@@ -15,15 +15,15 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Укажи пещерному человеку путь
-// чтобы он смог выбраться из лабиринта
+`// Write directions for the caveman
+// to get through the labyrinth
 
 man.move('right', 2);
 `;
 
 const solutionCode =
-`// Укажи пещерному человеку путь
-// чтобы он смог выбраться из лабиринта
+`// Write directions for the caveman
+// to get through the labyrinth
 
 man.move('right', 2);
 man.move('down', 3);
@@ -34,11 +34,11 @@ man.move('right', 2);
 const oldMethods = { ...config.methods };
 
 function incorrectUsageOfMethod() {
-  throw new Error(`Инструкция "move" принимает 2 аргумента: направление (строка) и количество шагов (число)`);
+  throw new Error(`Instruction "move" accepts 2 arguments: direction (String) and number of steps (Number)`);
 }
 
 config.methods['man.move'] = {
-  doc: 'Принимает как аргументы направление движения и количество шагов',
+  doc: 'This instruction accepts 2 arguments: direction (String) and number of steps (Number)',
   examples: `man.move('right', 2); <br /> man.move('left', 1); <br /> man.move('up', 2); <br /> man.move('down', 3);`,
   async run(context, params) {
     if (params.length != 2) {
@@ -46,11 +46,11 @@ config.methods['man.move'] = {
       return;
     }
     if (typeof params[0] != 'string') {
-      throw new Error('Первый аргумент инструкции "move" должен быть строкового типа');
+      throw new Error('The first argument of "move" instruction should be a String');
       return;
     }
     if (typeof params[1] != 'number') {
-      throw new Error('Второй аргумент инструкции "move" должен быть числом');
+      throw new Error('The second argument of "move" instruction should be a Number');
       return;
     }
 

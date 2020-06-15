@@ -30,8 +30,8 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Передай инструкциям правильные аргументы
-// Не добавляя новых инструкций
+`// Don't add new instructions to this code
+// Add some arguments
 hero.go();
 hero.attackWith();
 hero.go();
@@ -39,8 +39,8 @@ hero.attackWith();
 `;
 
 const solutionCode =
-`// Передай инструкциям правильные аргументы
-// Не добавляя новых инструкций
+`// Don't add new instructions to this code
+// Add some arguments
 hero.go(2);
 hero.attackWith('spear');
 hero.go(1);

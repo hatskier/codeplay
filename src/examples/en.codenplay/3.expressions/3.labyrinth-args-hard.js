@@ -19,15 +19,15 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Укажи пещерному человеку путь
-// чтобы он смог выбраться из лабиринта
+`// Write directions for the caveman
+// to get through the labyrinth
 
 man.moveRight(4);
 `;
 
 const solutionCode =
-`// Укажи пещерному человеку путь
-// чтобы он смог выбраться из лабиринта
+`// Write directions for the caveman
+// to get through the labyrinth
 
 man.moveRight(4);
 man.moveDown(2);

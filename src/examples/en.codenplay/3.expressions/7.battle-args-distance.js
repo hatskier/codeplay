@@ -20,16 +20,16 @@ let conf = prepareBattle({
 });
 
 const solutionCode =
-`// Не добавляй новых инструкций
-// Просто обнови аргумент в одной из них
+`// Don't add new instructions to this code
+// Just update one argument into one of the instructions
 
 hero.go(3);
 hero.attack();
 `;
 
 const startCodeVal =
-`// Не добавляй новых инструкций
-// Просто обнови аргумент в одной из них
+`// Don't add new instructions to this code
+// Just add one argument into one of the instructions
 
 hero.go();
 hero.attack();

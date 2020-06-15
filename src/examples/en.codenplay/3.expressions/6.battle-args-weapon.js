@@ -31,12 +31,14 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Доступные инструкции немного изменились
+`// Available instructions has been changed
+// Check them in the documentation below
 hero.go();
 `;
 
 const solutionCode =
-`// Доступные инструкции немного изменились
+`// Available instructions has been changed
+// Check them in the documentation below
 hero.go();
 hero.attackWith('spear');
 hero.go();
