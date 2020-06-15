@@ -112,7 +112,7 @@ function showIterationNrMsg(nr) {
   field.addObject({
     id,
     kind: 'html',
-    html: `<div id="${id}">Тест номер: <strong>${nr}</strong></div>`,
+    html: `<div id="${id}">Test nr: <strong>${nr}</strong></div>`,
     size: {
       width: 550,
       height: 20,

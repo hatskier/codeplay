@@ -61,30 +61,28 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная distance получает расстояние
-// до дальнего врага (число шагов)
+// Variable distance will get distance
+// to the enemy (number of steps)
 var distance = getDistance();
 
-hero.go(1); // Подходим к дракону
-// Замени этот коммент какой-то инструкцией
-hero.go(distance - 1); // Так можно :)
-// Этот коммент тоже замени
+hero.go(1); // Coming to dragon
+// Replace this comment with some instruction
+hero.go(distance - 1);
+// Replace this comment as well :)
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная distance получает расстояние
-// до дальнего врага (число шагов)
+// Variable distance will get distance
+// to the enemy (number of steps)
 var distance = getDistance();
 
-hero.go(1); // Подходим к дракону
+hero.go(1); // Coming to dragon
 hero.attackWith('spear');
-hero.go(distance - 1); // <- Передаем результат выражения как аргумент
+hero.go(distance - 1);
 hero.attackWith('sword');
 `;
 

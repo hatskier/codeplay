@@ -28,14 +28,14 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Присвой переменной weapon правильное значение
+`// Change value of weapon variable
 var weapon = 'sword';
 hero.defend();
 hero.attackWith(weapon);
 `;
 
 const solutionCode =
-`// Присвой переменной weapon правильное значение
+`// Change value of weapon variable
 var weapon = 'spear';
 hero.defend();
 hero.attackWith(weapon);

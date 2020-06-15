@@ -45,25 +45,23 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Используй переменные для решения
+// Use these variables in your code
 var distance = getDistance();
 var weapon = getPerfectWeapon();
 
-// Код пиши под этим комментарием
+// Write your code below
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Используй переменные для решения
+// Use these variables in your code
 var distance = getDistance();
 var weapon = getPerfectWeapon();
 
-// Код пиши под этим комментарием
+// Write your code below
 hero.go(distance);
 hero.attackWith(weapon);
 `;

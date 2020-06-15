@@ -87,25 +87,23 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная distance получает расстояние
-// до врага (число шагов)
+// Variable distance will get distance
+// to the enemy (number of steps)
 var distance = getDistance();
 
-// Код пиши под этим комментарием
+// Write your code below
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная distance получает расстояние
-// до врага (число шагов)
+// Variable distance will get distance
+// to the enemy (number of steps)
 var distance = getDistance();
 
-// Код пиши под этим комментарием
+// Write your code below
 hero.attackWith('spear');
 hero.go(distance);
 hero.attackWith('sword');

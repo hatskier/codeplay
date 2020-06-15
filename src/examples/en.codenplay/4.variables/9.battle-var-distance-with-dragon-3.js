@@ -62,16 +62,15 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная distance получает расстояние
-// до дальнего врага (число шагов)
+// Variable distance will get distance
+// to the enemy (number of steps)
 var distance = getDistance();
 var weapon;
 
-// Нужно пофиксить баг (исправить ошибку) 
-// не добавляя новых инструкций
+// You should fix a bug (correct an error) 
+// without adding new instructions
 hero.go(1);
 weapon = 'spear';
 hero.attackWith(weapon);
@@ -81,16 +80,15 @@ hero.attackWith(weapon);
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная distance получает расстояние
-// до дальнего врага (число шагов)
+// Variable distance will get distance
+// to the enemy (number of steps)
 var distance = getDistance();
 var weapon;
 
-// Нужно пофиксить баг (исправить ошибку) 
-// не добавляя новых инструкций
+// You should fix a bug (correct an error) 
+// without adding new instructions
 hero.go(1);
 weapon = 'spear';
 hero.attackWith(weapon);

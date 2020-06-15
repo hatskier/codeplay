@@ -37,10 +37,9 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
-// Форма лабиринта будет похожа, но вот
-// расстояние в шагах будет отличаться
+`// Multiple tests will be started
+// Labyrinth shape will be similar
+// but distances will be different
 
 var length = getLength();
 
@@ -48,10 +47,9 @@ man.moveRight(length);
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
-// Форма лабиринта будет похожа, но вот
-// расстояние в шагах будет отличаться
+`// Multiple tests will be started
+// Labyrinth shape will be similar
+// but distances will be different
 
 var length = getLength();
 

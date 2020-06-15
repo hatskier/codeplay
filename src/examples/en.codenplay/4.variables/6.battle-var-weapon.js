@@ -44,25 +44,25 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
+// Variable weapon will get a
+// string value with the most
+// appropriate weapon
 var weapon = getPerfectWeapon();
 
-// Код пиши под этим комментарием
+// Write your code below
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте код запустится заново
+`// Multiple tests will be started
 
-// Переменная weapon получит строковое
-// значение с самым подходящим оружием 
+// Variable weapon will get a
+// string value with the most
+// appropriate weapon
 var weapon = getPerfectWeapon();
 
-// Код пиши под этим комментарием
+// Write your code below
 hero.attackWith(weapon);
 `;
 
