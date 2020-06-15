@@ -28,9 +28,9 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте форма лабиринта
-// будет одинаковая, а длина - разная
+`// Multiple tests will be started
+// Labyrinth shape will be similar
+// but distances will be different
 
 var type = getLabyrinthType();
 var length;
@@ -40,7 +40,7 @@ if (type == 'short') {
 }
 
 if (type == 'long') {
-  // Замени этот коммент инструкцией
+  // Replace this comment with some instruction
 }
 
 man.moveRight(length);
@@ -49,9 +49,9 @@ man.moveRight(length);
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте форма лабиринта
-// будет одинаковая, а длина - разная
+`// Multiple tests will be started
+// Labyrinth shape will be similar
+// but distances will be different
 
 var type = getLabyrinthType();
 var length;

@@ -271,7 +271,7 @@ $( document ).ready(async function() {
             stop() {
               // Editor.highlightLine(nr, oldLineBg);
             }
-          });
+          }, true /* to print GAME STARTED message */);
 
           await iteration.post({field, state: field.state});
         }

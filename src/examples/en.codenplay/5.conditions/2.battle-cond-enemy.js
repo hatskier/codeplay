@@ -43,12 +43,12 @@ let conf = prepareBattle({
 });
 
 const solutionCode =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 
-// Переменная enemy будет хранить тип врага
+// Variable "enemy" will store enemy type
 var enemy = getEnemyType();
 
-// Поправь код ниже
+// Fix the code below
 if (enemy == 'dragon') {
   hero.spearAttack();
 }
@@ -59,12 +59,12 @@ if (enemy == 'warrior') {
 `;
 
 const startCodeVal =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 
-// Переменная enemy будет хранить тип врага
+// Variable "enemy" will store enemy type
 var enemy = getEnemyType();
 
-// Поправь код ниже
+// Fix the code below
 if (enemy == 'dragon') {
   hero.swordAttack();
 }

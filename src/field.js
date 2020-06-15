@@ -276,14 +276,12 @@ class Field {
   //////////////////////////
 
   // TODO in future we can add speed and other motion params
-  async run(codeTree, lineHighlighter) {
-    // TODO handle other types of statement
-    this.log("===================================================");
-    this.log("=================== GAME STARTED ==================");
-    this.log("===================================================");
-
-    // TODO remove
-    console.log(codeTree);
+  async run(codeTree, lineHighlighter, printGameStartedMessage) {
+    if (printGameStartedMessage) {
+      this.log("===================================================");
+      this.log("=================== GAME STARTED ==================");
+      this.log("===================================================");
+    }
 
     let tickNr = 0;
 

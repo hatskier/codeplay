@@ -71,12 +71,12 @@ let conf = prepareBattle({
 });
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// Поправь код ниже
+`// Multiple tests will be started
+// Fix the code below
 
 var enemy = getEnemyType();
 
-// != значит "не равно"
+// != means "not equal"
 if (enemy != 'dragon') {
   hero.swordAttack();
 } else {
@@ -85,12 +85,12 @@ if (enemy != 'dragon') {
 `;
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// Поправь код ниже
+`// Multiple tests will be started
+// Fix the code below
 
 var enemy = getEnemyType();
 
-// != значит "не равно"
+// != means "not equal"
 if (enemy != 'dragon') {
   hero.swordAttack();
 } else {
