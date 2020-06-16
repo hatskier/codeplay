@@ -3,8 +3,8 @@ import createConfig from '../base-configs/iron-man';
 let config = createConfig();
 
 const startCodeVal =
-`// Поправь декларацию функции
-// В ней 2 бага (ошибки)
+`// Fix this function
+// It has 2 bugs (errors)
 function take() {
   if (elem == 'head') {
     takeHead();
@@ -24,8 +24,8 @@ fly();
 `;
 
 const solutionCode =
-`// Поправь декларацию функции
-// В ней 2 бага (ошибки)
+`// Fix this function
+// It has 2 bugs (errors)
 function take(elem) {
   if (elem == 'head') {
     takeHead();

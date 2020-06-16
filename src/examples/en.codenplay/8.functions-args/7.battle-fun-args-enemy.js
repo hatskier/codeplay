@@ -43,16 +43,15 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 var enemy = getEnemy();
 
-// Поправь код функции attack
 function attack(currentEnemy) {
   if (currentEnemy == 'dragon') {
-    // Добавь здесь инструкцию атаки копьём
+    // Attack with spear
   }
   if (currentEnemy == 'warrior') {
-    // Добавь здесь инструкцию атаки мечом
+    // Attack with sword
   }
 }
 
@@ -60,10 +59,9 @@ attack(enemy);
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 var enemy = getEnemy();
 
-// Поправь код функции attack
 function attack(currentEnemy) {
   if (currentEnemy == 'dragon') {
     hero.spearAttack();

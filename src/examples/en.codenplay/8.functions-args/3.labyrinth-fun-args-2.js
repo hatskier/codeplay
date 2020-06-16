@@ -25,7 +25,7 @@ const startCodeVal =
 }
 
 pattern(2);
-pattern(2); // Этот аргумент нужно изменить
+pattern(2); // This argument should be changed
 pattern(2);
 man.moveRight(2);
 `;
@@ -37,7 +37,7 @@ const solutionCode =
 }
 
 pattern(2);
-pattern(1); // Этот аргумент нужно изменить
+pattern(1); // This argument should be changed
 pattern(2);
 man.moveRight(2);
 `;

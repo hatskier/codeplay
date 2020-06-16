@@ -57,16 +57,15 @@ let conf = prepareBattle({
   codeFontSize: 16,
 
   solutionCode:
-`// Будет запущено несколько тестов
-// В каждом тесте расстояние до
-// врага будет отличаться
+`// Multiple tests will be started
+// Distance to the enemy will differ
 var distance = getDistance();
 
-// В этот раз инструкция hero.go
-// не принимает аргументы, поэтому
-// нужно использовать цикл
+// This time instruction hero.go
+// doesn't accept arguments
+// So you should use a loop
 function goAndAttack(distance) {
-  // Добавь в цикле одну инструкцию
+  // Add one instruction into this loop
   while (distance > 0) {
     hero.go();
     distance--;
@@ -78,16 +77,15 @@ goAndAttack(distance);
 `,
 
   startCodeVal:
-`// Будет запущено несколько тестов
-// В каждом тесте расстояние до
-// врага будет отличаться
+`// Multiple tests will be started
+// Distance to the enemy will differ
 var distance = getDistance();
 
-// В этот раз инструкция hero.go
-// не принимает аргументы, поэтому
-// нужно использовать цикл
+// This time instruction hero.go
+// doesn't accept arguments
+// So you should use a loop
 function goAndAttack(distance) {
-  // Добавь в цикле одну инструкцию
+  // Add one instruction into this loop
   while (distance > 0) {
     hero.go();
   }

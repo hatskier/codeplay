@@ -19,7 +19,7 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Откомментируй две инструкции в этой функции
+`// Uncomment 2 instructions in this function
 function pattern(length) {
   // man.moveUp(length);
   // man.moveLeft(length);
@@ -34,7 +34,7 @@ man.moveRight(2);
 `;
 
 const solutionCode =
-`// Откомментируй две инструкции в этой функции
+`// Uncomment 2 instructions in this function
 function pattern(length) {
   // man.moveUp(length);
   // man.moveLeft(length);

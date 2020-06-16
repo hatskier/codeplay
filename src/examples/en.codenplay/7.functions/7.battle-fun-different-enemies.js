@@ -53,7 +53,7 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Fix code below
+// Fix the code below
 if (enemy == 'warrior') {
   attackWarrior();
 } else {
@@ -74,7 +74,7 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Fix code below
+// Fix the code below
 if (enemy == 'warrior') {
   attackDragon();
 } else {

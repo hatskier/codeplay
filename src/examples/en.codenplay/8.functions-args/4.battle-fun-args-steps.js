@@ -56,11 +56,10 @@ let conf = prepareBattle({
   stepsArgSupported: true,
 
   solutionCode:
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 var distance = getDistance();
 
-// Откомментируй две инструкции
-// в коде функции goAndAttack
+// Uncomment 2 instructions in this function
 function goAndAttack(distance) {
   hero.go(distance);
   hero.attack();
@@ -75,8 +74,7 @@ goAndAttack(distance);
 `// Будет запущено несколько тестов
 var distance = getDistance();
 
-// Откомментируй две инструкции
-// в коде функции goAndAttack
+// Uncomment 2 instructions in this function
 function goAndAttack(distance) {
   // hero.go(distance);
   // hero.attack();

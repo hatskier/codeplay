@@ -45,12 +45,12 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 var perfectWeapon = getPerfectWeapon();
 var distanceToEnemy = getDistanceToEnemy();
 
-// Добавь 2 инструкции в код этой функции
-// Используй аргументы weapon и distance
+// Add 2 instructions into this function
+// Use "weapon" and "distance" arguments
 function goAndAttack(weapon, distance) {
   // Добавь 2 инструкции в код этой функции
   // Используй аргументы weapon и distance
@@ -60,12 +60,12 @@ goAndAttack(perfectWeapon, distanceToEnemy);
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 var perfectWeapon = getPerfectWeapon();
 var distanceToEnemy = getDistanceToEnemy();
 
-// Добавь 2 инструкции в код этой функции
-// Используй аргументы weapon и distance
+// Add 2 instructions into this function
+// Use "weapon" and "distance" arguments
 function goAndAttack(weapon, distance) {
   hero.go(distance);
   hero.attackWith(weapon);

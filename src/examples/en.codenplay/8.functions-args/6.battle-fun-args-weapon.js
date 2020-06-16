@@ -43,10 +43,10 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 var perfectWeapon = getPerfectWeapon();
 
-// Поправь код функции attack
+// Fix the code of this function
 function attack(weapon) {
   if (weapon == 'sword') {
     hero.spearAttack();
@@ -60,10 +60,10 @@ attack(perfectWeapon);
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
+`// Multiple tests will be started
 var perfectWeapon = getPerfectWeapon();
 
-// Поправь код функции attack
+// Fix the code of this function
 function attack(weapon) {
   if (weapon == 'sword') {
     hero.swordAttack();
