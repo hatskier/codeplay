@@ -21,18 +21,18 @@ let conf = prepareBattle({
   shortDescription: true,
 
   solutionCode:
-`// Поправь код этой функции
+`// Fix the code of this function
 function solve() {
   hero.go();
   hero.go();
-  hero.spearAttack();
+  hero.swordAttack();
 }
 
 solve();
 `,
 
   startCodeVal:
-`// Поправь код этой функции
+`// Fix the code of this function
 function solve() {
   hero.go();
   hero.spearAttack();

@@ -41,8 +41,8 @@ let conf = prepareBattle({
   codeFontSize: 15,
 
   solutionCode:
-`// Поправь код функции winDragon
-// и добавь функцию winWarrior
+`// Fix the function winDragon
+// and add function winWarrior
 function winDragon() {
   hero.go();
   hero.go();
@@ -62,8 +62,8 @@ if (enemy == 'warrior') {
 `,
 
   startCodeVal:
-`// Поправь код функции winDragon
-// и добавь функцию winWarrior
+`// Fix the function winDragon
+// and add function winWarrior
 function winDragon() {
   hero.go();
   hero.spearAttack();

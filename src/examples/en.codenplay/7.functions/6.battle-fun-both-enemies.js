@@ -30,39 +30,39 @@ let conf = prepareBattle({
   codeFontSize: 16,
 
   solutionCode:
-`// Функция атаки дракона, находящегося
-// на расстоянии двух шагов
+`// Function to attack a dragon
+// at a distance of 2 steps
 function attackDragon() {
   hero.go();
   hero.go();
   hero.spearAttack();
 }
 
-// Функция атаки воина, находящегося вблизи
+// Function to attack a warrior
 function attackWarrior() {
   hero.swordAttack();
 }
 
-// Добавь лишь две инструкции ниже
+// Add 2 instructions below
 attackDragon();
 attackWarrior();
 `,
 
   startCodeVal:
-`// Функция атаки дракона, находящегося
-// на расстоянии двух шагов
+`// Function to attack a dragon
+// at a distance of 2 steps
 function attackDragon() {
   hero.go();
   hero.go();
   hero.spearAttack();
 }
 
-// Функция атаки воина, находящегося вблизи
+// Function to attack a warrior
 function attackWarrior() {
   hero.swordAttack();
 }
 
-// Добавь лишь две инструкции ниже
+// Add 2 instructions below
 `,
 });
 

@@ -25,7 +25,7 @@ let conf = prepareBattle({
   shortDescription: true,
 
   solutionCode:
-`// Нужно пофиксить баг в этой функции
+`// Fix a bug in this function
 function attackDragon() {
   hero.go();
   hero.go();
@@ -37,7 +37,7 @@ attackDragon();
 `,
 
   startCodeVal:
-`// Нужно пофиксить баг в этой функции
+`// Fix a bug in this function
 function attackDragon() {
   hero.go();
   hero.go();

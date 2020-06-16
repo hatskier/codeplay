@@ -23,7 +23,7 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Добавь одну инструкцию в функцию pattern
+`// Add one instruction into pattern function
 function pattern() {
   man.moveRight(1);
 }
@@ -41,7 +41,7 @@ solve();
 `;
 
 const solutionCode =
-`// Добавь одну инструкцию в функцию pattern
+`// Add one instruction into pattern function
 function pattern() {
   man.moveRight(1);
   man.moveDown(1);

@@ -19,8 +19,8 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Откомментируй одну из инструкций в этой функции
-function pattern() { // pattern (с англ.) шаблон
+`// Uncomment one instruction in this function
+function pattern() {
   // man.moveRight(1);
   // man.moveRight(2);
   // man.moveRight(3);
@@ -35,8 +35,8 @@ man.moveRight(2);
 `;
 
 const solutionCode =
-`// Откомментируй одну из инструкций в этой функции
-function pattern() { // pattern (с англ.) шаблон
+`// Uncomment one instruction in this function
+function pattern() {
   // man.moveRight(1);
   man.moveRight(2);
   // man.moveRight(3);

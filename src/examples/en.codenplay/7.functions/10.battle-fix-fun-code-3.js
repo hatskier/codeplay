@@ -41,7 +41,7 @@ let conf = prepareBattle({
   codeFontSize: 15,
 
   solutionCode:
-`// Найди баг и исправь
+`// Find a bug and fix it
 var enemy = getEnemyType();
 function attackDragon() {
   hero.go();
@@ -61,7 +61,7 @@ if (enemy == 'warrior') {
 `,
 
   startCodeVal:
-`// Найди баг и исправь
+`// Find a bug and fix it
 var enemy = getEnemyType();
 function attackDragon() {
   hero.go();

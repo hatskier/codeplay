@@ -33,7 +33,7 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Добавь лишь одну инструкцию ниже
+// Add one instruction below
 attackDragon();
 `,
 
@@ -49,7 +49,7 @@ function attackWarrior() {
   hero.swordAttack();
 }
 
-// Добавь лишь одну инструкцию ниже
+// Add one instruction below
 `
 });
 
