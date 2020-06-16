@@ -67,12 +67,12 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`// Будет запущено несколько тестов
-// Переменная enemies хранит число врагов
+`// Multiple tests will be started
+// Variable "enemies" will store the number of enemies
 var enemies = getEnemiesCount();
 
-// Напиши код с использованием циклов
-// Можно даже не добавлять новые переменные
+// Write code using loops
+// Don't add new variables
 while (enemies > 0) {
   hero.go();
   hero.attack();
@@ -81,12 +81,12 @@ while (enemies > 0) {
 `,
 
   startCodeVal:
-`// Будет запущено несколько тестов
-// Переменная enemies хранит число врагов
+`// Multiple tests will be started
+// Variable "enemies" will store the number of enemies
 var enemies = getEnemiesCount();
 
-// Напиши код с использованием циклов
-// Можно даже не добавлять новые переменные
+// Write code using loops
+// Don't add new variables
 `,
 });
 

@@ -83,8 +83,8 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`// Будет запущено несколько тестов
-// Добавь недостающие инструкции
+`// Multiple tests will be started
+// Add some instructions
 var enemies = getEnemiesCount();
 var counter = 0;
 while (counter < enemies) {
@@ -99,18 +99,18 @@ while (counter < enemies) {
 `,
 
 startCodeVal:
-`// Будет запущено несколько тестов
-// Добавь недостающие инструкции
+`// Multiple tests will be started
+// Add some instructions
 var enemies = getEnemiesCount();
 var counter = 0;
 while (counter < enemies) {
-  // Делаем шаг (добавь инструкцию)
+  // Make one step (add instruction)
   if (counter == 1) {
-    // Атакуем дракона (добавь инструкцию)
+    // Attack the dragon
   } else {
-    // Атакуем рыцаря (добавь инструкцию)
+    // Attack the warrior
   }
-  // Увеличиваем counter (добавь инструкцию)
+  // Increment counter
 }
 `
 });

@@ -25,8 +25,8 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`// Сделай 5 шагов с помощью цикла
-// Замени лишь одну букву или цифру
+`// Make 5 steps using loop
+// Just replace one letter or digit
 var counter = 0;
 while (counter < 5) {
   counter++;
@@ -37,8 +37,8 @@ hero.attack();
 `,
 
   startCodeVal:
-`// Сделай 5 шагов с помощью цикла
-// Замени лишь одну букву или цифру
+`// Make 5 steps using loop
+// Just replace one letter or digit
 var counter = 0;
 while (counter < 3) {
   counter++;

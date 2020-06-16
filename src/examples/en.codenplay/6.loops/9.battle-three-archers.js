@@ -46,7 +46,7 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`// Одолей всех врагов
+`// Defeat all your enemies
 var counter = 0;
 hero.go();
 while (counter < 3) {
@@ -57,11 +57,11 @@ while (counter < 3) {
 `,
 
   startCodeVal:
-`// Одолей всех врагов
+`// Defeat all your enemies
 var counter = 0;
 hero.go();
 while (counter < 3) {
-  // Добавь здесь код
+  // Add some instructions here
 }
 `,
 });

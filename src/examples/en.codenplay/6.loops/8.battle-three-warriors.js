@@ -44,9 +44,9 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`// Одолей всех врагов
+`// Defeat all your enemies
 var counter = 0;
-// Откомментируй одну инструкцию
+// Uncomment one instruction
 while (counter < 3) {
   counter = counter + 1;
   // counter = counter - 1;
@@ -59,9 +59,9 @@ while (counter < 3) {
 `,
 
   startCodeVal:
-`// Одолей всех врагов
+`// Defeat all your enemies
 var counter = 0;
-// Откомментируй одну инструкцию
+// Uncomment one instruction
 while (counter < 3) {
   // counter = counter + 1;
   // counter = counter - 1;

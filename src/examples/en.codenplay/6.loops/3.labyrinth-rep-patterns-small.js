@@ -34,14 +34,13 @@ let config = createConfig({
 });
 
 const startCodeVal =
-`// Будет запущено несколько тестов
-// В каждом тесте лабиринт будет состоять
-// из похожих по форме элементов
-// но их количество будет отличаться
+`// Multiple tests will be started
+// Labyrinth will contain repeated parts
+// But numbers of this parts will differ
 var patternsNumber = getPatternsNumber();
 var counter = 0;
 
-// Нужно пофиксить баг
+// Fix a bug
 while (counter < patternsNumber) {
   counter++;
   man.moveRight();
@@ -52,14 +51,13 @@ man.moveRight(5);
 `;
 
 const solutionCode =
-`// Будет запущено несколько тестов
-// В каждом тесте лабиринт будет состоять
-// из похожих по форме элементов
-// но их количество будет отличаться
+`// Multiple tests will be started
+// Labyrinth will contain repeated parts
+// But numbers of this parts will differ
 var patternsNumber = getPatternsNumber();
 var counter = 0;
 
-// Нужно пофиксить баг
+// Fix a bug
 while (counter < patternsNumber) {
   counter++;
   man.moveRight();

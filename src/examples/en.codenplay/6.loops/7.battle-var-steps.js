@@ -40,15 +40,14 @@ let conf = prepareBattle({
   codeFontSize: 16,
 
   solutionCode:
-`// Будет запущено несколько тестов
-// В каждом из них расстояние до
-// врага будет отличаться
+`// Multiple tests will be started
+// Distance to the enemy will differ
 
-// Добавь одну инструкцию внутри цикла
+// Add one instruction inside the loop
 var distance = getDistance();
 while (distance > 0) {
   hero.go();
-  // Уменьши переменную distance на 1 (используй --)
+  // Decrement variable "distance" by 1 (use --)
   distance--;
 }
 
@@ -56,15 +55,14 @@ hero.attack();
 `,
 
   startCodeVal:
-`// Будет запущено несколько тестов
-// В каждом из них расстояние до
-// врага будет отличаться
+`// Multiple tests will be started
+// Distance to the enemy will differ
 
-// Добавь одну инструкцию внутри цикла
+// Add one instruction inside the loop
 var distance = getDistance();
 while (distance > 0) {
   hero.go();
-  // Уменьши переменную distance на 1 (используй --)
+  // Decrement variable "distance" by 1 (use --)
 }
 
 hero.attack();

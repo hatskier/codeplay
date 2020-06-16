@@ -25,10 +25,11 @@ let conf = prepareBattle({
   },
 
   solutionCode:
-`// Сделай 3 шага с помощью цикла
+`// Make 3 steps using loop
 var counter = 0;
 
-// Откомментируй одну из инструкций
+// Uncomment one instruction
+// By removing "//"
 while (counter < 3) {
   counter++;
   // counter--;
@@ -41,10 +42,11 @@ hero.attack();
 `,
 
   startCodeVal:
-`// Сделай 3 шага с помощью цикла
+`// Make 3 steps using loop
 var counter = 0;
 
-// Откомментируй одну из инструкций
+// Uncomment one instruction
+// By removing "//"
 while (counter < 3) {
   // counter++;
   // counter--;
