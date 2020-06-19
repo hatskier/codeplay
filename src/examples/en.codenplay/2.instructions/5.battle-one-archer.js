@@ -28,12 +28,20 @@ let conf = prepareBattle({
 const startCodeVal =
 `// In this level your enemy (archer)
 // can attack your from any distance
+
+// The archer will attack only 2 times
+// at the beginning
+
 hero.defend();
 `;
 
 const solutionCode =
 `// In this level your enemy (archer)
 // can attack your from any distance
+
+// The archer will attack only 2 times
+// at the beginning
+
 hero.defend();
 hero.defend();
 hero.go();

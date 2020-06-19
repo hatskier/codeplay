@@ -35,14 +35,16 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Defeat your enemies
-// Dragon will attack in every second round
+`// The warrior is lazy and will
+// not attack you, but the dragon will
+// throw fireballs in every second round
 hero.defend();
 `;
 
 const solutionCode =
-`// Defeat your enemies
-// Dragon will attack in every second round
+`// The warrior is lazy and will
+// not attack you, but the dragon will
+// throw fireballs in every second round
 hero.defend();
 hero.go();
 hero.defend();

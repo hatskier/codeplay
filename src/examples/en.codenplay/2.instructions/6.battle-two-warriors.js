@@ -6,11 +6,12 @@ let conf = prepareBattle({
       enemies: {
         'Warrior': {
           action(tickNr) {
-            if (tickNr % 2 == 1) {
-              return 'attack';
-            } else {
-              return 'skip';
-            }
+            // if (tickNr % 2 == 1) {
+            //   return 'attack';
+            // } else {
+            //   return 'skip';
+            // }
+            return 'skip';
           },
 
           kind: 'warrior', // enum: ['archer', 'warrior', 'dragon']
@@ -39,11 +40,17 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// Attack both warriors
+`// The first warrior is lazy
+// and will not attack you.
+// But the second warrior will
+// attack in every second round
 `;
 
 const solutionCode =
-`// Attack both warriors
+`// The first warrior is lazy
+// and will not attack you.
+// But the second warrior will
+// attack in every second round
 hero.go();
 hero.attack();
 hero.skip();

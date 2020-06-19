@@ -27,15 +27,25 @@ let conf = prepareBattle({
 });
 
 const startCodeVal =
-`// You should attack the dragon
-// Note, sword is useless here ;)
-// Dragon will attack in every second round
+`// Sword is useless against dragons ;)
+// The dragon will attack in every
+// second round
+
+// Change the code below
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
+hero.defend();
 `;
 
 const solutionCode =
-`// You should attack the dragon
-// Note, sword is useless here ;)
-// Dragon will attack in every second round
+`// Sword is useless against dragons ;)
+// The dragon will attack in every
+// second round
+
+// Change the code below
 hero.defend();
 hero.go();
 hero.defend();
