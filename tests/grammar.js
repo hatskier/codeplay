@@ -24,7 +24,10 @@ let code =
     bar(1,2,3,4);
   } else {
     bas123();
+  }
 
+  function heyhey() {
+    return 2 + 3;
   }
 
   if (x >   y) {

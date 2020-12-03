@@ -46,6 +46,7 @@ var grammar = {
     {"name": "stm", "symbols": ["varIncrPP"], "postprocess": id},
     {"name": "stm", "symbols": ["varDecrMM"], "postprocess": id},
     {"name": "stm", "symbols": ["varAssign"], "postprocess": id},
+    {"name": "stm", "symbols": ["returnStm"], "postprocess": id},
     {"name": "expr", "symbols": ["value"], "postprocess": 
         function(data) {
           return {
@@ -201,6 +202,15 @@ var grammar = {
             type: "varDecrMM",
             name: data[0],
             line: data[2].line,
+          }
+        }
+        },
+    {"name": "returnStm", "symbols": [{"literal":"return"}, "_", "expr", "_", {"literal":";"}], "postprocess": 
+        function(data) {
+          return {
+            type: "returnStm",
+            expr: data[2],
+            line: data[0].line,
           }
         }
         },

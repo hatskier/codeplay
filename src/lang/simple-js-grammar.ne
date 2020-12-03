@@ -37,6 +37,7 @@ stm ->
   | varIncrPP {% id %}
   | varDecrMM {% id %}
   | varAssign {% id %}
+  | returnStm {% id %}
   # | varIncrPE {% id %} # Implement it later
   # | varDecrME {% id %} # Implement it later
 
@@ -203,6 +204,16 @@ varDecrMM -> identifier _ "--" _ ";" {%
       type: "varDecrMM",
       name: data[0],
       line: data[2].line,
+    }
+  }
+%}
+
+returnStm -> "return" _ expr _ ";" {%
+  function(data) {
+    return {
+      type: "returnStm",
+      expr: data[2],
+      line: data[0].line,
     }
   }
 %}
